@@ -18,6 +18,10 @@
 		A8B2A2A8291C8E3B000F5624 /* ManagerPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */; };
 		A8B2A2AB291C8E6A000F5624 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2AA291C8E6A000F5624 /* Placeholder.swift */; };
 		A8B2A2AD291C8FC8000F5624 /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */; };
+		C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */; };
+		C744915B291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */; };
+		C744915C291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449159291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf */; };
+		C7449160291D4B4700166197 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C744915F291D4B4700166197 /* UIFont+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerPlaceholder.swift; sourceTree = "<group>"; };
 		A8B2A2AA291C8E6A000F5624 /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
 		A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
+		C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF.otf; sourceTree = "<group>"; };
+		C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF_Light.otf; sourceTree = "<group>"; };
+		C7449159291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF_Bold.otf; sourceTree = "<group>"; };
+		C744915F291D4B4700166197 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +117,7 @@
 		A8B2A29D291C8D01000F5624 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				C7449156291D474400166197 /* Font */,
 				A8B2A29E291C8D4B000F5624 /* DataPlaceholder.swift */,
 			);
 			path = Data;
@@ -118,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				A8B2A2A1291C8D8F000F5624 /* ExtensionPlaceholder.swift */,
+				C744915F291D4B4700166197 /* UIFont+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -144,6 +154,16 @@
 				A8B2A2AA291C8E6A000F5624 /* Placeholder.swift */,
 			);
 			path = "Delegate(Protocol)";
+			sourceTree = "<group>";
+		};
+		C7449156291D474400166197 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				C7449159291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf */,
+				C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */,
+				C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,7 +226,10 @@
 			files = (
 				A8B2A293291C8B30000F5624 /* LaunchScreen.storyboard in Resources */,
 				A8B2A290291C8B30000F5624 /* Assets.xcassets in Resources */,
+				C744915B291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf in Resources */,
+				C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */,
 				A8B2A28E291C8B2F000F5624 /* Main.storyboard in Resources */,
+				C744915C291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +247,7 @@
 				A8B2A2A2291C8D8F000F5624 /* ExtensionPlaceholder.swift in Sources */,
 				A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */,
 				A8B2A2A8291C8E3B000F5624 /* ManagerPlaceholder.swift in Sources */,
+				C7449160291D4B4700166197 /* UIFont+Extension.swift in Sources */,
 				A8B2A2AB291C8E6A000F5624 /* Placeholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
