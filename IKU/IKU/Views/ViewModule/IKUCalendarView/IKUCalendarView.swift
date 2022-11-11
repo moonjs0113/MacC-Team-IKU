@@ -9,7 +9,7 @@ import UIKit
 
 class IKUCalendarView: UIView {
     // MARK: - Properties
-    var calendarView: CVCalendarView!
+    var calendarView: CVCalendarView = CVCalendarView()
     
     // MARK: - Methods
     func setupView() {
@@ -17,7 +17,6 @@ class IKUCalendarView: UIView {
     }
     
     func setupCVCalendar() {
-        calendarView = CVCalendarView()
         calendarView.calendarDelegate = self
         calendarView.calendarAppearanceDelegate = self
         calendarView.translatesAutoresizingMaskIntoConstraints = false
