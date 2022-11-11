@@ -56,6 +56,9 @@
 		C74491E9291D54DC00166197 /* CVShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491CA291D54DC00166197 /* CVShape.swift */; };
 		C74491EB291D54DC00166197 /* CVPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491CC291D54DC00166197 /* CVPresent.swift */; };
 		C74491EE291D586900166197 /* IKUCalendarView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */; };
+		C74491F0291D640B00166197 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491EF291D640B00166197 /* HistoryViewController.swift */; };
+		C75B19FA291E2C1C005B1A22 /* IKUChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */; };
+		C75B19FC291E30D6005B1A22 /* StrabismusLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +113,9 @@
 		C74491CA291D54DC00166197 /* CVShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVShape.swift; sourceTree = "<group>"; };
 		C74491CC291D54DC00166197 /* CVPresent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVPresent.swift; sourceTree = "<group>"; };
 		C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IKUCalendarView+Extension.swift"; sourceTree = "<group>"; };
+		C74491EF291D640B00166197 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKUChartView.swift; sourceTree = "<group>"; };
+		C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrabismusLog.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +185,7 @@
 				C74491A9291D54A100166197 /* ViewModule */,
 				A8B2A28A291C8B2F000F5624 /* ViewController.swift */,
 				A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */,
+				C74491EF291D640B00166197 /* HistoryViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -188,6 +195,7 @@
 			children = (
 				C7449156291D474400166197 /* Font */,
 				A8B2A29E291C8D4B000F5624 /* DataPlaceholder.swift */,
+				C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -241,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				C74491EC291D584B00166197 /* IKUCalendarView */,
+				C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */,
 			);
 			path = ViewModule;
 			sourceTree = "<group>";
@@ -378,6 +387,7 @@
 				C74491D3291D54DC00166197 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
 				C74491DB291D54DC00166197 /* CVSet.swift in Sources */,
 				A8B2A287291C8B2F000F5624 /* AppDelegate.swift in Sources */,
+				C75B19FA291E2C1C005B1A22 /* IKUChartView.swift in Sources */,
 				A8B2A2AD291C8FC8000F5624 /* StoryViewController.swift in Sources */,
 				C74491EB291D54DC00166197 /* CVPresent.swift in Sources */,
 				C74491DF291D54DC00166197 /* CVScrollDirection.swift in Sources */,
@@ -388,6 +398,7 @@
 				C74491D7291D54DC00166197 /* CVCalendarView.swift in Sources */,
 				C74491E6291D54DC00166197 /* CVCalendarDayViewControlCoordinator.swift in Sources */,
 				C74491EE291D586900166197 /* IKUCalendarView+Extension.swift in Sources */,
+				C74491F0291D640B00166197 /* HistoryViewController.swift in Sources */,
 				C74491D0291D54DC00166197 /* CVCalendarMonthView.swift in Sources */,
 				C74491D2291D54DC00166197 /* CVStatus.swift in Sources */,
 				A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */,
@@ -402,6 +413,7 @@
 				C74491E2291D54DC00166197 /* CVCalendarViewPresentationMode.swift in Sources */,
 				C74491E4291D54DC00166197 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
 				C74491D5291D54DC00166197 /* CVCalendarContentViewController.swift in Sources */,
+				C75B19FC291E30D6005B1A22 /* StrabismusLog.swift in Sources */,
 				C7449160291D4B4700166197 /* UIFont+Extension.swift in Sources */,
 				C74491D6291D54DC00166197 /* CVDate.swift in Sources */,
 				C74491A3291D4F3000166197 /* UIColor+Extension.swift in Sources */,

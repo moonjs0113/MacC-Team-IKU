@@ -84,7 +84,10 @@ public final class CVCalendarDayView: UIView {
         interactionSetup()
         if !isOut {
             labelSetup()
-            iconSetup()
+            // 테스트 진행한 날짜 데이터 넘겨받는 로직 미구현
+            if isTested {
+                iconSetup()
+            }
         }
         setupDotMarker()
         topMarkerSetup()
