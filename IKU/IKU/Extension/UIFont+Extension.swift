@@ -22,7 +22,7 @@ extension UIFont {
         }
     }
     
-    func nexonGothicFont(ofSize fontSize: CGFloat, weight: NexonFont = .regular) -> UIFont {
+    static func nexonGothicFont(ofSize fontSize: CGFloat, weight: NexonFont = .regular) -> UIFont {
         guard let font = UIFont.init(name: weight.name, size: fontSize) else {
             return .systemFont(ofSize: fontSize, weight: .regular)
         }
