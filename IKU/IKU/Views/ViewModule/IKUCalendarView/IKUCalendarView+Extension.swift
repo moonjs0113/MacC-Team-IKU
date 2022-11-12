@@ -12,11 +12,34 @@ extension IKUCalendarView: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
     func firstWeekday() -> Weekday { return .sunday }
     
-    func calendar() -> Calendar? { return Calendar(identifier: .gregorian) }
+    func calendar() -> Calendar? {
+        return .current
+//        let calendar: Calendar = .current//Calendar(identifier: .gregorian)
+//        return calendar
+    }
     
     func shouldShowWeekdaysOut() -> Bool { return true }
     
     func shouldAnimateResizing() -> Bool { return true }
+    
+    func didShowNextMonthView(_ date: Date) {
+        let dateComponents = Calendar.current.dateComponents([.month,.year], from: date)
+        guard let month = dateComponents.month,
+              let year = dateComponents.year else {
+            return
+        }
+        selectedDate = (month, year)
+        
+    }
+    
+    func didShowPreviousMonthView(_ date: Date) {
+        let dateComponents = Calendar.current.dateComponents([.month,.year], from: date)
+        guard let month = dateComponents.month,
+              let year = dateComponents.year else {
+            return
+        }
+        selectedDate = (month, year)
+    }
     
     func shouldSelectDayView(dayView: DayView) -> Bool { return false }
     
@@ -49,5 +72,27 @@ extension IKUCalendarView: CVCalendarViewAppearanceDelegate {
     
     func dayLabelBackgroundColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor? {
         return .white
+    }
+}
+
+extension IKUCalendarView: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        (component == 0) ? Month.allCases.count : 101
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        (component == 0) ? Month.allCases[row].pickerTitle : String(displayYears[row])
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if component == 0 {
+            selectedDate.month = row + 1
+        } else {
+            selectedDate.year = displayYears[row]
+        }
     }
 }

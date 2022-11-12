@@ -275,9 +275,10 @@ public final class CVCalendarMonthContentViewController: CVCalendarContentViewCo
 
                 monthViews[previous]?.removeFromSuperview()
                 monthViews[following]?.removeFromSuperview()
+                
                 insertMonthView(getPreviousMonth(date), withIdentifier: previous)
                 insertMonthView(getFollowingMonth(date), withIdentifier: following)
-
+                
                 let currentMonthView = MonthView(calendarView: calendarView, date: date)
                 currentMonthView.updateAppearance(scrollView.bounds)
                 currentMonthView.alpha = 0
@@ -317,7 +318,8 @@ extension CVCalendarMonthContentViewController {
         var components = Manager.componentsForDate(firstDate, calendar: calendar)
 
         components.month! += 1
-
+        components.day = 27
+        
         let newDate = calendar.date(from: components)!
         let frame = scrollView.bounds
         let monthView = MonthView(calendarView: calendarView, date: newDate)
@@ -331,9 +333,10 @@ extension CVCalendarMonthContentViewController {
         let calendar = self.calendarView.delegate?.calendar?() ?? Calendar.current
         let firstDate = calendarView.manager.monthDateRange(date).monthStartDate
         var components = Manager.componentsForDate(firstDate, calendar: calendar)
-
+        
         components.month! -= 1
-
+        components.day = 27
+        
         let newDate = calendar.date(from: components)!
         let frame = scrollView.bounds
         let monthView = MonthView(calendarView: calendarView, date: newDate)

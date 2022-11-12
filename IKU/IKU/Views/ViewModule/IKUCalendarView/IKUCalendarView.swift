@@ -9,20 +9,48 @@ import UIKit
 
 final class IKUCalendarView: UIView {
     // MARK: - Properties
+    var isMonthYearSelecting: Bool = false
+    var selectedDate: (month: Int, year: Int) = (Calendar.current.component(.month, from: Date.now),
+                                                 Calendar.current.component(.year, from: Date.now)) {
+        didSet {
+            fetchMonthYearLabel()
+        }
+    }
+    
+    var displayYears: [Int] {
+        let currentYear = Calendar.current.component(.year, from: Date.now)
+        let min = currentYear - 50 - (currentYear - 2022)
+        let max = currentYear + 50
+        return Array(min...max)
+    }
+
+    // UI Properties
     lazy private var calendarHeaderView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         
-        let label = UILabel()
-        let month = DateFormatter().shortMonthSymbols[Calendar.current.component(.month, from: Date.now) - 1].uppercased()
-        let year = Calendar.current.component(.year, from: Date.now)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "\(month) \(year)"
-        label.font = .nexonGothicFont(ofSize: 20, weight: .bold)
-        label.textColor = .black
-        label.textAlignment = .left
-        view.addSubview(label)
+        view.addSubview(todayLabel)
+        view.addSubview(selectMonthYearView)
         
+        NSLayoutConstraint.activate([
+            selectMonthYearView.topAnchor.constraint(equalTo: view.topAnchor),
+            selectMonthYearView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            selectMonthYearView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            todayLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            todayLabel.centerYAnchor.constraint(equalTo: selectMonthYearView.centerYAnchor),
+        ])
+        
+        self.addSubview(view)
+        return view
+    }()
+    
+    lazy private var selectMonthYearView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+
+        view.addSubview(monthYearLabel)
         let imageView = UIImageView(image: UIImage(systemName: "chevron.forward",
                                                    withConfiguration: UIImage.SymbolConfiguration(pointSize: 14, weight: .semibold)))
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -31,23 +59,31 @@ final class IKUCalendarView: UIView {
         view.addSubview(imageView)
         
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: view.topAnchor),
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            label.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            monthYearLabel.topAnchor.constraint(equalTo: view.topAnchor),
+            monthYearLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            monthYearLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            imageView.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 3),
-            imageView.bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: -1.5),
+            imageView.leadingAnchor.constraint(equalTo: monthYearLabel.trailingAnchor, constant: 5),
+            imageView.bottomAnchor.constraint(equalTo: monthYearLabel.bottomAnchor, constant: -1.5),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
         
-        view.addSubview(todayLabel)
-        NSLayoutConstraint.activate([
-            todayLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            todayLabel.centerYAnchor.constraint(equalTo: label.centerYAnchor),
-        ])
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapMonthYearLabel(_:)))
+        view.addGestureRecognizer(tapGestureRecognizer)
         
-        self.addSubview(view)
-        //        DateFormatter().shortMonthSymbols
         return view
+    }()
+    
+    lazy private var monthYearLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        let month = DateFormatter().shortMonthSymbols[selectedDate.month - 1].uppercased()
+        label.text = "\(month) \(selectedDate.year)"
+        label.font = .nexonGothicFont(ofSize: 20, weight: .bold)
+        label.textColor = .black
+        label.textAlignment = .left
+        
+        return label
     }()
     
     lazy private var todayLabel: UIView = {
@@ -99,11 +135,25 @@ final class IKUCalendarView: UIView {
         return stackView
     }()
     
-    lazy private var calendarView: CVCalendarView = {
+    lazy private var datePicker: UIPickerView = {
+        let view = UIPickerView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.isHidden = true
+        view.delegate = self
+        view.dataSource = self
+        view.selectRow(selectedDate.month - 1, inComponent: 0, animated: false)
+        view.selectRow(50, inComponent: 1, animated: false)
+        self.addSubview(view)
+        return view
+    }()
+    
+    lazy var calendarView: CVCalendarView = {
         let view = CVCalendarView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.calendarDelegate = self
         view.calendarAppearanceDelegate = self
+        view.toggleCurrentDayView()
         self.addSubview(view)
         return view
     }()
@@ -128,12 +178,49 @@ final class IKUCalendarView: UIView {
             calendarView.bottomAnchor.constraint(equalTo: bottomAnchor),
             calendarView.leadingAnchor.constraint(equalTo: leadingAnchor),
             calendarView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            datePicker.topAnchor.constraint(equalTo: weeklyTitleStackView.topAnchor),
+            datePicker.bottomAnchor.constraint(equalTo: bottomAnchor),
+            datePicker.leadingAnchor.constraint(equalTo: leadingAnchor),
+            datePicker.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
+    }
+    
+    private func fetchMonthYearLabel() {
+        let month = DateFormatter().shortMonthSymbols[selectedDate.month - 1].uppercased()
+        monthYearLabel.text = "\(month) \(selectedDate.year)"
+    }
+    
+    private func fetchCVCalendar() {
+        let dateComponents = DateComponents(calendar: Calendar(identifier: .gregorian),
+                                            year: selectedDate.year, month: selectedDate.month)
+        guard let date = dateComponents.date else {
+            return
+        }
+        calendarView.toggleViewWithDate(date)
     }
     
     public func commitCalendarViewUpdate() {
         calendarView.commitCalendarViewUpdate()
     }
+    
+    // MARK: - Objc Methods
+    @objc func tapMonthYearLabel(_ sender: UITapGestureRecognizer) {
+        isMonthYearSelecting = datePicker.isHidden
+        datePicker.isHidden = !datePicker.isHidden
+        
+        datePicker.selectRow(selectedDate.month - 1, inComponent: 0, animated: false)
+        datePicker.selectRow(selectedDate.year - 2022 + 50, inComponent: 1, animated: false)
+        
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            if let iamgeView = sender.view?.subviews.last as? UIImageView {
+                let rotationAngle = ((self?.isMonthYearSelecting ?? false) ? 1 : 0) * CGFloat(Double.pi) / 2
+                iamgeView.transform = CGAffineTransform(rotationAngle: rotationAngle)
+            }
+        }
+        fetchCVCalendar()
+    }
+    
     // MARK: - IBOutlets
     
     // MARK: - IBActions
@@ -143,6 +230,7 @@ final class IKUCalendarView: UIView {
         super.init(frame: frame)
         setupView()
         setupLayoutConstraint()
+        
     }
     
     required init?(coder: NSCoder) {
