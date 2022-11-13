@@ -11,13 +11,11 @@ import AVFoundation
 final class SelectPhotoViewController: UIViewController {
     private let player = AVPlayer()
     private let playerView: PlayerView = PlayerView()
-    private let playPauseButton: UIButton = {
-        let button = UIButton()
-        button.setImage(.init(systemName: "play.circle"), for: .normal)
-        button.contentHorizontalAlignment = .fill
-        button.contentVerticalAlignment = .fill
-        button.isEnabled = true
-        return button
+    private let playPauseButtonHostingController: UIHostingController<PlayButton> = {
+        let hostingController = UIHostingController(rootView: PlayButton())
+        hostingController.view.backgroundColor = .clear
+        hostingController.view.isUserInteractionEnabled = false
+        return hostingController
     }()
     private var scrubberHostingController: UIHostingController<ScrubberView>?
     
@@ -25,9 +23,6 @@ final class SelectPhotoViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureViews()
-        
-        playPauseButton.addTarget(self, action: #selector(playPauseButtonTouched(_:)), for: .touchUpInside)
-        
         guard let movieURL = Bundle.main.url(forResource: "video", withExtension: "m4v") else { return }
         let asset = AVURLAsset(url: movieURL)
 
@@ -63,23 +58,28 @@ final class SelectPhotoViewController: UIViewController {
         view.backgroundColor = .red
         playerView.backgroundColor = .blue
         
-        playerView.translatesAutoresizingMaskIntoConstraints = false
-        playPauseButton.translatesAutoresizingMaskIntoConstraints = false
+        playerView.addGestureRecognizer(
+            UITapGestureRecognizer(target: self, action: #selector(playPauseButtonTouched))
+        )
         
         view.addSubview(playerView)
-        view.addSubview(playPauseButton)
-        
+        playerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             playerView.topAnchor.constraint(equalTo: view.topAnchor),
             playerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             playerView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         
+        addChild(playPauseButtonHostingController)
+        view.addSubview(playPauseButtonHostingController.view)
+        playPauseButtonHostingController.didMove(toParent: self)
+        playPauseButtonHostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            playPauseButton.centerXAnchor.constraint(equalTo: playerView.centerXAnchor),
-            playPauseButton.centerYAnchor.constraint(equalTo: playerView.centerYAnchor),
-            playPauseButton.widthAnchor.constraint(equalToConstant: 50),
-            playPauseButton.heightAnchor.constraint(equalToConstant: 50)
+            playPauseButtonHostingController.view.centerXAnchor.constraint(equalTo: playerView.centerXAnchor),
+            playPauseButtonHostingController.view.centerYAnchor.constraint(equalTo: playerView.centerYAnchor),
+            playPauseButtonHostingController.view.widthAnchor.constraint(equalToConstant: 73),
+            playPauseButtonHostingController.view.heightAnchor.constraint(equalToConstant: 73)
         ])
     }
     
@@ -91,7 +91,7 @@ final class SelectPhotoViewController: UIViewController {
         }
     }
     
-    @objc private func playPauseButtonTouched(_ sender: UIButton?) {
+    @objc private func playPauseButtonTouched() {
         switch player.timeControlStatus {
         case .paused:
             let currentItem = player.currentItem
@@ -99,9 +99,28 @@ final class SelectPhotoViewController: UIViewController {
                 currentItem?.seek(to: .zero, completionHandler: { _ in })
             }
             player.play()
+            playPauseButtonHostingController.rootView.shape = .play
+            popAndDisapperAnimation(of: playPauseButtonHostingController.view)
         default:
             player.pause()
+            playPauseButtonHostingController.rootView.shape = .pause
+            popAndDisapperAnimation(of: playPauseButtonHostingController.view)
         }
+    }
+        
+    private func popAndDisapperAnimation(of view: UIView) {
+        view.alpha = 1
+        view.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
+        UIViewPropertyAnimator.runningPropertyAnimator(
+            withDuration: 0.2,
+            delay: 0,
+            options: .curveEaseInOut) {
+                view.transform = CGAffineTransform.identity
+            } completion: { _ in
+                UIView.transition(with: view, duration: 1) {
+                    view.alpha = 0
+                }
+            }
     }
     
     @objc private func selectButtonTouched(_ sender: UIButton?) {
