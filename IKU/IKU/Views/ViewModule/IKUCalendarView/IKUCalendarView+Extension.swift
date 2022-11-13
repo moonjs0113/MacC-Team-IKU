@@ -23,22 +23,11 @@ extension IKUCalendarView: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     func shouldAnimateResizing() -> Bool { return true }
     
     func didShowNextMonthView(_ date: Date) {
-        let dateComponents = Calendar.current.dateComponents([.month,.year], from: date)
-        guard let month = dateComponents.month,
-              let year = dateComponents.year else {
-            return
-        }
-        selectedDate = (month, year)
-        
+        scrollCalendar(date)
     }
     
     func didShowPreviousMonthView(_ date: Date) {
-        let dateComponents = Calendar.current.dateComponents([.month,.year], from: date)
-        guard let month = dateComponents.month,
-              let year = dateComponents.year else {
-            return
-        }
-        selectedDate = (month, year)
+        scrollCalendar(date)
     }
     
     func shouldSelectDayView(dayView: DayView) -> Bool { return false }

@@ -204,6 +204,15 @@ final class IKUCalendarView: UIView {
         calendarView.commitCalendarViewUpdate()
     }
     
+    public func scrollCalendar(_ date: Date) {
+        let dateComponents = Calendar.current.dateComponents([.month,.year], from: date)
+        guard let month = dateComponents.month,
+              let year = dateComponents.year else {
+            return
+        }
+        selectedDate = (month, year)
+    }
+    
     // MARK: - Objc Methods
     @objc func tapMonthYearLabel(_ sender: UITapGestureRecognizer) {
         isMonthYearSelecting = datePicker.isHidden
