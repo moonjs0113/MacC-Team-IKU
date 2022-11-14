@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-class PlayerView: UIView {
+final class PlayerView: UIView {
     var playerLayer: AVPlayerLayer {
         return layer as! AVPlayerLayer
     }
@@ -18,7 +18,7 @@ class PlayerView: UIView {
         set { playerLayer.player = newValue }
     }
     
-    override class var layerClass: AnyClass {
+    override static var layerClass: AnyClass {
         return AVPlayerLayer.self
     }
 }
