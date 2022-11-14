@@ -383,8 +383,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				A804661A291FF9890079CEDC /* ScrubberView.swift in Sources */,
+=======
 				C74491CD291D54DC00166197 /* CVCalendarDayView.swift in Sources */,
+>>>>>>> main
 				A8B2A28B291C8B2F000F5624 /* ViewController.swift in Sources */,
 				A8B2A2D7291DE0D6000F5624 /* NavigationViewController.swift in Sources */,
 				A8B2A2B1291CCD8F000F5624 /* SelectPhotoViewController.swift in Sources */,

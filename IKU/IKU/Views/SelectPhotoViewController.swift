@@ -74,7 +74,7 @@ final class SelectPhotoViewController: UIViewController {
             playerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             playerView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-        
+
         NSLayoutConstraint.activate([
             playPauseButton.centerXAnchor.constraint(equalTo: playerView.centerXAnchor),
             playPauseButton.centerYAnchor.constraint(equalTo: playerView.centerYAnchor),
