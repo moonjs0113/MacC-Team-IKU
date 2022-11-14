@@ -21,10 +21,6 @@ enum Month: String, CaseIterable {
     case november
     case december
     
-    var calendarTitle: String {
-        self.rawValue.suffix(3).uppercased()
-    }
-    
     var pickerTitle: String {
         var string = self.rawValue
         string.removeFirst()
