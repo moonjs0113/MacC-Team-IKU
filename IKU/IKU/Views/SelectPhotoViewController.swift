@@ -17,6 +17,8 @@ final class SelectPhotoViewController: UIViewController {
         hostingController.view.isUserInteractionEnabled = false
         return hostingController
     }()
+    private let gradientHostingController: UIHostingController<GradientView> =
+        UIHostingController(rootView: GradientView(colors: [Color(uiColor: #colorLiteral(red: 0.7215686275, green: 0.7137254902, blue: 0.7176470588, alpha: 1)), Color(uiColor: #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1))]))
     private var scrubberHostingController: UIHostingController<ScrubberView>?
     private var capturedImage: UIImage? = nil
     
@@ -43,6 +45,7 @@ final class SelectPhotoViewController: UIViewController {
     private func configureHostingViewController(){
         let hostingController = UIHostingController(rootView: ScrubberView(player: player))
         scrubberHostingController = hostingController
+        hostingController.view.backgroundColor = .clear
         
         addChild(hostingController)
         view.addSubview(hostingController.view)
@@ -58,8 +61,7 @@ final class SelectPhotoViewController: UIViewController {
     }
     
     private func configureViews() {
-        view.backgroundColor = .red
-        playerView.backgroundColor = .blue
+        view.backgroundColor = #colorLiteral(red: 0.1688045561, green: 0.1888649762, blue: 0.1928240955, alpha: 1)
         
         playerView.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(playPauseButtonTouched))
@@ -83,6 +85,17 @@ final class SelectPhotoViewController: UIViewController {
             playPauseButtonHostingController.view.centerYAnchor.constraint(equalTo: playerView.centerYAnchor),
             playPauseButtonHostingController.view.widthAnchor.constraint(equalToConstant: 73),
             playPauseButtonHostingController.view.heightAnchor.constraint(equalToConstant: 73)
+        ])
+        
+        addChild(gradientHostingController)
+        view.addSubview(gradientHostingController.view)
+        gradientHostingController.didMove(toParent: self)
+        gradientHostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            gradientHostingController.view.topAnchor.constraint(equalTo: playerView.bottomAnchor),
+            gradientHostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            gradientHostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            gradientHostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
