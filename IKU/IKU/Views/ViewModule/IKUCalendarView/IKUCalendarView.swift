@@ -19,7 +19,7 @@ final class IKUCalendarView: UIView {
     
     var displayYears: [Int] {
         let currentYear = Calendar.current.component(.year, from: Date.now)
-        let min = currentYear - 50 - (currentYear - 2022)
+        let min = 1972
         let max = currentYear + 50
         return Array(min...max)
     }
