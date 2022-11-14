@@ -21,6 +21,7 @@
 		A8B2A2B1291CCD8F000F5624 /* SelectPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */; };
 		A8B2A2B3291CCDAD000F5624 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */; };
 		A8B2A2B5291CCE8E000F5624 /* video.m4v in Resources */ = {isa = PBXBuildFile; fileRef = A8B2A2B4291CCE84000F5624 /* video.m4v */; };
+		A8B2A2D7291DE0D6000F5624 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */; };
 		C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */; };
 		C744915B291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */; };
 		C744915C291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449159291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf */; };
@@ -78,6 +79,7 @@
 		A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoViewController.swift; sourceTree = "<group>"; };
 		A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		A8B2A2B4291CCE84000F5624 /* video.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.m4v; sourceTree = "<group>"; };
+		A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF.otf; sourceTree = "<group>"; };
 		C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF_Light.otf; sourceTree = "<group>"; };
 		C7449159291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF_Bold.otf; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		A8B2A29C291C8CD9000F5624 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */,
 				C74491A9291D54A100166197 /* ViewModule */,
 				A8B2A28A291C8B2F000F5624 /* ViewController.swift */,
 				A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */,
@@ -379,6 +382,7 @@
 			files = (
 				C74491CD291D54DC00166197 /* CVCalendarDayView.swift in Sources */,
 				A8B2A28B291C8B2F000F5624 /* ViewController.swift in Sources */,
+				A8B2A2D7291DE0D6000F5624 /* NavigationViewController.swift in Sources */,
 				A8B2A2B1291CCD8F000F5624 /* SelectPhotoViewController.swift in Sources */,
 				A8B2A29F291C8D4B000F5624 /* DataPlaceholder.swift in Sources */,
 				A8B2A2B3291CCDAD000F5624 /* PlayerView.swift in Sources */,

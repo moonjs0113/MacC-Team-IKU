@@ -22,6 +22,7 @@ final class SelectPhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationBar()
         configureViews()
         playPauseButton.addTarget(self, action: #selector(playPauseButtonTouched(_:)), for: .touchUpInside)
         
@@ -31,6 +32,11 @@ final class SelectPhotoViewController: UIViewController {
         Task {
             try await loadPropertyValuesAsync(forAsset: asset)
         }
+    }
+    
+    private func configureNavigationBar() {
+        let selectButton = UIBarButtonItem(title: "선택하기", style: .plain, target: self, action: #selector(selectButtonTouched(_:)))
+        navigationItem.rightBarButtonItem = selectButton
     }
     
     private func configureViews() {
@@ -77,5 +83,46 @@ final class SelectPhotoViewController: UIViewController {
         default:
             player.pause()
         }
+    }
+    
+    @objc private func selectButtonTouched(_ sender: UIButton?) {
+        guard let movieURL = Bundle.main.url(forResource: "video", withExtension: "m4v") else { return }
+        let time = player.currentTime()
+        let asset = AVURLAsset(url: movieURL)
+        let generator = AVAssetImageGenerator(asset: asset)
+        generator.requestedTimeToleranceBefore = .zero
+        generator.requestedTimeToleranceAfter = .zero
+        generator.generateCGImageAsynchronously(for: time) { image, _, _ in
+            DispatchQueue.main.async { [weak self] in
+                let imageViewController = ImageViewController()
+                self?.present(imageViewController, animated: true)
+                imageViewController.imageView.image = UIImage(cgImage: image!)
+            }
+        }
+    }
+}
+
+fileprivate class ImageViewController: UIViewController {
+    let imageView: UIImageView = {
+        let uiImageView = UIImageView()
+        uiImageView.contentMode = .scaleAspectFit
+        return uiImageView
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureView()
+    }
+    
+    private func configureView() {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(imageView)
+        
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: view.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 }
