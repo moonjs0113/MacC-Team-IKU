@@ -34,6 +34,7 @@ final class SelectPhotoViewController: UIViewController {
     
     private func configureNavigationBar() {
         let selectButton = UIBarButtonItem(title: "선택하기", style: .plain, target: self, action: #selector(selectButtonTouched(_:)))
+        selectButton.tintColor = .white
         navigationItem.rightBarButtonItem = selectButton
     }
     
