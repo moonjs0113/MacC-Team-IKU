@@ -18,10 +18,12 @@
 		A8B2A2A8291C8E3B000F5624 /* ManagerPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */; };
 		A8B2A2AB291C8E6A000F5624 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2AA291C8E6A000F5624 /* Placeholder.swift */; };
 		A8B2A2AD291C8FC8000F5624 /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */; };
-		C7422514291F304E00DB6D80 /* CVMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7422513291F304E00DB6D80 /* CVMonth.swift */; };
 		A8B2A2B1291CCD8F000F5624 /* SelectPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */; };
 		A8B2A2B3291CCDAD000F5624 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */; };
 		A8B2A2B5291CCE8E000F5624 /* video.m4v in Resources */ = {isa = PBXBuildFile; fileRef = A8B2A2B4291CCE84000F5624 /* video.m4v */; };
+		C70100F02921D0DE00B58231 /* CoverTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */; };
+		C70100F42921DF7A00B58231 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */; };
+		C7422514291F304E00DB6D80 /* CVMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7422513291F304E00DB6D80 /* CVMonth.swift */; };
 		C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */; };
 		C744915B291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */; };
 		C744915C291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449159291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf */; };
@@ -61,6 +63,7 @@
 		C74491EB291D54DC00166197 /* CVPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491CC291D54DC00166197 /* CVPresent.swift */; };
 		C74491EE291D586900166197 /* IKUCalendarView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */; };
 		C74491F0291D640B00166197 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491EF291D640B00166197 /* HistoryViewController.swift */; };
+		C751F35229223FD100090892 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C751F35129223FD100090892 /* UIView+Extension.swift */; };
 		C75B19FA291E2C1C005B1A22 /* IKUChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */; };
 		C75B19FC291E30D6005B1A22 /* StrabismusLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */; };
 /* End PBXBuildFile section */
@@ -79,10 +82,12 @@
 		A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerPlaceholder.swift; sourceTree = "<group>"; };
 		A8B2A2AA291C8E6A000F5624 /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
 		A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
-		C7422513291F304E00DB6D80 /* CVMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVMonth.swift; sourceTree = "<group>"; };
 		A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoViewController.swift; sourceTree = "<group>"; };
 		A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		A8B2A2B4291CCE84000F5624 /* video.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.m4v; sourceTree = "<group>"; };
+		C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverTestViewController.swift; sourceTree = "<group>"; };
+		C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		C7422513291F304E00DB6D80 /* CVMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVMonth.swift; sourceTree = "<group>"; };
 		C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF.otf; sourceTree = "<group>"; };
 		C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF_Light.otf; sourceTree = "<group>"; };
 		C7449159291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF_Bold.otf; sourceTree = "<group>"; };
@@ -122,6 +127,7 @@
 		C74491CC291D54DC00166197 /* CVPresent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVPresent.swift; sourceTree = "<group>"; };
 		C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IKUCalendarView+Extension.swift"; sourceTree = "<group>"; };
 		C74491EF291D640B00166197 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		C751F35129223FD100090892 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKUChartView.swift; sourceTree = "<group>"; };
 		C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrabismusLog.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,6 +201,7 @@
 				A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */,
 				C74491EF291D640B00166197 /* HistoryViewController.swift */,
 				A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */,
+				C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */,
 				A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */,
 			);
 			path = Views;
@@ -216,6 +223,8 @@
 				A8B2A2A1291C8D8F000F5624 /* ExtensionPlaceholder.swift */,
 				C744915F291D4B4700166197 /* UIFont+Extension.swift */,
 				C74491A2291D4F3000166197 /* UIColor+Extension.swift */,
+				C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */,
+				C751F35129223FD100090892 /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -399,9 +408,11 @@
 				C74491E1291D54DC00166197 /* CVCalendarMonthContentViewController.swift in Sources */,
 				C74491D1291D54DC00166197 /* CVCalendarViewAppearance.swift in Sources */,
 				A8B2A29F291C8D4B000F5624 /* DataPlaceholder.swift in Sources */,
+				C70100F02921D0DE00B58231 /* CoverTestViewController.swift in Sources */,
 				C74491AB291D54D000166197 /* IKUCalendarView.swift in Sources */,
 				C74491D3291D54DC00166197 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
 				C74491DB291D54DC00166197 /* CVSet.swift in Sources */,
+				C751F35229223FD100090892 /* UIView+Extension.swift in Sources */,
 				A8B2A287291C8B2F000F5624 /* AppDelegate.swift in Sources */,
 				C75B19FA291E2C1C005B1A22 /* IKUChartView.swift in Sources */,
 				A8B2A2AD291C8FC8000F5624 /* StoryViewController.swift in Sources */,
@@ -428,6 +439,7 @@
 				C74491DC291D54DC00166197 /* CVAuxiliaryView.swift in Sources */,
 				A8B2A2A8291C8E3B000F5624 /* ManagerPlaceholder.swift in Sources */,
 				C74491E2291D54DC00166197 /* CVCalendarViewPresentationMode.swift in Sources */,
+				C70100F42921DF7A00B58231 /* UIViewController+Extension.swift in Sources */,
 				C74491E4291D54DC00166197 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
 				C74491D5291D54DC00166197 /* CVCalendarContentViewController.swift in Sources */,
 				C75B19FC291E30D6005B1A22 /* StrabismusLog.swift in Sources */,
@@ -584,7 +596,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 78F54XW75V;
+				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
@@ -615,7 +627,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 78F54XW75V;
+				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
