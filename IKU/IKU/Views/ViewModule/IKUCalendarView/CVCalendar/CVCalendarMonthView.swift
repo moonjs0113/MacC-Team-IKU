@@ -16,7 +16,6 @@ public final class CVCalendarMonthView: UIView {
         didSet {
             if let calendarView = calendarView {
                 if calendarView.calendarMode == CalendarMode.monthView {
-//                    print(#function)
                     updateInteractiveView()
                 }
             }

@@ -199,7 +199,7 @@ extension CVCalendarContentViewController {
         scrollView.frame.size.height = height
 //        calendarView.frame.size.height = height
         
-        print(height)
+//        print(height)
         var superStack = [UIView]()
         var currentView: UIView = calendarView
         while let currentSuperview = currentView.superview , !(currentSuperview is UIWindow) {
@@ -214,12 +214,11 @@ extension CVCalendarContentViewController {
     }
 
     public func updateHeight(_ height: CGFloat, animated: Bool) {
-        print("\n\(#function)")
+//        print("\n\(#function)")
         if calendarView.shouldAnimateResizing {
             var viewsToLayout = [UIView]()
             if let calendarSuperview = calendarView.superview {
                 for constraintIn in calendarSuperview.constraints {
-                    
                     if let firstItem = constraintIn.firstItem as? UIView,
                         let _ = constraintIn.secondItem as? CalendarView {
                         viewsToLayout.append(firstItem)
@@ -227,16 +226,12 @@ extension CVCalendarContentViewController {
                 }
             }
             
-            print(calendarView)
-//            calendarView.constraints.forEach {
-//                print($0)
-//            }
-            for constraintIn in calendarView.constraints {// where
+            for constraintIn in calendarView.constraints { // where
 //                constraintIn.firstAttribute == NSLayoutConstraint.Attribute.height {
 //                    constraintIn.secondAttribute
                 if let _ = constraintIn.firstItem as? CVCalendarView {
                     constraintIn.constant = height
-//                    print(constraintIn, constraintIn.firstItem)
+                    
                     if animated {
                         UIView.animate(withDuration: 0.2, delay: 0,
                                                    options: UIView.AnimationOptions.curveLinear,
