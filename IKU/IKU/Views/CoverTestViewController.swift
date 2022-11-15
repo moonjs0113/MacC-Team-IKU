@@ -180,9 +180,8 @@ final class CoverTestViewController: UIViewController {
     private func bindLayout(view: UIView) {
         view.publisher(for: \.bounds, options: [.new, .initial, .old, .prior])
             .receive(on: DispatchQueue.main)
-            .map {
-                return $0.width / 2
-            }
+            .filter { trunc($0.width) == trunc($0.height) }
+            .map { $0.width / 2 }
             .assign(to: \.layer.cornerRadius, on: view)
             .store(in: &anyCancellable)
     }
