@@ -33,5 +33,9 @@ class NavigationViewController: UIViewController {
     
     @objc private func buttonTouched(_ sender: UIButton?) {
         navigationController?.pushViewController(SelectPhotoViewController(), animated: true)
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        backItem.tintColor = .white
+        navigationItem.backBarButtonItem = backItem
     }
 }

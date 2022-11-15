@@ -18,6 +18,7 @@ final class SelectPhotoViewController: UIViewController {
         return hostingController
     }()
     private var scrubberHostingController: UIHostingController<ScrubberView>?
+    private var capturedImage: UIImage? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,9 @@ final class SelectPhotoViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        let selectButton = UIBarButtonItem(title: "선택하기", style: .plain, target: self, action: #selector(selectButtonTouched(_:)))
+        let barButtonTitle = self.capturedImage == nil ? "선택하기" : "완료"
+        let selectButton = UIBarButtonItem(title: barButtonTitle, style: .plain, target: self, action: #selector(selectButtonTouched(_:)))
+        selectButton.tintColor = .white
         navigationItem.rightBarButtonItem = selectButton
     }
     
@@ -132,16 +135,39 @@ final class SelectPhotoViewController: UIViewController {
         generator.requestedTimeToleranceAfter = .zero
         generator.generateCGImageAsynchronously(for: time) { image, _, _ in
             DispatchQueue.main.async { [weak self] in
-                let imageViewController = ImageViewController()
-                self?.present(imageViewController, animated: true)
-                imageViewController.imageView.image = UIImage(cgImage: image!)
+                if let savedImage = self?.capturedImage,
+                   let cgImage = image {
+                    self?.player.pause()
+                    
+                    let imageViewController = ImageViewController()
+                    imageViewController.leftImageView.image = savedImage
+                    imageViewController.rightImageView.image = UIImage(cgImage: cgImage)
+                    
+                    self?.present(imageViewController, animated: true)
+                } else if let cgImage = image {
+                    self?.player.pause()
+                    
+                    let nextViewController = SelectPhotoViewController()
+                    nextViewController.capturedImage = UIImage(cgImage: cgImage)
+                    self?.navigationController?.pushViewController(nextViewController, animated: true)
+                    
+                    let backItem = UIBarButtonItem()
+                    backItem.title = ""
+                    backItem.tintColor = .white
+                    self?.navigationItem.backBarButtonItem = backItem
+                }
             }
         }
     }
 }
 
 fileprivate class ImageViewController: UIViewController {
-    let imageView: UIImageView = {
+    let leftImageView: UIImageView = {
+        let uiImageView = UIImageView()
+        uiImageView.contentMode = .scaleAspectFit
+        return uiImageView
+    }()
+    let rightImageView: UIImageView = {
         let uiImageView = UIImageView()
         uiImageView.contentMode = .scaleAspectFit
         return uiImageView
@@ -153,14 +179,22 @@ fileprivate class ImageViewController: UIViewController {
     }
     
     private func configureView() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(imageView)
-        
+        leftImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(leftImageView)
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            leftImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            leftImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            leftImageView.trailingAnchor.constraint(equalTo: view.centerXAnchor),
+            leftImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        rightImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(rightImageView)
+        NSLayoutConstraint.activate([
+            rightImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            rightImageView.leadingAnchor.constraint(equalTo: view.centerXAnchor),
+            rightImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            rightImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
