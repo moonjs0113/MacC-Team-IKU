@@ -159,13 +159,13 @@ final class CoverTestViewController: UIViewController {
         sceneView.automaticallyUpdatesLighting = true
         sceneView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(sceneView)
-//        sceneView.isHidden = true
-//        NSLayoutConstraint.activate([
-//            sceneView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            sceneView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//            sceneView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-//            sceneView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-//        ])
+        sceneView.isHidden = true
+        NSLayoutConstraint.activate([
+            sceneView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            sceneView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            sceneView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            sceneView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        ])
     }
     
     private func setupLayoutConstraint() {
@@ -254,7 +254,7 @@ final class CoverTestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayoutConstraint()
-        setupARScene()
+//        setupARScene()
         configureBinding()
     }
     
