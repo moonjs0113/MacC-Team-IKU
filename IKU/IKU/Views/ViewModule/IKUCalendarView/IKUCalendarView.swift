@@ -156,7 +156,7 @@ final class IKUCalendarView: UIView {
         view.toggleCurrentDayView()
         self.addSubview(view)
         return view
-    }(
+    }()
     
     // MARK: - Methods
     private func setupView() {
