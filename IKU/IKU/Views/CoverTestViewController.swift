@@ -8,14 +8,19 @@
 import UIKit
 import AVFoundation
 import Combine
+import ARKit
+import SceneKit
 
 final class CoverTestViewController: UIViewController {
     // MARK: - Properties
     public let videoManager: VideoManager = VideoManager()
     private var anyCancellable = Set<AnyCancellable>()
     private var recordButtonLayoutConstraint: NSLayoutConstraint = .init()
+    private var transformVisualization: ARSceneManager = ARSceneManager()
+    private var faceAnchors: [ARFaceAnchor: ARSCNViewDelegate] = [:]
     
     // UI Properties
+    private var sceneView: ARSCNView = ARSCNView()
     private var cameraFrameView: UIStackView = {
         let topView = UIView()
         topView.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +49,7 @@ final class CoverTestViewController: UIViewController {
     private var guideLabel: UILabel = {
         let guideLabel = UILabel()
         guideLabel.translatesAutoresizingMaskIntoConstraints = false
-        guideLabel.text = "거리: XXcm\n가이드 라인에 아이의 얼굴을 맞춰 촬영해주세요!"
+        guideLabel.text = "거리: 0cm\n가이드 라인에 아이의 얼굴을 맞춰 촬영해주세요!"
         guideLabel.textColor = .white
         guideLabel.font = .nexonGothicFont(ofSize: 13, weight: .bold)
         guideLabel.numberOfLines = 2
@@ -148,6 +153,21 @@ final class CoverTestViewController: UIViewController {
     }()
     
     // MARK: - Methods
+    private func setupARScene() {
+        sceneView.delegate = self
+        sceneView.session.delegate = self
+        sceneView.automaticallyUpdatesLighting = true
+        sceneView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(sceneView)
+//        sceneView.isHidden = true
+//        NSLayoutConstraint.activate([
+//            sceneView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+//            sceneView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+//            sceneView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+//            sceneView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+//        ])
+    }
+    
     private func setupLayoutConstraint() {
         let previewLayer = videoManager.createPreviewLayer(view: view)
         view.layer.addSublayer(previewLayer)
@@ -191,6 +211,14 @@ final class CoverTestViewController: UIViewController {
         print(url)
     }
     
+    public func resetTracking() {
+        guard ARFaceTrackingConfiguration.isSupported else { return }
+        let configuration = ARFaceTrackingConfiguration()
+        configuration.maximumNumberOfTrackedFaces = ARFaceTrackingConfiguration.supportedNumberOfTrackedFaces
+        configuration.isLightEstimationEnabled = true
+        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+    }
+    
     // MARK: - Objc-C Methods
     @objc private func touchCloseButton(_ sender: UIButton) {
         dismiss(animated: true)
@@ -226,6 +254,7 @@ final class CoverTestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayoutConstraint()
+        setupARScene()
         configureBinding()
     }
     
@@ -239,6 +268,63 @@ final class CoverTestViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        resetTracking()
+    }
+}
+
+// MARK: - Delegate
+extension CoverTestViewController: ARSessionDelegate, ARSCNViewDelegate {
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        guard let faceAnchor = anchor as? ARFaceAnchor else {
+            return
+        }
         
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            if node.childNodes.isEmpty {
+                if let contentNode = self.transformVisualization.renderer(renderer, nodeFor: faceAnchor) {
+                    node.addChildNode(contentNode)
+                    self.faceAnchors[faceAnchor] = self.transformVisualization
+                }
+            }
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        guard let faceAnchor = anchor as? ARFaceAnchor,
+              let _ = faceAnchors[faceAnchor],
+              let contentNode = transformVisualization.contentNode else {
+            return
+        }
+        
+        transformVisualization.renderer(renderer, didUpdate: contentNode, for: anchor)
+        
+        let end = transformVisualization.leftEyeNode.presentation.worldPosition
+        let start = sceneView.pointOfView?.worldPosition
+        
+        if let start {
+            calculateDistance(start: start, end: end)
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
+        guard let faceAnchor = anchor as? ARFaceAnchor else {
+            return
+        }
+        faceAnchors[faceAnchor] = nil
+    }
+    
+    func calculateDistance(start: SCNVector3, end: SCNVector3) {
+        let dx = end.x - start.x
+        let dy = end.y - start.y
+        let dz = end.z - start.z
+
+        let distance = (sqrt(pow(dx, 2) + pow(dy, 2) + pow(dz, 2))) * 100
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.guideLabel.text = "거리: \(Int(round(distance)))cm\n가이드 라인에 아이의 얼굴을 맞춰 촬영해주세요!"
+        }
+        print(String(format: "Distance: %.2fcm", distance))
     }
 }

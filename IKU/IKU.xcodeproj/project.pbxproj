@@ -66,6 +66,8 @@
 		C74491EE291D586900166197 /* IKUCalendarView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */; };
 		C74491F0291D640B00166197 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491EF291D640B00166197 /* HistoryViewController.swift */; };
 		C7537CFA292320B5001E8BF6 /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7537CF9292320B5001E8BF6 /* VideoManager.swift */; };
+		C7537CFC2923B0E2001E8BF6 /* ARSceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7537CFB2923B0E2001E8BF6 /* ARSceneManager.swift */; };
+		C7537CFE2923B1E5001E8BF6 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C7537CFD2923B1E5001E8BF6 /* Models.scnassets */; };
 		C75B19FA291E2C1C005B1A22 /* IKUChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */; };
 		C75B19FC291E30D6005B1A22 /* StrabismusLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */; };
 /* End PBXBuildFile section */
@@ -132,6 +134,8 @@
 		C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IKUCalendarView+Extension.swift"; sourceTree = "<group>"; };
 		C74491EF291D640B00166197 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		C7537CF9292320B5001E8BF6 /* VideoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
+		C7537CFB2923B0E2001E8BF6 /* ARSceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARSceneManager.swift; sourceTree = "<group>"; };
+		C7537CFD2923B1E5001E8BF6 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 		C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKUChartView.swift; sourceTree = "<group>"; };
 		C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrabismusLog.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,6 +241,7 @@
 		A8B2A2A3291C8DDB000F5624 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C7537CFD2923B1E5001E8BF6 /* Models.scnassets */,
 				A8B2A2B4291CCE84000F5624 /* video.m4v */,
 				A8B2A28F291C8B30000F5624 /* Assets.xcassets */,
 				C74491A4291D4FD100166197 /* Color.xcassets */,
@@ -249,6 +254,7 @@
 			children = (
 				A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */,
 				C7537CF9292320B5001E8BF6 /* VideoManager.swift */,
+				C7537CFB2923B0E2001E8BF6 /* ARSceneManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -392,6 +398,7 @@
 				C744915B291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf in Resources */,
 				C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */,
 				C74491A5291D4FD100166197 /* Color.xcassets in Resources */,
+				C7537CFE2923B1E5001E8BF6 /* Models.scnassets in Resources */,
 				A8B2A28E291C8B2F000F5624 /* Main.storyboard in Resources */,
 				C744915C291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf in Resources */,
 			);
@@ -423,6 +430,7 @@
 				A8B2A287291C8B2F000F5624 /* AppDelegate.swift in Sources */,
 				C75B19FA291E2C1C005B1A22 /* IKUChartView.swift in Sources */,
 				A8B2A2AD291C8FC8000F5624 /* StoryViewController.swift in Sources */,
+				C7537CFC2923B0E2001E8BF6 /* ARSceneManager.swift in Sources */,
 				C74491EB291D54DC00166197 /* CVPresent.swift in Sources */,
 				C74491DF291D54DC00166197 /* CVScrollDirection.swift in Sources */,
 				C74491DA291D54DC00166197 /* CVSelectionType.swift in Sources */,
