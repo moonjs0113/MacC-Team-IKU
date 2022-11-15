@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E04199A29232E9200D710BC /* resultVideo.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 0E04199929232E9200D710BC /* resultVideo.MOV */; };
+		0E7A2CD729231F060060C024 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A2CD629231F060060C024 /* ResultViewController.swift */; };
 		A8B2A287291C8B2F000F5624 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A286291C8B2F000F5624 /* AppDelegate.swift */; };
 		A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A288291C8B2F000F5624 /* SceneDelegate.swift */; };
 		A8B2A28B291C8B2F000F5624 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A28A291C8B2F000F5624 /* ViewController.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E04199929232E9200D710BC /* resultVideo.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = resultVideo.MOV; sourceTree = "<group>"; };
+		0E7A2CD629231F060060C024 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		A8B2A283291C8B2F000F5624 /* IKU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IKU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B2A286291C8B2F000F5624 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8B2A288291C8B2F000F5624 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				A8B2A28C291C8B2F000F5624 /* Main.storyboard */,
+				0E04199929232E9200D710BC /* resultVideo.MOV */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 			children = (
 				A8B2A28A291C8B2F000F5624 /* ViewController.swift */,
 				A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */,
+				0E7A2CD629231F060060C024 /* ResultViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -235,6 +241,7 @@
 				C744915B291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf in Resources */,
 				C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */,
 				C74491A5291D4FD100166197 /* Color.xcassets in Resources */,
+				0E04199A29232E9200D710BC /* resultVideo.MOV in Resources */,
 				A8B2A28E291C8B2F000F5624 /* Main.storyboard in Resources */,
 				C744915C291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf in Resources */,
 			);
@@ -257,6 +264,7 @@
 				C7449160291D4B4700166197 /* UIFont+Extension.swift in Sources */,
 				C74491A3291D4F3000166197 /* UIColor+Extension.swift in Sources */,
 				A8B2A2AB291C8E6A000F5624 /* Placeholder.swift in Sources */,
+				0E7A2CD729231F060060C024 /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,10 +411,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 78F54XW75V;
+				DEVELOPMENT_TEAM = BQUJTNYMGY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "동영상 촬영을 위해 마이크 좀 쓸게";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "동영상 저장 좀 할께";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 좀 쓸게";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -434,10 +445,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 78F54XW75V;
+				DEVELOPMENT_TEAM = BQUJTNYMGY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "동영상 촬영을 위해 마이크 좀 쓸게";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "동영상 저장 좀 할께";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 좀 쓸게";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

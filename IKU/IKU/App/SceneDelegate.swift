@@ -14,7 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
-        let firstViewController = StoryViewController()
+        let firstViewController =
+        UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultViewController")
         window?.rootViewController = firstViewController
         window?.makeKeyAndVisible()
     }
