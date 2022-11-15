@@ -801,7 +801,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RAq-8v-Onh"/>
-                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <color key="backgroundColor" name="ikuBackground"/>
                         <constraints>
                             <constraint firstItem="RAq-8v-Onh" firstAttribute="trailing" secondItem="b7Y-zy-b8c" secondAttribute="trailing" constant="16" id="7Uv-h5-C3v"/>
                             <constraint firstItem="b7Y-zy-b8c" firstAttribute="top" secondItem="doM-WC-XGK" secondAttribute="bottom" constant="11" id="9JL-cM-XBw"/>
@@ -847,6 +847,9 @@
         <image name="coverEye" width="190" height="417"/>
         <image name="play.circle" catalog="system" width="128" height="123"/>
         <image name="uncoverEye" width="190" height="417"/>
+        <namedColor name="ikuBackground">
+            <color red="0.96470588235294119" green="0.97647058823529409" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="ikuBlue 2">
             <color red="0.15686274509803921" green="0.38039215686274508" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
@@ -876,9 +879,6 @@
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
