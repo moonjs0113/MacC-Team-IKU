@@ -22,10 +22,10 @@
 		A8B2A2B1291CCD8F000F5624 /* SelectPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */; };
 		A8B2A2B3291CCDAD000F5624 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */; };
 		A8B2A2B5291CCE8E000F5624 /* video.m4v in Resources */ = {isa = PBXBuildFile; fileRef = A8B2A2B4291CCE84000F5624 /* video.m4v */; };
+		A8B2A2D7291DE0D6000F5624 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */; };
 		C70100F02921D0DE00B58231 /* CoverTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */; };
 		C70100F42921DF7A00B58231 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */; };
 		C7422514291F304E00DB6D80 /* CVMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7422513291F304E00DB6D80 /* CVMonth.swift */; };
-		A8B2A2D7291DE0D6000F5624 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */; };
 		C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */; };
 		C744915B291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */; };
 		C744915C291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449159291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf */; };
@@ -65,7 +65,7 @@
 		C74491EB291D54DC00166197 /* CVPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491CC291D54DC00166197 /* CVPresent.swift */; };
 		C74491EE291D586900166197 /* IKUCalendarView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */; };
 		C74491F0291D640B00166197 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491EF291D640B00166197 /* HistoryViewController.swift */; };
-		C751F35229223FD100090892 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C751F35129223FD100090892 /* UIView+Extension.swift */; };
+		C7537CFA292320B5001E8BF6 /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7537CF9292320B5001E8BF6 /* VideoManager.swift */; };
 		C75B19FA291E2C1C005B1A22 /* IKUChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */; };
 		C75B19FC291E30D6005B1A22 /* StrabismusLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */; };
 /* End PBXBuildFile section */
@@ -88,10 +88,10 @@
 		A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoViewController.swift; sourceTree = "<group>"; };
 		A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		A8B2A2B4291CCE84000F5624 /* video.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.m4v; sourceTree = "<group>"; };
+		A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverTestViewController.swift; sourceTree = "<group>"; };
 		C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C7422513291F304E00DB6D80 /* CVMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVMonth.swift; sourceTree = "<group>"; };
-		A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF.otf; sourceTree = "<group>"; };
 		C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF_Light.otf; sourceTree = "<group>"; };
 		C7449159291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF_Bold.otf; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 		C74491CC291D54DC00166197 /* CVPresent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVPresent.swift; sourceTree = "<group>"; };
 		C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IKUCalendarView+Extension.swift"; sourceTree = "<group>"; };
 		C74491EF291D640B00166197 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		C751F35129223FD100090892 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		C7537CF9292320B5001E8BF6 /* VideoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
 		C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKUChartView.swift; sourceTree = "<group>"; };
 		C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrabismusLog.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -230,7 +230,6 @@
 				C744915F291D4B4700166197 /* UIFont+Extension.swift */,
 				C74491A2291D4F3000166197 /* UIColor+Extension.swift */,
 				C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */,
-				C751F35129223FD100090892 /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -249,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */,
+				C7537CF9292320B5001E8BF6 /* VideoManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -420,7 +420,6 @@
 				C74491AB291D54D000166197 /* IKUCalendarView.swift in Sources */,
 				C74491D3291D54DC00166197 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
 				C74491DB291D54DC00166197 /* CVSet.swift in Sources */,
-				C751F35229223FD100090892 /* UIView+Extension.swift in Sources */,
 				A8B2A287291C8B2F000F5624 /* AppDelegate.swift in Sources */,
 				C75B19FA291E2C1C005B1A22 /* IKUChartView.swift in Sources */,
 				A8B2A2AD291C8FC8000F5624 /* StoryViewController.swift in Sources */,
@@ -435,6 +434,7 @@
 				C74491EE291D586900166197 /* IKUCalendarView+Extension.swift in Sources */,
 				C74491F0291D640B00166197 /* HistoryViewController.swift in Sources */,
 				C74491D0291D54DC00166197 /* CVCalendarMonthView.swift in Sources */,
+				C7537CFA292320B5001E8BF6 /* VideoManager.swift in Sources */,
 				C74491D2291D54DC00166197 /* CVStatus.swift in Sources */,
 				A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */,
 				C74491E0291D54DC00166197 /* CVCalendarTouchController.swift in Sources */,

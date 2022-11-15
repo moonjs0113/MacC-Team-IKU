@@ -9,19 +9,11 @@ import UIKit
 import AVFoundation
 import Combine
 
-class CoverTestViewController: UIViewController {
+final class CoverTestViewController: UIViewController {
     // MARK: - Properties
-    private var subscriptions = Set<AnyCancellable>()
-    
-    // AVFoundation Properties
-    private var videoInput: AVCaptureDeviceInput!
-    private var videoOutput: AVCaptureMovieFileOutput!
-    private let videoDevice = AVCaptureDevice.default(.builtInTrueDepthCamera, for: .video, position: .front)
-    private var captureSession: AVCaptureSession =  {
-        let session = AVCaptureSession()
-        session.sessionPreset = .high
-        return session
-    }()
+    public let videoManager: VideoManager = VideoManager()
+    private var anyCancellable = Set<AnyCancellable>()
+    private var recordButtonLayoutConstraint: NSLayoutConstraint = .init()
     
     // UI Properties
     private var cameraFrameView: UIStackView = {
@@ -54,25 +46,26 @@ class CoverTestViewController: UIViewController {
         guideLabel.translatesAutoresizingMaskIntoConstraints = false
         guideLabel.text = "거리: XXcm\n가이드 라인에 아이의 얼굴을 맞춰 촬영해주세요!"
         guideLabel.textColor = .white
-        guideLabel.textAlignment = .center
         guideLabel.font = .nexonGothicFont(ofSize: 13, weight: .bold)
         guideLabel.numberOfLines = 2
         let attrString = NSMutableAttributedString(string: guideLabel.text ?? "")
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
         paragraphStyle.alignment = .center
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
+        attrString.addAttribute(NSAttributedString.Key.paragraphStyle,
+                                value: paragraphStyle,
+                                range: NSMakeRange(0, attrString.length))
         guideLabel.attributedText = attrString
         
         return guideLabel
     }()
     
-    lazy private var recodeButton: UIButton = {
+    lazy private var recordButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("", for: .normal)
         button.tintColor = .white
-        button.addTarget(self, action: #selector(touchRecodeButton(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(touchRecordButton(_:)), for: .touchUpInside)
         
         // Button Image
         let emptyCircle = UIView()
@@ -80,17 +73,19 @@ class CoverTestViewController: UIViewController {
         emptyCircle.isUserInteractionEnabled = false
         emptyCircle.backgroundColor = .clear
         emptyCircle.layer.borderColor = UIColor.white.cgColor
-        emptyCircle.layer.borderWidth = 3
-        emptyCircle.toCircle(anyCancellable: &subscriptions)
+        emptyCircle.layer.borderWidth = 4
+        bindLayout(view: emptyCircle)
         
         let fillCircle = UIView()
         fillCircle.isUserInteractionEnabled = false
         fillCircle.translatesAutoresizingMaskIntoConstraints = false
         fillCircle.backgroundColor = .red
-        fillCircle.toCircle(anyCancellable: &subscriptions)
+        bindLayout(view: fillCircle)
         
         button.addSubview(emptyCircle)
         button.addSubview(fillCircle)
+        
+        recordButtonLayoutConstraint = fillCircle.widthAnchor.constraint(equalTo: emptyCircle.widthAnchor, constant: -13)
         
         NSLayoutConstraint.activate([
             emptyCircle.widthAnchor.constraint(equalTo: button.widthAnchor),
@@ -98,7 +93,7 @@ class CoverTestViewController: UIViewController {
             emptyCircle.centerXAnchor.constraint(equalTo: button.centerXAnchor),
             emptyCircle.centerYAnchor.constraint(equalTo: button.centerYAnchor),
             
-            fillCircle.widthAnchor.constraint(equalTo: emptyCircle.widthAnchor, constant: -10),
+            recordButtonLayoutConstraint,
             fillCircle.heightAnchor.constraint(equalTo: fillCircle.widthAnchor),
             fillCircle.centerXAnchor.constraint(equalTo: button.centerXAnchor),
             fillCircle.centerYAnchor.constraint(equalTo: button.centerYAnchor),
@@ -148,45 +143,18 @@ class CoverTestViewController: UIViewController {
             guideLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             guideLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
-
+        
         return view
     }()
     
-    lazy private var previewLayer: AVCaptureVideoPreviewLayer = {
-        let previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-        previewLayer.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
-        previewLayer.position = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
-        previewLayer.videoGravity = .resizeAspectFill
-        return previewLayer
-    }()
-    
     // MARK: - Methods
-    private func setupSession() {
-        guard let videoDevice else { return }
-        
-        captureSession.beginConfiguration()
-        
-        guard let videoInput = try? AVCaptureDeviceInput(device: videoDevice) else {
-            captureSession.commitConfiguration()
-            return
-        }
-        
-        if captureSession.canAddInput(videoInput) {
-            captureSession.addInput(videoInput)
-        }
-        
-        let videoOutput = AVCaptureMovieFileOutput()
-        if captureSession.canAddOutput(videoOutput) {
-            captureSession.addOutput(videoOutput)
-        }
-        
-        captureSession.commitConfiguration()
-    }
-    
     private func setupLayoutConstraint() {
+        let previewLayer = videoManager.createPreviewLayer(view: view)
+        view.layer.addSublayer(previewLayer)
+        
         view.addSubview(cameraFrameView)
         view.addSubview(headerView)
-        view.addSubview(recodeButton)
+        view.addSubview(recordButton)
         
         NSLayoutConstraint.activate([
             cameraFrameView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -199,10 +167,29 @@ class CoverTestViewController: UIViewController {
             headerView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             headerView.bottomAnchor.constraint(equalTo: cameraFrameView.subviews[0].bottomAnchor, constant: -10),
             
-            recodeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            recodeButton.centerYAnchor.constraint(equalTo: cameraFrameView.subviews[2].centerYAnchor),
-            recodeButton.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.18),
+            recordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            recordButton.centerYAnchor.constraint(equalTo: cameraFrameView.subviews[2].centerYAnchor),
+            recordButton.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.18),
         ])
+    }
+    
+    private func configureBinding() {
+        videoManager.didFinishRecordingTo = goToSelectPhotoViewController
+    }
+    
+    private func bindLayout(view: UIView) {
+        view.publisher(for: \.bounds, options: [.new, .initial, .old, .prior])
+            .receive(on: DispatchQueue.main)
+            .map {
+                return $0.width / 2
+            }
+            .assign(to: \.layer.cornerRadius, on: view)
+            .store(in: &anyCancellable)
+    }
+    
+    private func goToSelectPhotoViewController(url: URL) {
+        // Smile Code
+        print(url)
     }
     
     // MARK: - Objc-C Methods
@@ -214,9 +201,24 @@ class CoverTestViewController: UIViewController {
         print(#function)
     }
     
-    @objc private func touchRecodeButton(_ sender: UIButton) {
-        print(#function)
-        print(sender.subviews)
+    @objc private func touchRecordButton(_ sender: UIButton) {
+        videoManager.run { [weak self] isRecording in
+            guard let self = self,
+                  let view = self.recordButtonLayoutConstraint.firstItem as? UIView else {
+                return
+            }
+            UIView.animate(withDuration: 0.3) {
+                self.recordButtonLayoutConstraint.constant = isRecording ? -45 : -13
+                if isRecording {
+                    self.anyCancellable.removeAll()
+                    view.layer.cornerRadius = 5
+                } else {
+                    self.bindLayout(view: view)
+                }
+                view.setNeedsLayout()
+                view.layoutIfNeeded()
+            }
+        }
     }
     
     // MARK: - Delegates And DataSources
@@ -224,9 +226,8 @@ class CoverTestViewController: UIViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.layer.addSublayer(previewLayer)
         setupLayoutConstraint()
-        setupSession()
+        configureBinding()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -234,7 +235,7 @@ class CoverTestViewController: UIViewController {
             guard let self = self else {
                 return
             }
-            self.captureSession.startRunning()
+            self.videoManager.captureSession.startRunning()
         }
     }
     

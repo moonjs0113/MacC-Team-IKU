@@ -18,7 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = firstViewController
         window?.makeKeyAndVisible()
         firstViewController.setNavigationBarHidden(false, animated: true)
-        firstViewController.pushViewController(NavigationViewController(), animated: true)
+//        firstViewController.pushViewController(NavigationViewController(), animated: true)
+        firstViewController.pushViewController(HistoryViewController(), animated: true)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}
