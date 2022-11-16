@@ -86,13 +86,13 @@
                                         <color key="highlightedColor" systemColor="linkColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 도" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjp-pf-IUD">
-                                        <rect key="frame" x="12" y="42" width="33.666666666666664" height="15"/>
-                                        <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
+                                        <rect key="frame" x="12" y="42" width="44" height="19.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text1" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXZ-ly-CQV">
-                                        <rect key="frame" x="16" y="146.33333333333337" width="328" height="40"/>
+                                        <rect key="frame" x="16" y="151" width="328" height="40"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="wmY-d8-vnL"/>
@@ -106,7 +106,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="pZX-lz-YDn">
-                                        <rect key="frame" x="16" y="114.33333333333331" width="328" height="17"/>
+                                        <rect key="frame" x="16" y="119" width="328" height="17"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안전" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oi-YR-cpQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="108" height="17"/>
@@ -144,7 +144,7 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szg-Fr-Jst">
-                                        <rect key="frame" x="16" y="206.33333333333337" width="328" height="68"/>
+                                        <rect key="frame" x="16" y="211" width="328" height="68"/>
                                         <color key="tintColor" systemColor="opaqueSeparatorColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="68" id="eNE-dO-oDL"/>
@@ -154,7 +154,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hLJ-JJ-nIe">
-                                        <rect key="frame" x="15" y="62" width="330" height="20"/>
+                                        <rect key="frame" x="15" y="66.666666666666686" width="330" height="20"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M7W-0W-cC7">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -489,7 +489,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="rcX-AO-rGL">
-                                        <rect key="frame" x="15" y="79" width="330" height="20.333333333333329"/>
+                                        <rect key="frame" x="15" y="83.666666666666686" width="330" height="20.333333333333329"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRI-6s-mwG">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20.333333333333332"/>
@@ -801,7 +801,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RAq-8v-Onh"/>
-                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <color key="backgroundColor" name="ikuBackground"/>
                         <constraints>
                             <constraint firstItem="RAq-8v-Onh" firstAttribute="trailing" secondItem="b7Y-zy-b8c" secondAttribute="trailing" constant="16" id="7Uv-h5-C3v"/>
                             <constraint firstItem="b7Y-zy-b8c" firstAttribute="top" secondItem="doM-WC-XGK" secondAttribute="bottom" constant="11" id="9JL-cM-XBw"/>
@@ -830,6 +830,7 @@
                         <outlet property="legalLabel" destination="szg-Fr-Jst" id="iF0-bn-OQS"/>
                         <outlet property="memoTitle" destination="Fap-NG-EAr" id="zsq-mv-t91"/>
                         <outlet property="result" destination="rcX-AO-rGL" id="dJD-iW-42b"/>
+                        <outlet property="resultPicker" destination="hLJ-JJ-nIe" id="ipZ-6y-ltx"/>
                         <outlet property="resultmemoLabel" destination="dXZ-ly-CQV" id="MSe-pc-DQd"/>
                         <outlet property="safeLabel" destination="2Oi-YR-cpQ" id="dbI-Zz-cuL"/>
                         <outlet property="titleLabel" destination="doM-WC-XGK" id="o93-as-T2l"/>
@@ -846,6 +847,9 @@
         <image name="coverEye" width="190" height="417"/>
         <image name="play.circle" catalog="system" width="128" height="123"/>
         <image name="uncoverEye" width="190" height="417"/>
+        <namedColor name="ikuBackground">
+            <color red="0.96470588235294119" green="0.97647058823529409" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="ikuBlue 2">
             <color red="0.15686274509803921" green="0.38039215686274508" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
@@ -875,9 +879,6 @@
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
