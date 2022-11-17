@@ -73,6 +73,7 @@
 		C7F1775C2925B1CD0004C5D9 /* ARCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F177592925B1CD0004C5D9 /* ARCapture.swift */; };
 		C7F1775D2925B1CD0004C5D9 /* ARAssetWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */; };
 		C7F1775E2925B1CD0004C5D9 /* ARFrameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */; };
+		C7F177612925D0640004C5D9 /* popSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C7F177602925D0640004C5D9 /* popSound.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +145,7 @@
 		C7F177592925B1CD0004C5D9 /* ARCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARCapture.swift; sourceTree = "<group>"; };
 		C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAssetWriter.swift; sourceTree = "<group>"; };
 		C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARFrameGenerator.swift; sourceTree = "<group>"; };
+		C7F177602925D0640004C5D9 /* popSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = popSound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +251,7 @@
 			children = (
 				C7537CFD2923B1E5001E8BF6 /* Models.scnassets */,
 				A8B2A2B4291CCE84000F5624 /* video.m4v */,
+				C7F177602925D0640004C5D9 /* popSound.mp3 */,
 				A8B2A28F291C8B30000F5624 /* Assets.xcassets */,
 				C74491A4291D4FD100166197 /* Color.xcassets */,
 			);
@@ -415,6 +418,7 @@
 				C744915B291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf in Resources */,
 				C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */,
 				C74491A5291D4FD100166197 /* Color.xcassets in Resources */,
+				C7F177612925D0640004C5D9 /* popSound.mp3 in Resources */,
 				C7537CFE2923B1E5001E8BF6 /* Models.scnassets in Resources */,
 				A8B2A28E291C8B2F000F5624 /* Main.storyboard in Resources */,
 				C744915C291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf in Resources */,

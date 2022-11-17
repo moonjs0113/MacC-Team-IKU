@@ -13,12 +13,11 @@ import SceneKit
 
 final class CoverTestViewController: UIViewController {
     // MARK: - Properties
-    public let videoManager: VideoManager = VideoManager()
     private var anyCancellable = Set<AnyCancellable>()
     private var recordButtonLayoutConstraint: NSLayoutConstraint = .init()
     private var transformVisualization: ARSceneManager = ARSceneManager()
     private var faceAnchors: [ARFaceAnchor: ARSCNViewDelegate] = [:]
-//    private var isRecording: Bool = false
+    private let syn = AVSpeechSynthesizer()
     private var arCapture: ARCapture?
     
     // UI Properties
@@ -161,19 +160,17 @@ final class CoverTestViewController: UIViewController {
         sceneView.automaticallyUpdatesLighting = true
         sceneView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(sceneView)
-        sceneView.isHidden = true
+//        sceneView.isHidden = true
         NSLayoutConstraint.activate([
-            sceneView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            sceneView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            sceneView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            sceneView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            sceneView.topAnchor.constraint(equalTo: view.topAnchor),
+            sceneView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            sceneView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            sceneView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
         arCapture = ARCapture(view: sceneView)
     }
     
     private func setupLayoutConstraint() {
-//        let previewLayer = videoManager.createPreviewLayer(view: view)
-//        view.layer.addSublayer(previewLayer)
         view.addSubview(cameraFrameView)
         view.addSubview(headerView)
         view.addSubview(recordButton)
@@ -196,7 +193,7 @@ final class CoverTestViewController: UIViewController {
     }
     
     private func configureBinding() {
-        videoManager.didFinishRecordingTo = goToSelectPhotoViewController
+        arCapture?.didFinishRecordingTo = goToSelectPhotoViewController
     }
     
     private func bindLayout(view: UIView) {
@@ -210,6 +207,7 @@ final class CoverTestViewController: UIViewController {
     
     private func goToSelectPhotoViewController(url: URL) {
         // Smile Code
+        print(#function)
         print(url)
     }
     
@@ -221,21 +219,36 @@ final class CoverTestViewController: UIViewController {
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
+    func projectWill() {
+        let s = "오른쪽 눈을 손바닥으로 가려주세요"
+        let u = AVSpeechUtterance(string: s)
+        // TODO: - lang enum 만들기
+        u.voice = .init(language: "ko-KR")
+        u.rate = 0.4
+        syn.speak(u)
+    }
+    
     // MARK: - Objc-C Methods
     @objc private func touchCloseButton(_ sender: UIButton) {
         dismiss(animated: true)
     }
     
     @objc private func touchHelpButton(_ sender: UIButton) {
-        print(#function)
+//        playSound()
+//        projectWill()
+        guard let f = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else {
+            return
+        }
+        guard let d = try? FileManager.default.contentsOfDirectory(at: f, includingPropertiesForKeys: nil) else {
+            return
+        }
+
+        d.forEach {
+            print($0)
+        }
     }
     
     @objc private func touchRecordButton(_ sender: UIButton) {
-//        defer {
-//            isRecording.toggle()
-//        }
-        print(#function)
-        print(sender.subviews)
         arCapture?.run { [weak self] recordStatus in
             guard let self = self,
                   let view = self.recordButtonLayoutConstraint.firstItem as? UIView else {
@@ -253,24 +266,6 @@ final class CoverTestViewController: UIViewController {
                 view.layoutIfNeeded()
             }
         }
-        
-//        videoManager.run { [weak self] isRecording in
-//            guard let self = self,
-//                  let view = self.recordButtonLayoutConstraint.firstItem as? UIView else {
-//                return
-//            }
-//            UIView.animate(withDuration: 0.3) {
-//                self.recordButtonLayoutConstraint.constant = isRecording ? -45 : -10
-//                if isRecording {
-//                    self.anyCancellable.removeAll()
-//                    view.layer.cornerRadius = 5
-//                } else {
-//                    self.bindLayout(view: view)
-//                }
-//                view.setNeedsLayout()
-//                view.layoutIfNeeded()
-//            }
-//        }
     }
     
     // MARK: - Delegates And DataSources
@@ -280,8 +275,7 @@ final class CoverTestViewController: UIViewController {
         super.viewDidLoad()
         setupARScene()
         setupLayoutConstraint()
-        
-//        configureBinding()
+        configureBinding()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -349,6 +343,5 @@ extension CoverTestViewController: ARSessionDelegate, ARSCNViewDelegate {
             self.recordButton.isEnabled = isEnabled
             self.recordButton.subviews[1].alpha = isEnabled ? 1 : 0.5
         }
-        print(String(format: "Distance: %.2fcm", distance))
     }
 }

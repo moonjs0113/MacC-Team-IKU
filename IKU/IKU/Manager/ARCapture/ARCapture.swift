@@ -59,6 +59,8 @@ open class ARCapture {
     private var summaryDelay: CMTime?
     private var videoUrl: URL?
     
+    var didFinishRecordingTo: (URL) -> () = { _ in }
+    
     public init?(view: ARSCNView) {
         self.view = view
         initCapture()
@@ -130,7 +132,8 @@ open class ARCapture {
             self?.assetCreator?.stop { [weak self] in
                 if let url = self?.videoUrl {
                     if let complete = complete {
-                        self?.addVideoToLibrary(from: url, completed: complete)
+                        self?.didFinishRecordingTo(url)
+//                        self?.addVideogiToLibrary(from: url, completed: complete)
                     }
                     else {
                         try? FileManager.default.removeItem(at: url)
@@ -224,7 +227,9 @@ open class ARCapture {
         case .ready, .paused:
             start()
         case .recording:
-            stop()
+            stop {
+                print("complete: \($0)")
+            }
         }
         completeHandler(status)
     }
