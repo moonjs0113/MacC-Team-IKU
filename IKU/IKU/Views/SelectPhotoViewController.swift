@@ -9,6 +9,7 @@ import SwiftUI
 import AVFoundation
 
 final class SelectPhotoViewController: UIViewController {
+    // MARK: - Properties
     private let player = AVPlayer()
     private lazy var announcementLabel: UILabel = {
         let uiLabel = UILabel()
@@ -29,20 +30,10 @@ final class SelectPhotoViewController: UIViewController {
         UIHostingController(rootView: GradientView(colors: [Color(uiColor: #colorLiteral(red: 0.7215686275, green: 0.7137254902, blue: 0.7176470588, alpha: 1)), Color(uiColor: #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1))]))
     private var scrubberHostingController: UIHostingController<ScrubberView>?
     private var capturedImage: UIImage? = nil
+    private var urlPath: URL?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureNavigationBar()
-        configureViews()
-        guard let movieURL = Bundle.main.url(forResource: "video", withExtension: "m4v") else { return }
-        let asset = AVURLAsset(url: movieURL)
 
-        Task {
-            try await loadPropertyValuesAsync(forAsset: asset)
-            configureHostingViewController()
-        }
-    }
-    
+    // MARK: - Methods
     private func configureNavigationBar() {
         let barButtonTitle = self.capturedImage == nil ? "선택하기" : "완료"
         let selectButton = UIBarButtonItem(title: barButtonTitle, style: .plain, target: self, action: #selector(selectButtonTouched(_:)))
@@ -121,6 +112,26 @@ final class SelectPhotoViewController: UIViewController {
         }
     }
     
+    private func popAndDisapperAnimation(of view: UIView) {
+        view.alpha = 1
+        view.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
+        UIViewPropertyAnimator.runningPropertyAnimator(
+            withDuration: 0.2,
+            delay: 0,
+            options: .curveEaseInOut) {
+                view.transform = CGAffineTransform.identity
+            } completion: { _ in
+                UIView.transition(with: view, duration: 1) {
+                    view.alpha = 0
+                }
+            }
+    }
+    
+    func prepareURL(url: URL) {
+        urlPath = url
+    }
+    
+    // MARK: - Objc-C Methods
     @objc private func playPauseButtonTouched() {
         switch player.timeControlStatus {
         case .paused:
@@ -136,21 +147,6 @@ final class SelectPhotoViewController: UIViewController {
             playPauseButtonHostingController.rootView.shape = .pause
             popAndDisapperAnimation(of: playPauseButtonHostingController.view)
         }
-    }
-        
-    private func popAndDisapperAnimation(of view: UIView) {
-        view.alpha = 1
-        view.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
-        UIViewPropertyAnimator.runningPropertyAnimator(
-            withDuration: 0.2,
-            delay: 0,
-            options: .curveEaseInOut) {
-                view.transform = CGAffineTransform.identity
-            } completion: { _ in
-                UIView.transition(with: view, duration: 1) {
-                    view.alpha = 0
-                }
-            }
     }
     
     @objc private func selectButtonTouched(_ sender: UIButton?) {
@@ -184,6 +180,21 @@ final class SelectPhotoViewController: UIViewController {
                     self?.navigationItem.backBarButtonItem = backItem
                 }
             }
+        }
+    }
+    
+    // MARK: - Life Cycles
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureNavigationBar()
+        configureViews()
+//        guard let movieURL = Bundle.main.url(forResource: "video", withExtension: "m4v") else { return }
+        guard let urlPath else { return }
+        let asset = AVURLAsset(url: urlPath)
+
+        Task {
+            try await loadPropertyValuesAsync(forAsset: asset)
+            configureHostingViewController()
         }
     }
 }

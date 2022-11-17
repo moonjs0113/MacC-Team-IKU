@@ -97,10 +97,12 @@ final class HistoryViewController: UIViewController {
     }
     
     private func goToCoverTestView() {
-        let vc = CoverTestViewController()
-        vc.view.backgroundColor = .white
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
+        let navigationController = UINavigationController()
+        let coverTestViewController = CoverTestViewController()
+        navigationController.view.backgroundColor = .white
+        navigationController.modalPresentationStyle = .fullScreen
+        navigationController.pushViewController(coverTestViewController, animated: true)
+        self.present(navigationController, animated: true)
     }
     
     private func showAlertPermissionSetting() {

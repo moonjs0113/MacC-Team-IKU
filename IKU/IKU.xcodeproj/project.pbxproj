@@ -69,6 +69,7 @@
 		C74491EB291D54DC00166197 /* CVPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491CC291D54DC00166197 /* CVPresent.swift */; };
 		C74491EE291D586900166197 /* IKUCalendarView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */; };
 		C74491F0291D640B00166197 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491EF291D640B00166197 /* HistoryViewController.swift */; };
+		C745E9512926175F00AEECA8 /* CoverTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C745E9502926175F00AEECA8 /* CoverTestViewModel.swift */; };
 		C7537CFA292320B5001E8BF6 /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7537CF9292320B5001E8BF6 /* VideoManager.swift */; };
 		C7537CFC2923B0E2001E8BF6 /* ARSceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7537CFB2923B0E2001E8BF6 /* ARSceneManager.swift */; };
 		C7537CFE2923B1E5001E8BF6 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C7537CFD2923B1E5001E8BF6 /* Models.scnassets */; };
@@ -145,6 +146,7 @@
 		C74491CC291D54DC00166197 /* CVPresent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVPresent.swift; sourceTree = "<group>"; };
 		C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IKUCalendarView+Extension.swift"; sourceTree = "<group>"; };
 		C74491EF291D640B00166197 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		C745E9502926175F00AEECA8 /* CoverTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverTestViewModel.swift; sourceTree = "<group>"; };
 		C7537CF9292320B5001E8BF6 /* VideoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
 		C7537CFB2923B0E2001E8BF6 /* ARSceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARSceneManager.swift; sourceTree = "<group>"; };
 		C7537CFD2923B1E5001E8BF6 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
@@ -224,11 +226,12 @@
 				A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */,
 				C74491A9291D54A100166197 /* ViewModule */,
 				A8B2A28A291C8B2F000F5624 /* ViewController.swift */,
-                A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */,
+				A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */,
 				0E7A2CD629231F060060C024 /* ResultViewController.swift */,
 				C74491EF291D640B00166197 /* HistoryViewController.swift */,
 				A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */,
 				C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */,
+				C745E9502926175F00AEECA8 /* CoverTestViewModel.swift */,
 				A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */,
 				A8046619291FF9890079CEDC /* ScrubberView.swift */,
 				A804661B292012B10079CEDC /* PlayButton.swift */,
@@ -481,6 +484,7 @@
 				C74491D0291D54DC00166197 /* CVCalendarMonthView.swift in Sources */,
 				C7537CFA292320B5001E8BF6 /* VideoManager.swift in Sources */,
 				C74491D2291D54DC00166197 /* CVStatus.swift in Sources */,
+				C745E9512926175F00AEECA8 /* CoverTestViewModel.swift in Sources */,
 				C7F1775C2925B1CD0004C5D9 /* ARCapture.swift in Sources */,
 				A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */,
 				C74491E0291D54DC00166197 /* CVCalendarTouchController.swift in Sources */,
@@ -652,7 +656,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BQUJTNYMGY;
+				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
@@ -686,7 +690,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BQUJTNYMGY;
+				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";

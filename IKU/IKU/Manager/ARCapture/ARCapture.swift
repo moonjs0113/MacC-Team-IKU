@@ -131,8 +131,11 @@ open class ARCapture {
             self?.lastPauseTime = nil
             self?.assetCreator?.stop { [weak self] in
                 if let url = self?.videoUrl {
-                    if let complete = complete {
-                        self?.didFinishRecordingTo(url)
+                    if let _ = complete {
+                        DispatchQueue.main.async {
+                            guard let self = self else { return }
+                            self.didFinishRecordingTo(url)
+                        }
 //                        self?.addVideogiToLibrary(from: url, completed: complete)
                     }
                     else {
