@@ -39,17 +39,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //탭바 이미지 설정
         guard let items = tabBarVC.tabBar.items else { return }
-        items[0].image = UIImage(systemName: "trash")
-        items[1].image = UIImage(systemName: "trash")
-        items[2].image = UIImage(systemName: "trash")
+        items[0].image = UIImage(systemName: "magnifyingglass")
+        items[1].image = UIImage(systemName: "calendar")
+        items[2].image = UIImage(systemName: "book")
 
         window?.rootViewController = firstViewController
         window?.rootViewController = tabBarVC
         window?.makeKeyAndVisible()
         
-        firstViewController.setNavigationBarHidden(false, animated: true)
-        firstViewController.pushViewController(NavigationViewController(), animated: true)
-        firstViewController.pushViewController(HistoryViewController(), animated: true)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}
