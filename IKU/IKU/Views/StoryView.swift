@@ -1,5 +1,5 @@
 //
-//  SF:StoryView.swift
+//  StoryView.swift
 //  IKU
 //
 //  Created by KimJS on 2022/11/15.
@@ -13,7 +13,7 @@ extension Color {
     static let ikuBackground: Color = Color( "ikuBackground")
 }
 
-struct SF_StoryView: View {
+struct StoryView: View {
     
     // MARK: - Properties
     let customBlue = Color.ikuBlue
@@ -95,8 +95,8 @@ struct SF_StoryView: View {
     }
 }
 
-struct SF_StoryView_Previews: PreviewProvider {
+struct StoryView_Previews: PreviewProvider {
     static var previews: some View {
-        SF_StoryView()
+        StoryView()
     }
 }

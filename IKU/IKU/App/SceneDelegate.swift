@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
 //        let firstViewController = UINavigationController()
-        let firstViewController = UIHostingController(rootView: SF_StoryView())
+        let firstViewController = UIHostingController(rootView: StoryView())
         window?.rootViewController = firstViewController
         window?.makeKeyAndVisible()
 //        firstViewController.setNavigationBarHidden(false, animated: true)
