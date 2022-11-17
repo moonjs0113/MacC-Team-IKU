@@ -10,24 +10,30 @@ import AVFoundation
 
 final class SelectPhotoViewController: UIViewController {
     private let player = AVPlayer()
-    private let playerView: PlayerView = PlayerView()
-    private let playPauseButton: UIButton = {
-        let button = UIButton()
-        button.setImage(.init(systemName: "play.circle"), for: .normal)
-        button.contentHorizontalAlignment = .fill
-        button.contentVerticalAlignment = .fill
-        button.isEnabled = true
-        return button
+    private lazy var announcementLabel: UILabel = {
+        let uiLabel = UILabel()
+        uiLabel.font = .systemFont(ofSize: 13)
+        uiLabel.textColor = .white
+        uiLabel.text = capturedImage == nil ?
+            "양쪽 눈이 보이는 상태의 화면을 선택해주세요" : "한쪽 눈을 가린 상태의 화면을 선택해주세요"
+        return uiLabel
     }()
+    private let playerView: PlayerView = PlayerView()
+    private let playPauseButtonHostingController: UIHostingController<PlayButton> = {
+        let hostingController = UIHostingController(rootView: PlayButton())
+        hostingController.view.backgroundColor = .clear
+        hostingController.view.isUserInteractionEnabled = false
+        return hostingController
+    }()
+    private let gradientHostingController: UIHostingController<GradientView> =
+        UIHostingController(rootView: GradientView(colors: [Color(uiColor: #colorLiteral(red: 0.7215686275, green: 0.7137254902, blue: 0.7176470588, alpha: 1)), Color(uiColor: #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1))]))
     private var scrubberHostingController: UIHostingController<ScrubberView>?
+    private var capturedImage: UIImage? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
         configureViews()
-        
-        playPauseButton.addTarget(self, action: #selector(playPauseButtonTouched(_:)), for: .touchUpInside)
-        
         guard let movieURL = Bundle.main.url(forResource: "video", withExtension: "m4v") else { return }
         let asset = AVURLAsset(url: movieURL)
 
@@ -38,13 +44,16 @@ final class SelectPhotoViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        let selectButton = UIBarButtonItem(title: "선택하기", style: .plain, target: self, action: #selector(selectButtonTouched(_:)))
+        let barButtonTitle = self.capturedImage == nil ? "선택하기" : "완료"
+        let selectButton = UIBarButtonItem(title: barButtonTitle, style: .plain, target: self, action: #selector(selectButtonTouched(_:)))
+        selectButton.tintColor = .white
         navigationItem.rightBarButtonItem = selectButton
     }
     
     private func configureHostingViewController(){
         let hostingController = UIHostingController(rootView: ScrubberView(player: player))
         scrubberHostingController = hostingController
+        hostingController.view.backgroundColor = .clear
         
         addChild(hostingController)
         view.addSubview(hostingController.view)
@@ -60,26 +69,47 @@ final class SelectPhotoViewController: UIViewController {
     }
     
     private func configureViews() {
-        view.backgroundColor = .red
-        playerView.backgroundColor = .blue
+        view.backgroundColor = #colorLiteral(red: 0.1688045561, green: 0.1888649762, blue: 0.1928240955, alpha: 1)
         
-        playerView.translatesAutoresizingMaskIntoConstraints = false
-        playPauseButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(playerView)
-        view.addSubview(playPauseButton)
-        
+        view.addSubview(announcementLabel)
+        announcementLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            playerView.topAnchor.constraint(equalTo: view.topAnchor),
+            announcementLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            announcementLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        playerView.addGestureRecognizer(
+            UITapGestureRecognizer(target: self, action: #selector(playPauseButtonTouched))
+        )
+        view.addSubview(playerView)
+        playerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            playerView.topAnchor.constraint(equalTo: announcementLabel.bottomAnchor, constant: 16),
             playerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             playerView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-
+        
+        addChild(playPauseButtonHostingController)
+        view.addSubview(playPauseButtonHostingController.view)
+        playPauseButtonHostingController.didMove(toParent: self)
+        playPauseButtonHostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            playPauseButton.centerXAnchor.constraint(equalTo: playerView.centerXAnchor),
-            playPauseButton.centerYAnchor.constraint(equalTo: playerView.centerYAnchor),
-            playPauseButton.widthAnchor.constraint(equalToConstant: 50),
-            playPauseButton.heightAnchor.constraint(equalToConstant: 50)
+            playPauseButtonHostingController.view.centerXAnchor.constraint(equalTo: playerView.centerXAnchor),
+            playPauseButtonHostingController.view.centerYAnchor.constraint(equalTo: playerView.centerYAnchor),
+            playPauseButtonHostingController.view.widthAnchor.constraint(equalToConstant: 73),
+            playPauseButtonHostingController.view.heightAnchor.constraint(equalToConstant: 73)
+        ])
+        
+        addChild(gradientHostingController)
+        view.addSubview(gradientHostingController.view)
+        gradientHostingController.didMove(toParent: self)
+        gradientHostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            gradientHostingController.view.topAnchor.constraint(equalTo: playerView.bottomAnchor),
+            gradientHostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            gradientHostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            gradientHostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -91,7 +121,7 @@ final class SelectPhotoViewController: UIViewController {
         }
     }
     
-    @objc private func playPauseButtonTouched(_ sender: UIButton?) {
+    @objc private func playPauseButtonTouched() {
         switch player.timeControlStatus {
         case .paused:
             let currentItem = player.currentItem
@@ -99,9 +129,28 @@ final class SelectPhotoViewController: UIViewController {
                 currentItem?.seek(to: .zero, completionHandler: { _ in })
             }
             player.play()
+            playPauseButtonHostingController.rootView.shape = .play
+            popAndDisapperAnimation(of: playPauseButtonHostingController.view)
         default:
             player.pause()
+            playPauseButtonHostingController.rootView.shape = .pause
+            popAndDisapperAnimation(of: playPauseButtonHostingController.view)
         }
+    }
+        
+    private func popAndDisapperAnimation(of view: UIView) {
+        view.alpha = 1
+        view.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
+        UIViewPropertyAnimator.runningPropertyAnimator(
+            withDuration: 0.2,
+            delay: 0,
+            options: .curveEaseInOut) {
+                view.transform = CGAffineTransform.identity
+            } completion: { _ in
+                UIView.transition(with: view, duration: 1) {
+                    view.alpha = 0
+                }
+            }
     }
     
     @objc private func selectButtonTouched(_ sender: UIButton?) {
@@ -113,16 +162,39 @@ final class SelectPhotoViewController: UIViewController {
         generator.requestedTimeToleranceAfter = .zero
         generator.generateCGImageAsynchronously(for: time) { image, _, _ in
             DispatchQueue.main.async { [weak self] in
-                let imageViewController = ImageViewController()
-                self?.present(imageViewController, animated: true)
-                imageViewController.imageView.image = UIImage(cgImage: image!)
+                if let savedImage = self?.capturedImage,
+                   let cgImage = image {
+                    self?.player.pause()
+                    
+                    let imageViewController = ImageViewController()
+                    imageViewController.leftImageView.image = savedImage
+                    imageViewController.rightImageView.image = UIImage(cgImage: cgImage)
+                    
+                    self?.present(imageViewController, animated: true)
+                } else if let cgImage = image {
+                    self?.player.pause()
+                    
+                    let nextViewController = SelectPhotoViewController()
+                    nextViewController.capturedImage = UIImage(cgImage: cgImage)
+                    self?.navigationController?.pushViewController(nextViewController, animated: true)
+                    
+                    let backItem = UIBarButtonItem()
+                    backItem.title = ""
+                    backItem.tintColor = .white
+                    self?.navigationItem.backBarButtonItem = backItem
+                }
             }
         }
     }
 }
 
 fileprivate class ImageViewController: UIViewController {
-    let imageView: UIImageView = {
+    let leftImageView: UIImageView = {
+        let uiImageView = UIImageView()
+        uiImageView.contentMode = .scaleAspectFit
+        return uiImageView
+    }()
+    let rightImageView: UIImageView = {
         let uiImageView = UIImageView()
         uiImageView.contentMode = .scaleAspectFit
         return uiImageView
@@ -134,14 +206,22 @@ fileprivate class ImageViewController: UIViewController {
     }
     
     private func configureView() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(imageView)
-        
+        leftImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(leftImageView)
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            leftImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            leftImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            leftImageView.trailingAnchor.constraint(equalTo: view.centerXAnchor),
+            leftImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        rightImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(rightImageView)
+        NSLayoutConstraint.activate([
+            rightImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            rightImageView.leadingAnchor.constraint(equalTo: view.centerXAnchor),
+            rightImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            rightImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
