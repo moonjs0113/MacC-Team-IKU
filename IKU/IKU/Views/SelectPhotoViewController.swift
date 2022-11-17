@@ -10,6 +10,14 @@ import AVFoundation
 
 final class SelectPhotoViewController: UIViewController {
     private let player = AVPlayer()
+    private lazy var announcementLabel: UILabel = {
+        let uiLabel = UILabel()
+        uiLabel.font = .systemFont(ofSize: 13)
+        uiLabel.textColor = .white
+        uiLabel.text = capturedImage == nil ?
+            "양쪽 눈이 보이는 상태의 화면을 선택해주세요" : "한쪽 눈을 가린 상태의 화면을 선택해주세요"
+        return uiLabel
+    }()
     private let playerView: PlayerView = PlayerView()
     private let playPauseButtonHostingController: UIHostingController<PlayButton> = {
         let hostingController = UIHostingController(rootView: PlayButton())
@@ -63,14 +71,20 @@ final class SelectPhotoViewController: UIViewController {
     private func configureViews() {
         view.backgroundColor = #colorLiteral(red: 0.1688045561, green: 0.1888649762, blue: 0.1928240955, alpha: 1)
         
+        view.addSubview(announcementLabel)
+        announcementLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            announcementLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            announcementLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
         playerView.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(playPauseButtonTouched))
         )
-        
         view.addSubview(playerView)
         playerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            playerView.topAnchor.constraint(equalTo: view.topAnchor),
+            playerView.topAnchor.constraint(equalTo: announcementLabel.bottomAnchor, constant: 16),
             playerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             playerView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
