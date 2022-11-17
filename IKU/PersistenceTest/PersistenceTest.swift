@@ -32,11 +32,11 @@ final class PersistenceTest: XCTestCase {
         try persistenceManager.insert(
             byQuery: .videoData(
                 localIdentifier: "localIdentifier",
-                eye: true,
+                isLeftEye: true,
                 timeOne: 0,
                 timeTwo: 0,
                 creationDate: "2022-11-22 00:12:34".toDate()!.timeIntervalSince1970,
-                bookMark: false
+                isBookMarked: false
             )
         )
         

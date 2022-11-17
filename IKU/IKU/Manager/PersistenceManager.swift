@@ -37,11 +37,11 @@ final class PersistenceManager {
     enum InsertionQuery {
         case videoData(
             localIdentifier: String,
-            eye: Bool,
+            isLeftEye: Bool,
             timeOne: Double,
             timeTwo: Double,
             creationDate: Double,
-            bookMark: Bool
+            isBookMarked: Bool
         )
         var statement: String {
             switch self {
@@ -110,15 +110,15 @@ final class PersistenceManager {
         let insertStatement = try prepare(forQuery: query.statement)
         defer { sqlite3_finalize(insertStatement) }
         switch query {
-        case .videoData(let localIdentifier, let eye, let timeOne, let timeTwo, let creationDate, let bookMark):
+        case .videoData(let localIdentifier, let isLeftEye, let timeOne, let timeTwo, let creationDate, let isBookMarked):
             try insertVideoData(
                 insertStatement: insertStatement,
                 localIdentifier: localIdentifier,
-                eye: eye,
+                isLeftEye: isLeftEye,
                 timeOne: timeOne,
                 timeTwo: timeTwo,
                 creationDate: creationDate,
-                bookMark: bookMark
+                isBookMarked: isBookMarked
             )
         }
     }
@@ -131,10 +131,10 @@ final class PersistenceManager {
         }
     }
     
-    private func insertVideoData(insertStatement: OpaquePointer?, localIdentifier: String, eye: Bool, timeOne: Double, timeTwo: Double, creationDate: Double, bookMark: Bool) throws {
+    private func insertVideoData(insertStatement: OpaquePointer?, localIdentifier: String, isLeftEye: Bool, timeOne: Double, timeTwo: Double, creationDate: Double, isBookMarked: Bool) throws {
         let localIdentifier = NSString(string: localIdentifier)
-        let eye: Int32 = eye == true ? 1 : 0
-        let bookMark: Int32 = bookMark == true ? 1 : 0
+        let eye: Int32 = isLeftEye == true ? 1 : 0
+        let bookMark: Int32 = isBookMarked == true ? 1 : 0
         
         sqlite3_bind_text(insertStatement, 1, localIdentifier.utf8String, -1, nil)
         sqlite3_bind_int(insertStatement, 2, eye)
