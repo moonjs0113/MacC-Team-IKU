@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E3B260A2926D424007803CD /* SelectWhichEyeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B26092926D424007803CD /* SelectWhichEyeView.swift */; };
 		9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */; };
 		A804661A291FF9890079CEDC /* ScrubberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8046619291FF9890079CEDC /* ScrubberView.swift */; };
 		A804661C292012B10079CEDC /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A804661B292012B10079CEDC /* PlayButton.swift */; };
@@ -71,6 +72,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E3B26092926D424007803CD /* SelectWhichEyeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWhichEyeView.swift; sourceTree = "<group>"; };
 		9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		A8046619291FF9890079CEDC /* ScrubberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubberView.swift; sourceTree = "<group>"; };
 		A804661B292012B10079CEDC /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				A804661B292012B10079CEDC /* PlayButton.swift */,
 				A8AA21282922131D00EFBE27 /* GradientView.swift */,
 				9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */,
+				9E3B26092926D424007803CD /* SelectWhichEyeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				C74491CF291D54DC00166197 /* CVRange.swift in Sources */,
 				A8B2A2A2291C8D8F000F5624 /* ExtensionPlaceholder.swift in Sources */,
 				C74491E8291D54DC00166197 /* CVCalendarManager.swift in Sources */,
+				9E3B260A2926D424007803CD /* SelectWhichEyeView.swift in Sources */,
 				C74491D7291D54DC00166197 /* CVCalendarView.swift in Sources */,
 				C74491E6291D54DC00166197 /* CVCalendarDayViewControlCoordinator.swift in Sources */,
 				C74491EE291D586900166197 /* IKUCalendarView+Extension.swift in Sources */,

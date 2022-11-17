@@ -16,6 +16,7 @@ extension Color {
 struct StoryView: View {
     
     // MARK: - Properties
+    @State var mode: Eyes = .left
     let customBlue = Color.ikuBlue
     
     var body: some View {
@@ -55,11 +56,7 @@ struct StoryView: View {
                     .padding(.bottom, 29)
                 
                 // TODO: 눈 선택 화면 만들기
-                Image(systemName: "person")
-                    .resizable()
-                    .background(.green)
-                    .frame(width:280, height: 302)
-                    .padding(.bottom, 53)
+                SelectWhichEyeView(mode: $mode)
                 
                 VStack(alignment: .leading, spacing: 0) {
                     Text("가림막 검사는? 오른쪽 눈 검사할 때는")
