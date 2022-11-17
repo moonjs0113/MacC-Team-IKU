@@ -23,7 +23,7 @@ extension StrabismusLog {
     }
     
     static var previews: [StrabismusLog] {
-        return (0...10).map {
+        return (0...100).map {
             StrabismusLog(date: .now.addingTimeInterval(.init(integerLiteral: $0)), degree: Double.random(in: 1...20))
         }
     }

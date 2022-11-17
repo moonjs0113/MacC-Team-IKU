@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Combine
+import AVFoundation
 
 final class HistoryViewController: UIViewController {
     // MARK: - Properties
@@ -59,6 +59,7 @@ final class HistoryViewController: UIViewController {
         button.backgroundColor = .ikuLightGray
         button.setTitle("검사하기", for: .normal)
         button.titleLabel?.font = .nexonGothicFont(ofSize: 20, weight: .bold)
+        button.addTarget(self, action: #selector(touchTestButton(_:)), for: .touchUpInside)
         
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
@@ -95,23 +96,46 @@ final class HistoryViewController: UIViewController {
         ])
     }
     
-    // MARK: - IBOutlets
+    private func goToCoverTestView() {
+        let vc = CoverTestViewController()
+        vc.view.backgroundColor = .white
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
     
-    // MARK: - IBActions
+    private func showAlertPermissionSetting() {
+        let alert = UIAlertController(title: "Require Camera Permission",
+                                      message: "사시각 측정을 위해 카메라 권한이 필요합니다.\n설정으로 이동하시겠습니까?",
+                                      preferredStyle: .alert)
+        let ok = UIAlertAction(title: "예", style: .default) { [weak self] _ in
+            self?.openSystemSetting()
+        }
+        let cancel = UIAlertAction(title: "아니오", style: .cancel)
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        present(alert, animated: true)
+    }
     
-    // MARK: - Delegates And DataSources
+    // MARK: - Objc-C Methods
+    @objc private func touchTestButton(_ sender: UIButton) {
+        AVCaptureDevice.requestAccess(for: .video) { [weak self] permission in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                if permission { self.goToCoverTestView() }
+                else { self.showAlertPermissionSetting() }
+            }
+        }
+    }
     
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ikuBackground
         setupLayoutConstraint()
-
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         ikuCalendarView.commitCalendarViewUpdate()
     }
-
 }
