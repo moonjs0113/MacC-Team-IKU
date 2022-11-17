@@ -15,8 +15,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-
-        let firstViewController = UINavigationController()
         
         //탭바컨트롤러의 생성
         let tabBarVC = UITabBarController()
@@ -43,7 +41,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         items[1].image = UIImage(systemName: "calendar")
         items[2].image = UIImage(systemName: "book")
 
-        window?.rootViewController = firstViewController
         window?.rootViewController = tabBarVC
         window?.makeKeyAndVisible()
         
