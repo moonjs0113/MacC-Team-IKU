@@ -18,6 +18,8 @@ final class CoverTestViewController: UIViewController {
     private var recordButtonLayoutConstraint: NSLayoutConstraint = .init()
     private var transformVisualization: ARSceneManager = ARSceneManager()
     private var faceAnchors: [ARFaceAnchor: ARSCNViewDelegate] = [:]
+//    private var isRecording: Bool = false
+    private var arCapture: ARCapture?
     
     // UI Properties
     private var sceneView: ARSCNView = ARSCNView()
@@ -78,7 +80,7 @@ final class CoverTestViewController: UIViewController {
         emptyCircle.isUserInteractionEnabled = false
         emptyCircle.backgroundColor = .clear
         emptyCircle.layer.borderColor = UIColor.white.cgColor
-        emptyCircle.layer.borderWidth = 4
+        emptyCircle.layer.borderWidth = 2
         bindLayout(view: emptyCircle)
         
         let fillCircle = UIView()
@@ -90,7 +92,7 @@ final class CoverTestViewController: UIViewController {
         button.addSubview(emptyCircle)
         button.addSubview(fillCircle)
         
-        recordButtonLayoutConstraint = fillCircle.widthAnchor.constraint(equalTo: emptyCircle.widthAnchor, constant: -13)
+        recordButtonLayoutConstraint = fillCircle.widthAnchor.constraint(equalTo: emptyCircle.widthAnchor, constant: -10)
         
         NSLayoutConstraint.activate([
             emptyCircle.widthAnchor.constraint(equalTo: button.widthAnchor),
@@ -166,12 +168,12 @@ final class CoverTestViewController: UIViewController {
             sceneView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             sceneView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
+        arCapture = ARCapture(view: sceneView)
     }
     
     private func setupLayoutConstraint() {
-        let previewLayer = videoManager.createPreviewLayer(view: view)
-        view.layer.addSublayer(previewLayer)
-        
+//        let previewLayer = videoManager.createPreviewLayer(view: view)
+//        view.layer.addSublayer(previewLayer)
         view.addSubview(cameraFrameView)
         view.addSubview(headerView)
         view.addSubview(recordButton)
@@ -229,14 +231,19 @@ final class CoverTestViewController: UIViewController {
     }
     
     @objc private func touchRecordButton(_ sender: UIButton) {
-        videoManager.run { [weak self] isRecording in
+//        defer {
+//            isRecording.toggle()
+//        }
+        print(#function)
+        print(sender.subviews)
+        arCapture?.run { [weak self] recordStatus in
             guard let self = self,
                   let view = self.recordButtonLayoutConstraint.firstItem as? UIView else {
                 return
             }
             UIView.animate(withDuration: 0.3) {
-                self.recordButtonLayoutConstraint.constant = isRecording ? -45 : -13
-                if isRecording {
+                self.recordButtonLayoutConstraint.constant = (recordStatus == .recording) ? -45 : -10
+                if recordStatus == .recording {
                     self.anyCancellable.removeAll()
                     view.layer.cornerRadius = 5
                 } else {
@@ -246,6 +253,24 @@ final class CoverTestViewController: UIViewController {
                 view.layoutIfNeeded()
             }
         }
+        
+//        videoManager.run { [weak self] isRecording in
+//            guard let self = self,
+//                  let view = self.recordButtonLayoutConstraint.firstItem as? UIView else {
+//                return
+//            }
+//            UIView.animate(withDuration: 0.3) {
+//                self.recordButtonLayoutConstraint.constant = isRecording ? -45 : -10
+//                if isRecording {
+//                    self.anyCancellable.removeAll()
+//                    view.layer.cornerRadius = 5
+//                } else {
+//                    self.bindLayout(view: view)
+//                }
+//                view.setNeedsLayout()
+//                view.layoutIfNeeded()
+//            }
+//        }
     }
     
     // MARK: - Delegates And DataSources
@@ -253,18 +278,14 @@ final class CoverTestViewController: UIViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupARScene()
         setupLayoutConstraint()
-//        setupARScene()
-        configureBinding()
+        
+//        configureBinding()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.global().async { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.videoManager.captureSession.startRunning()
-        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -324,6 +345,9 @@ extension CoverTestViewController: ARSessionDelegate, ARSCNViewDelegate {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.guideLabel.text = "거리: \(Int(round(distance)))cm\n가이드 라인에 아이의 얼굴을 맞춰 촬영해주세요!"
+            let isEnabled = (30 <= distance && 35 >= distance)
+            self.recordButton.isEnabled = isEnabled
+            self.recordButton.subviews[1].alpha = isEnabled ? 1 : 0.5
         }
         print(String(format: "Distance: %.2fcm", distance))
     }

@@ -70,6 +70,9 @@
 		C7537CFE2923B1E5001E8BF6 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C7537CFD2923B1E5001E8BF6 /* Models.scnassets */; };
 		C75B19FA291E2C1C005B1A22 /* IKUChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */; };
 		C75B19FC291E30D6005B1A22 /* StrabismusLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */; };
+		C7F1775C2925B1CD0004C5D9 /* ARCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F177592925B1CD0004C5D9 /* ARCapture.swift */; };
+		C7F1775D2925B1CD0004C5D9 /* ARAssetWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */; };
+		C7F1775E2925B1CD0004C5D9 /* ARFrameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +141,9 @@
 		C7537CFD2923B1E5001E8BF6 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 		C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKUChartView.swift; sourceTree = "<group>"; };
 		C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrabismusLog.swift; sourceTree = "<group>"; };
+		C7F177592925B1CD0004C5D9 /* ARCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARCapture.swift; sourceTree = "<group>"; };
+		C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAssetWriter.swift; sourceTree = "<group>"; };
+		C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARFrameGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +261,7 @@
 				A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */,
 				C7537CF9292320B5001E8BF6 /* VideoManager.swift */,
 				C7537CFB2923B0E2001E8BF6 /* ARSceneManager.swift */,
+				C7F1775F2925BC2C0004C5D9 /* ARCapture */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -332,6 +339,16 @@
 				C74491AC291D54DC00166197 /* CVCalendar */,
 			);
 			path = IKUCalendarView;
+			sourceTree = "<group>";
+		};
+		C7F1775F2925BC2C0004C5D9 /* ARCapture */ = {
+			isa = PBXGroup;
+			children = (
+				C7F177592925B1CD0004C5D9 /* ARCapture.swift */,
+				C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */,
+				C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */,
+			);
+			path = ARCapture;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,6 +436,7 @@
 				A8B2A29F291C8D4B000F5624 /* DataPlaceholder.swift in Sources */,
 				A8B2A2B3291CCDAD000F5624 /* PlayerView.swift in Sources */,
 				C74491D4291D54DC00166197 /* CVCalendarMenuViewDelegate.swift in Sources */,
+				C7F1775E2925B1CD0004C5D9 /* ARFrameGenerator.swift in Sources */,
 				C74491DE291D54DC00166197 /* CVCalendarContentPresentationCoordinator.swift in Sources */,
 				C74491E1291D54DC00166197 /* CVCalendarMonthContentViewController.swift in Sources */,
 				C74491D1291D54DC00166197 /* CVCalendarViewAppearance.swift in Sources */,
@@ -444,6 +462,7 @@
 				C74491D0291D54DC00166197 /* CVCalendarMonthView.swift in Sources */,
 				C7537CFA292320B5001E8BF6 /* VideoManager.swift in Sources */,
 				C74491D2291D54DC00166197 /* CVStatus.swift in Sources */,
+				C7F1775C2925B1CD0004C5D9 /* ARCapture.swift in Sources */,
 				A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */,
 				C74491E0291D54DC00166197 /* CVCalendarTouchController.swift in Sources */,
 				C74491D8291D54DC00166197 /* CVCalendarViewDelegate.swift in Sources */,
@@ -455,6 +474,7 @@
 				C74491DC291D54DC00166197 /* CVAuxiliaryView.swift in Sources */,
 				A8B2A2A8291C8E3B000F5624 /* ManagerPlaceholder.swift in Sources */,
 				C74491E2291D54DC00166197 /* CVCalendarViewPresentationMode.swift in Sources */,
+				C7F1775D2925B1CD0004C5D9 /* ARAssetWriter.swift in Sources */,
 				C70100F42921DF7A00B58231 /* UIViewController+Extension.swift in Sources */,
 				C74491E4291D54DC00166197 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
 				C74491D5291D54DC00166197 /* CVCalendarContentViewController.swift in Sources */,

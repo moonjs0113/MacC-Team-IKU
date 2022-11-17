@@ -31,7 +31,7 @@ class ARSceneManager: NSObject, ARSCNViewDelegate {
     func addEyeTransformNodes() {
         guard let anchorNode = contentNode else { return }
         
-        rightEyeNode.simdPivot = float4x4(diagonal: [5, 5, 1, 1]) //[3, 3, 3, 1] [R,G,B,1]
+        rightEyeNode.simdPivot = float4x4(diagonal: [5, 5, 1, 1]) // [R,G,B,1]
         leftEyeNode.simdPivot = float4x4(diagonal: [5, 5, 1, 1])
         
         anchorNode.addChildNode(rightEyeNode)
