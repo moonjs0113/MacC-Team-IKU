@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */; };
 		0E04199A29232E9200D710BC /* resultVideo.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 0E04199929232E9200D710BC /* resultVideo.MOV */; };
 		0E7A2CD729231F060060C024 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A2CD629231F060060C024 /* ResultViewController.swift */; };
 		A804661A291FF9890079CEDC /* ScrubberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8046619291FF9890079CEDC /* ScrubberView.swift */; };
@@ -81,6 +82,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		0E04199929232E9200D710BC /* resultVideo.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = resultVideo.MOV; sourceTree = "<group>"; };
 		0E7A2CD629231F060060C024 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		A8046619291FF9890079CEDC /* ScrubberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubberView.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				A8046619291FF9890079CEDC /* ScrubberView.swift */,
 				A804661B292012B10079CEDC /* PlayButton.swift */,
 				A8AA21282922131D00EFBE27 /* GradientView.swift */,
+				9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				C74491D0291D54DC00166197 /* CVCalendarMonthView.swift in Sources */,
 				C7537CFA292320B5001E8BF6 /* VideoManager.swift in Sources */,
 				C74491D2291D54DC00166197 /* CVStatus.swift in Sources */,
+				9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */,
 				C7F1775C2925B1CD0004C5D9 /* ARCapture.swift in Sources */,
 				A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */,
 				C74491E0291D54DC00166197 /* CVCalendarTouchController.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -16,7 +17,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
 
         let firstViewController = UINavigationController()
-
         window?.rootViewController = firstViewController
         window?.makeKeyAndVisible()
         firstViewController.setNavigationBarHidden(false, animated: true)
