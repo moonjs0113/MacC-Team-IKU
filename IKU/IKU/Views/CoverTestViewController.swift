@@ -155,6 +155,10 @@ final class CoverTestViewController: UIViewController {
     }()
     
     // MARK: - Methods
+    private func setupNavigationController() {
+        navigationItem.backButtonTitle = ""
+    }
+    
     private func setupARScene() {
         let sceneView = viewModel.sceneView
         sceneView.automaticallyUpdatesLighting = true
@@ -204,7 +208,7 @@ final class CoverTestViewController: UIViewController {
     
     private func updateUI(status: ARCapture.Status) {
         distanceLabel.attributedText = viewModel.distanceText
-        let isCompleteRecording = viewModel.timerCount >= 12
+        let isCompleteRecording = viewModel.timerCount >= 1 //12
         if status == .ready {
             guideLabel.text = viewModel.isRecordingEnabled ? "녹화버튼을 눌러주세요." : "카메라와 적정거리(30-35cm)인지 확인해주세요."
 //            recordButtonIsEnabled(inEnabled: viewModel.isRecordingEnabled)
@@ -225,7 +229,7 @@ final class CoverTestViewController: UIViewController {
     
     private func goToSelectPhotoViewController(url: URL) {
         let selectPhotoViewController = SelectPhotoViewController()
-        selectPhotoViewController.prepareURL(url: url)
+        selectPhotoViewController.prepareValue(url: url, degrees: viewModel.degrees)
         navigationController?.pushViewController(selectPhotoViewController, animated: true)
     }
 
@@ -253,6 +257,7 @@ final class CoverTestViewController: UIViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationController()
         setupARScene()
         setupLayoutConstraint()
         configureBinding()

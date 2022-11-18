@@ -24,6 +24,10 @@ class CoverTestViewModel: NSObject {
     var arCapture: ARCapture?
     private var transformVisualization: ARSceneManager = ARSceneManager()
     private var faceAnchors: [ARFaceAnchor: ARSCNViewDelegate] = [:]
+    var degrees: [Float] {
+        self.transformVisualization.horizontalDegrees
+    }
+    
     
     var distanceText: NSMutableAttributedString {
         let string = "거리: \(distance)cm"
@@ -48,10 +52,12 @@ class CoverTestViewModel: NSObject {
     
     private let avSpeechsynthesizer = AVSpeechSynthesizer()
     var timerCount = 0
-    private var timer: Timer?
+    private var recordTimer: Timer?
+    private var degreeTimer: Timer?
     
     var updateUI: ((ARCapture.Status) -> Void)?
-    var anyCancellable = Set<AnyCancellable>()
+    private var anyCancellable = Set<AnyCancellable>()
+    
     // MARK: - Methods
     // AR
     func resetTracking() {
@@ -62,7 +68,7 @@ class CoverTestViewModel: NSObject {
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
-    func calculateDistance(start: SCNVector3, end: SCNVector3) {
+    private func calculateDistance(start: SCNVector3, end: SCNVector3) {
         let dx = end.x - start.x
         let dy = end.y - start.y
         let dz = end.z - start.z
@@ -113,16 +119,22 @@ class CoverTestViewModel: NSObject {
     }
     
     private func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
+        recordTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
 //            print(timer.timeInterval)
             self?.timerCount += 1
             print(self?.timerCount ?? 0)
         }
+        
+        degreeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in
+            self?.transformVisualization.captureDegree()
+        }
     }
     
     private func stopTimer() {
-        timer?.invalidate()
-        timer = nil
+        recordTimer?.invalidate()
+        recordTimer = nil
+        degreeTimer?.invalidate()
+        degreeTimer = nil
         print(timerCount)
         if timerCount >= 12 {
             // 잘 찍은거
@@ -140,10 +152,6 @@ class CoverTestViewModel: NSObject {
             .assign(to: \.layer.cornerRadius, on: view)
             .store(in: &anyCancellable)
     }
-    
-    // MARK: - IBOutlets
-    
-    // MARK: - IBActions
     
     // MARK: - Life Cycles
     override init() {
@@ -183,7 +191,7 @@ extension CoverTestViewModel: ARSessionDelegate, ARSCNViewDelegate {
         
         if let start {
             calculateDistance(start: start, end: end)
-        }
+        }        
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {

@@ -29,6 +29,8 @@
 		A8B2A2D7291DE0D6000F5624 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */; };
 		C70100F02921D0DE00B58231 /* CoverTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */; };
 		C70100F42921DF7A00B58231 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */; };
+		C73FC0D429270CDF00BB3426 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73FC0D329270CDF00BB3426 /* InformationViewController.swift */; };
+		C73FC0D62927186000BB3426 /* Eyes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73FC0D52927186000BB3426 /* Eyes.swift */; };
 		C7422514291F304E00DB6D80 /* CVMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7422513291F304E00DB6D80 /* CVMonth.swift */; };
 		C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */; };
 		C744915B291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */; };
@@ -106,6 +108,8 @@
 		A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverTestViewController.swift; sourceTree = "<group>"; };
 		C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		C73FC0D329270CDF00BB3426 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
+		C73FC0D52927186000BB3426 /* Eyes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eyes.swift; sourceTree = "<group>"; };
 		C7422513291F304E00DB6D80 /* CVMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVMonth.swift; sourceTree = "<group>"; };
 		C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF.otf; sourceTree = "<group>"; };
 		C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF_Light.otf; sourceTree = "<group>"; };
@@ -232,6 +236,7 @@
 				A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */,
 				C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */,
 				C745E9502926175F00AEECA8 /* CoverTestViewModel.swift */,
+				C73FC0D329270CDF00BB3426 /* InformationViewController.swift */,
 				A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */,
 				A8046619291FF9890079CEDC /* ScrubberView.swift */,
 				A804661B292012B10079CEDC /* PlayButton.swift */,
@@ -246,6 +251,7 @@
 				C7449156291D474400166197 /* Font */,
 				A8B2A29E291C8D4B000F5624 /* DataPlaceholder.swift */,
 				C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */,
+				C73FC0D52927186000BB3426 /* Eyes.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -492,6 +498,7 @@
 				C74491E5291D54DC00166197 /* CVCalendarViewAnimator.swift in Sources */,
 				C74491E7291D54DC00166197 /* CVCalendarWeekday.swift in Sources */,
 				C74491E9291D54DC00166197 /* CVShape.swift in Sources */,
+				C73FC0D429270CDF00BB3426 /* InformationViewController.swift in Sources */,
 				C7422514291F304E00DB6D80 /* CVMonth.swift in Sources */,
 				C74491D9291D54DC00166197 /* CVCalendarWeekContentViewController.swift in Sources */,
 				C74491DC291D54DC00166197 /* CVAuxiliaryView.swift in Sources */,
@@ -506,6 +513,7 @@
 				C74491D6291D54DC00166197 /* CVDate.swift in Sources */,
 				C74491A3291D4F3000166197 /* UIColor+Extension.swift in Sources */,
 				C74491DD291D54DC00166197 /* CVCalendarMenuView.swift in Sources */,
+				C73FC0D62927186000BB3426 /* Eyes.swift in Sources */,
 				A8B2A2AB291C8E6A000F5624 /* Placeholder.swift in Sources */,
 				0E7A2CD729231F060060C024 /* ResultViewController.swift in Sources */,
 				C74491E3291D54DC00166197 /* CVCalendarWeekView.swift in Sources */,

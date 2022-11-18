@@ -69,6 +69,10 @@ final class HistoryViewController: UIViewController {
     }()
     
     // MARK: - Methods
+    private func configureNavigationBar() {
+        
+    }
+    
     private func setupLayoutConstraint() {
         NSLayoutConstraint.activate([
             eyeSegmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 11),
@@ -99,6 +103,7 @@ final class HistoryViewController: UIViewController {
     private func goToCoverTestView() {
         let navigationController = UINavigationController()
         let coverTestViewController = CoverTestViewController()
+        navigationController.navigationBar.tintColor = .white
         navigationController.view.backgroundColor = .white
         navigationController.modalPresentationStyle = .fullScreen
         navigationController.pushViewController(coverTestViewController, animated: true)
@@ -133,6 +138,7 @@ final class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ikuBackground
+        configureNavigationBar()
         setupLayoutConstraint()
     }
     

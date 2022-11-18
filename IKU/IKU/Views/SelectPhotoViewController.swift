@@ -31,6 +31,7 @@ final class SelectPhotoViewController: UIViewController {
     private var scrubberHostingController: UIHostingController<ScrubberView>?
     private var capturedImage: UIImage? = nil
     private var urlPath: URL?
+    private var degrees: [Float] = []
     
 
     // MARK: - Methods
@@ -42,7 +43,7 @@ final class SelectPhotoViewController: UIViewController {
     }
     
     private func configureHostingViewController(){
-        let hostingController = UIHostingController(rootView: ScrubberView(player: player))
+        let hostingController = UIHostingController(rootView: ScrubberView(player: player, degrees: degrees))
         scrubberHostingController = hostingController
         hostingController.view.backgroundColor = .clear
         
@@ -127,8 +128,9 @@ final class SelectPhotoViewController: UIViewController {
             }
     }
     
-    func prepareURL(url: URL) {
-        urlPath = url
+    func prepareValue(url: URL?, degrees: [Float]) {
+        self.urlPath = url
+        self.degrees = degrees
     }
     
     // MARK: - Objc-C Methods
@@ -171,6 +173,7 @@ final class SelectPhotoViewController: UIViewController {
                     self?.player.pause()
                     
                     let nextViewController = SelectPhotoViewController()
+                    nextViewController.prepareValue(url: self?.urlPath, degrees: self?.degrees ?? [])
                     nextViewController.capturedImage = UIImage(cgImage: cgImage)
                     self?.navigationController?.pushViewController(nextViewController, animated: true)
                     
