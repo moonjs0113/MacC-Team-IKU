@@ -56,8 +56,11 @@ struct StoryView: View {
                     .foregroundColor(customBlue)
                     .padding(.bottom, 29)
                 
-                // TODO: 눈 선택 화면 만들기
                 SelectWhichEyeView(mode: $mode)
+                
+                // 눈이 제대로 선택되었는지 확인하는 디버깅 용도의 코드입니다. 임의로 삭제 가능합니다.
+                Text("선택된 눈 : \(mode.rawValue)")
+                    .padding()
                 
                 VStack(alignment: .leading, spacing: 0) {
                     Text("가림막 검사는? 오른쪽 눈 검사할 때는")

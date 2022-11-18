@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-enum Eyes {
-    case left
-    case right
+enum Eyes: String {
+    case left = "왼쪽 눈"
+    case right = "오른쪽 눈"
 }
 
 private struct SelectedSegmentTagKey: EnvironmentKey {
@@ -39,17 +39,18 @@ where SelectionValue: Hashable, Content: View {
         content
             .frame(maxWidth: .infinity)
             .contentShape(Rectangle())
-//            .foregroundColor(isSelected ? .black : .white.opacity(0.8))
             .background(isSelected ? background : nil)
             .onTapGesture {
                 select()
             }
             .disabled(isSelected)
     }
+    
+    // 선택된 그림의 흰 색 배경
     private var background: some View {
-        RoundedRectangle(cornerRadius: 4)
+        RoundedRectangle(cornerRadius: 10)
             .fill(.white)
-            .padding(.horizontal, -4)
+            .shadow(radius: 10, x:-4)
     }
     private var isSelected: Bool {
         let selectedTag = (selectedSegmentTag as? Binding<SelectionValue>)?.wrappedValue
@@ -74,17 +75,16 @@ public struct CustomPicker<SelectionValue, Content> : View where SelectionValue 
             content
         }
         .clipShape(RoundedRectangle(cornerRadius: 8))
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 10).fill(.gray))
-        .frame(idealHeight:16)
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color.ikuEyeSelectBackground))
         .environment(\.selectedSegmentTag, $selection)
     }
 }
 
 struct SelectWhichEyeView: View {
     
-//    @Binding var isLeftEyeSelected: Bool
+    //MARK: - Properties
     @Binding var mode: Eyes
+    
     var body: some View {
         VStack {
             CustomPicker(selection: $mode) {
