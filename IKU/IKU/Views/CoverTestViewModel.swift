@@ -25,7 +25,7 @@ class CoverTestViewModel: NSObject {
     private var transformVisualization: ARSceneManager = ARSceneManager()
     private var faceAnchors: [ARFaceAnchor: ARSCNViewDelegate] = [:]
     var degrees: [Float] {
-        self.transformVisualization.horizontalDegrees
+        transformVisualization.horizontalDegrees
     }
     
     
@@ -120,9 +120,7 @@ class CoverTestViewModel: NSObject {
     
     private func startTimer() {
         recordTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
-//            print(timer.timeInterval)
             self?.timerCount += 1
-            print(self?.timerCount ?? 0)
         }
         
         degreeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in
@@ -135,7 +133,6 @@ class CoverTestViewModel: NSObject {
         recordTimer = nil
         degreeTimer?.invalidate()
         degreeTimer = nil
-        print(timerCount)
         if timerCount >= 12 {
             // 잘 찍은거
         } else {

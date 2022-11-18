@@ -152,35 +152,39 @@ final class SelectPhotoViewController: UIViewController {
     }
     
     @objc private func selectButtonTouched(_ sender: UIButton?) {
-        guard let movieURL = Bundle.main.url(forResource: "video", withExtension: "m4v") else { return }
+        guard let videoURL = urlPath else { return } //Bundle.main.url(forResource: "video", withExtension: "m4v") else { return }
         let time = player.currentTime()
-        let asset = AVURLAsset(url: movieURL)
+        let asset = AVURLAsset(url: videoURL)
         let generator = AVAssetImageGenerator(asset: asset)
         generator.requestedTimeToleranceBefore = .zero
         generator.requestedTimeToleranceAfter = .zero
         generator.generateCGImageAsynchronously(for: time) { image, _, _ in
             DispatchQueue.main.async { [weak self] in
+                let backItem = UIBarButtonItem()
+                backItem.title = ""
+                self?.navigationItem.backBarButtonItem = backItem
+                
                 if let savedImage = self?.capturedImage,
                    let cgImage = image {
                     self?.player.pause()
+                    guard let resultViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultViewController") as? ResultViewController else {
+                        return
+                    }
                     
-                    let imageViewController = ImageViewController()
-                    imageViewController.leftImageView.image = savedImage
-                    imageViewController.rightImageView.image = UIImage(cgImage: cgImage)
+                    resultViewController.url = videoURL
+                    resultViewController.prepareData(leftImage: savedImage, rightImage: UIImage(cgImage: cgImage))
                     
-                    self?.present(imageViewController, animated: true)
+                    backItem.tintColor = .black
+                    self?.navigationController?.pushViewController(resultViewController, animated: true)
                 } else if let cgImage = image {
                     self?.player.pause()
                     
                     let nextViewController = SelectPhotoViewController()
-                    nextViewController.prepareValue(url: self?.urlPath, degrees: self?.degrees ?? [])
+                    nextViewController.prepareValue(url: videoURL, degrees: self?.degrees ?? [])
                     nextViewController.capturedImage = UIImage(cgImage: cgImage)
-                    self?.navigationController?.pushViewController(nextViewController, animated: true)
                     
-                    let backItem = UIBarButtonItem()
-                    backItem.title = ""
                     backItem.tintColor = .white
-                    self?.navigationItem.backBarButtonItem = backItem
+                    self?.navigationController?.pushViewController(nextViewController, animated: true)
                 }
             }
         }
@@ -191,7 +195,6 @@ final class SelectPhotoViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureViews()
-//        guard let movieURL = Bundle.main.url(forResource: "video", withExtension: "m4v") else { return }
         guard let urlPath else { return }
         let asset = AVURLAsset(url: urlPath)
 

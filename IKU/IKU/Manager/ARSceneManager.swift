@@ -30,13 +30,13 @@ class ARSceneManager: NSObject, ARSCNViewDelegate {
         rightEyeNode.simdTransform = faceAnchor.rightEyeTransform
         leftEyeNode.simdTransform = faceAnchor.leftEyeTransform
         
-        print("====================================")
-        print(String(format: "         %13@      %13@", "Right Eye", "Left Eye"))
-        print(String(format: "수평각m13: %-13.5f  %-13.5f", rightEyeNode.transform.m13, leftEyeNode.transform.m13))
-        print(String(format: "수직각m23: %-13.5f  %-13.5f", rightEyeNode.transform.m23, leftEyeNode.transform.m23))
-        print(String(format: "????m33: %-13.5f  %-13.5f", rightEyeNode.transform.m33, leftEyeNode.transform.m33))
-        print(String(format: "고정값m43: %-13.5f  %-13.5f", rightEyeNode.transform.m43, leftEyeNode.transform.m43))
-        print("====================================\n")
+//        print("====================================")
+//        print(String(format: "         %13@      %13@", "Right Eye", "Left Eye"))
+//        print(String(format: "수평각m13: %-13.5f  %-13.5f", rightEyeNode.transform.m13, leftEyeNode.transform.m13))
+//        print(String(format: "수직각m23: %-13.5f  %-13.5f", rightEyeNode.transform.m23, leftEyeNode.transform.m23))
+//        print(String(format: "????m33: %-13.5f  %-13.5f", rightEyeNode.transform.m33, leftEyeNode.transform.m33))
+//        print(String(format: "고정값m43: %-13.5f  %-13.5f", rightEyeNode.transform.m43, leftEyeNode.transform.m43))
+//        print("====================================\n")
     }
     
     func addEyeTransformNodes() {
