@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */; };
 		0E04199A29232E9200D710BC /* resultVideo.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 0E04199929232E9200D710BC /* resultVideo.MOV */; };
 		0E04199F2926314900D710BC /* DictionaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04199E2926314900D710BC /* DictionaryViewController.swift */; };
 		0E7A2CD729231F060060C024 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A2CD629231F060060C024 /* ResultViewController.swift */; };
@@ -71,11 +72,18 @@
 		C74491EE291D586900166197 /* IKUCalendarView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */; };
 		C74491F0291D640B00166197 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491EF291D640B00166197 /* HistoryViewController.swift */; };
 		C7537CFA292320B5001E8BF6 /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7537CF9292320B5001E8BF6 /* VideoManager.swift */; };
+		C7537CFC2923B0E2001E8BF6 /* ARSceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7537CFB2923B0E2001E8BF6 /* ARSceneManager.swift */; };
+		C7537CFE2923B1E5001E8BF6 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C7537CFD2923B1E5001E8BF6 /* Models.scnassets */; };
 		C75B19FA291E2C1C005B1A22 /* IKUChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */; };
 		C75B19FC291E30D6005B1A22 /* StrabismusLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */; };
+		C7F1775C2925B1CD0004C5D9 /* ARCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F177592925B1CD0004C5D9 /* ARCapture.swift */; };
+		C7F1775D2925B1CD0004C5D9 /* ARAssetWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */; };
+		C7F1775E2925B1CD0004C5D9 /* ARFrameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */; };
+		C7F177612925D0640004C5D9 /* popSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C7F177602925D0640004C5D9 /* popSound.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		0E04199929232E9200D710BC /* resultVideo.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = resultVideo.MOV; sourceTree = "<group>"; };
 		0E04199E2926314900D710BC /* DictionaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryViewController.swift; sourceTree = "<group>"; };
 		0E7A2CD629231F060060C024 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
@@ -142,8 +150,14 @@
 		C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IKUCalendarView+Extension.swift"; sourceTree = "<group>"; };
 		C74491EF291D640B00166197 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		C7537CF9292320B5001E8BF6 /* VideoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
+		C7537CFB2923B0E2001E8BF6 /* ARSceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARSceneManager.swift; sourceTree = "<group>"; };
+		C7537CFD2923B1E5001E8BF6 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 		C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKUChartView.swift; sourceTree = "<group>"; };
 		C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrabismusLog.swift; sourceTree = "<group>"; };
+		C7F177592925B1CD0004C5D9 /* ARCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARCapture.swift; sourceTree = "<group>"; };
+		C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAssetWriter.swift; sourceTree = "<group>"; };
+		C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARFrameGenerator.swift; sourceTree = "<group>"; };
+		C7F177602925D0640004C5D9 /* popSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = popSound.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +238,7 @@
 				A8046619291FF9890079CEDC /* ScrubberView.swift */,
 				A804661B292012B10079CEDC /* PlayButton.swift */,
 				A8AA21282922131D00EFBE27 /* GradientView.swift */,
+				9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -252,7 +267,9 @@
 		A8B2A2A3291C8DDB000F5624 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C7537CFD2923B1E5001E8BF6 /* Models.scnassets */,
 				A8B2A2B4291CCE84000F5624 /* video.m4v */,
+				C7F177602925D0640004C5D9 /* popSound.mp3 */,
 				A8B2A28F291C8B30000F5624 /* Assets.xcassets */,
 				C74491A4291D4FD100166197 /* Color.xcassets */,
 			);
@@ -264,6 +281,8 @@
 			children = (
 				A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */,
 				C7537CF9292320B5001E8BF6 /* VideoManager.swift */,
+				C7537CFB2923B0E2001E8BF6 /* ARSceneManager.swift */,
+				C7F1775F2925BC2C0004C5D9 /* ARCapture */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -343,6 +362,16 @@
 			path = IKUCalendarView;
 			sourceTree = "<group>";
 		};
+		C7F1775F2925BC2C0004C5D9 /* ARCapture */ = {
+			isa = PBXGroup;
+			children = (
+				C7F177592925B1CD0004C5D9 /* ARCapture.swift */,
+				C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */,
+				C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */,
+			);
+			path = ARCapture;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -407,6 +436,8 @@
 				C744915B291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf in Resources */,
 				C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */,
 				C74491A5291D4FD100166197 /* Color.xcassets in Resources */,
+				C7F177612925D0640004C5D9 /* popSound.mp3 in Resources */,
+				C7537CFE2923B1E5001E8BF6 /* Models.scnassets in Resources */,
 				0E04199A29232E9200D710BC /* resultVideo.MOV in Resources */,
 				A8B2A28E291C8B2F000F5624 /* Main.storyboard in Resources */,
 				C744915C291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf in Resources */,
@@ -430,6 +461,7 @@
 				A8B2A2B3291CCDAD000F5624 /* PlayerView.swift in Sources */,
 				A804661C292012B10079CEDC /* PlayButton.swift in Sources */,
 				C74491D4291D54DC00166197 /* CVCalendarMenuViewDelegate.swift in Sources */,
+				C7F1775E2925B1CD0004C5D9 /* ARFrameGenerator.swift in Sources */,
 				C74491DE291D54DC00166197 /* CVCalendarContentPresentationCoordinator.swift in Sources */,
 				C74491E1291D54DC00166197 /* CVCalendarMonthContentViewController.swift in Sources */,
 				C74491D1291D54DC00166197 /* CVCalendarViewAppearance.swift in Sources */,
@@ -441,6 +473,7 @@
 				A8B2A287291C8B2F000F5624 /* AppDelegate.swift in Sources */,
 				C75B19FA291E2C1C005B1A22 /* IKUChartView.swift in Sources */,
 				A8B2A2AD291C8FC8000F5624 /* StoryViewController.swift in Sources */,
+				C7537CFC2923B0E2001E8BF6 /* ARSceneManager.swift in Sources */,
 				C74491EB291D54DC00166197 /* CVPresent.swift in Sources */,
 				C74491DF291D54DC00166197 /* CVScrollDirection.swift in Sources */,
 				C74491DA291D54DC00166197 /* CVSelectionType.swift in Sources */,
@@ -454,6 +487,8 @@
 				C74491D0291D54DC00166197 /* CVCalendarMonthView.swift in Sources */,
 				C7537CFA292320B5001E8BF6 /* VideoManager.swift in Sources */,
 				C74491D2291D54DC00166197 /* CVStatus.swift in Sources */,
+				9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */,
+				C7F1775C2925B1CD0004C5D9 /* ARCapture.swift in Sources */,
 				A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */,
 				C74491E0291D54DC00166197 /* CVCalendarTouchController.swift in Sources */,
 				C74491D8291D54DC00166197 /* CVCalendarViewDelegate.swift in Sources */,
@@ -465,6 +500,7 @@
 				C74491DC291D54DC00166197 /* CVAuxiliaryView.swift in Sources */,
 				A8B2A2A8291C8E3B000F5624 /* ManagerPlaceholder.swift in Sources */,
 				C74491E2291D54DC00166197 /* CVCalendarViewPresentationMode.swift in Sources */,
+				C7F1775D2925B1CD0004C5D9 /* ARAssetWriter.swift in Sources */,
 				C70100F42921DF7A00B58231 /* UIViewController+Extension.swift in Sources */,
 				C74491E4291D54DC00166197 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
 				C74491D5291D54DC00166197 /* CVCalendarContentViewController.swift in Sources */,
