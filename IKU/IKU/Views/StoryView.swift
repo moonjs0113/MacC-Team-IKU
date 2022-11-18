@@ -11,6 +11,7 @@ import SwiftUI
 extension Color {
     static let ikuBlue: Color = Color("ikuBlue")
     static let ikuBackground: Color = Color( "ikuBackground")
+    static let ikuEyeSelectBackground: Color = Color("ikuEyeSelectBackground")
 }
 
 struct StoryView: View {

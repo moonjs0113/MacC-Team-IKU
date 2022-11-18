@@ -39,7 +39,7 @@ where SelectionValue: Hashable, Content: View {
         content
             .frame(maxWidth: .infinity)
             .contentShape(Rectangle())
-            .foregroundColor(isSelected ? .black : .white.opacity(0.8))
+//            .foregroundColor(isSelected ? .black : .white.opacity(0.8))
             .background(isSelected ? background : nil)
             .onTapGesture {
                 select()
@@ -88,8 +88,8 @@ struct SelectWhichEyeView: View {
     var body: some View {
         VStack {
             CustomPicker(selection: $mode) {
-                Image(systemName: "chevron.left").segmentedControlItemTag(Eyes.left)
-                Image(systemName: "chevron.right").segmentedControlItemTag(Eyes.right)
+                Image("lefteye").segmentedControlItemTag(Eyes.left)
+                Image("righteye").segmentedControlItemTag(Eyes.right)
             }
             .frame(width: 300)
         }
