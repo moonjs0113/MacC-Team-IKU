@@ -83,11 +83,11 @@ public struct CustomPicker<SelectionValue, Content> : View where SelectionValue 
 struct SelectWhichEyeView: View {
     
     //MARK: - Properties
-    @Binding var mode: Eyes
+    @Binding var selectedEye: Eyes
     
     var body: some View {
         VStack {
-            CustomPicker(selection: $mode) {
+            CustomPicker(selection: $selectedEye) {
                 Image("lefteye").segmentedControlItemTag(Eyes.left)
                 Image("righteye").segmentedControlItemTag(Eyes.right)
             }
@@ -99,6 +99,6 @@ struct SelectWhichEyeView: View {
 
 struct SelectWhichEyeView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectWhichEyeView(mode: .constant(Eyes.left))
+        SelectWhichEyeView(selectedEye: .constant(Eyes.left))
     }
 }

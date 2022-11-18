@@ -17,7 +17,7 @@ extension Color {
 struct StoryView: View {
     
     // MARK: - Properties
-    @State var mode: Eyes = .left
+    @State private var selectedEye: Eyes = .left
     let customBlue = Color.ikuBlue
     
     var body: some View {
@@ -56,10 +56,10 @@ struct StoryView: View {
                     .foregroundColor(customBlue)
                     .padding(.bottom, 29)
                 
-                SelectWhichEyeView(mode: $mode)
+                SelectWhichEyeView(selectedEye: $selectedEye)
                 
                 // 눈이 제대로 선택되었는지 확인하는 디버깅 용도의 코드입니다. 임의로 삭제 가능합니다.
-                Text("선택된 눈 : \(mode.rawValue)")
+                Text("선택된 눈 : \(selectedEye.rawValue)")
                     .padding()
                 
                 VStack(alignment: .leading, spacing: 0) {
