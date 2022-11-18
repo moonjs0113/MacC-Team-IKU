@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */; };
 		0E04199A29232E9200D710BC /* resultVideo.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 0E04199929232E9200D710BC /* resultVideo.MOV */; };
+		0E04199F2926314900D710BC /* DictionaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04199E2926314900D710BC /* DictionaryViewController.swift */; };
 		0E7A2CD729231F060060C024 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A2CD629231F060060C024 /* ResultViewController.swift */; };
 		A804661A291FF9890079CEDC /* ScrubberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8046619291FF9890079CEDC /* ScrubberView.swift */; };
 		A804661C292012B10079CEDC /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A804661B292012B10079CEDC /* PlayButton.swift */; };
@@ -84,7 +86,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		0E04199929232E9200D710BC /* resultVideo.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = resultVideo.MOV; sourceTree = "<group>"; };
+		0E04199E2926314900D710BC /* DictionaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryViewController.swift; sourceTree = "<group>"; };
 		0E7A2CD629231F060060C024 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		A8046619291FF9890079CEDC /* ScrubberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubberView.swift; sourceTree = "<group>"; };
 		A804661B292012B10079CEDC /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
@@ -230,6 +234,7 @@
 				A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */,
 				C74491A9291D54A100166197 /* ViewModule */,
 				A8B2A28A291C8B2F000F5624 /* ViewController.swift */,
+				0E04199E2926314900D710BC /* DictionaryViewController.swift */,
 				A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */,
 				0E7A2CD629231F060060C024 /* ResultViewController.swift */,
 				C74491EF291D640B00166197 /* HistoryViewController.swift */,
@@ -241,6 +246,7 @@
 				A8046619291FF9890079CEDC /* ScrubberView.swift */,
 				A804661B292012B10079CEDC /* PlayButton.swift */,
 				A8AA21282922131D00EFBE27 /* GradientView.swift */,
+				9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -312,7 +318,6 @@
 			isa = PBXGroup;
 			children = (
 				C74491EC291D584B00166197 /* IKUCalendarView */,
-				C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */,
 			);
 			path = ViewModule;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 		C74491EC291D584B00166197 /* IKUCalendarView */ = {
 			isa = PBXGroup;
 			children = (
+				C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */,
 				C74491AA291D54D000166197 /* IKUCalendarView.swift */,
 				C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */,
 				C74491AC291D54DC00166197 /* CVCalendar */,
@@ -491,6 +497,7 @@
 				C7537CFA292320B5001E8BF6 /* VideoManager.swift in Sources */,
 				C74491D2291D54DC00166197 /* CVStatus.swift in Sources */,
 				C745E9512926175F00AEECA8 /* CoverTestViewModel.swift in Sources */,
+				9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */,
 				C7F1775C2925B1CD0004C5D9 /* ARCapture.swift in Sources */,
 				A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */,
 				C74491E0291D54DC00166197 /* CVCalendarTouchController.swift in Sources */,
@@ -515,6 +522,7 @@
 				C74491DD291D54DC00166197 /* CVCalendarMenuView.swift in Sources */,
 				C73FC0D62927186000BB3426 /* Eyes.swift in Sources */,
 				A8B2A2AB291C8E6A000F5624 /* Placeholder.swift in Sources */,
+				0E04199F2926314900D710BC /* DictionaryViewController.swift in Sources */,
 				0E7A2CD729231F060060C024 /* ResultViewController.swift in Sources */,
 				C74491E3291D54DC00166197 /* CVCalendarWeekView.swift in Sources */,
 				C74491CE291D54DC00166197 /* CVWeekdaySymbolType.swift in Sources */,
