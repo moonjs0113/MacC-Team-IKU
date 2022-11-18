@@ -66,7 +66,7 @@ class ARAssetCreator: NSObject, AVCaptureAudioDataOutputSampleBufferDelegate {
         //        print("ARCapture.Orientation.isFlat: \(ARCapture.Orientation.isFlat)")
         
         
-        print("VideoInput size: \(size)")
+//        print("VideoInput size: \(size)")
         // Apply transformation
         let transform: CGAffineTransform = .identity
 //        if captureType == .renderWithDeviceRotation {
@@ -181,7 +181,6 @@ class ARAssetCreator: NSObject, AVCaptureAudioDataOutputSampleBufferDelegate {
             assetWriter.finishWriting(completionHandler: completed)
         }
     }
-    
     
     /// Cancel writing video
     func cancel() {

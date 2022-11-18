@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //첫번째 화면은 일단
         let testVC = ViewController()
         let historyVC = HistoryViewController()
-        let dictionaryVC = DictionaryViewController()
+        let dictionaryVC = InformationViewController()//DictionaryViewController()
         
         //탭바 이름들 설정
         testVC.title = "사시검사"
