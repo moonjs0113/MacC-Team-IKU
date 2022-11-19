@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import PhotosUI
 
 class InformationViewController: UIViewController {
     // MARK: - Properties
@@ -25,40 +26,67 @@ class InformationViewController: UIViewController {
         return label
     }()
     
-    lazy private var profileImageView: UIImageView = {
+    lazy private var profileImage: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: "person"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.tintColor = .black
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .ikuLightGray
-        imageView.bindLayout(anyCancellable: &self.anyCancellable)
+//        imageView.bindLayout(anyCancellable: &self.anyCancellable)
         return imageView
     }()
     
-    lazy private var photoButton: UIView = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "camera"), for: .normal)
-        button.tintColor = .white
-        button.backgroundColor = .ikuDarkGray
-        button.bindLayout(anyCancellable: &self.anyCancellable)
-        button.addTarget(self, action: #selector(touchUpPhotoButton(_:)), for: .touchUpInside)
-        
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(profileImageView)
-        view.addSubview(button)
+    lazy private var profileImageView: UIView = {
+        let cameraIconView = UIView()
+        cameraIconView.translatesAutoresizingMaskIntoConstraints = false
+        cameraIconView.backgroundColor = .ikuCalendarWeeklyTitle
+        cameraIconView.bindLayout(anyCancellable: &anyCancellable)
+        let cameraIcon = UIImageView(image: UIImage(systemName: "camera",
+                                                    withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium)))
+        cameraIcon.tintColor = .white
+        cameraIcon.contentMode = .scaleAspectFit
+        cameraIcon.translatesAutoresizingMaskIntoConstraints = false
+        cameraIconView.addSubview(cameraIcon)
         
         NSLayoutConstraint.activate([
-            profileImageView.widthAnchor.constraint(equalTo: view.heightAnchor),
-            profileImageView.heightAnchor.constraint(equalTo: view.heightAnchor),
-            profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            profileImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            cameraIcon.widthAnchor.constraint(equalTo: cameraIconView.widthAnchor, multiplier: 0.6),
+            cameraIcon.heightAnchor.constraint(equalTo: cameraIconView.heightAnchor, multiplier: 0.6),
+            cameraIcon.centerXAnchor.constraint(equalTo: cameraIconView.centerXAnchor),
+            cameraIcon.centerYAnchor.constraint(equalTo: cameraIconView.centerYAnchor),
+        ])
+        
+        let profileImageCircleView = UIView()
+        profileImageCircleView.translatesAutoresizingMaskIntoConstraints = false
+        profileImageCircleView.backgroundColor = .ikuLightGray
+        profileImageCircleView.bindLayout(anyCancellable: &anyCancellable)
+        profileImageCircleView.addSubview(profileImage)
+        
+        NSLayoutConstraint.activate([
+            profileImage.widthAnchor.constraint(equalTo: profileImageCircleView.widthAnchor),
+            profileImage.heightAnchor.constraint(equalTo: profileImageCircleView.heightAnchor),
+            profileImage.centerXAnchor.constraint(equalTo: profileImageCircleView.centerXAnchor),
+            profileImage.centerYAnchor.constraint(equalTo: profileImageCircleView.centerYAnchor),
+        ])
+        
+        let view = UIView()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(touchUpPhotoButton(_:)))
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.addGestureRecognizer(tapGestureRecognizer)
+        view.addSubview(profileImageCircleView)
+        view.addSubview(cameraIconView)
+        
+        NSLayoutConstraint.activate([
+            profileImageCircleView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            profileImageCircleView.heightAnchor.constraint(equalTo: profileImageCircleView.widthAnchor),
+            profileImageCircleView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            profileImageCircleView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
-            button.widthAnchor.constraint(equalTo: profileImageView.widthAnchor, multiplier: 1/3),
-            button.heightAnchor.constraint(equalTo: profileImageView.heightAnchor, multiplier: 1/3),
-            button.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor),
-            button.trailingAnchor.constraint(equalTo: profileImageView.trailingAnchor),
+            cameraIconView.widthAnchor.constraint(equalTo: profileImageCircleView.widthAnchor, multiplier: 1/3),
+            cameraIconView.heightAnchor.constraint(equalTo: profileImageCircleView.heightAnchor, multiplier: 1/3),
+            cameraIconView.bottomAnchor.constraint(equalTo: profileImageCircleView.bottomAnchor),
+            cameraIconView.trailingAnchor.constraint(equalTo: profileImageCircleView.trailingAnchor),
+            
+            view.widthAnchor.constraint(equalTo: view.heightAnchor),
         ])
         
         return view
@@ -86,7 +114,6 @@ class InformationViewController: UIViewController {
     }()
     
     let textFieldTitle: [String] = ["닉네임", "연령", "병원 즐겨찾기"]
-    
     lazy var textFieldStackView: UIStackView = {
         let nameTextField = createTextFieldUI(self.nameTextField, textFieldTitle[0])
         let ageTextField = createTextFieldUI(self.ageTextField, textFieldTitle[1])
@@ -158,7 +185,7 @@ class InformationViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsVerticalScrollIndicator = false
         scrollView.addSubview(titleLabel)
-        scrollView.addSubview(photoButton)
+        scrollView.addSubview(profileImageView)
         scrollView.addSubview(textFieldStackView)
         view.addSubview(scrollView)
         view.addSubview(completeButton)
@@ -173,12 +200,12 @@ class InformationViewController: UIViewController {
             titleLabel.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
             titleLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 
-            photoButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
-            photoButton.heightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.widthAnchor, multiplier: 3/10),
-            photoButton.widthAnchor.constraint(equalTo: scrollView.contentLayoutGuide.widthAnchor, multiplier: 3/10),
-            photoButton.centerXAnchor.constraint(equalTo: scrollView.contentLayoutGuide.centerXAnchor),
+            profileImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
+            profileImageView.heightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.widthAnchor, multiplier: 3/10),
+            profileImageView.widthAnchor.constraint(equalTo: scrollView.contentLayoutGuide.widthAnchor, multiplier: 3/10),
+            profileImageView.centerXAnchor.constraint(equalTo: scrollView.contentLayoutGuide.centerXAnchor),
             
-            textFieldStackView.topAnchor.constraint(equalTo: photoButton.bottomAnchor, constant: 30),
+            textFieldStackView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 30),
             textFieldStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             textFieldStackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
             
@@ -190,8 +217,9 @@ class InformationViewController: UIViewController {
         ])
     }
     
-    @objc private func touchUpPhotoButton(_ sender: UIButton) {
-        print(#function)
+    @objc private func touchUpPhotoButton(_ sender: UITapGestureRecognizer) {
+        let pickerViewController = PHPhotoManager.share.createPHPickerViewController(self)
+        self.present(pickerViewController, animated: true)
     }
     
     @objc private func touchUpCompleteButton(_ sender: UIButton) {
@@ -211,6 +239,22 @@ class InformationViewController: UIViewController {
         addEndEditingGesture()
         setupNavigationBar()
         setupLayoutConstraint()
-        
+    }
+}
+
+extension InformationViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        if let pickerResult = results.first {
+            if pickerResult.itemProvider.canLoadObject(ofClass: UIImage.self) {
+                pickerResult.itemProvider.loadObject(ofClass: UIImage.self) { (image, _) in
+                    guard let selectedImage = image as? UIImage else { return }
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self else { return }
+                        self.profileImage.image = selectedImage
+                    }
+                }
+            }
+        }
+        picker.dismiss(animated: true)
     }
 }

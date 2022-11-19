@@ -34,6 +34,7 @@
 		C72601E529278642009AB7D1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72601E429278642009AB7D1 /* UIView+Extension.swift */; };
 		C73FC0D429270CDF00BB3426 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73FC0D329270CDF00BB3426 /* InformationViewController.swift */; };
 		C73FC0D62927186000BB3426 /* Eyes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73FC0D52927186000BB3426 /* Eyes.swift */; };
+		C741521F29288DE800E86B5B /* PHPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C741521E29288DE800E86B5B /* PHPhotoManager.swift */; };
 		C7422514291F304E00DB6D80 /* CVMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7422513291F304E00DB6D80 /* CVMonth.swift */; };
 		C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */; };
 		C744915B291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */; };
@@ -116,6 +117,7 @@
 		C72601E429278642009AB7D1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		C73FC0D329270CDF00BB3426 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		C73FC0D52927186000BB3426 /* Eyes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eyes.swift; sourceTree = "<group>"; };
+		C741521E29288DE800E86B5B /* PHPhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PHPhotoManager.swift; path = ../../../../../../Pictures/PHPhotoManager.swift; sourceTree = "<group>"; };
 		C7422513291F304E00DB6D80 /* CVMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVMonth.swift; sourceTree = "<group>"; };
 		C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF.otf; sourceTree = "<group>"; };
 		C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF_Light.otf; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			children = (
 				A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */,
 				C7537CF9292320B5001E8BF6 /* VideoManager.swift */,
+				C741521E29288DE800E86B5B /* PHPhotoManager.swift */,
 				C7537CFB2923B0E2001E8BF6 /* ARSceneManager.swift */,
 				C7F1775F2925BC2C0004C5D9 /* ARCapture */,
 			);
@@ -491,6 +494,7 @@
 				C74491DA291D54DC00166197 /* CVSelectionType.swift in Sources */,
 				C74491CF291D54DC00166197 /* CVRange.swift in Sources */,
 				A8B2A2A2291C8D8F000F5624 /* ExtensionPlaceholder.swift in Sources */,
+				C741521F29288DE800E86B5B /* PHPhotoManager.swift in Sources */,
 				C74491E8291D54DC00166197 /* CVCalendarManager.swift in Sources */,
 				C74491D7291D54DC00166197 /* CVCalendarView.swift in Sources */,
 				C74491E6291D54DC00166197 /* CVCalendarDayViewControlCoordinator.swift in Sources */,

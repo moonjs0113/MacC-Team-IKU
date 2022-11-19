@@ -119,28 +119,16 @@ class ResultViewController: UIViewController {
     
     @IBAction func storageResult(_ sender: Any) {
         guard let url else { return }
-        PHPhotoLibrary.requestAuthorization(for: .addOnly) { authorizationStatus in
-            switch authorizationStatus {
-            case .notDetermined:
-                break
-            case .authorized:
-                PHPhotoLibrary.shared().performChanges {
-                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: url)
-                } completionHandler: { isSaveComplete, _ in
-                    if isSaveComplete {
-                        DispatchQueue.main.async { [weak self] in
-                            guard let self,
-                                  let tabBarController = self.presentingViewController as? UITabBarController else { return }
-                            tabBarController.selectedIndex = 1
-                            self.dismiss(animated: true)
-                        }
-                    }
-                }
-            case .restricted, .denied, .limited:
-                fallthrough
-            @unknown default:
-                self.showAlertPermissionSetting(title: "Require Library Permission",
-                                                message: "동영상 저장을 위해 사진첩 권한이 필요합니다.\n설정으로 이동하시겠습니까?")
+        PHPhotoManager.share.saveVideo(url: url) {
+            DispatchQueue.main.async { [weak self] in
+                guard let tabBarController = self?.presentingViewController as? UITabBarController else { return }
+                tabBarController.selectedIndex = 1
+                self?.dismiss(animated: true)
+            }
+        } errorHandler: {
+            DispatchQueue.main.async { [weak self] in
+                self?.showAlertPermissionSetting(title: "Require Library Permission",
+                                                 message: "동영상 저장을 위해 사진첩 권한이 필요합니다.\n설정으로 이동하시겠습니까?")
             }
         }
     }
@@ -154,4 +142,3 @@ class ResultViewController: UIViewController {
         fetchUI()
     }
 }
-
