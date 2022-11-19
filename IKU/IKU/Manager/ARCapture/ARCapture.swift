@@ -260,7 +260,6 @@ open class ARCapture {
                         if let error = errSecDecode as? Error {
                             print("ERROR: \(error)")
                         }
-                        print(self!.videoUrl!)
                     }
                 } else {
                     let url = URL.tmpVideoUrl()

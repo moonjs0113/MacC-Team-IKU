@@ -103,8 +103,9 @@ final class ScrubberViewModel: ObservableObject {
         timeObserverToken = player.addPeriodicTimeObserver(forInterval: time, queue: .main) { [weak self] time in
             guard let self = self else { return }
             self.currentTime = self.player.currentTime()
-            if let time = Float(String(format: "%.1f", self.player.currentTime().seconds)) {
-                print(time, self.degrees[Int(time * 10)])
+            var time = Int(floor(self.currentTime.seconds * 10))
+            if time >= self.degrees.count {
+                time = self.degrees.count - 1
             }
         }
     }

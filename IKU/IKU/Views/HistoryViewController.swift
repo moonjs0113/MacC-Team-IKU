@@ -110,26 +110,19 @@ final class HistoryViewController: UIViewController {
         self.present(navigationController, animated: true)
     }
     
-    private func showAlertPermissionSetting() {
-        let alert = UIAlertController(title: "Require Camera Permission",
-                                      message: "사시각 측정을 위해 카메라 권한이 필요합니다.\n설정으로 이동하시겠습니까?",
-                                      preferredStyle: .alert)
-        let ok = UIAlertAction(title: "예", style: .default) { [weak self] _ in
-            self?.openSystemSetting()
-        }
-        let cancel = UIAlertAction(title: "아니오", style: .cancel)
-        alert.addAction(ok)
-        alert.addAction(cancel)
-        present(alert, animated: true)
-    }
+
     
     // MARK: - Objc-C Methods
     @objc private func touchTestButton(_ sender: UIButton) {
         AVCaptureDevice.requestAccess(for: .video) { [weak self] permission in
             DispatchQueue.main.async {
                 guard let self = self else { return }
-                if permission { self.goToCoverTestView() }
-                else { self.showAlertPermissionSetting() }
+                if permission {
+                    self.goToCoverTestView()
+                } else {
+                    self.showAlertPermissionSetting(title: "Require Camera Permission",
+                                                    message: "사시각 측정을 위해 카메라 권한이 필요합니다.\n설정으로 이동하시겠습니까?")
+                }
             }
         }
     }

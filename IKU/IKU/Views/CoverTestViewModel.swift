@@ -25,7 +25,7 @@ class CoverTestViewModel: NSObject {
     private var transformVisualization: ARSceneManager = ARSceneManager()
     private var faceAnchors: [ARFaceAnchor: ARSCNViewDelegate] = [:]
     var degrees: [Float] {
-        self.transformVisualization.horizontalDegrees
+        transformVisualization.horizontalDegrees
     }
     
     
@@ -56,13 +56,14 @@ class CoverTestViewModel: NSObject {
     private var degreeTimer: Timer?
     
     var updateUI: ((ARCapture.Status) -> Void)?
-    private var anyCancellable = Set<AnyCancellable>()
+    var anyCancellable = Set<AnyCancellable>()
     
     // MARK: - Methods
     // AR
     func resetTracking() {
         guard ARFaceTrackingConfiguration.isSupported else { return }
         let configuration = ARFaceTrackingConfiguration()
+        configuration.videoHDRAllowed = true
         configuration.maximumNumberOfTrackedFaces = ARFaceTrackingConfiguration.supportedNumberOfTrackedFaces
         configuration.isLightEstimationEnabled = true
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
@@ -91,7 +92,7 @@ class CoverTestViewModel: NSObject {
                     self.anyCancellable.removeAll()
                     view.layer.cornerRadius = 5
                 } else {
-                    self.bindLayout(view: view)
+                    view.bindLayout(anyCancellable: &self.anyCancellable)
                 }
                 view.setNeedsLayout()
                 view.layoutIfNeeded()
@@ -120,9 +121,7 @@ class CoverTestViewModel: NSObject {
     
     private func startTimer() {
         recordTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
-//            print(timer.timeInterval)
             self?.timerCount += 1
-            print(self?.timerCount ?? 0)
         }
         
         degreeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in
@@ -135,7 +134,6 @@ class CoverTestViewModel: NSObject {
         recordTimer = nil
         degreeTimer?.invalidate()
         degreeTimer = nil
-        print(timerCount)
         if timerCount >= 12 {
             // 잘 찍은거
         } else {
@@ -144,21 +142,12 @@ class CoverTestViewModel: NSObject {
         timerCount = 0
     }
     
-    func bindLayout(view: UIView) {
-        view.publisher(for: \.bounds, options: [.new, .initial, .old, .prior])
-            .receive(on: DispatchQueue.main)
-            .filter { trunc($0.width) == trunc($0.height) }
-            .map { $0.width / 2 }
-            .assign(to: \.layer.cornerRadius, on: view)
-            .store(in: &anyCancellable)
-    }
-    
     // MARK: - Life Cycles
     override init() {
         super.init()
     }
-    
 }
+
 // MARK: - Delegates And DataSources
 extension CoverTestViewModel: ARSessionDelegate, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {

@@ -81,13 +81,13 @@ final class CoverTestViewController: UIViewController {
         emptyCircle.backgroundColor = .clear
         emptyCircle.layer.borderColor = UIColor.white.cgColor
         emptyCircle.layer.borderWidth = 2
-        viewModel.bindLayout(view: emptyCircle)
+        emptyCircle.bindLayout(anyCancellable: &viewModel.anyCancellable)
         
         let fillCircle = UIView()
         fillCircle.isUserInteractionEnabled = false
         fillCircle.translatesAutoresizingMaskIntoConstraints = false
         fillCircle.backgroundColor = .red
-        viewModel.bindLayout(view: fillCircle)
+        fillCircle.bindLayout(anyCancellable: &viewModel.anyCancellable)
         
         button.addSubview(emptyCircle)
         button.addSubview(fillCircle)
