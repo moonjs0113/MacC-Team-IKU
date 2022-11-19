@@ -13,6 +13,7 @@
 		9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */; };
 		A804661A291FF9890079CEDC /* ScrubberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8046619291FF9890079CEDC /* ScrubberView.swift */; };
 		A804661C292012B10079CEDC /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A804661B292012B10079CEDC /* PlayButton.swift */; };
+		A897ED6E29277CC000C93E22 /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A897ED6D29277CC000C93E22 /* MeasurementResult.swift */; };
 		A8AA21292922131D00EFBE27 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA21282922131D00EFBE27 /* GradientView.swift */; };
 		A8B2A287291C8B2F000F5624 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A286291C8B2F000F5624 /* AppDelegate.swift */; };
 		A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A288291C8B2F000F5624 /* SceneDelegate.swift */; };
@@ -20,7 +21,6 @@
 		A8B2A28E291C8B2F000F5624 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8B2A28C291C8B2F000F5624 /* Main.storyboard */; };
 		A8B2A290291C8B30000F5624 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8B2A28F291C8B30000F5624 /* Assets.xcassets */; };
 		A8B2A293291C8B30000F5624 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8B2A291291C8B30000F5624 /* LaunchScreen.storyboard */; };
-		A8B2A29F291C8D4B000F5624 /* DataPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A29E291C8D4B000F5624 /* DataPlaceholder.swift */; };
 		A8B2A2A2291C8D8F000F5624 /* ExtensionPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2A1291C8D8F000F5624 /* ExtensionPlaceholder.swift */; };
 		A8B2A2A8291C8E3B000F5624 /* ManagerPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */; };
 		A8B2A2AB291C8E6A000F5624 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2AA291C8E6A000F5624 /* Placeholder.swift */; };
@@ -29,10 +29,10 @@
 		A8B2A2B3291CCDAD000F5624 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */; };
 		A8B2A2B5291CCE8E000F5624 /* video.m4v in Resources */ = {isa = PBXBuildFile; fileRef = A8B2A2B4291CCE84000F5624 /* video.m4v */; };
 		A8B2A2D7291DE0D6000F5624 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */; };
-		A8FACE3029271C2900BF2CD0 /* Eye.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FACE2F29271C2900BF2CD0 /* Eye.swift */; };
 		A8B5349D2926752200237C30 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5349C2926752200237C30 /* PersistenceManager.swift */; };
 		A8B534A52926755900237C30 /* PersistenceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B534A42926755900237C30 /* PersistenceTest.swift */; };
 		A8B534AB2926756600237C30 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5349C2926752200237C30 /* PersistenceManager.swift */; };
+		A8FACE3029271C2900BF2CD0 /* Eye.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FACE2F29271C2900BF2CD0 /* Eye.swift */; };
 		C70100F02921D0DE00B58231 /* CoverTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */; };
 		C70100F42921DF7A00B58231 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */; };
 		C7422514291F304E00DB6D80 /* CVMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7422513291F304E00DB6D80 /* CVMonth.swift */; };
@@ -103,6 +103,7 @@
 		9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		A8046619291FF9890079CEDC /* ScrubberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubberView.swift; sourceTree = "<group>"; };
 		A804661B292012B10079CEDC /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
+		A897ED6D29277CC000C93E22 /* MeasurementResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResult.swift; sourceTree = "<group>"; };
 		A8AA21282922131D00EFBE27 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A8B2A283291C8B2F000F5624 /* IKU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IKU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B2A286291C8B2F000F5624 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,7 +113,6 @@
 		A8B2A28F291C8B30000F5624 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8B2A292291C8B30000F5624 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8B2A294291C8B30000F5624 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A8B2A29E291C8D4B000F5624 /* DataPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPlaceholder.swift; sourceTree = "<group>"; };
 		A8B2A2A1291C8D8F000F5624 /* ExtensionPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionPlaceholder.swift; sourceTree = "<group>"; };
 		A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerPlaceholder.swift; sourceTree = "<group>"; };
 		A8B2A2AA291C8E6A000F5624 /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
@@ -121,10 +121,10 @@
 		A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		A8B2A2B4291CCE84000F5624 /* video.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.m4v; sourceTree = "<group>"; };
 		A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
-		A8FACE2F29271C2900BF2CD0 /* Eye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eye.swift; sourceTree = "<group>"; };
 		A8B5349C2926752200237C30 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		A8B534A22926755900237C30 /* PersistenceTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersistenceTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B534A42926755900237C30 /* PersistenceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceTest.swift; sourceTree = "<group>"; };
+		A8FACE2F29271C2900BF2CD0 /* Eye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eye.swift; sourceTree = "<group>"; };
 		C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverTestViewController.swift; sourceTree = "<group>"; };
 		C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C7422513291F304E00DB6D80 /* CVMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVMonth.swift; sourceTree = "<group>"; };
@@ -274,9 +274,9 @@
 			isa = PBXGroup;
 			children = (
 				C7449156291D474400166197 /* Font */,
-				A8B2A29E291C8D4B000F5624 /* DataPlaceholder.swift */,
 				C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */,
 				A8FACE2F29271C2900BF2CD0 /* Eye.swift */,
+				A897ED6D29277CC000C93E22 /* MeasurementResult.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -524,7 +524,6 @@
 				A8B2A2D7291DE0D6000F5624 /* NavigationViewController.swift in Sources */,
 				A8B2A2B1291CCD8F000F5624 /* SelectPhotoViewController.swift in Sources */,
 				A8AA21292922131D00EFBE27 /* GradientView.swift in Sources */,
-				A8B2A29F291C8D4B000F5624 /* DataPlaceholder.swift in Sources */,
 				A8B2A2B3291CCDAD000F5624 /* PlayerView.swift in Sources */,
 				A804661C292012B10079CEDC /* PlayButton.swift in Sources */,
 				C74491D4291D54DC00166197 /* CVCalendarMenuViewDelegate.swift in Sources */,
@@ -532,7 +531,6 @@
 				C74491DE291D54DC00166197 /* CVCalendarContentPresentationCoordinator.swift in Sources */,
 				C74491E1291D54DC00166197 /* CVCalendarMonthContentViewController.swift in Sources */,
 				C74491D1291D54DC00166197 /* CVCalendarViewAppearance.swift in Sources */,
-				A8B2A29F291C8D4B000F5624 /* DataPlaceholder.swift in Sources */,
 				C70100F02921D0DE00B58231 /* CoverTestViewController.swift in Sources */,
 				C74491AB291D54D000166197 /* IKUCalendarView.swift in Sources */,
 				C74491D3291D54DC00166197 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
@@ -581,6 +579,7 @@
 				A8B2A2AB291C8E6A000F5624 /* Placeholder.swift in Sources */,
 				0E04199F2926314900D710BC /* DictionaryViewController.swift in Sources */,
 				0E7A2CD729231F060060C024 /* ResultViewController.swift in Sources */,
+				A897ED6E29277CC000C93E22 /* MeasurementResult.swift in Sources */,
 				C74491E3291D54DC00166197 /* CVCalendarWeekView.swift in Sources */,
 				C74491CE291D54DC00166197 /* CVWeekdaySymbolType.swift in Sources */,
 			);
