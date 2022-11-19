@@ -114,7 +114,6 @@ class ResultViewController: UIViewController {
         showAlertController(title: "입력 실행 취소", message: "입력된 정보가 사라집니다.\n취소하시겠습니까?") {
             self.navigationController?.popToRootViewController(animated: true)
         }
-        
     }
     
     @IBAction func storageResult(_ sender: Any) {
