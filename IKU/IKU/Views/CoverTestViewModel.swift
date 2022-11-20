@@ -14,13 +14,6 @@ import Combine
 class CoverTestViewModel: NSObject {
     // MARK: - Properties
     //AR
-    lazy var sceneView: ARSCNView = {
-        let view = ARSCNView()
-        view.delegate = self
-        view.session.delegate = self
-        return view
-    }()
-    
     var arCapture: ARCapture?
     private var transformVisualization: ARSceneManager = ARSceneManager()
     private var faceAnchors: [ARFaceAnchor: ARSCNViewDelegate] = [:]
@@ -54,7 +47,7 @@ class CoverTestViewModel: NSObject {
     var anyCancellable = Set<AnyCancellable>()
     // MARK: - Methods
     // AR
-    func resetTracking() {
+    func resetTracking(sceneView: ARSCNView) {
         guard ARFaceTrackingConfiguration.isSupported else { return }
         let configuration = ARFaceTrackingConfiguration()
         configuration.maximumNumberOfTrackedFaces = ARFaceTrackingConfiguration.supportedNumberOfTrackedFaces
@@ -179,7 +172,8 @@ extension CoverTestViewModel: ARSessionDelegate, ARSCNViewDelegate {
         transformVisualization.renderer(renderer, didUpdate: contentNode, for: anchor)
         
         let end = transformVisualization.leftEyeNode.presentation.worldPosition
-        let start = sceneView.pointOfView?.worldPosition
+        // TODO: - SceneView 객체가 거리 계산에 직접 필요한지 확인 필요
+        let start = renderer.pointOfView?.worldPosition
         
         if let start {
             calculateDistance(start: start, end: end)

@@ -188,7 +188,6 @@ final class SelectPhotoViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureViews()
-//        guard let movieURL = Bundle.main.url(forResource: "video", withExtension: "m4v") else { return }
         guard let urlPath else { return }
         let asset = AVURLAsset(url: urlPath)
 
@@ -196,6 +195,11 @@ final class SelectPhotoViewController: UIViewController {
             try await loadPropertyValuesAsync(forAsset: asset)
             configureHostingViewController()
         }
+    }
+    
+    convenience init(withVideoURL url: URL) {
+        self.init()
+        self.urlPath = url
     }
 }
 
