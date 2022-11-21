@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyViewController: UIViewController = UIHostingController<StoryView>(rootView: StoryView())
         
         //첫번째 화면은 일단
-        let testVC = storyViewController
+        let testVC = UINavigationController(rootViewController: storyViewController)
         let historyVC = HistoryViewController()
         let dictionaryVC = DictionaryViewController()
         
