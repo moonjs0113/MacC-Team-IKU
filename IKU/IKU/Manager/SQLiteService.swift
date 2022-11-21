@@ -1,5 +1,5 @@
 //
-//  PersistenceManager.swift
+//  SQLiteService.swift
 //  IKU
 //
 //  Created by Shin Jae Ung on 2022/11/17.
@@ -8,7 +8,7 @@
 import SQLite3
 import Foundation
 
-final class PersistenceManager {
+final class SQLiteService {
     enum SQLiteError: Error {
         case openDatabase(message: String)
         case prepare(message: String)

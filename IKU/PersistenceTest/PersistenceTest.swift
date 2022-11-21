@@ -8,11 +8,11 @@
 import XCTest
 
 final class PersistenceTest: XCTestCase {
-    var persistenceManager: PersistenceManager!
+    var sqliteService: SQLiteService!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        persistenceManager = try PersistenceManager()
+        sqliteService = try SQLiteService()
     }
     
     override func tearDownWithError() throws {
@@ -23,13 +23,13 @@ final class PersistenceTest: XCTestCase {
             create: true
         ).appendingPathComponent("IKU.sqlite")
         try FileManager.default.removeItem(at: dbURL)
-        persistenceManager = nil
+        sqliteService = nil
         try super.tearDownWithError()
     }
 
     func test_table_select_data_of_same_day() throws {
-        try persistenceManager.createTableIfNotExist(byQuery: .videoTable)
-        try persistenceManager.insert(
+        try sqliteService.createTableIfNotExist(byQuery: .videoTable)
+        try sqliteService.insert(
             byQuery: .videoData(
                 localIdentifier: "localIdentifier",
                 isLeftEye: true,
@@ -44,7 +44,7 @@ final class PersistenceTest: XCTestCase {
             for hour in 0...23 {
                 let dateString = createDateString(year: 2022, month: 11, day: day, hour: hour, minute: 12, second: 34)
                 let date = dateString.toDate()!
-                let array = try persistenceManager.select(byQuery: .videoForSpecipic(day: date))
+                let array = try sqliteService.select(byQuery: .videoForSpecipic(day: date))
                 if day == 22 {
                     XCTAssertEqual(array.count, 1)
                 } else {
