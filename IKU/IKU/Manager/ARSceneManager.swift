@@ -14,7 +14,7 @@ class ARSceneManager: NSObject, ARSCNViewDelegate {
     lazy var rightEyeNode = SCNReferenceNode(named: "coordinateOrigin")
     lazy var leftEyeNode = SCNReferenceNode(named: "coordinateOrigin")
     
-    var horizontalDegrees: [Float] = []
+    var horizontalDegrees: [Double: Double] = [:]
     var selectedEye: Eye = .left
     
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
@@ -49,8 +49,9 @@ class ARSceneManager: NSObject, ARSCNViewDelegate {
         anchorNode.addChildNode(leftEyeNode)
     }
     
-    func captureDegree() {
-        horizontalDegrees.append(selectedEye == .left ? leftEyeNode.transform.m13 : rightEyeNode.transform.m13)
+    func captureDegree(time: Double) {
+        let digit: Double = pow(10, 1)
+        horizontalDegrees[round(time * digit) / digit] = Double(selectedEye == .left ? leftEyeNode.transform.m13 : rightEyeNode.transform.m13)
     }
 }
 

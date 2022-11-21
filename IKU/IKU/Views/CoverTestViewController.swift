@@ -10,6 +10,7 @@ import AVFoundation
 import Combine
 import ARKit
 import SceneKit
+import SwiftUI
 
 final class CoverTestViewController: UIViewController {
     // MARK: - Properties
@@ -25,9 +26,9 @@ final class CoverTestViewController: UIViewController {
     
     private var cameraFrameView: UIStackView = {
         let backgroundAlpha: CGFloat = 0.8
-        let topView = UIView()
-        topView.translatesAutoresizingMaskIntoConstraints = false
-        topView.backgroundColor = .black.withAlphaComponent(backgroundAlpha)
+//        let topView = UIView()
+//        topView.translatesAutoresizingMaskIntoConstraints = false
+//        topView.backgroundColor = .clear
         
         let frameView = UIView()
         frameView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +38,7 @@ final class CoverTestViewController: UIViewController {
         bottomView.translatesAutoresizingMaskIntoConstraints = false
         bottomView.backgroundColor = .black.withAlphaComponent(backgroundAlpha)
         
-        let stackView = UIStackView(arrangedSubviews: [topView, frameView, bottomView])
+        let stackView = UIStackView(arrangedSubviews: [frameView, bottomView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         
@@ -118,52 +119,19 @@ final class CoverTestViewController: UIViewController {
         return button
     }()
     
-    lazy private var headerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .clear
-        
-        let closeButton = UIButton(type: .system)
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.setTitle("", for: .normal)
-        closeButton.setImage(UIImage(systemName: "xmark",
-                                     withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium)),
-                             for: .normal)
-        closeButton.tintColor = .white
-        closeButton.addTarget(self, action: #selector(touchCloseButton(_:)), for: .touchUpInside)
-        
-        let helpButton = UIButton(type: .system)
-        helpButton.translatesAutoresizingMaskIntoConstraints = false
-        helpButton.setTitle("", for: .normal)
-        helpButton.setImage(UIImage(systemName: "questionmark.circle",
-                                    withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium)),
-                            for: .normal)
-        helpButton.tintColor = .white
-        helpButton.addTarget(self, action: #selector(touchHelpButton(_:)), for: .touchUpInside)
-        
-        view.addSubview(closeButton)
-        view.addSubview(helpButton)
-        view.addSubview(distanceLabel)
-        
-        NSLayoutConstraint.activate([
-            closeButton.topAnchor.constraint(equalTo: view.topAnchor),
-            closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            closeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -7),
-            
-            helpButton.topAnchor.constraint(equalTo: view.topAnchor),
-            helpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            helpButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -7),
-            
-            distanceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            distanceLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-        ])
-        
-        return view
-    }()
-    
     // MARK: - Methods
     private func setupNavigationController() {
-        navigationItem.backButtonTitle = ""
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
+        
+        let barButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark",
+                                                           withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium)),
+                                            style: .done,
+                                            target: self,
+                                            action: #selector(touchCloseButton(_:)))
+        navigationItem.leftBarButtonItem = barButtonItem
+        navigationItem.titleView = distanceLabel
     }
     
     private func setupARScene() {
@@ -182,7 +150,6 @@ final class CoverTestViewController: UIViewController {
     
     private func setupLayoutConstraint() {
         view.addSubview(cameraFrameView)
-        view.addSubview(headerView)
         view.addSubview(guideLabel)
         view.addSubview(recordButton)
         
@@ -192,13 +159,8 @@ final class CoverTestViewController: UIViewController {
             cameraFrameView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cameraFrameView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            headerView.bottomAnchor.constraint(equalTo: cameraFrameView.subviews[0].bottomAnchor, constant: -10),
-            
             guideLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            guideLabel.topAnchor.constraint(equalTo: cameraFrameView.subviews[2].topAnchor, constant: 15),
+            guideLabel.topAnchor.constraint(equalTo: cameraFrameView.subviews[1].topAnchor, constant: 15),
             guideLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95),
             
             recordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -268,5 +230,23 @@ final class CoverTestViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         viewModel.resetTracking(sceneView: sceneView)
+    }
+}
+
+struct CoverTestView: UIViewControllerRepresentable {
+    typealias UIViewControllerType = UINavigationController
+    
+    func makeUIViewController(context: Context) -> UINavigationController {
+        let navigationController = UINavigationController()
+        let coverTestViewController = CoverTestViewController()
+        navigationController.navigationBar.tintColor = .white
+        navigationController.view.backgroundColor = .white
+        navigationController.modalPresentationStyle = .fullScreen
+        navigationController.pushViewController(coverTestViewController, animated: true)
+        return navigationController
+    }
+    
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
+        
     }
 }

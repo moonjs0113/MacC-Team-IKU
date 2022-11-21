@@ -11,7 +11,7 @@ import AVFoundation
 struct ScrubberView: View {
     @StateObject private var viewModel: ScrubberViewModel
     
-    init(player: AVPlayer, degrees: [Float]) {
+    init(player: AVPlayer, degrees: [Double: Double]) {
         self._viewModel = StateObject(wrappedValue: ScrubberViewModel(player: player, degrees: degrees))
     }
     
@@ -59,11 +59,11 @@ final class ScrubberViewModel: ObservableObject {
     var timeObserverToken: Any?
     var photoRatio: Double = .zero
     var onTouchedTime: CMTime?
-    var degrees: [Float]
+    var degrees: [Double: Double]
     @Published var currentTime: CMTime = .zero
     @Published var images: [UIImage] = []
     
-    init(player: AVPlayer, degrees: [Float]) {
+    init(player: AVPlayer, degrees: [Double: Double]) {
         self.player = player
         self.degrees = degrees
         addPeriodicTimeObserver()
