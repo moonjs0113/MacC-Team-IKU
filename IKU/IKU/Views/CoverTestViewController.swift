@@ -14,8 +14,15 @@ import SceneKit
 final class CoverTestViewController: UIViewController {
     // MARK: - Properties
     private var viewModel: CoverTestViewModel = CoverTestViewModel()
-    
+        
     // UI Properties
+    lazy var sceneView: ARSCNView = {
+        let view = ARSCNView()
+        view.delegate = viewModel
+        view.session.delegate = viewModel
+        return view
+    }()
+    
     private var cameraFrameView: UIStackView = {
         let backgroundAlpha: CGFloat = 0.8
         let topView = UIView()
@@ -160,7 +167,7 @@ final class CoverTestViewController: UIViewController {
     }
     
     private func setupARScene() {
-        let sceneView = viewModel.sceneView
+        let sceneView = sceneView
         sceneView.automaticallyUpdatesLighting = true
         sceneView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(sceneView)
@@ -211,7 +218,6 @@ final class CoverTestViewController: UIViewController {
         let isCompleteRecording = viewModel.timerCount >= 1 //12
         if status == .ready {
             guideLabel.text = viewModel.isRecordingEnabled ? "녹화버튼을 눌러주세요." : "카메라와 적정거리(30-35cm)인지 확인해주세요."
-//            recordButtonIsEnabled(inEnabled: viewModel.isRecordingEnabled)
         } else {
             if isCompleteRecording {
                 guideLabel.text = "검사가 완료되었으니 종료버튼을 눌러주세요."
@@ -228,8 +234,7 @@ final class CoverTestViewController: UIViewController {
     }
     
     private func goToSelectPhotoViewController(url: URL) {
-        let selectPhotoViewController = SelectPhotoViewController()
-        selectPhotoViewController.prepareValue(url: url, degrees: viewModel.degrees)
+        let selectPhotoViewController = SelectPhotoViewController(urlPath: url, degrees: viewModel.degrees)
         navigationController?.pushViewController(selectPhotoViewController, animated: true)
     }
 
@@ -239,8 +244,6 @@ final class CoverTestViewController: UIViewController {
     }
     
     @objc private func touchHelpButton(_ sender: UIButton) {
-//        playSound()
-//        projectWill()
         guard let fileManager = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false),
               let contentsOfDirectory = try? FileManager.default.contentsOfDirectory(at: fileManager, includingPropertiesForKeys: nil) else {
             return
@@ -264,6 +267,6 @@ final class CoverTestViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        viewModel.resetTracking()
+        viewModel.resetTracking(sceneView: sceneView)
     }
 }

@@ -128,11 +128,6 @@ final class SelectPhotoViewController: UIViewController {
             }
     }
     
-    func prepareValue(url: URL?, degrees: [Float]) {
-        self.urlPath = url
-        self.degrees = degrees
-    }
-    
     // MARK: - Objc-C Methods
     @objc private func playPauseButtonTouched() {
         switch player.timeControlStatus {
@@ -152,7 +147,7 @@ final class SelectPhotoViewController: UIViewController {
     }
     
     @objc private func selectButtonTouched(_ sender: UIButton?) {
-        guard let videoURL = urlPath else { return } //Bundle.main.url(forResource: "video", withExtension: "m4v") else { return }
+        guard let videoURL = urlPath else { return }
         let time = player.currentTime()
         let asset = AVURLAsset(url: videoURL)
         let generator = AVAssetImageGenerator(asset: asset)
@@ -179,8 +174,7 @@ final class SelectPhotoViewController: UIViewController {
                 } else if let cgImage = image {
                     self?.player.pause()
                     
-                    let nextViewController = SelectPhotoViewController()
-                    nextViewController.prepareValue(url: videoURL, degrees: self?.degrees ?? [])
+                    let nextViewController = SelectPhotoViewController(urlPath: self?.urlPath, degrees: self?.degrees ?? [])
                     nextViewController.capturedImage = UIImage(cgImage: cgImage)
                     
                     backItem.tintColor = .white
@@ -191,6 +185,12 @@ final class SelectPhotoViewController: UIViewController {
     }
     
     // MARK: - Life Cycles
+    convenience init(urlPath: URL?, degrees: [Float]) {
+        self.init()
+        self.urlPath = urlPath
+        self.degrees = degrees
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
