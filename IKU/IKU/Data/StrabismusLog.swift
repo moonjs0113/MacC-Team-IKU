@@ -23,8 +23,8 @@ extension StrabismusLog {
     }
     
     static var previews: [StrabismusLog] {
-        return (0...10).map {
-            StrabismusLog(date: .now.addingTimeInterval(.init(integerLiteral: $0)), degree: Double.random(in: 1...20))
+        return (0...5).map {
+            StrabismusLog(date: .now.addingTimeInterval(.init(integerLiteral: $0)), degree: Double.random(in: 5...20))
         }
     }
 }

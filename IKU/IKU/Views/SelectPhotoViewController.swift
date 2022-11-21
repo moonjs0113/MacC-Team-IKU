@@ -9,7 +9,16 @@ import SwiftUI
 import AVFoundation
 
 final class SelectPhotoViewController: UIViewController {
+    // MARK: - Properties
     private let player = AVPlayer()
+    private lazy var announcementLabel: UILabel = {
+        let uiLabel = UILabel()
+        uiLabel.font = .systemFont(ofSize: 13)
+        uiLabel.textColor = .white
+        uiLabel.text = capturedImage == nil ?
+            "양쪽 눈이 보이는 상태의 화면을 선택해주세요" : "한쪽 눈을 가린 상태의 화면을 선택해주세요"
+        return uiLabel
+    }()
     private let playerView: PlayerView = PlayerView()
     private let playPauseButtonHostingController: UIHostingController<PlayButton> = {
         let hostingController = UIHostingController(rootView: PlayButton())
@@ -21,20 +30,11 @@ final class SelectPhotoViewController: UIViewController {
         UIHostingController(rootView: GradientView(colors: [Color(uiColor: #colorLiteral(red: 0.7215686275, green: 0.7137254902, blue: 0.7176470588, alpha: 1)), Color(uiColor: #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1))]))
     private var scrubberHostingController: UIHostingController<ScrubberView>?
     private var capturedImage: UIImage? = nil
+    private var urlPath: URL?
+    private var degrees: [Float] = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureNavigationBar()
-        configureViews()
-        guard let movieURL = Bundle.main.url(forResource: "video", withExtension: "m4v") else { return }
-        let asset = AVURLAsset(url: movieURL)
 
-        Task {
-            try await loadPropertyValuesAsync(forAsset: asset)
-            configureHostingViewController()
-        }
-    }
-    
+    // MARK: - Methods
     private func configureNavigationBar() {
         let barButtonTitle = self.capturedImage == nil ? "선택하기" : "완료"
         let selectButton = UIBarButtonItem(title: barButtonTitle, style: .plain, target: self, action: #selector(selectButtonTouched(_:)))
@@ -43,7 +43,7 @@ final class SelectPhotoViewController: UIViewController {
     }
     
     private func configureHostingViewController(){
-        let hostingController = UIHostingController(rootView: ScrubberView(player: player))
+        let hostingController = UIHostingController(rootView: ScrubberView(player: player, degrees: degrees))
         scrubberHostingController = hostingController
         hostingController.view.backgroundColor = .clear
         
@@ -63,14 +63,20 @@ final class SelectPhotoViewController: UIViewController {
     private func configureViews() {
         view.backgroundColor = #colorLiteral(red: 0.1688045561, green: 0.1888649762, blue: 0.1928240955, alpha: 1)
         
+        view.addSubview(announcementLabel)
+        announcementLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            announcementLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            announcementLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
         playerView.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(playPauseButtonTouched))
         )
-        
         view.addSubview(playerView)
         playerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            playerView.topAnchor.constraint(equalTo: view.topAnchor),
+            playerView.topAnchor.constraint(equalTo: announcementLabel.bottomAnchor, constant: 16),
             playerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             playerView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
@@ -107,6 +113,27 @@ final class SelectPhotoViewController: UIViewController {
         }
     }
     
+    private func popAndDisapperAnimation(of view: UIView) {
+        view.alpha = 1
+        view.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
+        UIViewPropertyAnimator.runningPropertyAnimator(
+            withDuration: 0.2,
+            delay: 0,
+            options: .curveEaseInOut) {
+                view.transform = CGAffineTransform.identity
+            } completion: { _ in
+                UIView.transition(with: view, duration: 1) {
+                    view.alpha = 0
+                }
+            }
+    }
+    
+    func prepareValue(url: URL?, degrees: [Float]) {
+        self.urlPath = url
+        self.degrees = degrees
+    }
+    
+    // MARK: - Objc-C Methods
     @objc private func playPauseButtonTouched() {
         switch player.timeControlStatus {
         case .paused:
@@ -123,53 +150,57 @@ final class SelectPhotoViewController: UIViewController {
             popAndDisapperAnimation(of: playPauseButtonHostingController.view)
         }
     }
-        
-    private func popAndDisapperAnimation(of view: UIView) {
-        view.alpha = 1
-        view.transform = CGAffineTransform.identity.scaledBy(x: 0.5, y: 0.5)
-        UIViewPropertyAnimator.runningPropertyAnimator(
-            withDuration: 0.2,
-            delay: 0,
-            options: .curveEaseInOut) {
-                view.transform = CGAffineTransform.identity
-            } completion: { _ in
-                UIView.transition(with: view, duration: 1) {
-                    view.alpha = 0
-                }
-            }
-    }
     
     @objc private func selectButtonTouched(_ sender: UIButton?) {
-        guard let movieURL = Bundle.main.url(forResource: "video", withExtension: "m4v") else { return }
+        guard let videoURL = urlPath else { return } //Bundle.main.url(forResource: "video", withExtension: "m4v") else { return }
         let time = player.currentTime()
-        let asset = AVURLAsset(url: movieURL)
+        let asset = AVURLAsset(url: videoURL)
         let generator = AVAssetImageGenerator(asset: asset)
         generator.requestedTimeToleranceBefore = .zero
         generator.requestedTimeToleranceAfter = .zero
         generator.generateCGImageAsynchronously(for: time) { image, _, _ in
             DispatchQueue.main.async { [weak self] in
+                let backItem = UIBarButtonItem()
+                backItem.title = ""
+                self?.navigationItem.backBarButtonItem = backItem
+                
                 if let savedImage = self?.capturedImage,
                    let cgImage = image {
                     self?.player.pause()
+                    guard let resultViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultViewController") as? ResultViewController else {
+                        return
+                    }
                     
-                    let imageViewController = ImageViewController()
-                    imageViewController.leftImageView.image = savedImage
-                    imageViewController.rightImageView.image = UIImage(cgImage: cgImage)
+                    resultViewController.url = videoURL
+                    resultViewController.prepareData(leftImage: savedImage, rightImage: UIImage(cgImage: cgImage))
                     
-                    self?.present(imageViewController, animated: true)
+                    backItem.tintColor = .black
+                    self?.navigationController?.pushViewController(resultViewController, animated: true)
                 } else if let cgImage = image {
                     self?.player.pause()
                     
                     let nextViewController = SelectPhotoViewController()
+                    nextViewController.prepareValue(url: videoURL, degrees: self?.degrees ?? [])
                     nextViewController.capturedImage = UIImage(cgImage: cgImage)
-                    self?.navigationController?.pushViewController(nextViewController, animated: true)
                     
-                    let backItem = UIBarButtonItem()
-                    backItem.title = ""
                     backItem.tintColor = .white
-                    self?.navigationItem.backBarButtonItem = backItem
+                    self?.navigationController?.pushViewController(nextViewController, animated: true)
                 }
             }
+        }
+    }
+    
+    // MARK: - Life Cycles
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureNavigationBar()
+        configureViews()
+        guard let urlPath else { return }
+        let asset = AVURLAsset(url: urlPath)
+
+        Task {
+            try await loadPropertyValuesAsync(forAsset: asset)
+            configureHostingViewController()
         }
     }
 }

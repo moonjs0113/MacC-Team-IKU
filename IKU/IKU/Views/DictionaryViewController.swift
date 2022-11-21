@@ -1,13 +1,14 @@
 //
-//  ViewController.swift
+//  DictionatyViewController.swift
 //  IKU
 //
-//  Created by Shin Jae Ung on 2022/11/10.
+//  Created by kwon ji won on 2022/11/17.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class DictionaryViewController: UIViewController {
+    
     let mainLabel = UILabel()
 
     override func viewDidLoad() {
@@ -20,7 +21,7 @@ class ViewController: UIViewController {
     
     func setup() {
         
-        mainLabel.text = "사시검사 뷰가 들어갑니다."
+        mainLabel.text = "백과사전이 들어갈 뷰입니다"
         
         view.addSubview(mainLabel)
         
@@ -37,4 +38,3 @@ class ViewController: UIViewController {
 
 
 }
-
