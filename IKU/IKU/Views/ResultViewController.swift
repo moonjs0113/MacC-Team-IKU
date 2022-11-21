@@ -16,6 +16,7 @@ class ResultViewController: UIViewController {
     var numberEye: Int = 0
     var angleNum: Int = 11
     var url: URL?
+    var degrees: [Double: Double] = [:]
     var eyeImages: (leftImage: UIImage, rightImage: UIImage) = (UIImage(), UIImage())
     
     // MARK: - Methods

@@ -10,17 +10,16 @@ import AVFoundation
 
 final class HistoryViewController: UIViewController {
     // MARK: - Properties
-    lazy private var eyeSegmentedControl: UISegmentedControl = {
-        let view = UISegmentedControl(items: ["왼쪽", "오른쪽"])// ["Left", "Right"]
+    private var eyeSegmentedControl: UISegmentedControl = {
+        let view = UISegmentedControl(items: ["왼쪽 눈", "오른쪽 눈"])// ["Left", "Right"]
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setTitleTextAttributes([.font: UIFont.nexonGothicFont(ofSize: 13)], for: .normal)
         view.setTitleTextAttributes([.font: UIFont.nexonGothicFont(ofSize: 13, weight: .bold)], for: .selected)
         view.selectedSegmentIndex = 0
-//        self.view.addSubview(view)
         return view
     }()
     
-    lazy private var todayStatusLabel: UILabel = {
+    private var todayStatusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "우리아이의 사시각 오늘도 검사완료!"
@@ -31,22 +30,18 @@ final class HistoryViewController: UIViewController {
         label.backgroundColor = .white
         label.layer.cornerRadius = 10
         label.clipsToBounds = true
-        
-        self.view.addSubview(label)
         return label
     }()
     
-    lazy private var ikuCalendarView: IKUCalendarView = {
+    private var ikuCalendarView: IKUCalendarView = {
         let view = IKUCalendarView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(view)
         return view
     }()
     
-    lazy private var ikuChartView: IKUChartView = {
+    private var ikuChartView: IKUChartView = {
         let view = IKUChartView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(view)
         view.layer.cornerRadius = 5
         view.clipsToBounds = true
         return view
@@ -74,13 +69,12 @@ final class HistoryViewController: UIViewController {
     }
     
     private func setupLayoutConstraint() {
+        view.addSubview(todayStatusLabel)
+        view.addSubview(ikuCalendarView)
+        view.addSubview(ikuChartView)
+        view.addSubview(eyeSegmentedControl)
+        
         NSLayoutConstraint.activate([
-//            eyeSegmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 11),
-//            eyeSegmentedControl.heightAnchor.constraint(equalToConstant: 42),
-//            eyeSegmentedControl.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-//            eyeSegmentedControl.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            
-//            todayStatusLabel.topAnchor.constraint(equalTo: eyeSegmentedControl.bottomAnchor, constant: 11),
             todayStatusLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 11),
             todayStatusLabel.heightAnchor.constraint(equalToConstant: 60),
             todayStatusLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
@@ -94,10 +88,10 @@ final class HistoryViewController: UIViewController {
             ikuChartView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             ikuChartView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             
-//            testButton.topAnchor.constraint(equalTo: ikuChartView.bottomAnchor, constant: 18),
-//            testButton.heightAnchor.constraint(equalToConstant: 52),
-//            testButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-//            testButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            eyeSegmentedControl.topAnchor.constraint(equalTo: ikuChartView.topAnchor, constant: 8),
+            eyeSegmentedControl.trailingAnchor.constraint(equalTo: ikuChartView.trailingAnchor, constant: -8),
+            eyeSegmentedControl.widthAnchor.constraint(equalTo: ikuChartView.widthAnchor, multiplier: 0.5),
+            eyeSegmentedControl.heightAnchor.constraint(equalTo: ikuChartView.heightAnchor, multiplier: 0.2),
         ])
     }
     

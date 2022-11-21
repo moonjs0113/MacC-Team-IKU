@@ -47,7 +47,7 @@ struct IKUChart: View {
         Group {
             VStack {
                 HStack(spacing: 2) {
-                    Image(systemName: "eye")
+//                    Image(systemName: "eye")
                     Text("그래프추이")
                         .font(Font(UIFont.nexonGothicFont(ofSize: 17, weight: .bold)))
                     Spacer()

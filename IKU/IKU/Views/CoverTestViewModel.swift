@@ -129,11 +129,6 @@ class CoverTestViewModel: NSObject {
         recordTimer = nil
         degreeTimer?.invalidate()
         degreeTimer = nil
-        if timerCount >= 12 {
-            // 잘 찍은거
-        } else {
-            // 중간에 끊은거
-        }
         timerCount = 0
     }
     
