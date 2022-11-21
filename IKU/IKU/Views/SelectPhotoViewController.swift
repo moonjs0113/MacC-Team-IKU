@@ -31,7 +31,7 @@ final class SelectPhotoViewController: UIViewController {
     private var scrubberHostingController: UIHostingController<ScrubberView>?
     private var capturedImage: UIImage? = nil
     private var urlPath: URL?
-    private var degrees: [Float] = []
+    private var degrees: [Double: Double] = [:]
     
 
     // MARK: - Methods
@@ -174,7 +174,7 @@ final class SelectPhotoViewController: UIViewController {
                 } else if let cgImage = image {
                     self?.player.pause()
                     
-                    let nextViewController = SelectPhotoViewController(urlPath: self?.urlPath, degrees: self?.degrees ?? [])
+                    let nextViewController = SelectPhotoViewController(urlPath: self?.urlPath, degrees: self?.degrees ?? [:])
                     nextViewController.capturedImage = UIImage(cgImage: cgImage)
                     
                     backItem.tintColor = .white
@@ -185,7 +185,7 @@ final class SelectPhotoViewController: UIViewController {
     }
     
     // MARK: - Life Cycles
-    convenience init(urlPath: URL?, degrees: [Float]) {
+    convenience init(urlPath: URL?, degrees: [Double: Double]) {
         self.init()
         self.urlPath = urlPath
         self.degrees = degrees

@@ -17,7 +17,7 @@ class CoverTestViewModel: NSObject {
     var arCapture: ARCapture?
     private var transformVisualization: ARSceneManager = ARSceneManager()
     private var faceAnchors: [ARFaceAnchor: ARSCNViewDelegate] = [:]
-    var degrees: [Float] {
+    var degrees: [Double: Double] {
         transformVisualization.horizontalDegrees
     }
     
@@ -45,6 +45,7 @@ class CoverTestViewModel: NSObject {
     
     private let avSpeechsynthesizer = AVSpeechSynthesizer()
     var timerCount = 0
+    var captureTime: Double = 0.0
     private var recordTimer: Timer?
     private var degreeTimer: Timer?
     
@@ -118,7 +119,8 @@ class CoverTestViewModel: NSObject {
         }
         
         degreeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in
-            self?.transformVisualization.captureDegree()
+            self?.transformVisualization.captureDegree(time: self?.captureTime ?? 0.0)
+            self?.captureTime += 0.1
         }
     }
     

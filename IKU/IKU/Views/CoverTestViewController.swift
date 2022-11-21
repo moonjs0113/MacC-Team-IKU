@@ -121,6 +121,10 @@ final class CoverTestViewController: UIViewController {
     
     // MARK: - Methods
     private func setupNavigationController() {
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
+        
         let barButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark",
                                                            withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium)),
                                             style: .done,
