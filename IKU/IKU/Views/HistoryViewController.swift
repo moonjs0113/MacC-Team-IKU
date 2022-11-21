@@ -111,8 +111,6 @@ final class HistoryViewController: UIViewController {
         self.present(navigationController, animated: true)
     }
     
-
-    
     // MARK: - Objc-C Methods
     @objc private func touchTestButton(_ sender: UIButton) {
         AVCaptureDevice.requestAccess(for: .video) { [weak self] permission in
