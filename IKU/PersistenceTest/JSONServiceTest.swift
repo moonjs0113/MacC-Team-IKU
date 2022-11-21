@@ -13,16 +13,11 @@ final class JSONServiceTest: XCTestCase {
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        jsonService = try JSONService()
+        jsonService = try JSONService(url: documentFolderURL())
     }
 
     override func tearDownWithError() throws {
-        let dbURL: URL = try FileManager.default.url(
-            for: .documentDirectory,
-            in: .userDomainMask,
-            appropriateFor: nil,
-            create: true
-        ).appendingPathComponent("strabismusAngles")
+        let dbURL: URL = try documentFolderURL().appendingPathComponent(JSONService.path)
         try FileManager.default.removeItem(at: dbURL)
         jsonService = nil
         try super.tearDownWithError()
@@ -34,7 +29,7 @@ final class JSONServiceTest: XCTestCase {
     
     func test_save_data_and_check_if_it_is_in() throws {
         try jsonService.save(toFileName: "test", with: [:])
-        let allFileNames = try allFileNamesInDirectory()
+        let allFileNames = try allFileNamesInDocumentDirectory(appendingPathComponent: JSONService.path)
         XCTAssertEqual(allFileNames.count, 1)
         XCTAssertEqual(allFileNames.first, "test.json")
     }
@@ -43,15 +38,4 @@ final class JSONServiceTest: XCTestCase {
         try jsonService.save(toFileName: "test", with: [:])
         XCTAssertNoThrow(try jsonService.delete(ofFileName: "test"))
     }
-    
-    private func allFileNamesInDirectory() throws -> [String] {
-        let dbURL: URL = try FileManager.default.url(
-            for: .documentDirectory,
-            in: .userDomainMask,
-            appropriateFor: nil,
-            create: true
-        ).appendingPathComponent("strabismusAngles")
-        return try FileManager.default.contentsOfDirectory(atPath: dbURL.path())
-    }
-
 }

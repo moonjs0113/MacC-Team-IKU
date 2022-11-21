@@ -8,19 +8,13 @@
 import Foundation
 
 final class JSONService {
-    private let path: String = "strabismusAngles"
+    static let path: String = "strabismusAngles"
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
     private let url: URL
     
-    init() throws {
-        self.url = try FileManager.default.url(
-            for: .documentDirectory,
-            in: .userDomainMask,
-            appropriateFor: nil,
-            create: true
-        ).appendingPathComponent(path)
-        
+    init(url: URL) throws {
+        self.url = url.appendingPathComponent(Self.path)
         try createFolderIfNotExists()
     }
     
