@@ -17,7 +17,7 @@ extension Color {
 struct StoryView: View {
     
     // MARK: - Properties
-    @State private var selectedEye: Eyes = .left
+    @State private var selectedEye: Eye = .left
     let customBlue = Color.ikuBlue
     
     var body: some View {
