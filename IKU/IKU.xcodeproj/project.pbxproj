@@ -32,6 +32,10 @@
 		A8B5349D2926752200237C30 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5349C2926752200237C30 /* SQLiteService.swift */; };
 		A8B534A52926755900237C30 /* PersistenceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B534A42926755900237C30 /* PersistenceTest.swift */; };
 		A8B534AB2926756600237C30 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5349C2926752200237C30 /* SQLiteService.swift */; };
+		A8FA007B292B45BE0091EDC2 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA007A292B45BE0091EDC2 /* PersistenceManager.swift */; };
+		A8FA007D292B45D00091EDC2 /* JSONService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA007C292B45D00091EDC2 /* JSONService.swift */; };
+		A8FA007F292B45E00091EDC2 /* JSONServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA007E292B45E00091EDC2 /* JSONServiceTest.swift */; };
+		A8FA0080292B46330091EDC2 /* JSONService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA007C292B45D00091EDC2 /* JSONService.swift */; };
 		A8FACE3029271C2900BF2CD0 /* Eye.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FACE2F29271C2900BF2CD0 /* Eye.swift */; };
 		C70100F02921D0DE00B58231 /* CoverTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */; };
 		C70100F42921DF7A00B58231 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */; };
@@ -124,6 +128,9 @@
 		A8B5349C2926752200237C30 /* SQLiteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteService.swift; sourceTree = "<group>"; };
 		A8B534A22926755900237C30 /* PersistenceTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersistenceTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B534A42926755900237C30 /* PersistenceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceTest.swift; sourceTree = "<group>"; };
+		A8FA007A292B45BE0091EDC2 /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		A8FA007C292B45D00091EDC2 /* JSONService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONService.swift; sourceTree = "<group>"; };
+		A8FA007E292B45E00091EDC2 /* JSONServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONServiceTest.swift; sourceTree = "<group>"; };
 		A8FACE2F29271C2900BF2CD0 /* Eye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eye.swift; sourceTree = "<group>"; };
 		C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverTestViewController.swift; sourceTree = "<group>"; };
 		C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -307,6 +314,8 @@
 		A8B2A2A4291C8DFD000F5624 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				A8FA007A292B45BE0091EDC2 /* PersistenceManager.swift */,
+				A8FA007C292B45D00091EDC2 /* JSONService.swift */,
 				A8B5349C2926752200237C30 /* SQLiteService.swift */,
 				A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */,
 				C7537CF9292320B5001E8BF6 /* VideoManager.swift */,
@@ -328,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				A8B534A42926755900237C30 /* PersistenceTest.swift */,
+				A8FA007E292B45E00091EDC2 /* JSONServiceTest.swift */,
 			);
 			path = PersistenceTest;
 			sourceTree = "<group>";
@@ -526,6 +536,7 @@
 				A8B2A29F291C8D4B000F5624 /* DataPlaceholder.swift in Sources */,
 				A8B2A2B3291CCDAD000F5624 /* PlayerView.swift in Sources */,
 				A804661C292012B10079CEDC /* PlayButton.swift in Sources */,
+				A8FA007B292B45BE0091EDC2 /* PersistenceManager.swift in Sources */,
 				C74491D4291D54DC00166197 /* CVCalendarMenuViewDelegate.swift in Sources */,
 				C7F1775E2925B1CD0004C5D9 /* ARFrameGenerator.swift in Sources */,
 				C74491DE291D54DC00166197 /* CVCalendarContentPresentationCoordinator.swift in Sources */,
@@ -571,6 +582,7 @@
 				C7F1775D2925B1CD0004C5D9 /* ARAssetWriter.swift in Sources */,
 				C70100F42921DF7A00B58231 /* UIViewController+Extension.swift in Sources */,
 				C74491E4291D54DC00166197 /* CVCalendarViewAnimatorDelegate.swift in Sources */,
+				A8FA007D292B45D00091EDC2 /* JSONService.swift in Sources */,
 				C74491D5291D54DC00166197 /* CVCalendarContentViewController.swift in Sources */,
 				C75B19FC291E30D6005B1A22 /* StrabismusLog.swift in Sources */,
 				C7449160291D4B4700166197 /* UIFont+Extension.swift in Sources */,
@@ -589,8 +601,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8FA007F292B45E00091EDC2 /* JSONServiceTest.swift in Sources */,
 				A8B534A52926755900237C30 /* PersistenceTest.swift in Sources */,
 				A8B534AB2926756600237C30 /* SQLiteService.swift in Sources */,
+				A8FA0080292B46330091EDC2 /* JSONService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
