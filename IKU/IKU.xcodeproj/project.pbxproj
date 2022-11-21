@@ -18,6 +18,9 @@
 		A897ED6E29277CC000C93E22 /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A897ED6D29277CC000C93E22 /* MeasurementResult.swift */; };
 		A89F22FA292B7079000B3D63 /* XCTestCase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F22F9292B7079000B3D63 /* XCTestCase+Extension.swift */; };
 		A89F2300292B95C0000B3D63 /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A897ED6D29277CC000C93E22 /* MeasurementResult.swift */; };
+		A89F2307292BB3A6000B3D63 /* VideoURLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F2306292BB3A6000B3D63 /* VideoURLService.swift */; };
+		A89F2309292BB3B0000B3D63 /* VideoURLServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F2308292BB3B0000B3D63 /* VideoURLServiceTest.swift */; };
+		A89F230A292BB3B5000B3D63 /* VideoURLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F2306292BB3A6000B3D63 /* VideoURLService.swift */; };
 		A8AA21292922131D00EFBE27 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA21282922131D00EFBE27 /* GradientView.swift */; };
 		A8B2A287291C8B2F000F5624 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A286291C8B2F000F5624 /* AppDelegate.swift */; };
 		A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A288291C8B2F000F5624 /* SceneDelegate.swift */; };
@@ -115,6 +118,8 @@
 		A804661B292012B10079CEDC /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		A897ED6D29277CC000C93E22 /* MeasurementResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResult.swift; sourceTree = "<group>"; };
 		A89F22F9292B7079000B3D63 /* XCTestCase+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extension.swift"; sourceTree = "<group>"; };
+		A89F2306292BB3A6000B3D63 /* VideoURLService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoURLService.swift; sourceTree = "<group>"; };
+		A89F2308292BB3B0000B3D63 /* VideoURLServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoURLServiceTest.swift; sourceTree = "<group>"; };
 		A8AA21282922131D00EFBE27 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A8B2A283291C8B2F000F5624 /* IKU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IKU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B2A286291C8B2F000F5624 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -325,6 +330,7 @@
 			children = (
 				A8FA007C292B45D00091EDC2 /* JSONService.swift */,
 				A8B5349C2926752200237C30 /* SQLiteService.swift */,
+				A89F2306292BB3A6000B3D63 /* VideoURLService.swift */,
 				A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */,
 				C7537CF9292320B5001E8BF6 /* VideoManager.swift */,
 				C7145FC8292B100500F55028 /* PHPhotoManager.swift */,
@@ -347,6 +353,7 @@
 			children = (
 				A8B534A42926755900237C30 /* SQLiteServiceTest.swift */,
 				A8FA007E292B45E00091EDC2 /* JSONServiceTest.swift */,
+				A89F2308292BB3B0000B3D63 /* VideoURLServiceTest.swift */,
 				A89F22F9292B7079000B3D63 /* XCTestCase+Extension.swift */,
 			);
 			path = PersistenceTest;
@@ -553,6 +560,7 @@
 				C74491D3291D54DC00166197 /* CVCalendarViewAppearanceDelegate.swift in Sources */,
 				C74491DB291D54DC00166197 /* CVSet.swift in Sources */,
 				A8B2A287291C8B2F000F5624 /* AppDelegate.swift in Sources */,
+				A89F2307292BB3A6000B3D63 /* VideoURLService.swift in Sources */,
 				C75B19FA291E2C1C005B1A22 /* IKUChartView.swift in Sources */,
 				A8B2A2AD291C8FC8000F5624 /* StoryViewController.swift in Sources */,
 				C7537CFC2923B0E2001E8BF6 /* ARSceneManager.swift in Sources */,
@@ -613,7 +621,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8FA007F292B45E00091EDC2 /* JSONServiceTest.swift in Sources */,
+				A89F2309292BB3B0000B3D63 /* VideoURLServiceTest.swift in Sources */,
 				A8B534A52926755900237C30 /* SQLiteServiceTest.swift in Sources */,
+				A89F230A292BB3B5000B3D63 /* VideoURLService.swift in Sources */,
 				A8B534AB2926756600237C30 /* SQLiteService.swift in Sources */,
 				A8FA0080292B46330091EDC2 /* JSONService.swift in Sources */,
 				A89F22FA292B7079000B3D63 /* XCTestCase+Extension.swift in Sources */,
