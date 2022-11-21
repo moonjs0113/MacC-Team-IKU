@@ -17,6 +17,10 @@ class CoverTestViewModel: NSObject {
     var arCapture: ARCapture?
     private var transformVisualization: ARSceneManager = ARSceneManager()
     private var faceAnchors: [ARFaceAnchor: ARSCNViewDelegate] = [:]
+    var degrees: [Float] {
+        transformVisualization.horizontalDegrees
+    }
+    
     
     var distanceText: NSMutableAttributedString {
         let string = "거리: \(distance)cm"
@@ -41,21 +45,24 @@ class CoverTestViewModel: NSObject {
     
     private let avSpeechsynthesizer = AVSpeechSynthesizer()
     var timerCount = 0
-    private var timer: Timer?
+    private var recordTimer: Timer?
+    private var degreeTimer: Timer?
     
     var updateUI: ((ARCapture.Status) -> Void)?
     var anyCancellable = Set<AnyCancellable>()
+    
     // MARK: - Methods
     // AR
     func resetTracking(sceneView: ARSCNView) {
         guard ARFaceTrackingConfiguration.isSupported else { return }
         let configuration = ARFaceTrackingConfiguration()
+        configuration.videoHDRAllowed = true
         configuration.maximumNumberOfTrackedFaces = ARFaceTrackingConfiguration.supportedNumberOfTrackedFaces
         configuration.isLightEstimationEnabled = true
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
-    func calculateDistance(start: SCNVector3, end: SCNVector3) {
+    private func calculateDistance(start: SCNVector3, end: SCNVector3) {
         let dx = end.x - start.x
         let dy = end.y - start.y
         let dz = end.z - start.z
@@ -78,7 +85,7 @@ class CoverTestViewModel: NSObject {
                     self.anyCancellable.removeAll()
                     view.layer.cornerRadius = 5
                 } else {
-                    self.bindLayout(view: view)
+                    view.bindLayout(anyCancellable: &self.anyCancellable)
                 }
                 view.setNeedsLayout()
                 view.layoutIfNeeded()
@@ -106,17 +113,20 @@ class CoverTestViewModel: NSObject {
     }
     
     private func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
-//            print(timer.timeInterval)
+        recordTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
             self?.timerCount += 1
-            print(self?.timerCount ?? 0)
+        }
+        
+        degreeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in
+            self?.transformVisualization.captureDegree()
         }
     }
     
     private func stopTimer() {
-        timer?.invalidate()
-        timer = nil
-        print(timerCount)
+        recordTimer?.invalidate()
+        recordTimer = nil
+        degreeTimer?.invalidate()
+        degreeTimer = nil
         if timerCount >= 12 {
             // 잘 찍은거
         } else {
@@ -125,25 +135,12 @@ class CoverTestViewModel: NSObject {
         timerCount = 0
     }
     
-    func bindLayout(view: UIView) {
-        view.publisher(for: \.bounds, options: [.new, .initial, .old, .prior])
-            .receive(on: DispatchQueue.main)
-            .filter { trunc($0.width) == trunc($0.height) }
-            .map { $0.width / 2 }
-            .assign(to: \.layer.cornerRadius, on: view)
-            .store(in: &anyCancellable)
-    }
-    
-    // MARK: - IBOutlets
-    
-    // MARK: - IBActions
-    
     // MARK: - Life Cycles
     override init() {
         super.init()
     }
-    
 }
+
 // MARK: - Delegates And DataSources
 extension CoverTestViewModel: ARSessionDelegate, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
@@ -177,7 +174,7 @@ extension CoverTestViewModel: ARSessionDelegate, ARSCNViewDelegate {
         
         if let start {
             calculateDistance(start: start, end: end)
-        }
+        }        
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {

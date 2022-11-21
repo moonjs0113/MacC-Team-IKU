@@ -14,6 +14,9 @@ class ARSceneManager: NSObject, ARSCNViewDelegate {
     lazy var rightEyeNode = SCNReferenceNode(named: "coordinateOrigin")
     lazy var leftEyeNode = SCNReferenceNode(named: "coordinateOrigin")
     
+    var horizontalDegrees: [Float] = []
+    var selectedEye: Eye = .left
+    
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         guard anchor is ARFaceAnchor else { return nil }
         contentNode = SCNReferenceNode()
@@ -26,6 +29,14 @@ class ARSceneManager: NSObject, ARSCNViewDelegate {
         
         rightEyeNode.simdTransform = faceAnchor.rightEyeTransform
         leftEyeNode.simdTransform = faceAnchor.leftEyeTransform
+        
+//        print("====================================")
+//        print(String(format: "         %13@      %13@", "Right Eye", "Left Eye"))
+//        print(String(format: "수평각m13: %-13.5f  %-13.5f", rightEyeNode.transform.m13, leftEyeNode.transform.m13))
+//        print(String(format: "수직각m23: %-13.5f  %-13.5f", rightEyeNode.transform.m23, leftEyeNode.transform.m23))
+//        print(String(format: "????m33: %-13.5f  %-13.5f", rightEyeNode.transform.m33, leftEyeNode.transform.m33))
+//        print(String(format: "고정값m43: %-13.5f  %-13.5f", rightEyeNode.transform.m43, leftEyeNode.transform.m43))
+//        print("====================================\n")
     }
     
     func addEyeTransformNodes() {
@@ -36,6 +47,10 @@ class ARSceneManager: NSObject, ARSCNViewDelegate {
         
         anchorNode.addChildNode(rightEyeNode)
         anchorNode.addChildNode(leftEyeNode)
+    }
+    
+    func captureDegree() {
+        horizontalDegrees.append(selectedEye == .left ? leftEyeNode.transform.m13 : rightEyeNode.transform.m13)
     }
 }
 
