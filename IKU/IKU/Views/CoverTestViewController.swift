@@ -230,8 +230,7 @@ final class CoverTestViewController: UIViewController {
     }
     
     private func goToSelectPhotoViewController(url: URL) {
-        let selectPhotoViewController = SelectPhotoViewController()
-        selectPhotoViewController.prepareURL(url: url)
+        let selectPhotoViewController = SelectPhotoViewController(urlPath: url)
         navigationController?.pushViewController(selectPhotoViewController, animated: true)
     }
 

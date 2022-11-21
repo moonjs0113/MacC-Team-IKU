@@ -127,10 +127,6 @@ final class SelectPhotoViewController: UIViewController {
             }
     }
     
-    func prepareURL(url: URL) {
-        urlPath = url
-    }
-    
     // MARK: - Objc-C Methods
     @objc private func playPauseButtonTouched() {
         switch player.timeControlStatus {
@@ -170,7 +166,7 @@ final class SelectPhotoViewController: UIViewController {
                 } else if let cgImage = image {
                     self?.player.pause()
                     
-                    let nextViewController = SelectPhotoViewController()
+                    let nextViewController = SelectPhotoViewController(urlPath: self?.urlPath)
                     nextViewController.capturedImage = UIImage(cgImage: cgImage)
                     self?.navigationController?.pushViewController(nextViewController, animated: true)
                     
@@ -184,6 +180,11 @@ final class SelectPhotoViewController: UIViewController {
     }
     
     // MARK: - Life Cycles
+    convenience init(urlPath: URL?) {
+        self.init()
+        self.urlPath = urlPath
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
