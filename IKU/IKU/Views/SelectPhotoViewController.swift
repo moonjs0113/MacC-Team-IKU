@@ -203,6 +203,11 @@ final class SelectPhotoViewController: UIViewController {
             configureHostingViewController()
         }
     }
+    
+    convenience init(withVideoURL url: URL) {
+        self.init()
+        self.urlPath = url
+    }
 }
 
 fileprivate class ImageViewController: UIViewController {

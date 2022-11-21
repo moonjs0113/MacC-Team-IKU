@@ -30,9 +30,9 @@
 		A8B2A2B1291CCD8F000F5624 /* SelectPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */; };
 		A8B2A2B3291CCDAD000F5624 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */; };
 		A8B2A2D7291DE0D6000F5624 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */; };
-		A8B5349D2926752200237C30 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5349C2926752200237C30 /* PersistenceManager.swift */; };
+		A8B5349D2926752200237C30 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5349C2926752200237C30 /* SQLiteService.swift */; };
 		A8B534A52926755900237C30 /* PersistenceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B534A42926755900237C30 /* PersistenceTest.swift */; };
-		A8B534AB2926756600237C30 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5349C2926752200237C30 /* PersistenceManager.swift */; };
+		A8B534AB2926756600237C30 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5349C2926752200237C30 /* SQLiteService.swift */; };
 		A8FACE3029271C2900BF2CD0 /* Eye.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FACE2F29271C2900BF2CD0 /* Eye.swift */; };
 		C70100F02921D0DE00B58231 /* CoverTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */; };
 		C70100F42921DF7A00B58231 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */; };
@@ -125,7 +125,7 @@
 		A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoViewController.swift; sourceTree = "<group>"; };
 		A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
-		A8B5349C2926752200237C30 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		A8B5349C2926752200237C30 /* SQLiteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteService.swift; sourceTree = "<group>"; };
 		A8B534A22926755900237C30 /* PersistenceTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersistenceTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B534A42926755900237C30 /* PersistenceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceTest.swift; sourceTree = "<group>"; };
 		A8FACE2F29271C2900BF2CD0 /* Eye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eye.swift; sourceTree = "<group>"; };
@@ -315,7 +315,7 @@
 		A8B2A2A4291C8DFD000F5624 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				A8B5349C2926752200237C30 /* PersistenceManager.swift */,
+				A8B5349C2926752200237C30 /* SQLiteService.swift */,
 				A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */,
 				C7537CF9292320B5001E8BF6 /* VideoManager.swift */,
 				C7145FC8292B100500F55028 /* PHPhotoManager.swift */,
@@ -471,7 +471,6 @@
 					};
 					A8B534A12926755900237C30 = {
 						CreatedOnToolsVersion = 14.1;
-						TestTargetID = A8B2A282291C8B2F000F5624;
 					};
 				};
 			};
@@ -571,7 +570,7 @@
 				C74491E5291D54DC00166197 /* CVCalendarViewAnimator.swift in Sources */,
 				C74491E7291D54DC00166197 /* CVCalendarWeekday.swift in Sources */,
 				C74491E9291D54DC00166197 /* CVShape.swift in Sources */,
-				A8B5349D2926752200237C30 /* PersistenceManager.swift in Sources */,
+				A8B5349D2926752200237C30 /* SQLiteService.swift in Sources */,
 				C7422514291F304E00DB6D80 /* CVMonth.swift in Sources */,
 				C74491D9291D54DC00166197 /* CVCalendarWeekContentViewController.swift in Sources */,
 				C74491DC291D54DC00166197 /* CVAuxiliaryView.swift in Sources */,
@@ -602,7 +601,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8B534A52926755900237C30 /* PersistenceTest.swift in Sources */,
-				A8B534AB2926756600237C30 /* PersistenceManager.swift in Sources */,
+				A8B534AB2926756600237C30 /* SQLiteService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -835,7 +834,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IKU.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IKU";
 			};
 			name = Debug;
 		};
@@ -856,7 +854,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IKU.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IKU";
 			};
 			name = Release;
 		};
