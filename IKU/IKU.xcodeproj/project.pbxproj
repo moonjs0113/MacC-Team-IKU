@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0E04199A29232E9200D710BC /* resultVideo.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 0E04199929232E9200D710BC /* resultVideo.MOV */; };
 		0E04199F2926314900D710BC /* DictionaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04199E2926314900D710BC /* DictionaryViewController.swift */; };
+		0E0419A5292920FE00D710BC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0419A4292920FE00D710BC /* ProfileViewController.swift */; };
 		0E7A2CD729231F060060C024 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A2CD629231F060060C024 /* ResultViewController.swift */; };
 		9E3B260A2926D424007803CD /* SelectWhichEyeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B26092926D424007803CD /* SelectWhichEyeView.swift */; };
 		9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */; };
@@ -101,6 +102,7 @@
 /* Begin PBXFileReference section */
 		0E04199929232E9200D710BC /* resultVideo.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = resultVideo.MOV; sourceTree = "<group>"; };
 		0E04199E2926314900D710BC /* DictionaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryViewController.swift; sourceTree = "<group>"; };
+		0E0419A4292920FE00D710BC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0E7A2CD629231F060060C024 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		9E3B26092926D424007803CD /* SelectWhichEyeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWhichEyeView.swift; sourceTree = "<group>"; };
 		9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				A8B2A28A291C8B2F000F5624 /* ViewController.swift */,
 				0E04199E2926314900D710BC /* DictionaryViewController.swift */,
 				A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */,
+				0E0419A4292920FE00D710BC /* ProfileViewController.swift */,
 				0E7A2CD629231F060060C024 /* ResultViewController.swift */,
 				C74491EF291D640B00166197 /* HistoryViewController.swift */,
 				A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */,
@@ -588,6 +591,7 @@
 				0E04199F2926314900D710BC /* DictionaryViewController.swift in Sources */,
 				0E7A2CD729231F060060C024 /* ResultViewController.swift in Sources */,
 				A897ED6E29277CC000C93E22 /* MeasurementResult.swift in Sources */,
+				0E0419A5292920FE00D710BC /* ProfileViewController.swift in Sources */,
 				C74491E3291D54DC00166197 /* CVCalendarWeekView.swift in Sources */,
 				C74491CE291D54DC00166197 /* CVWeekdaySymbolType.swift in Sources */,
 			);

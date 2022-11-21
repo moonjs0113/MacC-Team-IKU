@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarVC = UITabBarController()
         
         //첫번째 화면은 일단
-        let testVC = UIHostingController<StoryView>(rootView: StoryView())
+        let testVC = UINavigationController(rootViewController: UIHostingController<StoryView>(rootView: StoryView()))
         let historyVC = HistoryViewController()
         let dictionaryVC = DictionaryViewController()
         
