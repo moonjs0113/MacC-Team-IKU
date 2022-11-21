@@ -12,11 +12,13 @@ import AVFoundation
 extension Color {
     static let ikuBlue: Color = Color("ikuBlue")
     static let ikuBackground: Color = Color( "ikuBackground")
+    static let ikuEyeSelectBackground: Color = Color("ikuEyeSelectBackground")
 }
 
 struct StoryView: View {
     
     // MARK: - Properties
+    @State private var selectedEye: Eye = .left
     let customBlue = Color.ikuBlue
     @State private var showAlert: Bool = false
     @State private var showCoverTestView: Bool = false
@@ -63,12 +65,11 @@ struct StoryView: View {
                     .foregroundColor(customBlue)
                     .padding(.bottom, 29)
                 
-                // TODO: 눈 선택 화면 만들기
-                Image(systemName: "person")
-                    .resizable()
-                    .background(.green)
-                    .frame(width:280, height: 302)
-                    .padding(.bottom, 53)
+                SelectWhichEyeView(selectedEye: $selectedEye)
+                
+                // 눈이 제대로 선택되었는지 확인하는 디버깅 용도의 코드입니다. 임의로 삭제 가능합니다.
+                Text("선택된 눈 : \(selectedEye.rawValue)")
+                    .padding()
                 
                 VStack(alignment: .leading, spacing: 0) {
                     Text("가림막 검사는? 오른쪽 눈 검사할 때는")

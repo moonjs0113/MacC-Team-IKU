@@ -10,6 +10,7 @@
 		0E04199A29232E9200D710BC /* resultVideo.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 0E04199929232E9200D710BC /* resultVideo.MOV */; };
 		0E04199F2926314900D710BC /* DictionaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04199E2926314900D710BC /* DictionaryViewController.swift */; };
 		0E7A2CD729231F060060C024 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7A2CD629231F060060C024 /* ResultViewController.swift */; };
+		9E3B260A2926D424007803CD /* SelectWhichEyeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3B26092926D424007803CD /* SelectWhichEyeView.swift */; };
 		9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */; };
 		A804661A291FF9890079CEDC /* ScrubberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8046619291FF9890079CEDC /* ScrubberView.swift */; };
 		A804661C292012B10079CEDC /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A804661B292012B10079CEDC /* PlayButton.swift */; };
@@ -35,8 +36,8 @@
 		A8FACE3029271C2900BF2CD0 /* Eye.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FACE2F29271C2900BF2CD0 /* Eye.swift */; };
 		C70100F02921D0DE00B58231 /* CoverTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */; };
 		C70100F42921DF7A00B58231 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */; };
+		C7145FC9292B100500F55028 /* PHPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7145FC8292B100500F55028 /* PHPhotoManager.swift */; };
 		C72601E529278642009AB7D1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72601E429278642009AB7D1 /* UIView+Extension.swift */; };
-		C741521F29288DE800E86B5B /* PHPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C741521E29288DE800E86B5B /* PHPhotoManager.swift */; };
 		C7422514291F304E00DB6D80 /* CVMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7422513291F304E00DB6D80 /* CVMonth.swift */; };
 		C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */; };
 		C744915B291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */; };
@@ -103,6 +104,7 @@
 		0E04199929232E9200D710BC /* resultVideo.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = resultVideo.MOV; sourceTree = "<group>"; };
 		0E04199E2926314900D710BC /* DictionaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryViewController.swift; sourceTree = "<group>"; };
 		0E7A2CD629231F060060C024 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		9E3B26092926D424007803CD /* SelectWhichEyeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectWhichEyeView.swift; sourceTree = "<group>"; };
 		9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		A8046619291FF9890079CEDC /* ScrubberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubberView.swift; sourceTree = "<group>"; };
 		A804661B292012B10079CEDC /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
@@ -130,8 +132,8 @@
 		A8FACE2F29271C2900BF2CD0 /* Eye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eye.swift; sourceTree = "<group>"; };
 		C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverTestViewController.swift; sourceTree = "<group>"; };
 		C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		C7145FC8292B100500F55028 /* PHPhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHPhotoManager.swift; sourceTree = "<group>"; };
 		C72601E429278642009AB7D1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		C741521E29288DE800E86B5B /* PHPhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PHPhotoManager.swift; path = ../../../../../../Pictures/PHPhotoManager.swift; sourceTree = "<group>"; };
 		C7422513291F304E00DB6D80 /* CVMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVMonth.swift; sourceTree = "<group>"; };
 		C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF.otf; sourceTree = "<group>"; };
 		C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF_Light.otf; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				A804661B292012B10079CEDC /* PlayButton.swift */,
 				A8AA21282922131D00EFBE27 /* GradientView.swift */,
 				9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */,
+				9E3B26092926D424007803CD /* SelectWhichEyeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,7 +321,7 @@
 				A8B5349C2926752200237C30 /* PersistenceManager.swift */,
 				A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */,
 				C7537CF9292320B5001E8BF6 /* VideoManager.swift */,
-				C741521E29288DE800E86B5B /* PHPhotoManager.swift */,
+				C7145FC8292B100500F55028 /* PHPhotoManager.swift */,
 				C7537CFB2923B0E2001E8BF6 /* ARSceneManager.swift */,
 				C7F1775F2925BC2C0004C5D9 /* ARCapture */,
 			);
@@ -553,8 +556,9 @@
 				C74491DA291D54DC00166197 /* CVSelectionType.swift in Sources */,
 				C74491CF291D54DC00166197 /* CVRange.swift in Sources */,
 				A8B2A2A2291C8D8F000F5624 /* ExtensionPlaceholder.swift in Sources */,
-				C741521F29288DE800E86B5B /* PHPhotoManager.swift in Sources */,
 				C74491E8291D54DC00166197 /* CVCalendarManager.swift in Sources */,
+				9E3B260A2926D424007803CD /* SelectWhichEyeView.swift in Sources */,
+				C7145FC9292B100500F55028 /* PHPhotoManager.swift in Sources */,
 				C74491D7291D54DC00166197 /* CVCalendarView.swift in Sources */,
 				C74491E6291D54DC00166197 /* CVCalendarDayViewControlCoordinator.swift in Sources */,
 				C74491EE291D586900166197 /* IKUCalendarView+Extension.swift in Sources */,
