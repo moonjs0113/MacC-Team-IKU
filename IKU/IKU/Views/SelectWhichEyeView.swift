@@ -7,11 +7,6 @@
 
 import SwiftUI
 
-enum Eyes: String {
-    case left = "왼쪽 눈"
-    case right = "오른쪽 눈"
-}
-
 private struct SelectedSegmentTagKey: EnvironmentKey {
     static var defaultValue: Any?
 }
@@ -83,13 +78,13 @@ public struct CustomPicker<SelectionValue, Content> : View where SelectionValue 
 struct SelectWhichEyeView: View {
     
     //MARK: - Properties
-    @Binding var selectedEye: Eyes
+    @Binding var selectedEye: Eye
     
     var body: some View {
         VStack {
             CustomPicker(selection: $selectedEye) {
-                Image("lefteye").segmentedControlItemTag(Eyes.left)
-                Image("righteye").segmentedControlItemTag(Eyes.right)
+                Image("lefteye").segmentedControlItemTag(Eye.left)
+                Image("righteye").segmentedControlItemTag(Eye.right)
             }
             .frame(width: 300)
         }
@@ -99,6 +94,6 @@ struct SelectWhichEyeView: View {
 
 struct SelectWhichEyeView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectWhichEyeView(selectedEye: .constant(Eyes.left))
+        SelectWhichEyeView(selectedEye: .constant(Eye.left))
     }
 }
