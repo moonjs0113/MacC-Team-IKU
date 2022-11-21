@@ -35,6 +35,8 @@
 		A8FACE3029271C2900BF2CD0 /* Eye.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FACE2F29271C2900BF2CD0 /* Eye.swift */; };
 		C70100F02921D0DE00B58231 /* CoverTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */; };
 		C70100F42921DF7A00B58231 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */; };
+		C72601E529278642009AB7D1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72601E429278642009AB7D1 /* UIView+Extension.swift */; };
+		C741521F29288DE800E86B5B /* PHPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C741521E29288DE800E86B5B /* PHPhotoManager.swift */; };
 		C7422514291F304E00DB6D80 /* CVMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7422513291F304E00DB6D80 /* CVMonth.swift */; };
 		C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */; };
 		C744915B291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */; };
@@ -75,6 +77,7 @@
 		C74491EB291D54DC00166197 /* CVPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491CC291D54DC00166197 /* CVPresent.swift */; };
 		C74491EE291D586900166197 /* IKUCalendarView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */; };
 		C74491F0291D640B00166197 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74491EF291D640B00166197 /* HistoryViewController.swift */; };
+		C745E9512926175F00AEECA8 /* CoverTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C745E9502926175F00AEECA8 /* CoverTestViewModel.swift */; };
 		C7537CFA292320B5001E8BF6 /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7537CF9292320B5001E8BF6 /* VideoManager.swift */; };
 		C7537CFC2923B0E2001E8BF6 /* ARSceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7537CFB2923B0E2001E8BF6 /* ARSceneManager.swift */; };
 		C7537CFE2923B1E5001E8BF6 /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C7537CFD2923B1E5001E8BF6 /* Models.scnassets */; };
@@ -127,6 +130,8 @@
 		A8FACE2F29271C2900BF2CD0 /* Eye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eye.swift; sourceTree = "<group>"; };
 		C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverTestViewController.swift; sourceTree = "<group>"; };
 		C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		C72601E429278642009AB7D1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		C741521E29288DE800E86B5B /* PHPhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PHPhotoManager.swift; path = ../../../../../../Pictures/PHPhotoManager.swift; sourceTree = "<group>"; };
 		C7422513291F304E00DB6D80 /* CVMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVMonth.swift; sourceTree = "<group>"; };
 		C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF.otf; sourceTree = "<group>"; };
 		C7449158291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF_Light.otf; sourceTree = "<group>"; };
@@ -167,6 +172,7 @@
 		C74491CC291D54DC00166197 /* CVPresent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVPresent.swift; sourceTree = "<group>"; };
 		C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IKUCalendarView+Extension.swift"; sourceTree = "<group>"; };
 		C74491EF291D640B00166197 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		C745E9502926175F00AEECA8 /* CoverTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverTestViewModel.swift; sourceTree = "<group>"; };
 		C7537CF9292320B5001E8BF6 /* VideoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
 		C7537CFB2923B0E2001E8BF6 /* ARSceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARSceneManager.swift; sourceTree = "<group>"; };
 		C7537CFD2923B1E5001E8BF6 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
@@ -261,6 +267,7 @@
 				C74491EF291D640B00166197 /* HistoryViewController.swift */,
 				A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */,
 				C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */,
+				C745E9502926175F00AEECA8 /* CoverTestViewModel.swift */,
 				A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */,
 				A8046619291FF9890079CEDC /* ScrubberView.swift */,
 				A804661B292012B10079CEDC /* PlayButton.swift */,
@@ -287,6 +294,7 @@
 				A8B2A2A1291C8D8F000F5624 /* ExtensionPlaceholder.swift */,
 				C744915F291D4B4700166197 /* UIFont+Extension.swift */,
 				C74491A2291D4F3000166197 /* UIColor+Extension.swift */,
+				C72601E429278642009AB7D1 /* UIView+Extension.swift */,
 				C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
@@ -310,6 +318,7 @@
 				A8B5349C2926752200237C30 /* PersistenceManager.swift */,
 				A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */,
 				C7537CF9292320B5001E8BF6 /* VideoManager.swift */,
+				C741521E29288DE800E86B5B /* PHPhotoManager.swift */,
 				C7537CFB2923B0E2001E8BF6 /* ARSceneManager.swift */,
 				C7F1775F2925BC2C0004C5D9 /* ARCapture */,
 			);
@@ -345,6 +354,7 @@
 		C74491A9291D54A100166197 /* ViewModule */ = {
 			isa = PBXGroup;
 			children = (
+				C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */,
 				C74491EC291D584B00166197 /* IKUCalendarView */,
 			);
 			path = ViewModule;
@@ -391,7 +401,6 @@
 		C74491EC291D584B00166197 /* IKUCalendarView */ = {
 			isa = PBXGroup;
 			children = (
-				C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */,
 				C74491AA291D54D000166197 /* IKUCalendarView.swift */,
 				C74491ED291D586900166197 /* IKUCalendarView+Extension.swift */,
 				C74491AC291D54DC00166197 /* CVCalendar */,
@@ -544,6 +553,7 @@
 				C74491DA291D54DC00166197 /* CVSelectionType.swift in Sources */,
 				C74491CF291D54DC00166197 /* CVRange.swift in Sources */,
 				A8B2A2A2291C8D8F000F5624 /* ExtensionPlaceholder.swift in Sources */,
+				C741521F29288DE800E86B5B /* PHPhotoManager.swift in Sources */,
 				C74491E8291D54DC00166197 /* CVCalendarManager.swift in Sources */,
 				C74491D7291D54DC00166197 /* CVCalendarView.swift in Sources */,
 				C74491E6291D54DC00166197 /* CVCalendarDayViewControlCoordinator.swift in Sources */,
@@ -552,6 +562,7 @@
 				C74491D0291D54DC00166197 /* CVCalendarMonthView.swift in Sources */,
 				C7537CFA292320B5001E8BF6 /* VideoManager.swift in Sources */,
 				C74491D2291D54DC00166197 /* CVStatus.swift in Sources */,
+				C745E9512926175F00AEECA8 /* CoverTestViewModel.swift in Sources */,
 				9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */,
 				C7F1775C2925B1CD0004C5D9 /* ARCapture.swift in Sources */,
 				A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */,
@@ -565,6 +576,7 @@
 				C7422514291F304E00DB6D80 /* CVMonth.swift in Sources */,
 				C74491D9291D54DC00166197 /* CVCalendarWeekContentViewController.swift in Sources */,
 				C74491DC291D54DC00166197 /* CVAuxiliaryView.swift in Sources */,
+				C72601E529278642009AB7D1 /* UIView+Extension.swift in Sources */,
 				A8B2A2A8291C8E3B000F5624 /* ManagerPlaceholder.swift in Sources */,
 				C74491E2291D54DC00166197 /* CVCalendarViewPresentationMode.swift in Sources */,
 				C7F1775D2925B1CD0004C5D9 /* ARAssetWriter.swift in Sources */,
@@ -745,7 +757,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BQUJTNYMGY;
+				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
@@ -779,7 +791,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BQUJTNYMGY;
+				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";

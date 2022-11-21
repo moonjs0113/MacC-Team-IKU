@@ -116,13 +116,7 @@ class VideoManager: NSObject {
 
 extension VideoManager: AVCaptureFileOutputRecordingDelegate {
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
-//        print(connections)
-//        print(output)
-//        print(outputFileURL)
         didFinishRecordingTo(outputFileURL)
-//        if let saveURL {
-//            UISaveVideoAtPathToSavedPhotosAlbum(saveURL.path, nil, nil, nil)
-//        }
     }
     
     func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {
