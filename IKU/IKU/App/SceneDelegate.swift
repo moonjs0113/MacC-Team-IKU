@@ -21,11 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //탭바컨트롤러의 생성
         let tabBarVC = UITabBarController()
         
-        //UIKit의 탭바에 SwiftUI로 만든 View 넣기 위한 작업
-        let storyViewController: UIViewController = UIHostingController<StoryView>(rootView: StoryView())
-        
         //첫번째 화면은 일단
-        let testVC = storyViewController
+        let testVC = UIHostingController<StoryView>(rootView: StoryView())
         let historyVC = HistoryViewController()
         let dictionaryVC = DictionaryViewController()
         

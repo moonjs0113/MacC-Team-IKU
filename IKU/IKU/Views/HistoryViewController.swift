@@ -16,7 +16,7 @@ final class HistoryViewController: UIViewController {
         view.setTitleTextAttributes([.font: UIFont.nexonGothicFont(ofSize: 13)], for: .normal)
         view.setTitleTextAttributes([.font: UIFont.nexonGothicFont(ofSize: 13, weight: .bold)], for: .selected)
         view.selectedSegmentIndex = 0
-        self.view.addSubview(view)
+//        self.view.addSubview(view)
         return view
     }()
     
@@ -64,7 +64,7 @@ final class HistoryViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         
-        self.view.addSubview(button)
+//        self.view.addSubview(button)
         return button
     }()
     
@@ -75,12 +75,13 @@ final class HistoryViewController: UIViewController {
     
     private func setupLayoutConstraint() {
         NSLayoutConstraint.activate([
-            eyeSegmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 11),
-            eyeSegmentedControl.heightAnchor.constraint(equalToConstant: 42),
-            eyeSegmentedControl.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            eyeSegmentedControl.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+//            eyeSegmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 11),
+//            eyeSegmentedControl.heightAnchor.constraint(equalToConstant: 42),
+//            eyeSegmentedControl.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+//            eyeSegmentedControl.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             
-            todayStatusLabel.topAnchor.constraint(equalTo: eyeSegmentedControl.bottomAnchor, constant: 11),
+//            todayStatusLabel.topAnchor.constraint(equalTo: eyeSegmentedControl.bottomAnchor, constant: 11),
+            todayStatusLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 11),
             todayStatusLabel.heightAnchor.constraint(equalToConstant: 60),
             todayStatusLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             todayStatusLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
@@ -93,10 +94,10 @@ final class HistoryViewController: UIViewController {
             ikuChartView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             ikuChartView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             
-            testButton.topAnchor.constraint(equalTo: ikuChartView.bottomAnchor, constant: 18),
-            testButton.heightAnchor.constraint(equalToConstant: 52),
-            testButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            testButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+//            testButton.topAnchor.constraint(equalTo: ikuChartView.bottomAnchor, constant: 18),
+//            testButton.heightAnchor.constraint(equalToConstant: 52),
+//            testButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+//            testButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
         ])
     }
     

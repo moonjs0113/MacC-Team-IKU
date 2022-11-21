@@ -15,7 +15,7 @@ class ARSceneManager: NSObject, ARSCNViewDelegate {
     lazy var leftEyeNode = SCNReferenceNode(named: "coordinateOrigin")
     
     var horizontalDegrees: [Float] = []
-    var selectedEye: Eyes = .left
+    var selectedEye: Eye = .left
     
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         guard anchor is ARFaceAnchor else { return nil }
