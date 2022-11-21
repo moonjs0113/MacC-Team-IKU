@@ -35,7 +35,7 @@ where SelectionValue: Hashable, Content: View {
     @Environment(\.selectedSegmentTag) var selectedSegmentTag
     let tag: SelectionValue
     let content: Content
-    @ViewBuilder var body: some View {
+    var body: some View {
         content
             .frame(maxWidth: .infinity)
             .contentShape(Rectangle())
