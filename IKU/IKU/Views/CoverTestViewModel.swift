@@ -21,12 +21,15 @@ class CoverTestViewModel: NSObject {
         transformVisualization.horizontalDegrees
     }
     
-    
     var distanceText: NSMutableAttributedString {
         let string = "거리: \(distance)cm"
         let attributedStr = NSMutableAttributedString(string: string)
         attributedStr.addAttribute(.foregroundColor, value: isRecordingEnabled ? UIColor.ikuYellow : .ikuOrange , range: (string as NSString).range(of: "\(distance)cm"))
         return attributedStr
+    }
+    
+    var guideFrameColor: UIColor {
+        isRecordingEnabled ? .ikuYellow : .ikuOrange
     }
     
     // Recording
@@ -43,7 +46,7 @@ class CoverTestViewModel: NSObject {
         }
     }
     
-    private let avSpeechsynthesizer = AVSpeechSynthesizer()
+    private var avSpeechSynthesizer: AVSpeechSynthesizer? = AVSpeechSynthesizer()
     var timerCount = 0
     var captureTime: Double = 0.0
     private var recordTimer: Timer?
@@ -63,6 +66,10 @@ class CoverTestViewModel: NSObject {
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
+    func stopTracking(sceneView: ARSCNView) {
+        sceneView.session.pause()
+    }
+    
     private func calculateDistance(start: SCNVector3, end: SCNVector3) {
         let dx = end.x - start.x
         let dy = end.y - start.y
@@ -72,14 +79,14 @@ class CoverTestViewModel: NSObject {
     }
     
     // Recording
-    func runARCapture() {
+    func runARCapture(session: ARSession) {
         arCapture?.run { [weak self] recordStatus in
             guard let self = self,
                   let view = self.recordButtonLayoutConstraint.firstItem as? UIView else {
                 return
             }
             self.recordStatus = recordStatus
-            self.toggleTimer()
+            self.toggleTimer(session: session)
             UIView.animate(withDuration: 0.3) {
                 self.recordButtonLayoutConstraint.constant = (recordStatus == .recording) ? -45 : -10
                 if recordStatus == .recording {
@@ -95,21 +102,33 @@ class CoverTestViewModel: NSObject {
     }
     
     // Guide
-    func projectWill() {
-        let string = "오른쪽 눈을 손바닥으로 가려주세요"
-        let avSpeechUtterance = AVSpeechUtterance(string: string)
+    func initAVSpeechsynthesizer() {
+        avSpeechSynthesizer = AVSpeechSynthesizer()
+        avSpeechSynthesizer?.delegate = self
+    }
+    
+    func playVoiceGuide(text: String) {
+        avSpeechSynthesizer?.stopSpeaking(at: .immediate)
+        let avSpeechUtterance = AVSpeechUtterance(string: text)
         // TODO: - lang enum 만들기
         avSpeechUtterance.voice = .init(language: "ko-KR")
-        avSpeechUtterance.rate = 0.4
-        avSpeechsynthesizer.speak(avSpeechUtterance)
+        avSpeechUtterance.rate = 0.5
+        avSpeechSynthesizer?.speak(avSpeechUtterance)
+    }
+    
+    func stopVoiceGuide() {
+        avSpeechSynthesizer?.stopSpeaking(at: .immediate)
+        avSpeechSynthesizer = nil
     }
     
     // Timer
-    private func toggleTimer(){
+    private func toggleTimer(session: ARSession){
         if recordStatus == .recording {
             startTimer()
         } else {
             stopTimer()
+            stopVoiceGuide()
+            session.pause()
         }
     }
     
@@ -135,6 +154,7 @@ class CoverTestViewModel: NSObject {
     // MARK: - Life Cycles
     override init() {
         super.init()
+        initAVSpeechsynthesizer()
     }
 }
 
@@ -180,4 +200,31 @@ extension CoverTestViewModel: ARSessionDelegate, ARSCNViewDelegate {
         }
         faceAnchors[faceAnchor] = nil
     }
+}
+
+extension CoverTestViewModel: AVSpeechSynthesizerDelegate {
+    func speechSynthesizer( _ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+        print(#function)
+    }
+    
+    func speechSynthesizer( _ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString: NSRange, utterance: AVSpeechUtterance) {
+        print(#function)
+    }
+    
+    func speechSynthesizer( _ synthesizer: AVSpeechSynthesizer, didPause: AVSpeechUtterance) {
+        print(#function)
+    }
+    
+    func speechSynthesizer( _ synthesizer: AVSpeechSynthesizer, didContinue: AVSpeechUtterance) {
+        print(#function)
+    }
+    
+    func speechSynthesizer( _ synthesizer: AVSpeechSynthesizer, didFinish: AVSpeechUtterance) {
+        print(#function)
+    }
+    
+    func speechSynthesizer( _ synthesizer: AVSpeechSynthesizer, didCancel: AVSpeechUtterance) {
+        print(#function)
+    }
+
 }
