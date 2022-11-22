@@ -48,6 +48,7 @@
 		C70100F02921D0DE00B58231 /* CoverTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */; };
 		C70100F42921DF7A00B58231 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */; };
 		C7145FC9292B100500F55028 /* PHPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7145FC8292B100500F55028 /* PHPhotoManager.swift */; };
+		C71D562D292C9F3E0011AEED /* TestGuideString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D562C292C9F3E0011AEED /* TestGuideString.swift */; };
 		C72601E529278642009AB7D1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72601E429278642009AB7D1 /* UIView+Extension.swift */; };
 		C7422514291F304E00DB6D80 /* CVMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7422513291F304E00DB6D80 /* CVMonth.swift */; };
 		C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */; };
@@ -151,6 +152,7 @@
 		C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverTestViewController.swift; sourceTree = "<group>"; };
 		C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C7145FC8292B100500F55028 /* PHPhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHPhotoManager.swift; sourceTree = "<group>"; };
+		C71D562C292C9F3E0011AEED /* TestGuideString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGuideString.swift; sourceTree = "<group>"; };
 		C72601E429278642009AB7D1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		C7422513291F304E00DB6D80 /* CVMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVMonth.swift; sourceTree = "<group>"; };
 		C7449157291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NEXON_Lv1_Gothic_OTF.otf; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */,
 				A8FACE2F29271C2900BF2CD0 /* Eye.swift */,
 				A897ED6D29277CC000C93E22 /* MeasurementResult.swift */,
+				C71D562C292C9F3E0011AEED /* TestGuideString.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				C7F1775C2925B1CD0004C5D9 /* ARCapture.swift in Sources */,
 				A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */,
 				A8FACE3029271C2900BF2CD0 /* Eye.swift in Sources */,
+				C71D562D292C9F3E0011AEED /* TestGuideString.swift in Sources */,
 				C74491E0291D54DC00166197 /* CVCalendarTouchController.swift in Sources */,
 				C74491D8291D54DC00166197 /* CVCalendarViewDelegate.swift in Sources */,
 				C74491E5291D54DC00166197 /* CVCalendarViewAnimator.swift in Sources */,

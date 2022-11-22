@@ -15,14 +15,18 @@ import SwiftUI
 final class CoverTestViewController: UIViewController {
     // MARK: - Properties
     private var viewModel: CoverTestViewModel = CoverTestViewModel()
+    private var viewStatus: TestGuide = .incorrectDistance
     var selectedEye: Eye = .left
     
     // UI Properties
-    lazy var sceneView: ARSCNView = {
-        let view = ARSCNView()
-        view.delegate = viewModel
-        view.session.delegate = viewModel
-        return view
+    private var sceneView: ARSCNView = ARSCNView()
+    
+    private var guideFrameImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "CameraFrame"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .white
+        return imageView
     }()
     
     private var cameraFrameView: UIStackView = {
@@ -136,7 +140,8 @@ final class CoverTestViewController: UIViewController {
     }
     
     private func setupARScene() {
-        let sceneView = sceneView
+        sceneView.delegate = viewModel
+        sceneView.session.delegate = viewModel
         sceneView.automaticallyUpdatesLighting = true
         sceneView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(sceneView)
@@ -153,6 +158,7 @@ final class CoverTestViewController: UIViewController {
         view.addSubview(cameraFrameView)
         view.addSubview(guideLabel)
         view.addSubview(recordButton)
+        cameraFrameView.subviews[1].addSubview(guideFrameImageView)
         
         NSLayoutConstraint.activate([
             cameraFrameView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -160,6 +166,10 @@ final class CoverTestViewController: UIViewController {
             cameraFrameView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cameraFrameView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             cameraFrameView.subviews[0].bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            
+            guideFrameImageView.centerXAnchor.constraint(equalTo: cameraFrameView.subviews[1].centerXAnchor),
+            guideFrameImageView.centerYAnchor.constraint(equalTo: cameraFrameView.subviews[1].centerYAnchor),
+            guideFrameImageView.widthAnchor.constraint(equalTo: cameraFrameView.subviews[1].widthAnchor),
             
             guideLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             guideLabel.topAnchor.constraint(equalTo: cameraFrameView.subviews[2].topAnchor, constant: 15),
@@ -177,19 +187,30 @@ final class CoverTestViewController: UIViewController {
         viewModel.updateUI = updateUI
     }
     
-    private func updateUI(status: ARCapture.Status) {
+    private func updateUI(arCaputreStatus: ARCapture.Status) {
         distanceLabel.attributedText = viewModel.distanceText
+        guideFrameImageView.tintColor = viewModel.guideFrameColor
         let isCompleteRecording = viewModel.timerCount >= 12
-        if status == .ready {
-            guideLabel.text = viewModel.isRecordingEnabled ? "녹화버튼을 눌러주세요." : "카메라와 적정거리(30-35cm)인지 확인해주세요."
+        var viewStatus: TestGuide = .incorrectDistance
+        if arCaputreStatus == .ready {
+            viewStatus = viewModel.isRecordingEnabled
+            ? TestGuide.isReady
+            : TestGuide.incorrectDistance
         } else {
             if isCompleteRecording {
-                guideLabel.text = "검사가 완료되었으니 종료버튼을 눌러주세요."
+                viewStatus = TestGuide.testComplete
             } else {
-                guideLabel.text = (viewModel.timerCount / 3) % 2 == 0 ? "\(selectedEye == .left ? "오른쪽" : "왼쪽") 눈을 손바닥으로 가려주세요 3초" : "손바닥을 떼주세요 3초"
+                viewStatus = (viewModel.timerCount / 3) % 2 == 0
+                ? TestGuide.coverTo(selectedEye)
+                : TestGuide.uncover
             }
         }
-        recordButtonIsEnabled(inEnabled: status == .ready ? viewModel.isRecordingEnabled : isCompleteRecording)
+        if self.viewStatus != viewStatus {
+            self.viewStatus = viewStatus
+            viewModel.playVoiceGuide(text: viewStatus.voiceText)
+            guideLabel.text = viewStatus.labelText
+        }
+        recordButtonIsEnabled(inEnabled: arCaputreStatus == .ready ? viewModel.isRecordingEnabled : isCompleteRecording)
     }
     
     private func recordButtonIsEnabled(inEnabled: Bool) {
@@ -206,6 +227,8 @@ final class CoverTestViewController: UIViewController {
 
     // MARK: - Objc-C Methods
     @objc private func touchCloseButton(_ sender: UIButton) {
+        viewModel.stopVoiceGuide()
+        viewModel.stopTracking(sceneView: sceneView)
         dismiss(animated: true)
     }
     
@@ -218,7 +241,7 @@ final class CoverTestViewController: UIViewController {
     }
     
     @objc private func touchRecordButton(_ sender: UIButton) {
-        viewModel.runARCapture()
+        viewModel.runARCapture(session: sceneView.session)
     }
     
     // MARK: - Delegates And DataSources
@@ -234,11 +257,13 @@ final class CoverTestViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         viewModel.resetTracking(sceneView: sceneView)
+        viewModel.initAVSpeechsynthesizer()
     }
 }
 
 struct CoverTestView: UIViewControllerRepresentable {
     var selectedEye: Eye
+    
     typealias UIViewControllerType = UINavigationController
     
     func makeUIViewController(context: Context) -> UINavigationController {
