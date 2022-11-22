@@ -35,14 +35,7 @@ final class SQLiteService {
         }
     }
     enum InsertionQuery {
-        case videoData(
-            localIdentifier: String,
-            isLeftEye: Bool,
-            timeOne: Double,
-            timeTwo: Double,
-            creationDate: Double,
-            isBookMarked: Bool
-        )
+        case videoData(measurementResult: MeasurementResult)
         var statement: String {
             switch self {
             case .videoData: return """
@@ -52,10 +45,15 @@ final class SQLiteService {
         }
     }
     enum SelectionQuery {
+        case allVideos
         case videoForSpecipic(day: Date)
         
         var statement: String {
             switch self {
+            case .allVideos:
+                return """
+                SELECT * FROM VIDEO
+                """
             case .videoForSpecipic(let day) :
                 let greatOrEqual = day.startTimeIntervalOfDay
                 let less = day.startTimeIntervalOfNextDay
@@ -66,25 +64,20 @@ final class SQLiteService {
         }
     }
 
-    private let path = "IKU.sqlite"
+    static let path = "IKU.sqlite"
     private var db: OpaquePointer? = nil
 
-    init() throws {
-        let database = try openDatabase()
+    init(url: URL) throws {
+        let database = try openDatabase(at: url)
         self.db = database
     }
     deinit {
         sqlite3_close(db)
     }
 
-    private func openDatabase() throws -> OpaquePointer? {
+    private func openDatabase(at url: URL) throws -> OpaquePointer? {
         var db: OpaquePointer?
-        let dbURL: URL = try FileManager.default.url(
-            for: .documentDirectory,
-            in: .userDomainMask,
-            appropriateFor: nil,
-            create: true
-        ).appendingPathComponent(path)
+        let dbURL: URL = url.appendingPathComponent(Self.path)
 
         if sqlite3_open(dbURL.path, &db) == SQLITE_OK {
             return db
@@ -110,50 +103,55 @@ final class SQLiteService {
         let insertStatement = try prepare(forQuery: query.statement)
         defer { sqlite3_finalize(insertStatement) }
         switch query {
-        case .videoData(let localIdentifier, let isLeftEye, let timeOne, let timeTwo, let creationDate, let isBookMarked):
+        case .videoData(let measurementResult):
             try insertVideoData(
                 insertStatement: insertStatement,
-                localIdentifier: localIdentifier,
-                isLeftEye: isLeftEye,
-                timeOne: timeOne,
-                timeTwo: timeTwo,
-                creationDate: creationDate,
-                isBookMarked: isBookMarked
+                measurementResult: measurementResult
             )
         }
     }
-    func select(byQuery query: SelectionQuery) throws -> [String] {
+    func select(byQuery query: SelectionQuery) throws -> [MeasurementResult] {
         let selectStatement = try prepare(forQuery: query.statement)
         defer { sqlite3_finalize(selectStatement) }
-        switch query {
-        case .videoForSpecipic:
-            return try selectVideoData(selectStatement: selectStatement)
-        }
+        return try selectVideoData(selectStatement: selectStatement)
     }
     
-    private func insertVideoData(insertStatement: OpaquePointer?, localIdentifier: String, isLeftEye: Bool, timeOne: Double, timeTwo: Double, creationDate: Double, isBookMarked: Bool) throws {
-        let localIdentifier = NSString(string: localIdentifier)
-        let eye: Int32 = isLeftEye == true ? 1 : 0
-        let bookMark: Int32 = isBookMarked == true ? 1 : 0
+    private func insertVideoData(insertStatement: OpaquePointer?, measurementResult: MeasurementResult) throws {
+        let localIdentifier = NSString(string: measurementResult.localIdentifier)
+        let eye: Int32 = measurementResult.isLeftEye == true ? 1 : 0
+        let bookMark: Int32 = measurementResult.isBookMarked == true ? 1 : 0
         
         sqlite3_bind_text(insertStatement, 1, localIdentifier.utf8String, -1, nil)
         sqlite3_bind_int(insertStatement, 2, eye)
-        sqlite3_bind_double(insertStatement, 3, timeOne)
-        sqlite3_bind_double(insertStatement, 4, timeTwo)
-        sqlite3_bind_double(insertStatement, 5, creationDate)
+        sqlite3_bind_double(insertStatement, 3, measurementResult.timeOne)
+        sqlite3_bind_double(insertStatement, 4, measurementResult.timeTwo)
+        sqlite3_bind_double(insertStatement, 5, measurementResult.creationDate)
         sqlite3_bind_int(insertStatement, 6, bookMark)
         
         if sqlite3_step(insertStatement) != SQLITE_DONE {
             throw SQLiteError.step(message: "Could not insert row")
         }
     }
-    private func selectVideoData(selectStatement: OpaquePointer?) throws -> [String] {
-        var result: [String] = []
+    private func selectVideoData(selectStatement: OpaquePointer?) throws -> [MeasurementResult] {
+        var result: [MeasurementResult] = []
         while sqlite3_step(selectStatement) == SQLITE_ROW {
             guard let localIdentifier = sqlite3_column_text(selectStatement, 0) else {
                 throw SQLiteError.step(message: "First element is not a text")
             }
-            result.append(String(cString: localIdentifier))
+            let eye = sqlite3_column_int(selectStatement, 1)
+            let timeOne = sqlite3_column_double(selectStatement, 2)
+            let timeTwo = sqlite3_column_double(selectStatement, 3)
+            let creationDate = sqlite3_column_double(selectStatement, 4)
+            let bookMark = sqlite3_column_int(selectStatement, 5)
+            let measurementResult = MeasurementResult(
+                localIdentifier: String(cString: localIdentifier),
+                isLeftEye: eye == 1,
+                timeOne: timeOne,
+                timeTwo: timeTwo,
+                creationDate: creationDate,
+                isBookMarked: bookMark == 1
+            )
+            result.append(measurementResult)
         }
         return result
     }

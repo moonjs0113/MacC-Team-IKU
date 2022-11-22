@@ -16,6 +16,8 @@
 		A804661A291FF9890079CEDC /* ScrubberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8046619291FF9890079CEDC /* ScrubberView.swift */; };
 		A804661C292012B10079CEDC /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A804661B292012B10079CEDC /* PlayButton.swift */; };
 		A897ED6E29277CC000C93E22 /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A897ED6D29277CC000C93E22 /* MeasurementResult.swift */; };
+		A89F22FA292B7079000B3D63 /* XCTestCase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F22F9292B7079000B3D63 /* XCTestCase+Extension.swift */; };
+		A89F2300292B95C0000B3D63 /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A897ED6D29277CC000C93E22 /* MeasurementResult.swift */; };
 		A8AA21292922131D00EFBE27 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA21282922131D00EFBE27 /* GradientView.swift */; };
 		A8B2A287291C8B2F000F5624 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A286291C8B2F000F5624 /* AppDelegate.swift */; };
 		A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A288291C8B2F000F5624 /* SceneDelegate.swift */; };
@@ -31,9 +33,8 @@
 		A8B2A2B3291CCDAD000F5624 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */; };
 		A8B2A2D7291DE0D6000F5624 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */; };
 		A8B5349D2926752200237C30 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5349C2926752200237C30 /* SQLiteService.swift */; };
-		A8B534A52926755900237C30 /* PersistenceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B534A42926755900237C30 /* PersistenceTest.swift */; };
+		A8B534A52926755900237C30 /* SQLiteServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B534A42926755900237C30 /* SQLiteServiceTest.swift */; };
 		A8B534AB2926756600237C30 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5349C2926752200237C30 /* SQLiteService.swift */; };
-		A8FA007B292B45BE0091EDC2 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA007A292B45BE0091EDC2 /* PersistenceManager.swift */; };
 		A8FA007D292B45D00091EDC2 /* JSONService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA007C292B45D00091EDC2 /* JSONService.swift */; };
 		A8FA007F292B45E00091EDC2 /* JSONServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA007E292B45E00091EDC2 /* JSONServiceTest.swift */; };
 		A8FA0080292B46330091EDC2 /* JSONService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FA007C292B45D00091EDC2 /* JSONService.swift */; };
@@ -113,6 +114,7 @@
 		A8046619291FF9890079CEDC /* ScrubberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubberView.swift; sourceTree = "<group>"; };
 		A804661B292012B10079CEDC /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		A897ED6D29277CC000C93E22 /* MeasurementResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResult.swift; sourceTree = "<group>"; };
+		A89F22F9292B7079000B3D63 /* XCTestCase+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extension.swift"; sourceTree = "<group>"; };
 		A8AA21282922131D00EFBE27 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A8B2A283291C8B2F000F5624 /* IKU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IKU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B2A286291C8B2F000F5624 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,8 +133,7 @@
 		A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		A8B5349C2926752200237C30 /* SQLiteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteService.swift; sourceTree = "<group>"; };
 		A8B534A22926755900237C30 /* PersistenceTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersistenceTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A8B534A42926755900237C30 /* PersistenceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceTest.swift; sourceTree = "<group>"; };
-		A8FA007A292B45BE0091EDC2 /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		A8B534A42926755900237C30 /* SQLiteServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteServiceTest.swift; sourceTree = "<group>"; };
 		A8FA007C292B45D00091EDC2 /* JSONService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONService.swift; sourceTree = "<group>"; };
 		A8FA007E292B45E00091EDC2 /* JSONServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONServiceTest.swift; sourceTree = "<group>"; };
 		A8FACE2F29271C2900BF2CD0 /* Eye.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eye.swift; sourceTree = "<group>"; };
@@ -322,7 +323,6 @@
 		A8B2A2A4291C8DFD000F5624 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				A8FA007A292B45BE0091EDC2 /* PersistenceManager.swift */,
 				A8FA007C292B45D00091EDC2 /* JSONService.swift */,
 				A8B5349C2926752200237C30 /* SQLiteService.swift */,
 				A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */,
@@ -345,8 +345,9 @@
 		A8B534A32926755900237C30 /* PersistenceTest */ = {
 			isa = PBXGroup;
 			children = (
-				A8B534A42926755900237C30 /* PersistenceTest.swift */,
+				A8B534A42926755900237C30 /* SQLiteServiceTest.swift */,
 				A8FA007E292B45E00091EDC2 /* JSONServiceTest.swift */,
+				A89F22F9292B7079000B3D63 /* XCTestCase+Extension.swift */,
 			);
 			path = PersistenceTest;
 			sourceTree = "<group>";
@@ -542,7 +543,6 @@
 				A8AA21292922131D00EFBE27 /* GradientView.swift in Sources */,
 				A8B2A2B3291CCDAD000F5624 /* PlayerView.swift in Sources */,
 				A804661C292012B10079CEDC /* PlayButton.swift in Sources */,
-				A8FA007B292B45BE0091EDC2 /* PersistenceManager.swift in Sources */,
 				C74491D4291D54DC00166197 /* CVCalendarMenuViewDelegate.swift in Sources */,
 				C7F1775E2925B1CD0004C5D9 /* ARFrameGenerator.swift in Sources */,
 				C74491DE291D54DC00166197 /* CVCalendarContentPresentationCoordinator.swift in Sources */,
@@ -613,9 +613,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8FA007F292B45E00091EDC2 /* JSONServiceTest.swift in Sources */,
-				A8B534A52926755900237C30 /* PersistenceTest.swift in Sources */,
+				A8B534A52926755900237C30 /* SQLiteServiceTest.swift in Sources */,
 				A8B534AB2926756600237C30 /* SQLiteService.swift in Sources */,
 				A8FA0080292B46330091EDC2 /* JSONService.swift in Sources */,
+				A89F22FA292B7079000B3D63 /* XCTestCase+Extension.swift in Sources */,
+				A89F2300292B95C0000B3D63 /* MeasurementResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
