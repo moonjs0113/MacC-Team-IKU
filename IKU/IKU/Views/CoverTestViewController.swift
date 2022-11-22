@@ -15,7 +15,8 @@ import SwiftUI
 final class CoverTestViewController: UIViewController {
     // MARK: - Properties
     private var viewModel: CoverTestViewModel = CoverTestViewModel()
-        
+    var selectedEye: Eye = .left
+    
     // UI Properties
     lazy var sceneView: ARSCNView = {
         let view = ARSCNView()
@@ -26,9 +27,9 @@ final class CoverTestViewController: UIViewController {
     
     private var cameraFrameView: UIStackView = {
         let backgroundAlpha: CGFloat = 0.8
-//        let topView = UIView()
-//        topView.translatesAutoresizingMaskIntoConstraints = false
-//        topView.backgroundColor = .clear
+        let topView = UIView()
+        topView.translatesAutoresizingMaskIntoConstraints = false
+        topView.backgroundColor = .black.withAlphaComponent(backgroundAlpha)
         
         let frameView = UIView()
         frameView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +39,7 @@ final class CoverTestViewController: UIViewController {
         bottomView.translatesAutoresizingMaskIntoConstraints = false
         bottomView.backgroundColor = .black.withAlphaComponent(backgroundAlpha)
         
-        let stackView = UIStackView(arrangedSubviews: [frameView, bottomView])
+        let stackView = UIStackView(arrangedSubviews: [topView, frameView, bottomView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         
@@ -158,9 +159,10 @@ final class CoverTestViewController: UIViewController {
             cameraFrameView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             cameraFrameView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cameraFrameView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            cameraFrameView.subviews[0].bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             
             guideLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            guideLabel.topAnchor.constraint(equalTo: cameraFrameView.subviews[1].topAnchor, constant: 15),
+            guideLabel.topAnchor.constraint(equalTo: cameraFrameView.subviews[2].topAnchor, constant: 15),
             guideLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95),
             
             recordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -184,7 +186,7 @@ final class CoverTestViewController: UIViewController {
             if isCompleteRecording {
                 guideLabel.text = "검사가 완료되었으니 종료버튼을 눌러주세요."
             } else {
-                guideLabel.text = (viewModel.timerCount / 3) % 2 == 0 ? "오른쪽 눈을 손바닥으로 가려주세요 3초" : "손바닥을 떼주세요 3초"
+                guideLabel.text = (viewModel.timerCount / 3) % 2 == 0 ? "\(selectedEye == .left ? "오른쪽" : "왼쪽") 눈을 손바닥으로 가려주세요 3초" : "손바닥을 떼주세요 3초"
             }
         }
         recordButtonIsEnabled(inEnabled: status == .ready ? viewModel.isRecordingEnabled : isCompleteRecording)
@@ -196,7 +198,9 @@ final class CoverTestViewController: UIViewController {
     }
     
     private func goToSelectPhotoViewController(url: URL) {
-        let selectPhotoViewController = SelectPhotoViewController(urlPath: url, degrees: viewModel.degrees)
+        let selectPhotoViewController = SelectPhotoViewController(urlPath: url,
+                                                                  degrees: viewModel.degrees,
+                                                                  selectedEye: selectedEye)
         navigationController?.pushViewController(selectPhotoViewController, animated: true)
     }
 
@@ -234,11 +238,13 @@ final class CoverTestViewController: UIViewController {
 }
 
 struct CoverTestView: UIViewControllerRepresentable {
+    var selectedEye: Eye
     typealias UIViewControllerType = UINavigationController
     
     func makeUIViewController(context: Context) -> UINavigationController {
         let navigationController = UINavigationController()
         let coverTestViewController = CoverTestViewController()
+        coverTestViewController.selectedEye = selectedEye
         navigationController.navigationBar.tintColor = .white
         navigationController.view.backgroundColor = .white
         navigationController.modalPresentationStyle = .fullScreen

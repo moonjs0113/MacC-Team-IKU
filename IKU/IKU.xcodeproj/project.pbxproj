@@ -98,6 +98,7 @@
 		C7F1775C2925B1CD0004C5D9 /* ARCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F177592925B1CD0004C5D9 /* ARCapture.swift */; };
 		C7F1775D2925B1CD0004C5D9 /* ARAssetWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */; };
 		C7F1775E2925B1CD0004C5D9 /* ARFrameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */; };
+		C7FB09EF292B69B900A7671C /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FB09EE292B69B900A7671C /* Double+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +201,7 @@
 		C7F177592925B1CD0004C5D9 /* ARCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARCapture.swift; sourceTree = "<group>"; };
 		C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAssetWriter.swift; sourceTree = "<group>"; };
 		C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARFrameGenerator.swift; sourceTree = "<group>"; };
+		C7FB09EE292B69B900A7671C /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				A8B2A2A1291C8D8F000F5624 /* ExtensionPlaceholder.swift */,
+				C7FB09EE292B69B900A7671C /* Double+Extension.swift */,
 				C744915F291D4B4700166197 /* UIFont+Extension.swift */,
 				C74491A2291D4F3000166197 /* UIColor+Extension.swift */,
 				C72601E429278642009AB7D1 /* UIView+Extension.swift */,
@@ -603,6 +606,7 @@
 				A89F230C292BB648000B3D63 /* PersistenceManager.swift in Sources */,
 				C72601E529278642009AB7D1 /* UIView+Extension.swift in Sources */,
 				A8B2A2A8291C8E3B000F5624 /* ManagerPlaceholder.swift in Sources */,
+				C7FB09EF292B69B900A7671C /* Double+Extension.swift in Sources */,
 				C74491E2291D54DC00166197 /* CVCalendarViewPresentationMode.swift in Sources */,
 				C7F1775D2925B1CD0004C5D9 /* ARAssetWriter.swift in Sources */,
 				C70100F42921DF7A00B58231 /* UIViewController+Extension.swift in Sources */,

@@ -32,7 +32,9 @@ final class SelectPhotoViewController: UIViewController {
     private var capturedImage: UIImage? = nil
     private var urlPath: URL?
     private var degrees: [Double: Double] = [:]
-    
+    private var angle: (Double?, Double?) = (nil, nil)
+    private var selectedTime: (Double?, Double?) = (nil, nil)
+    private var selectedEye: Eye = .left
 
     // MARK: - Methods
     private func configureNavigationBar() {
@@ -155,41 +157,53 @@ final class SelectPhotoViewController: UIViewController {
         generator.requestedTimeToleranceAfter = .zero
         generator.generateCGImageAsynchronously(for: time) { image, _, _ in
             DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
                 let backItem = UIBarButtonItem()
                 backItem.title = ""
-                self?.navigationItem.backBarButtonItem = backItem
+                self.navigationItem.backBarButtonItem = backItem
                 
-                if let savedImage = self?.capturedImage,
+                if let savedImage = self.capturedImage,
                    let cgImage = image {
-                    self?.player.pause()
+                    self.player.pause()
                     guard let resultViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultViewController") as? ResultViewController else {
                         return
                     }
                     
                     resultViewController.url = videoURL
                     resultViewController.prepareData(leftImage: savedImage, rightImage: UIImage(cgImage: cgImage))
-                    resultViewController.degrees = self?.degrees ?? [:]
+                    resultViewController.degrees = self.degrees
+                    
+                    self.selectedTime.1 = time.seconds.roundSecondPoint
+                    self.angle.1 = self.degrees[time.seconds.roundSecondPoint]
+                    resultViewController.angle = (self.angle.0 ?? 0.0, self.angle.1 ?? 0.0)
+                    resultViewController.selectedTime = (self.selectedTime.0 ?? 0.0, self.selectedTime.1 ?? 0.0)
+                    resultViewController.numberEye = self.selectedEye
                     
                     backItem.tintColor = .black
-                    self?.navigationController?.pushViewController(resultViewController, animated: true)
+                    self.navigationController?.pushViewController(resultViewController, animated: true)
                 } else if let cgImage = image {
-                    self?.player.pause()
+                    self.player.pause()
                     
-                    let nextViewController = SelectPhotoViewController(urlPath: self?.urlPath, degrees: self?.degrees ?? [:])
+                    let nextViewController = SelectPhotoViewController(urlPath: self.urlPath, degrees: self.degrees, selectedEye: self.selectedEye)
                     nextViewController.capturedImage = UIImage(cgImage: cgImage)
+                    self.selectedTime.0 = time.seconds.roundSecondPoint
+                    self.angle.0 = self.degrees[time.seconds.roundSecondPoint]
+                    nextViewController.angle = self.angle
+                    nextViewController.selectedTime = self.selectedTime
                     
                     backItem.tintColor = .white
-                    self?.navigationController?.pushViewController(nextViewController, animated: true)
+                    self.navigationController?.pushViewController(nextViewController, animated: true)
                 }
             }
         }
     }
     
     // MARK: - Life Cycles
-    convenience init(urlPath: URL?, degrees: [Double: Double]) {
+    convenience init(urlPath: URL?, degrees: [Double: Double], selectedEye: Eye) {
         self.init()
         self.urlPath = urlPath
         self.degrees = degrees
+        self.selectedEye = selectedEye
     }
     
     override func viewDidLoad() {
@@ -203,11 +217,6 @@ final class SelectPhotoViewController: UIViewController {
             try await loadPropertyValuesAsync(forAsset: asset)
             configureHostingViewController()
         }
-    }
-    
-    convenience init(withVideoURL url: URL) {
-        self.init()
-        self.urlPath = url
     }
 }
 

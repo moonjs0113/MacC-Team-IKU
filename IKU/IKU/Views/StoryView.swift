@@ -115,7 +115,7 @@ struct StoryView: View {
             }
         }
         .fullScreenCover(isPresented: $showCoverTestView) {
-            CoverTestView()
+            CoverTestView(selectedEye: selectedEye)
                 .ignoresSafeArea()
         }
         .alert("Require Camera Permission", isPresented: $showAlert) {
