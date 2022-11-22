@@ -21,7 +21,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         tf.keyboardType = .numberPad
         return tf
     }()
-    let limitLength = 7
+    let limitLength = 10
     
     private lazy var nickNameStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [nickNameTitle,nickName])
@@ -97,7 +97,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         nickNameTitle.textColor = .gray
         nickNameTitle.text = "닉네임"
         nickNameTitle.font = .nexonGothicFont(ofSize: 13)
-        nickName.text = " "
+        nickName.text = ""
         nickName.font = .nexonGothicFont(ofSize: 17)
         
         view.addSubview(ageNameStackView)
