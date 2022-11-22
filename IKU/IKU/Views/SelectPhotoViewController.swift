@@ -168,6 +168,7 @@ final class SelectPhotoViewController: UIViewController {
                     
                     resultViewController.url = videoURL
                     resultViewController.prepareData(leftImage: savedImage, rightImage: UIImage(cgImage: cgImage))
+                    resultViewController.degrees = self?.degrees ?? [:]
                     
                     backItem.tintColor = .black
                     self?.navigationController?.pushViewController(resultViewController, animated: true)

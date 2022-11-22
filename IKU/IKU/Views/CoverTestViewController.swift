@@ -177,7 +177,7 @@ final class CoverTestViewController: UIViewController {
     
     private func updateUI(status: ARCapture.Status) {
         distanceLabel.attributedText = viewModel.distanceText
-        let isCompleteRecording = viewModel.timerCount >= 1 //12
+        let isCompleteRecording = viewModel.timerCount >= 12
         if status == .ready {
             guideLabel.text = viewModel.isRecordingEnabled ? "녹화버튼을 눌러주세요." : "카메라와 적정거리(30-35cm)인지 확인해주세요."
         } else {
