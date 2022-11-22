@@ -35,7 +35,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarVC.setViewControllers([testVC,historyVC,dictionaryVC], animated: false)
         tabBarVC.modalPresentationStyle = .fullScreen
         tabBarVC.tabBar.backgroundColor = .ikuBackground
-        tabBarVC.selectedIndex = 1
         
         //탭바 이미지 설정
         guard let items = tabBarVC.tabBar.items else { return }

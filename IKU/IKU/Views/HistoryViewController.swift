@@ -11,7 +11,7 @@ import AVFoundation
 final class HistoryViewController: UIViewController {
     // MARK: - Properties
     private var eyeSegmentedControl: UISegmentedControl = {
-        let view = UISegmentedControl(items: ["왼쪽 눈", "오른쪽 눈"])// ["Left", "Right"]
+        let view = UISegmentedControl(items: ["왼쪽 눈", "오른쪽 눈"])
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setTitleTextAttributes([.font: UIFont.nexonGothicFont(ofSize: 13)], for: .normal)
         view.setTitleTextAttributes([.font: UIFont.nexonGothicFont(ofSize: 13, weight: .bold)], for: .selected)
@@ -33,9 +33,10 @@ final class HistoryViewController: UIViewController {
         return label
     }()
     
-    private var ikuCalendarView: IKUCalendarView = {
+    lazy private var ikuCalendarView: IKUCalendarView = {
         let view = IKUCalendarView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(view)
         return view
     }()
     
@@ -47,22 +48,6 @@ final class HistoryViewController: UIViewController {
         return view
     }()
     
-    lazy private var testButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = .black
-        button.backgroundColor = .ikuLightGray
-        button.setTitle("검사하기", for: .normal)
-        button.titleLabel?.font = .nexonGothicFont(ofSize: 20, weight: .bold)
-        button.addTarget(self, action: #selector(touchTestButton(_:)), for: .touchUpInside)
-        
-        button.layer.cornerRadius = 10
-        button.clipsToBounds = true
-        
-//        self.view.addSubview(button)
-        return button
-    }()
-    
     // MARK: - Methods
     private func configureNavigationBar() {
         
@@ -70,9 +55,8 @@ final class HistoryViewController: UIViewController {
     
     private func setupLayoutConstraint() {
         view.addSubview(todayStatusLabel)
-        view.addSubview(ikuCalendarView)
         view.addSubview(ikuChartView)
-        view.addSubview(eyeSegmentedControl)
+        ikuChartView.addSubview(eyeSegmentedControl)
         
         NSLayoutConstraint.activate([
             todayStatusLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 11),

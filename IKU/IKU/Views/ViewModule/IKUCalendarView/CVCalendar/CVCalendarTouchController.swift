@@ -58,7 +58,6 @@ extension CVCalendarTouchController {
 private extension CVCalendarTouchController {
     func receiveTouchOnDayView(_ dayView: CVCalendarDayView,
                                withSelectionType selectionType: CVSelectionType) {
-        print(#function)
         if let calendarView = dayView.weekView.monthView.calendarView {
             let calendar = calendarView.delegate?.calendar?() ?? Calendar.current
             switch selectionType {

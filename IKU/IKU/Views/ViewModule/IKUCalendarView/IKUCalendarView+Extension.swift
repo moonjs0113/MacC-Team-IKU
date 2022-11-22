@@ -12,11 +12,7 @@ extension IKUCalendarView: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
     func firstWeekday() -> Weekday { return .sunday }
     
-    func calendar() -> Calendar? {
-        return .current
-//        let calendar: Calendar = .current//Calendar(identifier: .gregorian)
-//        return calendar
-    }
+    func calendar() -> Calendar? { return .current }
     
     func shouldShowWeekdaysOut() -> Bool { return true }
     
@@ -35,7 +31,7 @@ extension IKUCalendarView: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     func shouldAutoSelectDayOnMonthChange() -> Bool { return false }
     
     func didSelectDayView(_ dayView: CVCalendarDayView, animationDidFinish: Bool) {
-        // Code
+        print(#function)
     }
     
     func shouldShowCustomSingleSelection() -> Bool { return false }

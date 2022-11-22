@@ -12,9 +12,26 @@ import Photos
 
 class ResultViewController: UIViewController {
     // MARK: - Properties
-    var resultAngle: Int = 10
-    var numberEye: Int = 0
-    var angleNum: Int = 11
+    var resultAngle: Double {
+        var result = 0.0
+        if angle.0 > angle.1 {
+            result = (angle.0 - angle.1)
+        } else {
+            result = (angle.1 - angle.0)
+        }
+        return (result * 180 / .pi).roundSecondPoint
+    }
+    
+    var angle: (Double, Double) = (0.0, 0.0)
+    var selectedTime: (Double, Double) = (0.0, 0.0)
+    var numberEye: Eye = .left
+    var angleNum: Int {
+        if Int(resultAngle * 10) > 14 {
+            return 15
+        } else {
+            return Int(resultAngle * 10)
+        }
+    }
     var url: URL?
     var degrees: [Double: Double] = [:]
     var eyeImages: (leftImage: UIImage, rightImage: UIImage) = (UIImage(), UIImage())
@@ -47,13 +64,14 @@ class ResultViewController: UIViewController {
         for k in 0...14 {
             resultPicker.arrangedSubviews[k].alpha = 0
         }
+        
         resultPicker.arrangedSubviews[angleNum-1].alpha = 1
 
         for i in angleNum...14 {
             result.arrangedSubviews[i].alpha = 0.5
         }
     
-        titleLabel.text = "우리 아이의 \(numberEye == 0 ? "왼쪽" : "오른쪽") 눈 검사의 결과입니다."
+        titleLabel.text = "우리 아이의 \(numberEye == .left ? "왼쪽" : "오른쪽") 눈 검사의 결과입니다."
         
         angleResult.text = "\(resultAngle) 도"
 
@@ -122,8 +140,8 @@ class ResultViewController: UIViewController {
         PHPhotoManager.share.saveVideo(url: url) {
             DispatchQueue.main.async { [weak self] in
                 guard let tabBarController = self?.presentingViewController as? UITabBarController else { return }
-                tabBarController.selectedIndex = 1
                 self?.dismiss(animated: true)
+                tabBarController.selectedIndex = 1
             }
         } errorHandler: {
             DispatchQueue.main.async { [weak self] in
