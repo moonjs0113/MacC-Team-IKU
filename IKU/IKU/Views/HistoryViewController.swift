@@ -49,8 +49,8 @@ final class HistoryViewController: UIViewController {
     }()
     
     // MARK: - Methods
-    private func configureNavigationBar() {
-        
+    private func setupCalendarView() {
+        ikuCalendarView.didSelectDayView = goToResultView
     }
     
     private func setupLayoutConstraint() {
@@ -77,6 +77,10 @@ final class HistoryViewController: UIViewController {
             eyeSegmentedControl.widthAnchor.constraint(equalTo: ikuChartView.widthAnchor, multiplier: 0.5),
             eyeSegmentedControl.heightAnchor.constraint(equalTo: ikuChartView.heightAnchor, multiplier: 0.2),
         ])
+    }
+    
+    private func goToResultView() {
+        // TODO: - 결과뷰 Present
     }
     
     private func goToCoverTestView() {
@@ -108,7 +112,7 @@ final class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ikuBackground
-        configureNavigationBar()
+        setupCalendarView()
         setupLayoutConstraint()
     }
     

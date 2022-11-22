@@ -23,6 +23,8 @@ final class IKUCalendarView: UIView {
         let max = currentYear + 50
         return Array(min...max)
     }
+    
+    var didSelectDayView: (() -> Void)?
 
     // UI Properties
     lazy private var calendarHeaderView: UIView = {

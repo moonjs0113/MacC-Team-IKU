@@ -23,14 +23,11 @@ class ResultViewController: UIViewController {
     }
     
     var angle: (Double, Double) = (0.0, 0.0)
-    var selectedTime: (Double, Double) = (0.0, 0.0)
+    var selectedTime: (uncover: Double, cover: Double) = (0.0, 0.0)
     var numberEye: Eye = .left
     var angleNum: Int {
-        if Int(resultAngle * 10) > 14 {
-            return 15
-        } else {
-            return Int(resultAngle * 10)
-        }
+        //TODO: - 계산된 resultAngle로 위험도를 어떻게 결정할 것인지 논의 필요
+        return 10
     }
     var url: URL?
     var degrees: [Double: Double] = [:]
@@ -65,7 +62,7 @@ class ResultViewController: UIViewController {
             resultPicker.arrangedSubviews[k].alpha = 0
         }
         
-        resultPicker.arrangedSubviews[angleNum-1].alpha = 1
+        resultPicker.arrangedSubviews[angleNum].alpha = 1
 
         for i in angleNum...14 {
             result.arrangedSubviews[i].alpha = 0.5
@@ -136,19 +133,17 @@ class ResultViewController: UIViewController {
     }
     
     @IBAction func storageResult(_ sender: Any) {
-        guard let url else { return }
-        PHPhotoManager.share.saveVideo(url: url) {
-            DispatchQueue.main.async { [weak self] in
-                guard let tabBarController = self?.presentingViewController as? UITabBarController else { return }
-                self?.dismiss(animated: true)
-                tabBarController.selectedIndex = 1
-            }
-        } errorHandler: {
-            DispatchQueue.main.async { [weak self] in
-                self?.showAlertPermissionSetting(title: "Require Library Permission",
-                                                 message: "동영상 저장을 위해 사진첩 권한이 필요합니다.\n설정으로 이동하시겠습니까?")
-            }
+        defer {
+            dismiss(animated: true)
+            (presentingViewController as? UITabBarController)?.selectedIndex = 1
         }
+        guard let persistenceManager = try? PersistenceManager() else { return }
+        guard let url else { return }
+        try? persistenceManager.save(videoURL: url,
+                                     withARKitResult: degrees,
+                                     isLeftEye: (numberEye == .left),
+                                     uncoveredPhotoTime: selectedTime.uncover,
+                                     coveredPhotoTime: selectedTime.cover)
     }
     
     // MARK: - Delegates And DataSources

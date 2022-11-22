@@ -29,7 +29,7 @@ enum TestGuide: Equatable {
         case .isReady, .incorrectDistance, .testComplete:
             return self.voiceText
         case .uncover, .coverTo(_):
-            return self.voiceText + "3초"
+            return self.voiceText + " 3초"
         }
     }
 }

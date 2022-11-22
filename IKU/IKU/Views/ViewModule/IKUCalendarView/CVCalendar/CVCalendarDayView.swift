@@ -81,6 +81,12 @@ public final class CVCalendarDayView: UIView {
         self.backgroundColor = .white
         date = dateWithWeekView(weekView, andWeekIndex: weekdayIndex)
         
+        if let persistenceManager = try? PersistenceManager(),
+           let resultDatas = try? persistenceManager.fetchVideo(.at(day: date.getDate())) {
+            isTested = !resultDatas.isEmpty
+        }
+    
+        
         interactionSetup()
         if !isOut {
             labelSetup()
