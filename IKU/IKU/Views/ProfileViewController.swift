@@ -57,13 +57,6 @@ final class ProfileViewController: UIViewController {
         return button
     }()
     
-    //엔터 누르면 일단 키보드 내림
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
