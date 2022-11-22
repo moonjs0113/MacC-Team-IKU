@@ -21,6 +21,9 @@
 		A89F2307292BB3A6000B3D63 /* VideoURLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F2306292BB3A6000B3D63 /* VideoURLService.swift */; };
 		A89F2309292BB3B0000B3D63 /* VideoURLServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F2308292BB3B0000B3D63 /* VideoURLServiceTest.swift */; };
 		A89F230A292BB3B5000B3D63 /* VideoURLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F2306292BB3A6000B3D63 /* VideoURLService.swift */; };
+		A89F230C292BB648000B3D63 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F230B292BB648000B3D63 /* PersistenceManager.swift */; };
+		A89F230E292BB64D000B3D63 /* PersistenceManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F230D292BB64D000B3D63 /* PersistenceManagerTest.swift */; };
+		A89F230F292BB650000B3D63 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F230B292BB648000B3D63 /* PersistenceManager.swift */; };
 		A8AA21292922131D00EFBE27 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA21282922131D00EFBE27 /* GradientView.swift */; };
 		A8B2A287291C8B2F000F5624 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A286291C8B2F000F5624 /* AppDelegate.swift */; };
 		A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A288291C8B2F000F5624 /* SceneDelegate.swift */; };
@@ -120,6 +123,8 @@
 		A89F22F9292B7079000B3D63 /* XCTestCase+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extension.swift"; sourceTree = "<group>"; };
 		A89F2306292BB3A6000B3D63 /* VideoURLService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoURLService.swift; sourceTree = "<group>"; };
 		A89F2308292BB3B0000B3D63 /* VideoURLServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoURLServiceTest.swift; sourceTree = "<group>"; };
+		A89F230B292BB648000B3D63 /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		A89F230D292BB64D000B3D63 /* PersistenceManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManagerTest.swift; sourceTree = "<group>"; };
 		A8AA21282922131D00EFBE27 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A8B2A283291C8B2F000F5624 /* IKU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IKU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B2A286291C8B2F000F5624 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -328,6 +333,7 @@
 		A8B2A2A4291C8DFD000F5624 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				A89F230B292BB648000B3D63 /* PersistenceManager.swift */,
 				A8FA007C292B45D00091EDC2 /* JSONService.swift */,
 				A8B5349C2926752200237C30 /* SQLiteService.swift */,
 				A89F2306292BB3A6000B3D63 /* VideoURLService.swift */,
@@ -351,6 +357,7 @@
 		A8B534A32926755900237C30 /* PersistenceTest */ = {
 			isa = PBXGroup;
 			children = (
+				A89F230D292BB64D000B3D63 /* PersistenceManagerTest.swift */,
 				A8B534A42926755900237C30 /* SQLiteServiceTest.swift */,
 				A8FA007E292B45E00091EDC2 /* JSONServiceTest.swift */,
 				A89F2308292BB3B0000B3D63 /* VideoURLServiceTest.swift */,
@@ -593,6 +600,7 @@
 				C7422514291F304E00DB6D80 /* CVMonth.swift in Sources */,
 				C74491D9291D54DC00166197 /* CVCalendarWeekContentViewController.swift in Sources */,
 				C74491DC291D54DC00166197 /* CVAuxiliaryView.swift in Sources */,
+				A89F230C292BB648000B3D63 /* PersistenceManager.swift in Sources */,
 				C72601E529278642009AB7D1 /* UIView+Extension.swift in Sources */,
 				A8B2A2A8291C8E3B000F5624 /* ManagerPlaceholder.swift in Sources */,
 				C74491E2291D54DC00166197 /* CVCalendarViewPresentationMode.swift in Sources */,
@@ -621,6 +629,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8FA007F292B45E00091EDC2 /* JSONServiceTest.swift in Sources */,
+				A89F230F292BB650000B3D63 /* PersistenceManager.swift in Sources */,
+				A89F230E292BB64D000B3D63 /* PersistenceManagerTest.swift in Sources */,
 				A89F2309292BB3B0000B3D63 /* VideoURLServiceTest.swift in Sources */,
 				A8B534A52926755900237C30 /* SQLiteServiceTest.swift in Sources */,
 				A89F230A292BB3B5000B3D63 /* VideoURLService.swift in Sources */,
