@@ -4,7 +4,7 @@
 //
 //  Created by KimJS on 2022/11/15.
 //
-
+import UIKit
 import SwiftUI
 
 // MARK: - Extensions
@@ -46,6 +46,13 @@ struct StoryView: View {
                     // TODO: 프로필 로고로 대체
                     Image(systemName: "person.circle")
                 }
+//                NavigationLink(
+//                    destination: ProfileViewController(),
+//                    label: {
+//                        Text("응애1")
+//                            .foregroundColor(customBlue)
+//                            .font(Font(UIFont.nexonGothicFont(ofSize: 13, weight: .bold)))
+//                    })
                 .padding()
                 
                 Spacer()
