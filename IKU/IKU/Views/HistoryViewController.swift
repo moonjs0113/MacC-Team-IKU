@@ -49,8 +49,15 @@ final class HistoryViewController: UIViewController {
     }()
     
     // MARK: - Methods
+    private func setupNavigationController() {
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
+    }
+    
     private func setupCalendarView() {
         ikuCalendarView.didSelectDayView = goToResultView
+        ikuCalendarView.goToHistoryListView = goToHistoryListView
     }
     
     private func setupLayoutConstraint() {
@@ -79,8 +86,21 @@ final class HistoryViewController: UIViewController {
         ])
     }
     
-    private func goToResultView() {
+    private func fetchUI() {
+        if let persistenceManager = try? PersistenceManager(),
+           let resultDatas = try? persistenceManager.fetchVideo(.at(day: Date.now)) {
+            todayStatusLabel.text = resultDatas.isEmpty ? "Please start today’s starabismus test!" : "Lisa’s strabismus test completed!"
+        }
+    }
+    
+    private func goToResultView(datas: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)]) {
         // TODO: - 결과뷰 Present
+        guard let resultViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultViewController") as? ResultViewController else {
+            return
+        }
+        resultViewController.prepareDatas(datas: datas)
+        resultViewController.root = .history
+        navigationController?.pushViewController(resultViewController, animated: true)
     }
     
     private func goToCoverTestView() {
@@ -91,6 +111,11 @@ final class HistoryViewController: UIViewController {
         navigationController.modalPresentationStyle = .fullScreen
         navigationController.pushViewController(coverTestViewController, animated: true)
         self.present(navigationController, animated: true)
+    }
+    
+    private func goToHistoryListView() {
+        let historyListViewController = HistoryListViewController()
+        navigationController?.pushViewController(historyListViewController, animated: true)
     }
     
     // MARK: - Objc-C Methods
@@ -112,8 +137,16 @@ final class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ikuBackground
+        setupNavigationController()
         setupCalendarView()
         setupLayoutConstraint()
+        fetchUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchUI()
+//        ikuCalendarView.commitCalendarViewUpdate()
     }
     
     override func viewDidLayoutSubviews() {

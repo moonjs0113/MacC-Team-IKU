@@ -22,9 +22,9 @@ class CoverTestViewModel: NSObject {
     }
     
     var distanceText: NSMutableAttributedString {
-        let string = "거리: \(distance)cm"
+        let string = "거리: \(distance)inch"
         let attributedStr = NSMutableAttributedString(string: string)
-        attributedStr.addAttribute(.foregroundColor, value: isRecordingEnabled ? UIColor.ikuYellow : .ikuOrange , range: (string as NSString).range(of: "\(distance)cm"))
+        attributedStr.addAttribute(.foregroundColor, value: isRecordingEnabled ? UIColor.ikuYellow : .ikuOrange , range: (string as NSString).range(of: "\(distance)inch"))
         return attributedStr
     }
     
@@ -34,7 +34,7 @@ class CoverTestViewModel: NSObject {
     
     // Recording
     var isRecordingEnabled: Bool {
-        (30 <= self.distance && 35 >= self.distance)
+        (12 <= self.distance && 14 >= self.distance)
     }
     
     var recordButtonLayoutConstraint: NSLayoutConstraint = .init()
@@ -75,7 +75,7 @@ class CoverTestViewModel: NSObject {
         let dy = end.y - start.y
         let dz = end.z - start.z
 
-        distance = Int(round((sqrt(pow(dx, 2) + pow(dy, 2) + pow(dz, 2))) * 100))
+        distance = Int(round((sqrt(pow(dx, 2) + pow(dy, 2) + pow(dz, 2))) * 100) / 2.54)
     }
     
     // Recording

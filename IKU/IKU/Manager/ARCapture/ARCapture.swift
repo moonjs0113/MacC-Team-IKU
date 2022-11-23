@@ -314,14 +314,15 @@ open class ARCapture {
     /// Try enable audio recording
     /// - Parameter callback: the callback invoken when done
     private func tryEnableAudio(callback: @escaping ()->()) {
-        switch audioPermissions {
-        case .enabled, .disabled: callback()
-        case .unknown:
-            AVAudioSession.sharedInstance().requestRecordPermission({ [weak self] status in
-                self?.audioPermissions = status ? .enabled : .disabled
-                callback()
-            })
-        }
+//        switch audioPermissions {
+//        case .enabled, .disabled: callback()
+//        case .unknown:
+//            AVAudioSession.sharedInstance().requestRecordPermission({ [weak self] status in
+//                self?.audioPermissions = status ? .enabled : .disabled
+//                callback()
+//            })
+//        }
+        callback()
     }
 }
 
@@ -394,7 +395,7 @@ extension ARCapture {
             guard let scene = UIApplication.shared.connectedScenes.first,
                   let windowSceneDelegate = scene.delegate as? UIWindowSceneDelegate,
                   let window = windowSceneDelegate.window else {
-                return  UIApplication.shared.windows.first
+                return UIApplication.shared.windows.first
             }
             return window
         }

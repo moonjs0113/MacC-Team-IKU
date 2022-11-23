@@ -35,10 +35,10 @@ extension IKUCalendarView: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
               let resultDatas = try? persistenceManager.fetchVideo(.at(day: dayView.date.getDate())) else {
             return
         }
-        if !resultDatas.isEmpty {
-            print(resultDatas)
+        if !resultDatas.isEmpty  {
+            print(resultDatas.first)
             guard let didSelectDayView else { return }
-            didSelectDayView()
+            didSelectDayView(resultDatas)
         }
     }
     
