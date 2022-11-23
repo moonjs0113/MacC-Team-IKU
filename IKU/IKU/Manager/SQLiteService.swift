@@ -63,6 +63,17 @@ final class SQLiteService {
             }
         }
     }
+    enum DeletionQuery {
+        case videoData(withLocalIdentifier: String)
+        
+        var statement: String {
+            switch self {
+            case .videoData(let localIdentifier) : return """
+            DELETE FROM VIDEO WHERE LOCALIDENTIFIER = '\(localIdentifier)';
+            """
+            }
+        }
+    }
 
     static let path = "IKU.sqlite"
     private var db: OpaquePointer? = nil
@@ -115,6 +126,11 @@ final class SQLiteService {
         defer { sqlite3_finalize(selectStatement) }
         return try selectVideoData(selectStatement: selectStatement)
     }
+    func delete(byQuery query: DeletionQuery) throws {
+        let deleteStatement = try prepare(forQuery: query.statement)
+        defer { sqlite3_finalize(deleteStatement) }
+        return try deleteVideoData(deleteStatement: deleteStatement)
+    }
     
     private func insertVideoData(insertStatement: OpaquePointer?, measurementResult: MeasurementResult) throws {
         let localIdentifier = NSString(string: measurementResult.localIdentifier)
@@ -154,6 +170,12 @@ final class SQLiteService {
             result.append(measurementResult)
         }
         return result
+    }
+    
+    private func deleteVideoData(deleteStatement: OpaquePointer?) throws {
+        if sqlite3_step(deleteStatement) != SQLITE_DONE {
+            throw SQLiteError.step(message: "Could not delete row")
+        }
     }
 }
 
