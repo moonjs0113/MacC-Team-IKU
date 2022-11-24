@@ -8,13 +8,6 @@
 import SwiftUI
 import AVFoundation
 
-// MARK: - Extensions
-extension Color {
-    static let ikuBlue: Color = Color("ikuBlue")
-    static let ikuBackgroundBlue: Color = Color( "ikuBackgroundBlue")
-    static let ikuEyeSelectBackgroundBlue: Color = Color("ikuEyeSelectBackgroundBlue")
-}
-
 struct StoryView: View {
     
     // MARK: - Properties
