@@ -18,13 +18,7 @@ class ResultViewController: UIViewController {
     }
     
     var resultAngle: Double {
-        var result = 0.0
-        if angle.0 > angle.1 {
-            result = (angle.0 - angle.1)
-        } else {
-            result = (angle.1 - angle.0)
-        }
-        return (result * 180 / .pi).roundSecondPoint
+        return (abs(angle.0 - angle.1) * 180 / .pi).roundSecondPoint
     }
     
     var angle: (Double, Double) = (0.0, 0.0)
@@ -41,8 +35,10 @@ class ResultViewController: UIViewController {
     var dbData: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] = []
     
     // MARK: - Methods
-    func prepareData(data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)]) {
+    func prepareData(data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)], showedEye: Eye
+                      = .left) {
         self.dbData = data
+        self.numberEye = showedEye
     }
     
     func setupNavigationBar() {
@@ -162,7 +158,7 @@ class ResultViewController: UIViewController {
         angle = (dbData.angles[dbData.measurementResult.timeOne] ?? 0.0,
                  dbData.angles[dbData.measurementResult.timeTwo] ?? 0.0)
         
-        numberEye = dbData.measurementResult.isLeftEye ? .left : .right
+//        numberEye = dbData.measurementResult.isLeftEye ? .left : .right
         
         saveButton.isHidden = true
         testAgainButton.isHidden = true
@@ -232,6 +228,7 @@ class ResultViewController: UIViewController {
     }
     
     @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        numberEye = (sender.selectedSegmentIndex == 0 ? .left : .right)
         fetchDBData(dbData: dbData[sender.selectedSegmentIndex])
         fetchUI()
     }
@@ -245,7 +242,7 @@ class ResultViewController: UIViewController {
         setupNavigationBar()
         setupUI()
         if root == .history {
-            if let dbData = dbData.first {
+            if let dbData = (numberEye == .left ? dbData.first : dbData.last) {
                 fetchDBData(dbData: dbData)
             }
         }

@@ -27,15 +27,25 @@ extension UIViewController {
         present(alert, animated: true)
     }
     
-    func showAlertController(title: String, message: String, style: UIAlertController.Style = .alert, completeHandler: @escaping () -> Void) {
+    func showAlertController(
+        title: String,
+        message: String,
+        style: UIAlertController.Style = .alert,
+        isAddCancelAction: Bool = true,
+        completeHandler: @escaping () -> Void
+    ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
-        let ok = UIAlertAction(title: "예", style: .default) { _ in
+        let ok = UIAlertAction(title: isAddCancelAction ? "예" : "확인" , style: .default) { _ in
             completeHandler()
             return
         }
-        let cancel = UIAlertAction(title: "아니오", style: .cancel)
         alert.addAction(ok)
-        alert.addAction(cancel)
+        
+        if isAddCancelAction {
+            let cancel = UIAlertAction(title: "아니오", style: .cancel)
+            alert.addAction(cancel)
+        }
+        
         present(alert, animated: true)
     }
     
