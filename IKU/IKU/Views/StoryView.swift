@@ -12,7 +12,7 @@ import AVFoundation
 extension Color {
     static let ikuBlue: Color = Color("ikuBlue")
     static let ikuBackgroundBlue: Color = Color( "ikuBackgroundBlue")
-    static let ikuEyeSelectBackground: Color = Color("ikuEyeSelectBackground")
+    static let ikuEyeSelectBackgroundBlue: Color = Color("ikuEyeSelectBackgroundBlue")
 }
 
 struct StoryView: View {

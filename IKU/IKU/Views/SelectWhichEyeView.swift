@@ -70,7 +70,7 @@ public struct CustomPicker<SelectionValue, Content> : View where SelectionValue 
             content
         }
         .clipShape(RoundedRectangle(cornerRadius: 8))
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color.ikuEyeSelectBackground))
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color.ikuEyeSelectBackgroundBlue))
         .environment(\.selectedSegmentTag, $selection)
     }
 }
