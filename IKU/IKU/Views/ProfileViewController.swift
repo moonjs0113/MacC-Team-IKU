@@ -66,7 +66,7 @@ class ProfileViewController: UIViewController {
         mainLabel.text = "우리아기눈은건강함 어린이의 프로필입니다."
         mainLabel.font = .nexonGothicFont(ofSize: 17)
         view.addSubview(mainLabel)
-        view.backgroundColor = .ikuBackground
+        view.backgroundColor = .ikuBackgroundBlue
         let image = UIImage(named: "coverEye")
         self.profileImage.image = image
         self.profileImage.contentMode = .scaleAspectFill

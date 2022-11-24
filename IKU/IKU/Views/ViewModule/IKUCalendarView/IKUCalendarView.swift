@@ -160,7 +160,7 @@ final class IKUCalendarView: UIView {
     
     // MARK: - Methods
     private func setupView() {
-        backgroundColor = .ikuBackground
+        backgroundColor = .ikuBackgroundBlue
     }
     
     private func setupLayoutConstraint() {

@@ -11,7 +11,7 @@ import AVFoundation
 // MARK: - Extensions
 extension Color {
     static let ikuBlue: Color = Color("ikuBlue")
-    static let ikuBackground: Color = Color( "ikuBackground")
+    static let ikuBackgroundBlue: Color = Color( "ikuBackgroundBlue")
     static let ikuEyeSelectBackground: Color = Color("ikuEyeSelectBackground")
 }
 
@@ -31,7 +31,7 @@ struct StoryView: View {
     
     var body: some View {
         ZStack {
-            Color.ikuBackground
+            Color.ikuBackgroundBlue
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
