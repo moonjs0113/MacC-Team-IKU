@@ -47,18 +47,10 @@ final class PersistenceManager {
         isLeftEye: Bool,
         uncoveredPhotoTime: Double,
         coveredPhotoTime: Double,
-        creationDate: Double = Date.now.timeIntervalSince1970,
+        creationDate: Date = Date.now,
         isBookMarked: Bool = false
     ) throws {
         let newFileName = UUID().uuidString
-        let measurementResult = MeasurementResult(
-            localIdentifier: newFileName,
-            isLeftEye: isLeftEye,
-            timeOne: uncoveredPhotoTime,
-            timeTwo: coveredPhotoTime,
-            creationDate: creationDate,
-            isBookMarked: isBookMarked
-        )
         try jsonService.save(
             toFileName: newFileName,
             with: dictionay
@@ -67,7 +59,16 @@ final class PersistenceManager {
             videoURL,
             withChangingNameTo: newFileName
         )
-        try sqliteService.insert(byQuery: .videoData(measurementResult: measurementResult))
+        try sqliteService.insert(
+            byQuery: .videoData(
+                localIdentifier: newFileName,
+                eye: isLeftEye ? 1 : 0,
+                timeOne: uncoveredPhotoTime,
+                timeTwo: coveredPhotoTime,
+                creationTimeinterval: creationDate.timeIntervalSince1970,
+                bookmark: isBookMarked ? 1 : 0
+            )
+        )
     }
     
     func fetchVideo(_ day: Term) throws -> [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] {

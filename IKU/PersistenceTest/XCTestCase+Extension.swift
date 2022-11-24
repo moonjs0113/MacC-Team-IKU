@@ -27,7 +27,7 @@ extension XCTestCase {
         return try FileManager.default.contentsOfDirectory(atPath: dbURL.path())
     }
     
-    func testFileURLWithCreatingFile() throws -> URL {
+    func exampleFileURLWithCreatingFile() throws -> URL {
         let testData = "example".data(using: .utf8)
         let testFileURL = try documentFolderURL().appendingPathComponent("example.mp4")
         FileManager.default.createFile(atPath: testFileURL.path(), contents: testData)

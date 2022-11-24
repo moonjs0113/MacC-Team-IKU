@@ -12,6 +12,6 @@ struct MeasurementResult: Codable {
     let isLeftEye: Bool
     let timeOne: Double
     let timeTwo: Double
-    let creationDate: Double
+    let creationDate: Date
     let isBookMarked: Bool
 }
