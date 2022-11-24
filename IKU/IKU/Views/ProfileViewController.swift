@@ -4,7 +4,7 @@
 //
 //  Created by kwon ji won on 2022/11/19.
 //
-
+import SwiftUI
 import UIKit
 final class ProfileViewController: UIViewController, UITextFieldDelegate {
     
@@ -22,6 +22,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         return tf
     }()
     let limitLength = 10
+
     
     private lazy var nickNameStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [nickNameTitle,nickName])
@@ -173,3 +174,11 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+
+struct ProfileView: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> ProfileViewController {
+        ProfileViewController()
+    }
+
+    func updateUIViewController(_ uiViewController: ProfileViewController, context: Context) {}
+}
