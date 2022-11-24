@@ -79,6 +79,12 @@ final class PersistenceManager {
         }
     }
     
+    func deleteVideo(withLocalIdentifier localIdentifier: String) throws {
+        try jsonService.delete(ofFileName: localIdentifier)
+        try videoURLService.deleteVideoURL(named: localIdentifier)
+        try sqliteService.delete(byQuery: .videoData(withLocalIdentifier: localIdentifier))
+    }
+    
     private func fetchVideo(from measurementResults: [MeasurementResult]) throws -> [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] {
         return try measurementResults.map { measurementResult in
             let fileName = measurementResult.localIdentifier

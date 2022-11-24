@@ -39,4 +39,8 @@ final class VideoURLService {
             throw URLError.noFile
         }
     }
+    
+    func deleteVideoURL(named name: String) throws {
+        try FileManager.default.removeItem(at: url.appendingPathComponent(name + pathExtension))
+    }
 }

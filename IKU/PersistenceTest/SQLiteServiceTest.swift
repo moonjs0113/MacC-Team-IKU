@@ -71,6 +71,46 @@ final class SQLiteServiceTest: XCTestCase {
         XCTAssertEqual(array.count, 10)
     }
     
+    func test_delete_data() throws {
+        let localIdentifier = "E3C929C3-3B49-480E-A47B-A8479F40A4C2"
+        let measurementResult = MeasurementResult(
+            localIdentifier: localIdentifier,
+            isLeftEye: true,
+            timeOne: 0,
+            timeTwo: 1.2,
+            creationDate: "2022-11-22 00:12:34".toDate()!.timeIntervalSince1970,
+            isBookMarked: false
+        )
+        try sqliteService.createTableIfNotExist(byQuery: .videoTable)
+        try sqliteService.insert(byQuery: .videoData(measurementResult: measurementResult))
+        
+        XCTAssertNoThrow(
+            try sqliteService.delete(byQuery: .videoData(withLocalIdentifier: localIdentifier))
+        )
+    }
+    
+    func test_delete_data_and_check_if_it_exists() throws {
+        let localIdentifier = "E3C929C3-3B49-480E-A47B-A8479F40A4C2"
+        let measurementResult = MeasurementResult(
+            localIdentifier: localIdentifier,
+            isLeftEye: true,
+            timeOne: 0,
+            timeTwo: 1.2,
+            creationDate: "2022-11-22 00:12:34".toDate()!.timeIntervalSince1970,
+            isBookMarked: false
+        )
+        try sqliteService.createTableIfNotExist(byQuery: .videoTable)
+        try sqliteService.insert(byQuery: .videoData(measurementResult: measurementResult))
+        
+        let resultsBeforeDeletion = try sqliteService.select(byQuery: .videoForSpecipic(day: "2022-11-22 00:12:34".toDate()!))
+        XCTAssertEqual(resultsBeforeDeletion.count, 1)
+        
+        try sqliteService.delete(byQuery: .videoData(withLocalIdentifier: localIdentifier))
+        let resultsAfterDeletion = try sqliteService.select(byQuery: .videoForSpecipic(day: "2022-11-22 00:12:34".toDate()!))
+        XCTAssertEqual(resultsAfterDeletion.count, 0)
+    }
+    
+    
     private func createDateString(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int) -> String {
         return "\(year)-\(month)-\(day) \(hour):\(minute):\(second)"
     }
