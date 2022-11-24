@@ -6,7 +6,7 @@
 //
 
 import UIKit
-final class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController, UITextFieldDelegate {
     
     let mainLabel = UILabel()
     let profileImage = UIImageView()
@@ -21,6 +21,7 @@ final class ProfileViewController: UIViewController {
         tf.keyboardType = .numberPad
         return tf
     }()
+    let limitLength = 10
     
     private lazy var nickNameStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [nickNameTitle,nickName])
@@ -61,7 +62,7 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setup()
         makeAutoLayout()
-        
+        self.nickName.delegate = self
     }
     
     //화면 터치시 키보드가 내려간다.
@@ -69,6 +70,13 @@ final class ProfileViewController: UIViewController {
           self.view.endEditing(true)
         
     }
+    
+    //글자수 제한 받기
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            guard let text = nickName.text else { return true }
+            let newLength = text.count - range.length 
+            return newLength <= limitLength
+        }
     
     func setup() {
         mainLabel.text = "우리아기눈은건강함 어린이의 프로필입니다."
@@ -89,7 +97,7 @@ final class ProfileViewController: UIViewController {
         nickNameTitle.textColor = .gray
         nickNameTitle.text = "닉네임"
         nickNameTitle.font = .nexonGothicFont(ofSize: 13)
-        nickName.text = " "
+        nickName.text = ""
         nickName.font = .nexonGothicFont(ofSize: 17)
         
         view.addSubview(ageNameStackView)
@@ -97,8 +105,6 @@ final class ProfileViewController: UIViewController {
         ageNameTitle.text = "연령"
         ageNameTitle.textColor = .gray
         ageNameTitle.font = .nexonGothicFont(ofSize: 13)
-//        age.text = ""
-//        age.font = .nexonGothicFont(ofSize: 17)
         
         view.addSubview(hospitalStackView)
         hospitalStackView.backgroundColor = .white
