@@ -79,6 +79,16 @@ final class HistoryViewController: UIViewController {
         ])
     }
     
+    private func fetchData() {
+        do {
+            let persistenceManager = try PersistenceManager()
+            ikuCalendarView.calendarView.data = try persistenceManager.fetchVideo(.all)
+        } catch {
+            // TODO: Merge 후 수정
+            self.showAlertController(title: "데이터 불러오기 실패", message: "검사 결과를 불러오는데 실패하였습니다.", completeHandler: {})
+        }
+    }
+    
     private func goToResultView() {
         // TODO: - 결과뷰 Present
     }
@@ -116,8 +126,18 @@ final class HistoryViewController: UIViewController {
         setupLayoutConstraint()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchData()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        ikuCalendarView.commitCalendarViewUpdate()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         ikuCalendarView.commitCalendarViewUpdate()
     }
 }

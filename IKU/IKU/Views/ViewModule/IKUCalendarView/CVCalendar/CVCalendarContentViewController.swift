@@ -14,8 +14,14 @@ open class CVCalendarContentViewController: UIViewController {
     public let previous = "Previous"
     public let presented = "Presented"
     public let following = "Following"
+    
 
     // MARK: - Public Properties
+    var data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] = []
+    func loadData(data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)]) {
+        self.data = data
+    }
+    
     public unowned let calendarView: CalendarView
     public let scrollView: UIScrollView
 

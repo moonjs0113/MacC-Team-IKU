@@ -32,11 +32,10 @@ extension IKUCalendarView: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
     func didSelectDayView(_ dayView: CVCalendarDayView, animationDidFinish: Bool) {
         guard let persistenceManager = try? PersistenceManager(),
-              let resultDatas = try? persistenceManager.fetchVideo(.at(day: dayView.date.getDate())) else {
+              let resultData = try? persistenceManager.fetchVideo(.at(day: dayView.date.getDate())) else {
             return
         }
-        if !resultDatas.isEmpty {
-            print(resultDatas)
+        if !resultData.isEmpty {
             guard let didSelectDayView else { return }
             didSelectDayView()
         }

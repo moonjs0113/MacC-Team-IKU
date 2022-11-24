@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 public final class CVCalendarDayView: UIView {
     // MARK: - Public properties
@@ -15,7 +16,7 @@ public final class CVCalendarDayView: UIView {
     
     public var date: CVDate!
     public var dayLabel: UILabel!
-    public var dayIcon: UIImageView!
+    public var dayIcon: UIImageView = UIImageView()
     public var toDayCircleView: UIView!
     
     public var selectionView: CVAuxiliaryView?
@@ -25,7 +26,8 @@ public final class CVCalendarDayView: UIView {
     public var isOut = false
     public var isCurrentDay = false
     public var isDisabled: Bool { return !self.isUserInteractionEnabled }
-    public var isTested = false
+
+    var anyCancellable = Set<AnyCancellable>()
     
     public weak var monthView: CVCalendarMonthView! {
         var monthView: MonthView!
@@ -81,19 +83,14 @@ public final class CVCalendarDayView: UIView {
         self.backgroundColor = .white
         date = dateWithWeekView(weekView, andWeekIndex: weekdayIndex)
         
-        if let persistenceManager = try? PersistenceManager(),
-           let resultDatas = try? persistenceManager.fetchVideo(.at(day: date.getDate())) {
-            isTested = !resultDatas.isEmpty
-        }
-    
         
         interactionSetup()
         if !isOut {
             labelSetup()
-            // 테스트 진행한 날짜 데이터 넘겨받는 로직 미구현
-            if isTested {
-                iconSetup()
-            }
+            iconSetup()
+//            if isTested {
+//
+//            }
         }
         setupDotMarker()
         topMarkerSetup()
@@ -106,6 +103,20 @@ public final class CVCalendarDayView: UIView {
         if !calendarView.shouldShowWeekdaysOut && isOut {
             isHidden = true
         }
+    }
+    
+    func bindCalendarData() {
+        calendarView.$data
+            .receive(on: DispatchQueue.main)
+            .map {
+                return !($0.map { result in
+                    let dataDate = Date(timeIntervalSince1970: .init(result.measurementResult.creationDate))
+                    return (Calendar.current.compare(dataDate, to: self.date.getDate(), toGranularity: .day) == .orderedSame)
+                }.contains(true))
+            }
+            .eraseToAnyPublisher()
+            .assign(to: \.isHidden, on: dayIcon)
+            .store(in: &anyCancellable)
     }
     
     public func dateWithWeekView(_ weekView: CVCalendarWeekView, andWeekIndex index: Int) -> CVDate {
@@ -269,6 +280,7 @@ extension CVCalendarDayView {
             dayIcon.heightAnchor.constraint(equalTo: dayIcon.widthAnchor),
             dayIcon.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 13/49),
         ])
+        bindCalendarData()
     }
     
     public func interactionSetup() {

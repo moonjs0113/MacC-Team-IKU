@@ -10,7 +10,7 @@ import UIKit
 
 public final class CVCalendarMonthContentViewController: CVCalendarContentViewController, CVCalendarContentPresentationCoordinator {
     fileprivate var monthViews: [Identifier : MonthView]
-
+    
     public override init(calendarView: CalendarView, frame: CGRect) {
         monthViews = [Identifier : MonthView]()
         super.init(calendarView: calendarView, frame: frame)
@@ -30,7 +30,7 @@ public final class CVCalendarMonthContentViewController: CVCalendarContentViewCo
     }
 
     // MARK: - Load & Reload
-
+    
     public func initialLoad(_ date: Foundation.Date) {
         insertMonthView(getPreviousMonth(date), withIdentifier: previous)
         insertMonthView(presentedMonthView, withIdentifier: presented)
