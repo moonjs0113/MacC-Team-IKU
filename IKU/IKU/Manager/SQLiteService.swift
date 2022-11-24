@@ -74,6 +74,21 @@ final class SQLiteService {
             }
         }
     }
+    enum UpdateQuery {
+        case videoBookmarkData(withLocalIdentifier: String, setTo: Int)
+        case videoTimeOneAndTimeTwoData(withLocalIdentifier: String, setTimeOneTo: Double, setTimeTwoTo: Double)
+        
+        var statement: String {
+            switch self {
+            case .videoBookmarkData(let localIdentifier, let bookmark) : return """
+            UPDATE VIDEO SET BOOKMARK = \(bookmark) WHERE LOCALIDENTIFIER = '\(localIdentifier)';
+            """
+            case .videoTimeOneAndTimeTwoData(let localIdentifier, let timeOne, let timeTwo): return """
+            UPDATE VIDEO SET TIME_ONE = \(timeOne), TIME_TWO = \(timeTwo) WHERE LOCALIDENTIFIER = '\(localIdentifier)'
+            """
+            }
+        }
+    }
 
     static let path = "IKU.sqlite"
     private var db: OpaquePointer? = nil
@@ -136,6 +151,11 @@ final class SQLiteService {
         defer { sqlite3_finalize(deleteStatement) }
         return try deleteVideoData(deleteStatement: deleteStatement)
     }
+    func update(byQuery query: UpdateQuery) throws {
+        let updateStatement = try prepare(forQuery: query.statement)
+        defer { sqlite3_finalize(updateStatement) }
+        return try updateVideoData(updateStatement: updateStatement)
+    }
     
     private func insertVideoData(insertStatement: OpaquePointer?, localIdentifier: String, eye: Int, timeOne: Double, timeTwo: Double, creationTimeinterval: Double, bookmark: Int) throws {
         sqlite3_bind_text(insertStatement, 1, NSString(string: localIdentifier).utf8String, -1, nil)
@@ -176,6 +196,12 @@ final class SQLiteService {
     private func deleteVideoData(deleteStatement: OpaquePointer?) throws {
         if sqlite3_step(deleteStatement) != SQLITE_DONE {
             throw SQLiteError.step(message: "Could not delete row")
+        }
+    }
+    
+    private func updateVideoData(updateStatement: OpaquePointer?) throws {
+        if sqlite3_step(updateStatement) != SQLITE_DONE {
+            throw SQLiteError.step(message: "Could not update row")
         }
     }
 }

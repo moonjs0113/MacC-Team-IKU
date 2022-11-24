@@ -86,6 +86,29 @@ final class PersistenceManager {
         try sqliteService.delete(byQuery: .videoData(withLocalIdentifier: localIdentifier))
     }
     
+    func updateVideo(withLocalIdentifier localIdentifier: String, bookmarked bookmark: Bool) throws {
+        try sqliteService.update(
+            byQuery: .videoBookmarkData(
+                withLocalIdentifier: localIdentifier,
+                setTo: bookmark ? 1 : 0
+            )
+        )
+    }
+    
+    func updateVideo(
+        withLocalIdentifier localIdentifier: String,
+        setUncoveredPhotoTimeTo uncoveredPhotoTime: Double,
+        setCoveredPhotoTimeTo coveredPhotoTime: Double
+    ) throws {
+        try sqliteService.update(
+            byQuery: .videoTimeOneAndTimeTwoData(
+                withLocalIdentifier: localIdentifier,
+                setTimeOneTo: uncoveredPhotoTime,
+                setTimeTwoTo: coveredPhotoTime
+            )
+        )
+    }
+    
     private func fetchVideo(from measurementResults: [MeasurementResult]) throws -> [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] {
         return try measurementResults.map { measurementResult in
             let fileName = measurementResult.localIdentifier

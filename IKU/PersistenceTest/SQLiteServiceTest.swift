@@ -114,6 +114,70 @@ final class SQLiteServiceTest: XCTestCase {
         XCTAssertEqual(resultsAfterDeletion.count, 0)
     }
     
+    func test_update_bookmark() throws {
+        let localIdentifier = "E3C929C3-3B49-480E-A47B-A8479F40A4C2"
+        let creationTime = "2022-11-22 00:12:34".toDate()!
+        try sqliteService.createTableIfNotExist(byQuery: .videoTable)
+        try sqliteService.insert(
+            byQuery: .videoData(
+                localIdentifier: localIdentifier,
+                eye: 1,
+                timeOne: 0,
+                timeTwo: 1.2,
+                creationTimeinterval: creationTime.timeIntervalSince1970,
+                bookmark: 0
+            )
+        )
+        guard let resultBeforeUpdate = try sqliteService.select(byQuery: .videoForSpecipic(day: creationTime)).first else {
+            XCTAssert(false)
+            return
+        }
+        XCTAssertFalse(resultBeforeUpdate.isBookMarked)
+        
+        try sqliteService.update(byQuery: .videoBookmarkData(withLocalIdentifier: localIdentifier, setTo: 1))
+        guard let resultBeforeUpdate = try sqliteService.select(byQuery: .videoForSpecipic(day: creationTime)).first else {
+            XCTAssert(false)
+            return
+        }
+        XCTAssertTrue(resultBeforeUpdate.isBookMarked)
+    }
+    
+    func test_update_time_one_and_time_two() throws {
+        let localIdentifier = "E3C929C3-3B49-480E-A47B-A8479F40A4C2"
+        let creationTime = "2022-11-22 00:12:34".toDate()!
+        try sqliteService.createTableIfNotExist(byQuery: .videoTable)
+        try sqliteService.insert(
+            byQuery: .videoData(
+                localIdentifier: localIdentifier,
+                eye: 1,
+                timeOne: 0,
+                timeTwo: 1.2,
+                creationTimeinterval: creationTime.timeIntervalSince1970,
+                bookmark: 0
+            )
+        )
+        guard let resultBeforeUpdate = try sqliteService.select(byQuery: .videoForSpecipic(day: creationTime)).first else {
+            XCTAssert(false)
+            return
+        }
+        XCTAssertEqual(resultBeforeUpdate.timeOne, 0)
+        XCTAssertEqual(resultBeforeUpdate.timeTwo, 1.2)
+        
+        try sqliteService.update(
+            byQuery: .videoTimeOneAndTimeTwoData(
+                withLocalIdentifier: localIdentifier,
+                setTimeOneTo: 11,
+                setTimeTwoTo: 2.2
+            )
+        )
+        guard let resultBeforeUpdate = try sqliteService.select(byQuery: .videoForSpecipic(day: creationTime)).first else {
+            XCTAssert(false)
+            return
+        }
+        XCTAssertEqual(resultBeforeUpdate.timeOne, 11)
+        XCTAssertEqual(resultBeforeUpdate.timeTwo, 2.2)
+    }
+    
     
     private func createDateString(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int) -> String {
         return "\(year)-\(month)-\(day) \(hour):\(minute):\(second)"
