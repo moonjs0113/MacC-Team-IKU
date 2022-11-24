@@ -6,18 +6,21 @@
 //
 
 import UIKit
-
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     
     let mainLabel = UILabel()
     let profileImage = UIImageView()
     let photoSelect = UIButton()
     let nickNameTitle = UILabel()
-    let nickName = UILabel()
+    let nickName = UITextField()
     let ageNameTitle = UILabel()
-    let age = UILabel()
     let hospitalTitle = UILabel()
-    let hospital = UILabel()
+    let hospital = UITextField()
+    private var age: UITextField = {
+        var tf = UITextField()
+        tf.keyboardType = .numberPad
+        return tf
+    }()
     
     private lazy var nickNameStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [nickNameTitle,nickName])
@@ -31,6 +34,7 @@ class ProfileViewController: UIViewController {
         stackView.axis = .vertical
         stackView.layer.cornerRadius = 10
         return stackView
+
     }()
     
     private lazy var hospitalStackView: UIStackView = {
@@ -53,12 +57,16 @@ class ProfileViewController: UIViewController {
         return button
     }()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         makeAutoLayout()
+        
+    }
+    
+    //화면 터치시 키보드가 내려간다.
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          self.view.endEditing(true)
         
     }
     
@@ -81,7 +89,7 @@ class ProfileViewController: UIViewController {
         nickNameTitle.textColor = .gray
         nickNameTitle.text = "닉네임"
         nickNameTitle.font = .nexonGothicFont(ofSize: 13)
-        nickName.text = "우리아기눈은건강함"
+        nickName.text = " "
         nickName.font = .nexonGothicFont(ofSize: 17)
         
         view.addSubview(ageNameStackView)
@@ -89,15 +97,15 @@ class ProfileViewController: UIViewController {
         ageNameTitle.text = "연령"
         ageNameTitle.textColor = .gray
         ageNameTitle.font = .nexonGothicFont(ofSize: 13)
-        age.text = "3세"
-        age.font = .nexonGothicFont(ofSize: 17)
+//        age.text = ""
+//        age.font = .nexonGothicFont(ofSize: 17)
         
         view.addSubview(hospitalStackView)
         hospitalStackView.backgroundColor = .white
         hospitalTitle.text = "병원즐겨찾기"
         hospitalTitle.textColor = .gray
         hospitalTitle.font = .nexonGothicFont(ofSize: 13)
-        hospital.text = "아산병원"
+        hospital.text = ""
         hospital.font = .nexonGothicFont(ofSize: 17)
         
         view.addSubview(button)
@@ -157,6 +165,5 @@ class ProfileViewController: UIViewController {
         button.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16).isActive = true
         button.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16).isActive = true
     }
-    
-    
 }
+
