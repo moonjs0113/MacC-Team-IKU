@@ -49,8 +49,8 @@ final class HistoryViewController: UIViewController {
     }()
     
     // MARK: - Methods
-    private func configureNavigationBar() {
-        
+    private func setupCalendarView() {
+        ikuCalendarView.didSelectDayView = goToResultView
     }
     
     private func setupLayoutConstraint() {
@@ -77,6 +77,20 @@ final class HistoryViewController: UIViewController {
             eyeSegmentedControl.widthAnchor.constraint(equalTo: ikuChartView.widthAnchor, multiplier: 0.5),
             eyeSegmentedControl.heightAnchor.constraint(equalTo: ikuChartView.heightAnchor, multiplier: 0.2),
         ])
+    }
+    
+    private func fetchData() {
+        do {
+            let persistenceManager = try PersistenceManager()
+            ikuCalendarView.calendarView.data = try persistenceManager.fetchVideo(.all)
+        } catch {
+            // TODO: Merge 후 수정
+            self.showAlertController(title: "데이터 불러오기 실패", message: "검사 결과를 불러오는데 실패하였습니다.", completeHandler: {})
+        }
+    }
+    
+    private func goToResultView() {
+        // TODO: - 결과뷰 Present
     }
     
     private func goToCoverTestView() {
@@ -108,12 +122,22 @@ final class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ikuBackground
-        configureNavigationBar()
+        setupCalendarView()
         setupLayoutConstraint()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchData()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        ikuCalendarView.commitCalendarViewUpdate()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         ikuCalendarView.commitCalendarViewUpdate()
     }
 }

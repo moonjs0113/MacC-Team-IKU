@@ -31,7 +31,14 @@ extension IKUCalendarView: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     func shouldAutoSelectDayOnMonthChange() -> Bool { return false }
     
     func didSelectDayView(_ dayView: CVCalendarDayView, animationDidFinish: Bool) {
-        print(#function)
+        guard let persistenceManager = try? PersistenceManager(),
+              let resultData = try? persistenceManager.fetchVideo(.at(day: dayView.date.getDate())) else {
+            return
+        }
+        if !resultData.isEmpty {
+            guard let didSelectDayView else { return }
+            didSelectDayView()
+        }
     }
     
     func shouldShowCustomSingleSelection() -> Bool { return false }

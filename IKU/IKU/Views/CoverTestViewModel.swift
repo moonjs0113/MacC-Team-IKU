@@ -104,7 +104,6 @@ class CoverTestViewModel: NSObject {
     // Guide
     func initAVSpeechsynthesizer() {
         avSpeechSynthesizer = AVSpeechSynthesizer()
-        avSpeechSynthesizer?.delegate = self
     }
     
     func playVoiceGuide(text: String) {
@@ -200,31 +199,4 @@ extension CoverTestViewModel: ARSessionDelegate, ARSCNViewDelegate {
         }
         faceAnchors[faceAnchor] = nil
     }
-}
-
-extension CoverTestViewModel: AVSpeechSynthesizerDelegate {
-    func speechSynthesizer( _ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
-        print(#function)
-    }
-    
-    func speechSynthesizer( _ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString: NSRange, utterance: AVSpeechUtterance) {
-        print(#function)
-    }
-    
-    func speechSynthesizer( _ synthesizer: AVSpeechSynthesizer, didPause: AVSpeechUtterance) {
-        print(#function)
-    }
-    
-    func speechSynthesizer( _ synthesizer: AVSpeechSynthesizer, didContinue: AVSpeechUtterance) {
-        print(#function)
-    }
-    
-    func speechSynthesizer( _ synthesizer: AVSpeechSynthesizer, didFinish: AVSpeechUtterance) {
-        print(#function)
-    }
-    
-    func speechSynthesizer( _ synthesizer: AVSpeechSynthesizer, didCancel: AVSpeechUtterance) {
-        print(#function)
-    }
-
 }

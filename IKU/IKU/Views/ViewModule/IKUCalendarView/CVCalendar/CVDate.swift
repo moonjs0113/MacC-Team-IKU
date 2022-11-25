@@ -42,6 +42,10 @@ public final class CVDate: NSObject {
 
         super.init()
     }
+    
+    public func getDate() -> Date {
+        self.date
+    }
 }
 
 extension CVDate {

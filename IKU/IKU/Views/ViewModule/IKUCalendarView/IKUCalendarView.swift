@@ -23,7 +23,9 @@ final class IKUCalendarView: UIView {
         let max = currentYear + 50
         return Array(min...max)
     }
-
+    
+    var didSelectDayView: (() -> Void)?
+    
     // UI Properties
     lazy private var calendarHeaderView: UIView = {
         let view = UIView()
@@ -217,6 +219,8 @@ final class IKUCalendarView: UIView {
     @objc func tapMonthYearLabel(_ sender: UITapGestureRecognizer) {
         isMonthYearSelecting = datePicker.isHidden
         datePicker.isHidden = !datePicker.isHidden
+        
+        calendarView.data = []
         
         datePicker.selectRow(selectedDate.month - 1, inComponent: 0, animated: false)
         datePicker.selectRow(selectedDate.year - 2022 + 50, inComponent: 1, animated: false)
