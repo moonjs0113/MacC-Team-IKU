@@ -110,7 +110,7 @@ public final class CVCalendarDayView: UIView {
             .receive(on: DispatchQueue.main)
             .map {
                 return !($0.map { result in
-                    let dataDate = Date(timeIntervalSince1970: .init(result.measurementResult.creationDate))
+                    let dataDate = result.measurementResult.creationDate
                     return (Calendar.current.compare(dataDate, to: self.date.getDate(), toGranularity: .day) == .orderedSame)
                 }.contains(true))
             }
