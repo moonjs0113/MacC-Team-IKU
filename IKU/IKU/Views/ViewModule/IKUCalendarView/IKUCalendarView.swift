@@ -24,7 +24,7 @@ final class IKUCalendarView: UIView {
         return Array(min...max)
     }
     
-    var didSelectDayView: ((_ datas: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)]) -> Void)?
+    var didSelectDayView: ((_ data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)]) -> Void)?
     var goToHistoryListView: () -> () = { }
     
     // UI Properties
@@ -38,6 +38,7 @@ final class IKUCalendarView: UIView {
         
         NSLayoutConstraint.activate([
             selectMonthYearView.topAnchor.constraint(equalTo: view.topAnchor),
+            selectMonthYearView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             selectMonthYearView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             selectMonthYearView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
@@ -236,6 +237,8 @@ final class IKUCalendarView: UIView {
     @objc func tapMonthYearLabel(_ sender: UITapGestureRecognizer) {
         isMonthYearSelecting = datePicker.isHidden
         datePicker.isHidden = !datePicker.isHidden
+        
+        calendarView.data = []
         
         datePicker.selectRow(selectedDate.month - 1, inComponent: 0, animated: false)
         datePicker.selectRow(selectedDate.year - 2022 + 50, inComponent: 1, animated: false)

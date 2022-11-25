@@ -66,6 +66,32 @@ final class PersistenceManagerTest: XCTestCase {
         XCTAssertEqual(result.first?.measurementResult.isBookMarked, false)
     }
     
+    func test_delete_video_throws_error_using_wrong_local_identifier() throws {
+        XCTAssertThrowsError(
+            try persistenceManager.deleteVideo(withLocalIdentifier: "wrongLocalIdentifier")
+        )
+    }
+    
+    func test_delete_video() throws {
+        try persistenceManager.save(
+            videoURL: try testFileURLWithCreatingFile(),
+            withARKitResult: [2.2:3.3],
+            isLeftEye: true,
+            uncoveredPhotoTime: 0,
+            coveredPhotoTime: 1.2,
+            creationDate: 1234567,
+            isBookMarked: false
+        )
+        let resultsBeforeDeletion = try persistenceManager.fetchVideo(.all)
+        XCTAssertEqual(resultsBeforeDeletion.count, 1)
+        
+        guard let localIdentifier = resultsBeforeDeletion.first?.measurementResult.localIdentifier else { return }
+        try persistenceManager.deleteVideo(withLocalIdentifier: localIdentifier)
+        
+        let resultsAfterDeletion = try persistenceManager.fetchVideo(.all)
+        XCTAssertEqual(resultsAfterDeletion.count, 0)
+    }
+    
     func test_clear_garbage_files() throws {
         _ = try testFileURLWithCreatingFile()
         var expectedFiles: Set<String> = ["example.mp4", "strabismusAngles", "videos", "IKU.sqlite"]

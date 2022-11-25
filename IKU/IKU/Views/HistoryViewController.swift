@@ -86,19 +86,25 @@ final class HistoryViewController: UIViewController {
         ])
     }
     
-    private func fetchUI() {
-        if let persistenceManager = try? PersistenceManager(),
-           let resultDatas = try? persistenceManager.fetchVideo(.at(day: Date.now)) {
-            todayStatusLabel.text = resultDatas.isEmpty ? "Please start today’s starabismus test!" : "Lisa’s strabismus test completed!"
+    private func fetchData() {
+        do {
+            let persistenceManager = try PersistenceManager()
+            ikuCalendarView.calendarView.data = try persistenceManager.fetchVideo(.all)
+            let todayData = try persistenceManager.fetchVideo(.at(day: Date.now))
+            todayStatusLabel.text = todayData.isEmpty ? "Please start today’s starabismus test!" : "Lisa’s strabismus test completed!"
+        } catch {
+            // TODO: Merge 후 수정
+            self.showAlertController(title: "데이터 불러오기 실패", message: "검사 결과를 불러오는데 실패하였습니다.", completeHandler: {})
         }
     }
     
-    private func goToResultView(datas: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)]) {
+    private func goToResultView(data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)]) {
         // TODO: - 결과뷰 Present
         guard let resultViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultViewController") as? ResultViewController else {
             return
         }
-        resultViewController.prepareDatas(datas: datas)
+        
+        resultViewController.prepareData(data: data)
         resultViewController.root = .history
         navigationController?.pushViewController(resultViewController, animated: true)
     }
@@ -140,17 +146,20 @@ final class HistoryViewController: UIViewController {
         setupNavigationController()
         setupCalendarView()
         setupLayoutConstraint()
-        fetchUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchUI()
-//        ikuCalendarView.commitCalendarViewUpdate()
+        fetchData()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        ikuCalendarView.commitCalendarViewUpdate()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         ikuCalendarView.commitCalendarViewUpdate()
     }
 }

@@ -38,11 +38,11 @@ class ResultViewController: UIViewController {
     var degrees: [Double: Double] = [:]
     var eyeImages: (leftImage: UIImage, rightImage: UIImage) = (UIImage(), UIImage())
     var root: Root = .test
-    var dbDatas: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] = []
+    var dbData: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] = []
     
     // MARK: - Methods
-    func prepareDatas(datas: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)]) {
-        self.dbDatas = datas
+    func prepareData(data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)]) {
+        self.dbData = data
     }
     
     func setupNavigationBar() {
@@ -58,8 +58,8 @@ class ResultViewController: UIViewController {
     }
     
     func setupUI() {
-        segmentedControl.isEnabled = (dbDatas.count == 2)
-        dbDatas.sort {
+        segmentedControl.isEnabled = (dbData.count == 2)
+        dbData.sort {
             let prev = $0.measurementResult.isLeftEye ? 0 : 1
             let next = $1.measurementResult.isLeftEye ? 0 : 1
             return prev < next
@@ -110,7 +110,7 @@ class ResultViewController: UIViewController {
             result.arrangedSubviews[i].alpha = 1
         }
         
-        angleResult.text = "\(resultAngle) 도"
+        angleResult.text = "\(resultAngle)"
 
         resultmemoLabel.numberOfLines = 2
         resultmemoLabel.textColor = UIColor.black
@@ -232,7 +232,7 @@ class ResultViewController: UIViewController {
     }
     
     @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
-        fetchDBData(dbData: dbDatas[sender.selectedSegmentIndex])
+        fetchDBData(dbData: dbData[sender.selectedSegmentIndex])
         fetchUI()
     }
     
@@ -245,7 +245,7 @@ class ResultViewController: UIViewController {
         setupNavigationBar()
         setupUI()
         if root == .history {
-            if let dbData = dbDatas.first {
+            if let dbData = dbData.first {
                 fetchDBData(dbData: dbData)
             }
         }

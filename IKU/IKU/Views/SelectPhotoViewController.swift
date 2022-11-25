@@ -42,6 +42,7 @@ final class SelectPhotoViewController: UIViewController {
         let selectButton = UIBarButtonItem(title: barButtonTitle, style: .plain, target: self, action: #selector(selectButtonTouched(_:)))
         selectButton.tintColor = .white
         navigationItem.rightBarButtonItem = selectButton
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     private func configureHostingViewController(){

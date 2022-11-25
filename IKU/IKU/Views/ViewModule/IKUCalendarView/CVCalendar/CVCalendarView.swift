@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 public typealias WeekView = CVCalendarWeekView
 public typealias CalendarView = CVCalendarView
@@ -40,6 +41,8 @@ public final class CVCalendarView: UIView {
     public var calendarMode: CalendarMode!
 
     public var (weekViewSize, dayViewSize): (CGSize?, CGSize?)
+    
+    @Published var data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] = []
 
     fileprivate var validated = false
     fileprivate var currentOrientation: UIDeviceOrientation
@@ -408,7 +411,7 @@ private extension CVCalendarView {
             switch delegate.presentationMode() {
                 case .monthView:
                     contentController =
-                        MonthContentViewController(calendarView: self, frame: bounds)
+                MonthContentViewController(calendarView: self, frame: bounds)
                 case .weekView:
                     contentController =
                         WeekContentViewController(calendarView: self, frame: bounds)
