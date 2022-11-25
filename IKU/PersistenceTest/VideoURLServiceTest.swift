@@ -38,7 +38,7 @@ final class VideoURLServiceTest: XCTestCase {
     }
     
     func test_delete_video() throws {
-        let testFileURL = try testFileURLWithCreatingFile()
+        let testFileURL = try exampleFileURLWithCreatingFile()
         let testFileName = "test"
         try videoURLService.moveURLToVideoFolder(testFileURL, withChangingNameTo: testFileName)
         let allFileNamesBeforeDeletion = try allFileNamesInDocumentDirectory(appendingPathComponent: VideoURLService.path)
@@ -50,10 +50,10 @@ final class VideoURLServiceTest: XCTestCase {
     }
     
     func test_delete_video_if_it_only_delete_specific_file() throws {
-        let testFileOneURL = try testFileURLWithCreatingFile()
+        let testFileOneURL = try exampleFileURLWithCreatingFile()
         let testFileOneName = "testOne"
         try videoURLService.moveURLToVideoFolder(testFileOneURL, withChangingNameTo: testFileOneName)
-        let testFileTwoURL = try testFileURLWithCreatingFile()
+        let testFileTwoURL = try exampleFileURLWithCreatingFile()
         let testFileTwoName = "testTwo"
         try videoURLService.moveURLToVideoFolder(testFileTwoURL, withChangingNameTo: testFileTwoName)
         

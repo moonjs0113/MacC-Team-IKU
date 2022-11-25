@@ -75,12 +75,12 @@ final class PersistenceManagerTest: XCTestCase {
     
     func test_delete_video() throws {
         try persistenceManager.save(
-            videoURL: try testFileURLWithCreatingFile(),
+            videoURL: try exampleFileURLWithCreatingFile(),
             withARKitResult: [2.2:3.3],
             isLeftEye: true,
             uncoveredPhotoTime: 0,
             coveredPhotoTime: 1.2,
-            creationDate: 1234567,
+            creationDate: "2022-11-22 00:12:34".toDate()!,
             isBookMarked: false
         )
         let resultsBeforeDeletion = try persistenceManager.fetchVideo(.all)
