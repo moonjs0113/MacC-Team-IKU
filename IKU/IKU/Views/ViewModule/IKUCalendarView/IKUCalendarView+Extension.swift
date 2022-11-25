@@ -36,8 +36,8 @@ extension IKUCalendarView: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
             return
         }
         if !resultData.isEmpty {
-            guard let didSelectDayView else { return }
-            didSelectDayView()
+            guard let didSelectDayView = didSelectDayView else { return }
+            didSelectDayView(resultData)
         }
     }
     

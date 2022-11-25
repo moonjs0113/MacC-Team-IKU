@@ -42,6 +42,7 @@ final class SelectPhotoViewController: UIViewController {
         let selectButton = UIBarButtonItem(title: barButtonTitle, style: .plain, target: self, action: #selector(selectButtonTouched(_:)))
         selectButton.tintColor = .white
         navigationItem.rightBarButtonItem = selectButton
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
     private func configureHostingViewController(){
@@ -170,7 +171,8 @@ final class SelectPhotoViewController: UIViewController {
                     }
                     
                     resultViewController.url = videoURL
-                    resultViewController.prepareData(leftImage: savedImage, rightImage: UIImage(cgImage: cgImage))
+                    resultViewController.eyeImages.leftImage = savedImage
+                    resultViewController.eyeImages.rightImage = UIImage(cgImage: cgImage)
                     resultViewController.degrees = self.degrees
                     
                     self.selectedTime.1 = time.seconds.roundSecondPoint

@@ -100,6 +100,7 @@
 		C7F1775D2925B1CD0004C5D9 /* ARAssetWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */; };
 		C7F1775E2925B1CD0004C5D9 /* ARFrameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */; };
 		C7FB09EF292B69B900A7671C /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FB09EE292B69B900A7671C /* Double+Extension.swift */; };
+		C7FDCD49292E6F7F00F0E190 /* HistoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDCD48292E6F7F00F0E190 /* HistoryListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -204,6 +205,7 @@
 		C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAssetWriter.swift; sourceTree = "<group>"; };
 		C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARFrameGenerator.swift; sourceTree = "<group>"; };
 		C7FB09EE292B69B900A7671C /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		C7FDCD48292E6F7F00F0E190 /* HistoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +290,7 @@
 				0E0419A4292920FE00D710BC /* ProfileViewController.swift */,
 				0E7A2CD629231F060060C024 /* ResultViewController.swift */,
 				C74491EF291D640B00166197 /* HistoryViewController.swift */,
+				C7FDCD48292E6F7F00F0E190 /* HistoryListViewController.swift */,
 				A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */,
 				C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */,
 				C745E9502926175F00AEECA8 /* CoverTestViewModel.swift */,
@@ -566,6 +569,7 @@
 				C74491D4291D54DC00166197 /* CVCalendarMenuViewDelegate.swift in Sources */,
 				C7F1775E2925B1CD0004C5D9 /* ARFrameGenerator.swift in Sources */,
 				C74491DE291D54DC00166197 /* CVCalendarContentPresentationCoordinator.swift in Sources */,
+				C7FDCD49292E6F7F00F0E190 /* HistoryListViewController.swift in Sources */,
 				C74491E1291D54DC00166197 /* CVCalendarMonthContentViewController.swift in Sources */,
 				C74491D1291D54DC00166197 /* CVCalendarViewAppearance.swift in Sources */,
 				C70100F02921D0DE00B58231 /* CoverTestViewController.swift in Sources */,
@@ -800,13 +804,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BQUJTNYMGY;
+				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "동영상 촬영을 위해 마이크 좀 쓸게";
+				INFOPLIST_KEY_NSCameraUsageDescription = "사시각 측정을 위해 카메라 권한이 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "동영상 저장 좀 할께";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 좀 쓸게";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "ㅎㅎ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -834,13 +838,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BQUJTNYMGY;
+				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "동영상 촬영을 위해 마이크 좀 쓸게";
+				INFOPLIST_KEY_NSCameraUsageDescription = "사시각 측정을 위해 카메라 권한이 필요합니다.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "동영상 저장 좀 할께";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 좀 쓸게";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "ㅎㅎ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -866,7 +870,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 78F54XW75V;
+				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 12.5;
@@ -886,7 +890,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 78F54XW75V;
+				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 12.5;

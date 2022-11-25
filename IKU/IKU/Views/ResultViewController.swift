@@ -12,6 +12,11 @@ import Photos
 
 class ResultViewController: UIViewController {
     // MARK: - Properties
+    enum Root {
+        case test
+        case history
+    }
+    
     var resultAngle: Double {
         var result = 0.0
         if angle.0 > angle.1 {
@@ -27,16 +32,17 @@ class ResultViewController: UIViewController {
     var numberEye: Eye = .left
     var angleNum: Int {
         //TODO: - 계산된 resultAngle로 위험도를 어떻게 결정할 것인지 논의 필요
-        return 10
+        return Int(resultAngle) > 14 ? 14 : Int(resultAngle)
     }
     var url: URL?
     var degrees: [Double: Double] = [:]
     var eyeImages: (leftImage: UIImage, rightImage: UIImage) = (UIImage(), UIImage())
+    var root: Root = .test
+    var dbData: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] = []
     
     // MARK: - Methods
-    func prepareData(leftImage: UIImage, rightImage: UIImage) {
-        eyeImages.leftImage = leftImage
-        eyeImages.rightImage = rightImage
+    func prepareData(data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)]) {
+        self.dbData = data
     }
     
     func setupNavigationBar() {
@@ -46,15 +52,51 @@ class ResultViewController: UIViewController {
         label.textColor = .black
         label.textAlignment = .center
         navigationItem.titleView = label
+        
+        let items = makeBarButtonItemList()
+        navigationItem.setRightBarButtonItems(items, animated: true)
+    }
+    
+    func setupUI() {
+        segmentedControl.isEnabled = (dbData.count == 2)
+        dbData.sort {
+            let prev = $0.measurementResult.isLeftEye ? 0 : 1
+            let next = $1.measurementResult.isLeftEye ? 0 : 1
+            return prev < next
+        }
+    }
+    
+    func makeBarButtonItemList() -> [UIBarButtonItem] {
+        switch root {
+        case .test:
+            let barButtonItemImage = UIImage(systemName: "xmark",
+                                             withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium))
+            let barButtonItem = UIBarButtonItem(image: barButtonItemImage,
+                                                style: .plain,
+                                                target: self,
+                                                action: #selector(dismiss(_:)))
+            barButtonItem.tintColor = .black
+            return [barButtonItem]
+        case .history:
 
-        let barButtonItemImage = UIImage(systemName: "xmark",
-                                         withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium))
-        let barButtonItem = UIBarButtonItem(image: barButtonItemImage,
-                                            style: .plain,
-                                            target: self,
-                                            action: #selector(dismiss(_:)))
-        barButtonItem.tintColor = .black
-        navigationItem.setRightBarButton(barButtonItem, animated: true)
+            
+            let barButtonItemImage = UIImage(systemName: "bookmark",
+                                             withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium))
+            let barButtonItem = UIBarButtonItem(image: barButtonItemImage,
+                                                style: .plain,
+                                                target: self,
+                                                action: #selector(bookmarkResult(_:)))
+            barButtonItem.tintColor = .black
+            
+            let deleteBarButtonItemImage = UIImage(systemName: "trash",
+                                             withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium))
+            let deletebarButtonItem = UIBarButtonItem(image: deleteBarButtonItemImage,
+                                                style: .plain,
+                                                target: self,
+                                                action: #selector(deleteResult(_:)))
+            deletebarButtonItem.tintColor = .black
+            return [deletebarButtonItem, barButtonItem]
+        }
     }
     
     func fetchUI() {
@@ -64,13 +106,11 @@ class ResultViewController: UIViewController {
         
         resultPicker.arrangedSubviews[angleNum].alpha = 1
 
-        for i in angleNum...14 {
-            result.arrangedSubviews[i].alpha = 0.5
+        for i in 0...angleNum {
+            result.arrangedSubviews[i].alpha = 1
         }
-    
-        titleLabel.text = "우리 아이의 \(numberEye == .left ? "왼쪽" : "오른쪽") 눈 검사의 결과입니다."
         
-        angleResult.text = "\(resultAngle) 도"
+        angleResult.text = "\(resultAngle)"
 
         resultmemoLabel.numberOfLines = 2
         resultmemoLabel.textColor = UIColor.black
@@ -90,8 +130,42 @@ class ResultViewController: UIViewController {
         uncoveredEye.image = eyeImages.leftImage
         coveredeye.image = eyeImages.rightImage
         
+        segmentedControl.selectedSegmentIndex = (numberEye == .left ? 0 : 1)
+        
         legalLabel.numberOfLines = 10
         legalLabel.text = " 간단한 셀프 테스트입니다. 정학한 진단은 병원을 방문하여 의사와 상담바랍니다. 영상 퐐영 기기 혹은 주변 환경에 따라 검사 결과가 달라질 수 있습니다. 훈련된 전문가로부터 진단을 받기를 권고합니다. 이 앱에서 나온 결과를 진단 혹은 치료 계획의 일환으로 사용하지 마십시오."
+    }
+    
+    func fetchDBData(dbData: (videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)) {
+        segmentedControl.isHidden = false
+        var time = CMTimeMake(value: Int64(dbData.measurementResult.timeOne * 10), timescale: 10)
+        let asset = AVURLAsset(url: dbData.videoURL)
+        let generator = AVAssetImageGenerator(asset: asset)
+        generator.requestedTimeToleranceBefore = .zero
+        generator.requestedTimeToleranceAfter = .zero
+        generator.generateCGImageAsynchronously(for: time) { image, _, _ in
+            DispatchQueue.main.async { [weak self] in
+                if let image = image {
+                    self?.uncoveredEye.image = UIImage(cgImage: image)
+                }
+            }
+        }
+        time = CMTimeMake(value: Int64(dbData.measurementResult.timeTwo * 10), timescale: 10)
+        generator.generateCGImageAsynchronously(for: time) { image, _, _ in
+            DispatchQueue.main.async { [weak self] in
+                if let image = image {
+                    self?.coveredeye.image = UIImage(cgImage: image)
+                }
+            }
+        }
+        
+        angle = (dbData.angles[dbData.measurementResult.timeOne] ?? 0.0,
+                 dbData.angles[dbData.measurementResult.timeTwo] ?? 0.0)
+        
+        numberEye = dbData.measurementResult.isLeftEye ? .left : .right
+        
+        saveButton.isHidden = true
+        testAgainButton.isHidden = true
     }
     
     @objc func dismiss(_ sender: UIBarButtonItem) {
@@ -100,12 +174,20 @@ class ResultViewController: UIViewController {
         }
     }
     
+    @objc func bookmarkResult(_ sender: UIBarButtonItem) {
+        print(#function)
+    }
+    
+    @objc func deleteResult(_ sender: UIBarButtonItem) {
+        print(#function)
+    }
+    
     // MARK: - IBOutlets
-    //예상사시각
-    @IBOutlet weak var titleLabel: UILabel!
-    //왼쪽, 오른쪽 사진
+    // 왼쪽, 오른쪽 사진
     @IBOutlet weak var uncoveredEye: UIImageView!
     @IBOutlet weak var coveredeye: UIImageView!
+    // 왼쪽 오른쪽
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     //예상 사시각
     @IBOutlet weak var memoTitle: UILabel!
     //몇도인지 나타내는 라벨
@@ -124,6 +206,9 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var legalLabel: UILabel!
     //법 조항?
     @IBOutlet weak var dangerLabel: UILabel!
+    
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var testAgainButton: UIButton!
     
     // MARK: - IBActions
     @IBAction func restartTest(_ sender: Any) {
@@ -146,12 +231,24 @@ class ResultViewController: UIViewController {
                                      coveredPhotoTime: selectedTime.cover)
     }
     
+    @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        fetchDBData(dbData: dbData[sender.selectedSegmentIndex])
+        fetchUI()
+    }
+    
+    
     // MARK: - Delegates And DataSources
     
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        setupUI()
+        if root == .history {
+            if let dbData = dbData.first {
+                fetchDBData(dbData: dbData)
+            }
+        }
         fetchUI()
     }
 }

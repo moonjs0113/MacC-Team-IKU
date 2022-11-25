@@ -24,7 +24,8 @@ final class IKUCalendarView: UIView {
         return Array(min...max)
     }
     
-    var didSelectDayView: (() -> Void)?
+    var didSelectDayView: ((_ data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)]) -> Void)?
+    var goToHistoryListView: () -> () = { }
     
     // UI Properties
     lazy private var calendarHeaderView: UIView = {
@@ -33,14 +34,20 @@ final class IKUCalendarView: UIView {
         
         view.addSubview(todayLabel)
         view.addSubview(selectMonthYearView)
+        view.addSubview(listButton)
         
         NSLayoutConstraint.activate([
             selectMonthYearView.topAnchor.constraint(equalTo: view.topAnchor),
             selectMonthYearView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            selectMonthYearView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             selectMonthYearView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            todayLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            todayLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            todayLabel.trailingAnchor.constraint(equalTo: listButton.leadingAnchor, constant: -15),
             todayLabel.centerYAnchor.constraint(equalTo: selectMonthYearView.centerYAnchor),
+            
+            listButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 5),
+            listButton.centerYAnchor.constraint(equalTo: selectMonthYearView.centerYAnchor),
         ])
         
         self.addSubview(view)
@@ -101,7 +108,7 @@ final class IKUCalendarView: UIView {
         
         let todayLabel = UILabel()
         todayLabel.translatesAutoresizingMaskIntoConstraints = false
-        todayLabel.text = "오늘"
+        todayLabel.text = "Today"
         todayLabel.font = .nexonGothicFont(ofSize: 14)
         todayLabel.textColor = .black
         view.addSubview(todayLabel)
@@ -118,6 +125,17 @@ final class IKUCalendarView: UIView {
             todayCircle.trailingAnchor.constraint(equalTo: todayLabel.leadingAnchor, constant: -4),
         ])
         return view
+    }()
+    
+    lazy private var listButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(.init(systemName: "list.bullet.rectangle"), for: .normal)
+//        list.bullet.rectangle 􀩳
+//        list.dash.header.rectangle 􀹆
+        button.tintColor = .black
+        button.addTarget(self, action: #selector(goToTestLogListView(_:)), for: .touchUpInside)
+        return button
     }()
     
     lazy private var weeklyTitleStackView: UIStackView = {
@@ -232,6 +250,10 @@ final class IKUCalendarView: UIView {
             }
         }
         fetchCVCalendar()
+    }
+    
+    @objc func goToTestLogListView(_ sender: UIButton) {
+        goToHistoryListView()
     }
     
     // MARK: - IBOutlets

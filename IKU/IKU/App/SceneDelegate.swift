@@ -23,7 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //첫번째 화면은 일단
         let testVC = UINavigationController(rootViewController: UIHostingController<StoryView>(rootView: StoryView()))
-        let historyVC = UINavigationController(rootViewController: HistoryViewController()) 
+        let historyVC = UINavigationController(rootViewController: HistoryViewController())
+        historyVC.navigationBar.tintColor = .black
         let dictionaryVC = DictionaryViewController()
         
         //탭바 이름들 설정
