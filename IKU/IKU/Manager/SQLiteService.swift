@@ -27,7 +27,7 @@ final class SQLiteService {
                 EYE INTEGER,
                 TIME_ONE REAL,
                 TIME_TWO REAL,
-                CREATIONDATE REAL,
+                CREATIONTIMEINTERVAL REAL,
                 BOOKMARK INTEGER
                 );
                 """
@@ -35,11 +35,11 @@ final class SQLiteService {
         }
     }
     enum InsertionQuery {
-        case videoData(measurementResult: MeasurementResult)
+        case videoData(localIdentifier: String, eye: Int, timeOne: Double, timeTwo: Double, creationTimeinterval: Double, bookmark: Int)
         var statement: String {
             switch self {
             case .videoData: return """
-                INSERT INTO VIDEO (LOCALIDENTIFIER, EYE, TIME_ONE, TIME_TWO, CREATIONDATE, BOOKMARK) VALUES (?, ?, ?, ?, ?, ?);
+                INSERT INTO VIDEO (LOCALIDENTIFIER, EYE, TIME_ONE, TIME_TWO, CREATIONTIMEINTERVAL, BOOKMARK) VALUES (?, ?, ?, ?, ?, ?);
                 """
             }
         }
@@ -58,7 +58,7 @@ final class SQLiteService {
                 let greatOrEqual = day.startTimeIntervalOfDay
                 let less = day.startTimeIntervalOfNextDay
                 return """
-                SELECT * FROM VIDEO WHERE CREATIONDATE >= \(greatOrEqual) AND CREATIONDATE < \(less)
+                SELECT * FROM VIDEO WHERE CREATIONTIMEINTERVAL >= \(greatOrEqual) AND CREATIONTIMEINTERVAL < \(less)
                 """
             }
         }
@@ -114,10 +114,15 @@ final class SQLiteService {
         let insertStatement = try prepare(forQuery: query.statement)
         defer { sqlite3_finalize(insertStatement) }
         switch query {
-        case .videoData(let measurementResult):
+        case .videoData(let localIdentifier, let eye, let timeOne, let timeTwo, let creationTimeinterval, let bookmark):
             try insertVideoData(
                 insertStatement: insertStatement,
-                measurementResult: measurementResult
+                localIdentifier: localIdentifier,
+                eye: eye,
+                timeOne: timeOne,
+                timeTwo: timeTwo,
+                creationTimeinterval: creationTimeinterval,
+                bookmark: bookmark
             )
         }
     }
@@ -132,17 +137,13 @@ final class SQLiteService {
         return try deleteVideoData(deleteStatement: deleteStatement)
     }
     
-    private func insertVideoData(insertStatement: OpaquePointer?, measurementResult: MeasurementResult) throws {
-        let localIdentifier = NSString(string: measurementResult.localIdentifier)
-        let eye: Int32 = measurementResult.isLeftEye == true ? 1 : 0
-        let bookMark: Int32 = measurementResult.isBookMarked == true ? 1 : 0
-        
-        sqlite3_bind_text(insertStatement, 1, localIdentifier.utf8String, -1, nil)
-        sqlite3_bind_int(insertStatement, 2, eye)
-        sqlite3_bind_double(insertStatement, 3, measurementResult.timeOne)
-        sqlite3_bind_double(insertStatement, 4, measurementResult.timeTwo)
-        sqlite3_bind_double(insertStatement, 5, measurementResult.creationDate)
-        sqlite3_bind_int(insertStatement, 6, bookMark)
+    private func insertVideoData(insertStatement: OpaquePointer?, localIdentifier: String, eye: Int, timeOne: Double, timeTwo: Double, creationTimeinterval: Double, bookmark: Int) throws {
+        sqlite3_bind_text(insertStatement, 1, NSString(string: localIdentifier).utf8String, -1, nil)
+        sqlite3_bind_int(insertStatement, 2, Int32(eye))
+        sqlite3_bind_double(insertStatement, 3, timeOne)
+        sqlite3_bind_double(insertStatement, 4, timeTwo)
+        sqlite3_bind_double(insertStatement, 5, creationTimeinterval)
+        sqlite3_bind_int(insertStatement, 6, Int32(bookmark))
         
         if sqlite3_step(insertStatement) != SQLITE_DONE {
             throw SQLiteError.step(message: "Could not insert row")
@@ -157,14 +158,14 @@ final class SQLiteService {
             let eye = sqlite3_column_int(selectStatement, 1)
             let timeOne = sqlite3_column_double(selectStatement, 2)
             let timeTwo = sqlite3_column_double(selectStatement, 3)
-            let creationDate = sqlite3_column_double(selectStatement, 4)
+            let creationTimeInterval = sqlite3_column_double(selectStatement, 4)
             let bookMark = sqlite3_column_int(selectStatement, 5)
             let measurementResult = MeasurementResult(
                 localIdentifier: String(cString: localIdentifier),
                 isLeftEye: eye == 1,
                 timeOne: timeOne,
                 timeTwo: timeTwo,
-                creationDate: creationDate,
+                creationDate: Date(timeIntervalSince1970: creationTimeInterval),
                 isBookMarked: bookMark == 1
             )
             result.append(measurementResult)

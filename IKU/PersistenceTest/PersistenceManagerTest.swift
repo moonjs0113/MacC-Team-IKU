@@ -26,7 +26,7 @@ final class PersistenceManagerTest: XCTestCase {
 
     func test_save_video_without_prefixed_values() throws {
         try persistenceManager.save(
-            videoURL: try testFileURLWithCreatingFile(),
+            videoURL: try exampleFileURLWithCreatingFile(),
             withARKitResult: [:],
             isLeftEye: true,
             uncoveredPhotoTime: 0,
@@ -36,24 +36,25 @@ final class PersistenceManagerTest: XCTestCase {
     
     func test_save_video_with_all_values() throws {
         try persistenceManager.save(
-            videoURL: try testFileURLWithCreatingFile(),
+            videoURL: try exampleFileURLWithCreatingFile(),
             withARKitResult: [:],
             isLeftEye: true,
             uncoveredPhotoTime: 0,
             coveredPhotoTime: 1.2,
-            creationDate: Date.now.timeIntervalSince1970,
+            creationDate: Date.now,
             isBookMarked: false
         )
     }
     
     func test_fetch_all_video() throws {
+        let currentDate = "2022-11-22 00:12:34".toDate()!
         try persistenceManager.save(
-            videoURL: try testFileURLWithCreatingFile(),
+            videoURL: try exampleFileURLWithCreatingFile(),
             withARKitResult: [2.2:3.3],
             isLeftEye: true,
             uncoveredPhotoTime: 0,
             coveredPhotoTime: 1.2,
-            creationDate: 1234567,
+            creationDate: currentDate,
             isBookMarked: false
         )
         let result = try persistenceManager.fetchVideo(.all)
@@ -62,7 +63,7 @@ final class PersistenceManagerTest: XCTestCase {
         XCTAssertEqual(result.first?.measurementResult.isLeftEye, true)
         XCTAssertEqual(result.first?.measurementResult.timeOne, 0)
         XCTAssertEqual(result.first?.measurementResult.timeTwo, 1.2)
-        XCTAssertEqual(result.first?.measurementResult.creationDate, 1234567)
+        XCTAssertEqual(result.first?.measurementResult.creationDate, currentDate)
         XCTAssertEqual(result.first?.measurementResult.isBookMarked, false)
     }
     
@@ -93,7 +94,7 @@ final class PersistenceManagerTest: XCTestCase {
     }
     
     func test_clear_garbage_files() throws {
-        _ = try testFileURLWithCreatingFile()
+        _ = try exampleFileURLWithCreatingFile()
         var expectedFiles: Set<String> = ["example.mp4", "strabismusAngles", "videos", "IKU.sqlite"]
         
         for fileName in try allFileNamesInDocumentDirectory() {

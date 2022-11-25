@@ -23,16 +23,17 @@ final class SQLiteServiceTest: XCTestCase {
     }
 
     func test_table_select_data_of_same_day() throws {
-        let measurementResult = MeasurementResult(
-            localIdentifier: "localIdentifier",
-            isLeftEye: true,
-            timeOne: 0,
-            timeTwo: 1.2,
-            creationDate: "2022-11-22 00:12:34".toDate()!.timeIntervalSince1970,
-            isBookMarked: false
-        )
         try sqliteService.createTableIfNotExist(byQuery: .videoTable)
-        try sqliteService.insert(byQuery: .videoData(measurementResult: measurementResult))
+        try sqliteService.insert(
+            byQuery: .videoData(
+                localIdentifier: "localIdentifier",
+                eye: 1,
+                timeOne: 0,
+                timeTwo: 1.2,
+                creationTimeinterval: "2022-11-22 00:12:34".toDate()!.timeIntervalSince1970,
+                bookmark: 0
+            )
+        )
         
         for day in 21...23 {
             for hour in 0...23 {
@@ -45,7 +46,7 @@ final class SQLiteServiceTest: XCTestCase {
                     XCTAssertEqual(array.first?.isLeftEye, true)
                     XCTAssertEqual(array.first?.timeOne, 0)
                     XCTAssertEqual(array.first?.timeTwo, 1.2)
-                    XCTAssertEqual(array.first?.creationDate, "2022-11-22 00:12:34".toDate()!.timeIntervalSince1970)
+                    XCTAssertEqual(array.first?.creationDate, "2022-11-22 00:12:34".toDate())
                     XCTAssertEqual(array.first?.isBookMarked, false)
                 } else {
                     XCTAssertEqual(array.count, 0)
@@ -57,15 +58,16 @@ final class SQLiteServiceTest: XCTestCase {
     func test_table_select_all() throws {
         try sqliteService.createTableIfNotExist(byQuery: .videoTable)
         for number in 1...10 {
-            let measurementResult = MeasurementResult(
-                localIdentifier: String(number),
-                isLeftEye: true,
-                timeOne: 0,
-                timeTwo: 0,
-                creationDate: "2022-11-\(String(format: "%02d", number)) 00:12:34".toDate()!.timeIntervalSince1970,
-                isBookMarked: false
+            try sqliteService.insert(
+                byQuery: .videoData(
+                    localIdentifier: String(number),
+                    eye: 1,
+                    timeOne: 0,
+                    timeTwo: 1.2,
+                    creationTimeinterval: Double(number),
+                    bookmark: 0
+                )
             )
-            try sqliteService.insert(byQuery: .videoData(measurementResult: measurementResult))
         }
         let array = try sqliteService.select(byQuery: .allVideos)
         XCTAssertEqual(array.count, 10)
@@ -113,13 +115,5 @@ final class SQLiteServiceTest: XCTestCase {
     
     private func createDateString(year: Int, month: Int, day: Int, hour: Int, minute: Int, second: Int) -> String {
         return "\(year)-\(month)-\(day) \(hour):\(minute):\(second)"
-    }
-}
-
-private extension String {
-    func toDate() -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return dateFormatter.date(from: self)
     }
 }

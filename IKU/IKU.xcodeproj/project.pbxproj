@@ -15,6 +15,7 @@
 		9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */; };
 		A804661A291FF9890079CEDC /* ScrubberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8046619291FF9890079CEDC /* ScrubberView.swift */; };
 		A804661C292012B10079CEDC /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A804661B292012B10079CEDC /* PlayButton.swift */; };
+		A8096C80292F0C5B00CBBC41 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8096C7F292F0C5B00CBBC41 /* String+Extension.swift */; };
 		A897ED6E29277CC000C93E22 /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A897ED6D29277CC000C93E22 /* MeasurementResult.swift */; };
 		A89F22FA292B7079000B3D63 /* XCTestCase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F22F9292B7079000B3D63 /* XCTestCase+Extension.swift */; };
 		A89F2300292B95C0000B3D63 /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A897ED6D29277CC000C93E22 /* MeasurementResult.swift */; };
@@ -122,6 +123,7 @@
 		9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		A8046619291FF9890079CEDC /* ScrubberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubberView.swift; sourceTree = "<group>"; };
 		A804661B292012B10079CEDC /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
+		A8096C7F292F0C5B00CBBC41 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		A897ED6D29277CC000C93E22 /* MeasurementResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResult.swift; sourceTree = "<group>"; };
 		A89F22F9292B7079000B3D63 /* XCTestCase+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extension.swift"; sourceTree = "<group>"; };
 		A89F2306292BB3A6000B3D63 /* VideoURLService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoURLService.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				A8FA007E292B45E00091EDC2 /* JSONServiceTest.swift */,
 				A89F2308292BB3B0000B3D63 /* VideoURLServiceTest.swift */,
 				A89F22F9292B7079000B3D63 /* XCTestCase+Extension.swift */,
+				A8096C7F292F0C5B00CBBC41 /* String+Extension.swift */,
 			);
 			path = PersistenceTest;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8FA007F292B45E00091EDC2 /* JSONServiceTest.swift in Sources */,
+				A8096C80292F0C5B00CBBC41 /* String+Extension.swift in Sources */,
 				A89F230F292BB650000B3D63 /* PersistenceManager.swift in Sources */,
 				A89F230E292BB64D000B3D63 /* PersistenceManagerTest.swift in Sources */,
 				A89F2309292BB3B0000B3D63 /* VideoURLServiceTest.swift in Sources */,
