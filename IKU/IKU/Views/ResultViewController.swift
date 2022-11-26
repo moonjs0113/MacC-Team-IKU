@@ -114,11 +114,11 @@ class ResultViewController: UIViewController {
         //멘트 수정해 주세요!
         switch angleNum {
         case 0...4:
-            resultmemoLabel.text = "child's eyes are healthy. \nIf child feels great inconvenience in daily life, \nplease visit a specialist and have a professional test."
+            resultmemoLabel.text = "child's eyes are healthy. \nIf child feels great inconvenience in daily life,please visit a specialist and have a professional test."
         case 5...9:
-            resultmemoLabel.text = "Please check your child's strabismus carefully.\nIf child feels great inconvenience in daily life,\nplease visit a specialist and have a professional test."
+            resultmemoLabel.text = "Please check your child's strabismus carefully.\nIf child feels great inconvenience in daily life,please visit a specialist and have a professional test."
         case 10...14:
-            resultmemoLabel.text = "There is something wrong with eyes. \nPlease visit an hospital as soon as possible \nfor accurate test"
+            resultmemoLabel.text = "There is something wrong with eyes. \nPlease visit an hospital as soon as possible for accurate test"
         default:
             print("Error")
         }
@@ -133,7 +133,7 @@ class ResultViewController: UIViewController {
         }
         
         legalLabel.numberOfLines = 10
-        legalLabel.text = "This service is a simple self-test. Not diagnosis App.\nFor accurate test, please visit the hospital.\nThe test results may depending on the imaging device or the surrounding environment.\nDo not write results from this app as part of a diagnosis or \ntreatment plan."
+        legalLabel.text = "This service is a simple self-test. Not diagnosis App.\nFor accurate test, please visit the hospital.\nThe test results may depending on the imaging device or the surrounding environment.\nDo not write results from this app as part of a diagnosis or treatment plan."
         legalLabel.font = .nexonGothicFont(ofSize: 11)
         
     }

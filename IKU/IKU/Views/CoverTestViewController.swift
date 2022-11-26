@@ -53,7 +53,7 @@ final class CoverTestViewController: UIViewController {
     private var distanceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "거리: 0inch"
+        label.text = "Distance: 0inch"
         label.textColor = .white
         label.font = .nexonGothicFont(ofSize: 13, weight: .bold)
         label.numberOfLines = 2
