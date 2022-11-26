@@ -72,7 +72,7 @@ final class CoverTestViewController: UIViewController {
     private var guideLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "카메라와 적정거리(30-35cm)인지 확인해주세요."
+        label.text = "Fit the child's face to the border"
         label.textColor = .white
         label.textAlignment = .center
         label.font = .nexonGothicFont(ofSize: 17)

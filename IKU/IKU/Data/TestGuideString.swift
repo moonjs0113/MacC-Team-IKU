@@ -16,11 +16,11 @@ enum TestGuide: Equatable {
     
     var voiceText: String {
         switch self {
-        case .isReady: return "녹화버튼을 눌러주세요."
-        case .incorrectDistance: return "카메라와 적정거리(30-35cm)인지 확인해주세요."
-        case .testComplete: return "검사가 완료되었으니 종료버튼을 눌러주세요."
-        case .uncover: return "손바닥을 떼주세요"
-        case .coverTo(let eye): return "\(eye == .left ? "오른쪽" : "왼쪽") 눈을 손바닥으로 가려주세요"
+        case .isReady: return "Please press the record button"
+        case .incorrectDistance: return "Fit the child's face to the border."
+        case .testComplete: return "The test is complete.\n Please push record button."
+        case .uncover: return "Recording uncovering your eye."
+        case .coverTo(let eye): return "Recording covering your eyes \n Cover your \(eye == .left ? "Right" : "Left")Eye"
         }
     }
     
@@ -29,7 +29,7 @@ enum TestGuide: Equatable {
         case .isReady, .incorrectDistance, .testComplete:
             return self.voiceText
         case .uncover, .coverTo(_):
-            return self.voiceText + " 3초"
+            return self.voiceText + " 3s"
         }
     }
 }

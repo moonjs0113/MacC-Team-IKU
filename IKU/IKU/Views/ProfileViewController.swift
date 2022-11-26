@@ -51,7 +51,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         let button = UIButton()
         button.tintColor = .white
         button.backgroundColor = .ikuBlue
-        button.setTitle("수정하기", for: .normal)
+        button.setTitle("Save", for: .normal)
         button.titleLabel?.font = .nexonGothicFont(ofSize: 20, weight: .bold)
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
@@ -80,7 +80,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         }
     
     func setup() {
-        mainLabel.text = "우리아기눈은건강함 어린이의 프로필입니다."
+        mainLabel.text = "Please fill out baby profile"
         mainLabel.font = .nexonGothicFont(ofSize: 17)
         view.addSubview(mainLabel)
         view.backgroundColor = .ikuBackground
@@ -96,20 +96,20 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         nickNameStackView.backgroundColor = .white
         //색상 바뀔예정
         nickNameTitle.textColor = .gray
-        nickNameTitle.text = "닉네임"
+        nickNameTitle.text = "Nickname"
         nickNameTitle.font = .nexonGothicFont(ofSize: 13)
         nickName.text = ""
         nickName.font = .nexonGothicFont(ofSize: 17)
         
         view.addSubview(ageNameStackView)
         ageNameStackView.backgroundColor = .white
-        ageNameTitle.text = "연령"
+        ageNameTitle.text = "Age"
         ageNameTitle.textColor = .gray
         ageNameTitle.font = .nexonGothicFont(ofSize: 13)
         
         view.addSubview(hospitalStackView)
         hospitalStackView.backgroundColor = .white
-        hospitalTitle.text = "병원즐겨찾기"
+        hospitalTitle.text = "Bookmark Hospital"
         hospitalTitle.textColor = .gray
         hospitalTitle.font = .nexonGothicFont(ofSize: 13)
         hospital.text = ""
@@ -126,15 +126,15 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
     
     func makeAutoLayout() {
         mainLabel.translatesAutoresizingMaskIntoConstraints = false
-        mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 118).isActive = true
+        mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 32).isActive = true
         mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         mainLabel.heightAnchor.constraint(equalToConstant: 26).isActive = true
         
         profileImage.translatesAutoresizingMaskIntoConstraints = false
-        profileImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 176).isActive = true
+        profileImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 90).isActive = true
         profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         profileImage.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 135).isActive = true
-        profileImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -548).isActive = true
+        profileImage.bottomAnchor.constraint(equalTo: nickNameStackView.topAnchor, constant: -32).isActive = true
         
         nickNameStackView.translatesAutoresizingMaskIntoConstraints = false
         nickNameStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 328).isActive = true
@@ -167,7 +167,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         hospital.bottomAnchor.constraint(equalTo: hospitalStackView.bottomAnchor,constant: -10).isActive = true
         
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.topAnchor.constraint(equalTo: view.topAnchor,constant: 677).isActive = true
+        button.topAnchor.constraint(equalTo: view.bottomAnchor,constant: -81).isActive = true
         button.heightAnchor.constraint(equalToConstant: 52).isActive = true
         button.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16).isActive = true
         button.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16).isActive = true
