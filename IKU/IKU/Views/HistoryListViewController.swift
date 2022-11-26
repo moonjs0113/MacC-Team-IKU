@@ -17,7 +17,18 @@ class HistoryListViewController: UIViewController {
         return view
     }()
     
-    var logDatas: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] = []
+    var originData: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] = []
+    var showBookmark: Bool = false {
+        didSet {
+            let barButtonItemImage = UIImage(systemName: showBookmark ? "bookmark.fill" : "bookmark",
+                                             withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium))
+            barButtonItem.image = barButtonItemImage
+        }
+    }
+    var loadData: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] {
+        originData.filter { !showBookmark || $0.measurementResult.isBookMarked }
+    }
+    var barButtonItem: UIBarButtonItem = UIBarButtonItem()
     
     // MARK: - Methods
     private func setupNavigationController() {
@@ -28,7 +39,7 @@ class HistoryListViewController: UIViewController {
         
         let barButtonItemImage = UIImage(systemName: "bookmark",
                                          withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium))
-        let barButtonItem = UIBarButtonItem(image: barButtonItemImage,
+        barButtonItem = UIBarButtonItem(image: barButtonItemImage,
                                             style: .plain,
                                             target: self,
                                             action: #selector(filterBookmark(_:)))
@@ -58,7 +69,7 @@ class HistoryListViewController: UIViewController {
     private func fetchData() {
         do {
             let persistenceManager = try PersistenceManager()
-            logDatas = try persistenceManager.fetchVideo(.all)
+            originData = try persistenceManager.fetchVideo(.all)
             tableView.reloadData()
         } catch {
             showAlertController(title: "데이터 불러오기 실패", message: "검사 결과를 가져오는데 실패했습니다.", isAddCancelAction: false) {
@@ -72,7 +83,8 @@ class HistoryListViewController: UIViewController {
     }
     
     @objc func filterBookmark(_ sender: UIBarButtonItem) {
-        
+        showBookmark = !showBookmark
+        tableView.reloadData()
     }
     
     // MARK: - Life Cycles
@@ -92,7 +104,7 @@ class HistoryListViewController: UIViewController {
 extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource {
     // Header
     func numberOfSections(in tableView: UITableView) -> Int {
-        Set(logDatas.map {
+        Set(loadData.map {
             Calendar.current.component(.year, from: $0.measurementResult.creationDate)
         }).count
     }
@@ -120,11 +132,11 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
     
     // Cell
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        logDatas.count
+        loadData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        TestLogContentTabelViewCell(style: .default, reuseIdentifier: cellIdentifier, data: logDatas[indexPath.row])
+        TestLogContentTabelViewCell(style: .default, reuseIdentifier: cellIdentifier, data: loadData[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -139,7 +151,7 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
         if let cellData = (tableView.cellForRow(at: indexPath) as? TestLogContentTabelViewCell)?.data {
             guard let resultViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultViewController") as? ResultViewController else { return
             }
-            let datas = logDatas.filter {
+            let datas = loadData.filter {
                 let date = $0.measurementResult.creationDate
                 let cellDate = cellData.measurementResult.creationDate
                 return Calendar.current.compare(date, to: cellDate, toGranularity: .day) == .orderedSame
