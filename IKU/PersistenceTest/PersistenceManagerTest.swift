@@ -93,6 +93,66 @@ final class PersistenceManagerTest: XCTestCase {
         XCTAssertEqual(resultsAfterDeletion.count, 0)
     }
     
+    func test_update_video_bookmark() throws {
+        try persistenceManager.save(
+            videoURL: try exampleFileURLWithCreatingFile(),
+            withARKitResult: [2.2:3.3],
+            isLeftEye: true,
+            uncoveredPhotoTime: 0,
+            coveredPhotoTime: 1.2,
+            creationDate: "2022-11-22 00:12:34".toDate()!,
+            isBookMarked: false
+        )
+        let resultsBeforeUpdate = try persistenceManager.fetchVideo(.all)
+        guard let resultBeforeUpdate = resultsBeforeUpdate.first?.measurementResult else {
+            XCTAssert(false)
+            return
+        }
+        XCTAssertFalse(resultBeforeUpdate.isBookMarked)
+        
+        try persistenceManager.updateVideo(withLocalIdentifier: resultBeforeUpdate.localIdentifier, bookmarked: true)
+        
+        let resultsAfterUpdate = try persistenceManager.fetchVideo(.all)
+        guard let resultAfterUpdate = resultsAfterUpdate.first?.measurementResult else {
+            XCTAssert(false)
+            return
+        }
+        XCTAssertTrue(resultAfterUpdate.isBookMarked)
+    }
+    
+    func test_update_video_uncoverd_photo_time_and_covered_photo_time() throws {
+        try persistenceManager.save(
+            videoURL: try exampleFileURLWithCreatingFile(),
+            withARKitResult: [2.2:3.3],
+            isLeftEye: true,
+            uncoveredPhotoTime: 0,
+            coveredPhotoTime: 1.2,
+            creationDate: "2022-11-22 00:12:34".toDate()!,
+            isBookMarked: false
+        )
+        let resultsBeforeUpdate = try persistenceManager.fetchVideo(.all)
+        guard let resultBeforeUpdate = resultsBeforeUpdate.first?.measurementResult else {
+            XCTAssert(false)
+            return
+        }
+        XCTAssertEqual(resultBeforeUpdate.timeOne, 0)
+        XCTAssertEqual(resultBeforeUpdate.timeTwo, 1.2)
+        
+        try persistenceManager.updateVideo(
+            withLocalIdentifier: resultBeforeUpdate.localIdentifier,
+            setUncoveredPhotoTimeTo: 11,
+            setCoveredPhotoTimeTo: 2.2
+        )
+        
+        let resultsAfterUpdate = try persistenceManager.fetchVideo(.all)
+        guard let resultAfterUpdate = resultsAfterUpdate.first?.measurementResult else {
+            XCTAssert(false)
+            return
+        }
+        XCTAssertEqual(resultAfterUpdate.timeOne, 11)
+        XCTAssertEqual(resultAfterUpdate.timeTwo, 2.2)
+    }
+    
     func test_clear_garbage_files() throws {
         _ = try exampleFileURLWithCreatingFile()
         var expectedFiles: Set<String> = ["example.mp4", "strabismusAngles", "videos", "IKU.sqlite"]
