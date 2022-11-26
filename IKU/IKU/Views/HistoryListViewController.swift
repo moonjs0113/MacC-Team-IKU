@@ -23,7 +23,7 @@ class HistoryListViewController: UIViewController {
         let backItem = UIBarButtonItem()
         backItem.title = ""
         navigationItem.backBarButtonItem = backItem
-        self.title = "List"
+        title = "List"
         
         let barButtonItemImage = UIImage(systemName: "bookmark",
                                          withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium))
@@ -58,10 +58,9 @@ class HistoryListViewController: UIViewController {
         do {
             let persistenceManager = try PersistenceManager()
             logDatas = try persistenceManager.fetchVideo(.all)
-            print(logDatas)
             tableView.reloadData()
         } catch {
-            self.showAlertController(title: "데이터 불러오기 실패", message: "검사 결과를 가져오는데 실패했습니다.", isAddCancelAction: false) {
+            showAlertController(title: "데이터 불러오기 실패", message: "검사 결과를 가져오는데 실패했습니다.", isAddCancelAction: false) {
                 self.navigationController?.popViewController(animated: true)
             }
         }
@@ -81,6 +80,9 @@ class HistoryListViewController: UIViewController {
         view.backgroundColor = .ikuBackground
         setupNavigationController()
         setupTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         fetchData()
     }
 }
@@ -142,7 +144,7 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
                 return Calendar.current.compare(date, to: cellDate, toGranularity: .day) == .orderedSame
             }
             resultViewController.prepareData(data: datas, showedEye: cellData.measurementResult.isLeftEye ? .left : .right)
-            resultViewController.root = .history
+            resultViewController.root = .history_list
             navigationController?.pushViewController(resultViewController, animated: true)
         }
     }
@@ -226,13 +228,10 @@ class TestLogContentTabelViewCell: UITableViewCell {
         stackView.spacing = 5
         view.addSubview(stackView)
         NSLayoutConstraint.activate([
-//            icon.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier:  1/3),
             icon.widthAnchor.constraint(equalTo: icon.widthAnchor),
             
             stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier:  1/3),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-//            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 18),
-//            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -18),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
         ])

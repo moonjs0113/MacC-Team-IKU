@@ -14,7 +14,8 @@ class ResultViewController: UIViewController {
     // MARK: - Properties
     enum Root {
         case test
-        case history
+        case history_calendar
+        case history_list
     }
     
     var resultAngle: Double {
@@ -73,9 +74,7 @@ class ResultViewController: UIViewController {
                                                 action: #selector(dismiss(_:)))
             barButtonItem.tintColor = .black
             return [barButtonItem]
-        case .history:
-
-            
+        case .history_list, .history_calendar:
             let barButtonItemImage = UIImage(systemName: "bookmark",
                                              withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium))
             let barButtonItem = UIBarButtonItem(image: barButtonItemImage,
@@ -126,12 +125,11 @@ class ResultViewController: UIViewController {
         uncoveredEye.image = eyeImages.leftImage
         coveredeye.image = eyeImages.rightImage
         
-        if root == .history {
-            segmentedControl.selectedSegmentIndex = (numberEye == .left ? 0 : 1)
-        } else {
+        if root == .test {
             segmentedControl.removeFromSuperview()
+        } else {
+            segmentedControl.selectedSegmentIndex = (numberEye == .left ? 0 : 1)
         }
-        
         
         legalLabel.numberOfLines = 10
         legalLabel.text = " 간단한 셀프 테스트입니다. 정학한 진단은 병원을 방문하여 의사와 상담바랍니다. 영상 퐐영 기기 혹은 주변 환경에 따라 검사 결과가 달라질 수 있습니다. 훈련된 전문가로부터 진단을 받기를 권고합니다. 이 앱에서 나온 결과를 진단 혹은 치료 계획의 일환으로 사용하지 마십시오."
@@ -162,8 +160,6 @@ class ResultViewController: UIViewController {
         angle = (dbData.angles[dbData.measurementResult.timeOne] ?? 0.0,
                  dbData.angles[dbData.measurementResult.timeTwo] ?? 0.0)
         
-//        numberEye = dbData.measurementResult.isLeftEye ? .left : .right
-        
         saveButton.isHidden = true
         testAgainButton.isHidden = true
     }
@@ -179,7 +175,15 @@ class ResultViewController: UIViewController {
     }
     
     @objc func deleteResult(_ sender: UIBarButtonItem) {
-        print(#function)
+        showAlertController(title: "검사 결과 삭제", message: "삭제 후 복구가 불가능합니다.\n정말 삭제하시겠습니까?") {
+            do {
+                let persistenceManager = try PersistenceManager()
+                try persistenceManager.deleteVideo(withLocalIdentifier: self.dbData[self.segmentedControl.selectedSegmentIndex].measurementResult.localIdentifier)
+                self.navigationController?.popViewController(animated: true)
+            } catch {
+                self.showAlertController(title: "삭제 실패", message: "검사 결과를 삭제하는데 실패했습니다.", isAddCancelAction: false) { }
+            }
+        }
     }
     
     // MARK: - IBOutlets
@@ -218,17 +222,19 @@ class ResultViewController: UIViewController {
     }
     
     @IBAction func storageResult(_ sender: Any) {
-        defer {
+        guard let url else { return }
+        do {
+            let persistenceManager = try PersistenceManager()
+            try persistenceManager.save(videoURL: url,
+                                         withARKitResult: degrees,
+                                         isLeftEye: (numberEye == .left),
+                                         uncoveredPhotoTime: selectedTime.uncover,
+                                         coveredPhotoTime: selectedTime.cover)
             dismiss(animated: true)
             (presentingViewController as? UITabBarController)?.selectedIndex = 1
+        } catch {
+            showAlertController(title: "저장 실패", message: "검사 결과를 저장하는데 실패했습니다.", isAddCancelAction: false) { }
         }
-        guard let persistenceManager = try? PersistenceManager() else { return }
-        guard let url else { return }
-        try? persistenceManager.save(videoURL: url,
-                                     withARKitResult: degrees,
-                                     isLeftEye: (numberEye == .left),
-                                     uncoveredPhotoTime: selectedTime.uncover,
-                                     coveredPhotoTime: selectedTime.cover)
     }
     
     @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
@@ -245,7 +251,7 @@ class ResultViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupUI()
-        if root == .history {
+        if root != .test {
             if let dbData = (numberEye == .left ? dbData.first : dbData.last) {
                 fetchDBData(dbData: dbData)
             }
