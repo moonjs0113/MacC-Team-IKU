@@ -32,8 +32,18 @@ class ResultViewController: UIViewController {
     var url: URL?
     var degrees: [Double: Double] = [:]
     var eyeImages: (leftImage: UIImage, rightImage: UIImage) = (UIImage(), UIImage())
+    var isBookMarked = false {
+        didSet {
+            let barButtonItemImage = UIImage(systemName: isBookMarked ? "bookmark.fill" : "bookmark",
+                                             withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium))
+            barButtonItem.image = barButtonItemImage
+        }
+    }
     var root: Root = .test
+    
     var dbData: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] = []
+    
+    var barButtonItem: UIBarButtonItem = UIBarButtonItem()
     
     // MARK: - Methods
     func prepareData(data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)], showedEye: Eye
@@ -68,7 +78,7 @@ class ResultViewController: UIViewController {
         case .test:
             let barButtonItemImage = UIImage(systemName: "xmark",
                                              withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium))
-            let barButtonItem = UIBarButtonItem(image: barButtonItemImage,
+            barButtonItem = UIBarButtonItem(image: barButtonItemImage,
                                                 style: .plain,
                                                 target: self,
                                                 action: #selector(dismiss(_:)))
@@ -77,7 +87,7 @@ class ResultViewController: UIViewController {
         case .history_list, .history_calendar:
             let barButtonItemImage = UIImage(systemName: "bookmark",
                                              withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium))
-            let barButtonItem = UIBarButtonItem(image: barButtonItemImage,
+            barButtonItem = UIBarButtonItem(image: barButtonItemImage,
                                                 style: .plain,
                                                 target: self,
                                                 action: #selector(bookmarkResult(_:)))
@@ -162,6 +172,8 @@ class ResultViewController: UIViewController {
         
         saveButton.isHidden = true
         testAgainButton.isHidden = true
+        isBookMarked = dbData.measurementResult.isBookMarked
+        setupUI()
     }
     
     @objc func dismiss(_ sender: UIBarButtonItem) {
@@ -171,7 +183,13 @@ class ResultViewController: UIViewController {
     }
     
     @objc func bookmarkResult(_ sender: UIBarButtonItem) {
-        print(#function)
+        do {
+            let persistenceManager = try PersistenceManager()
+            try persistenceManager.updateVideo(withLocalIdentifier: dbData[segmentedControl.selectedSegmentIndex].measurementResult.localIdentifier, bookmarked: !isBookMarked)
+            isBookMarked = !isBookMarked
+        } catch {
+            self.showAlertController(title: "북마크 저장 실패", message: "북마크 저장에 실패했습니다.", isAddCancelAction: false) { }
+        }
     }
     
     @objc func deleteResult(_ sender: UIBarButtonItem) {
@@ -250,7 +268,6 @@ class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
-        setupUI()
         if root != .test {
             if let dbData = (numberEye == .left ? dbData.first : dbData.last) {
                 fetchDBData(dbData: dbData)

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class HistoryListViewController: UIViewController {
     // MARK: - Properties
@@ -154,6 +155,7 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
 class TestLogContentTabelViewCell: UITableViewCell {
     // MARK: - ProPerties
     var data: (videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)?
+    var anyCancellable = Set<AnyCancellable>()
     
     // MARK: - Methods
     private func setAttributeOfCell() {
@@ -211,6 +213,8 @@ class TestLogContentTabelViewCell: UITableViewCell {
     private func createAngleView() -> UIView {
         let view = UIView()
         view.backgroundColor = .white
+        view.layer.cornerRadius = 5
+        view.clipsToBounds = true
         
         let icon = UIImageView(image: UIImage(systemName: "magnifyingglass.circle"))
         icon.tintColor = .ikuBlue
@@ -227,6 +231,36 @@ class TestLogContentTabelViewCell: UITableViewCell {
         stackView.axis = .horizontal
         stackView.spacing = 5
         view.addSubview(stackView)
+        
+        if data?.measurementResult.isBookMarked ?? false {
+            let bookmarkView = UIView()
+            bookmarkView.publisher(for: \.bounds, options: [.new, .initial, .old, .prior])
+                .receive(on: DispatchQueue.main)
+                .filter { trunc($0.width) == trunc($0.height) }
+                .sink {
+                    let path = UIBezierPath()
+                    path.move(to: .init(x: 0, y: $0.width))
+                    path.addLine(to: .init(x: $0.width, y: $0.width))
+                    path.addLine(to: .init(x: $0.width, y: 0))
+                    path.close()
+                    
+                    let shapeLayer = CAShapeLayer()
+                    shapeLayer.path = path.cgPath
+                    shapeLayer.fillColor = UIColor.ikuBlue.cgColor
+                    bookmarkView.layer.sublayers?.removeAll()
+                    bookmarkView.layer.addSublayer(shapeLayer)
+                }
+                .store(in: &anyCancellable)
+            bookmarkView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(bookmarkView)
+            NSLayoutConstraint.activate([
+                bookmarkView.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: 14/49),
+                bookmarkView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 14/49),
+                bookmarkView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                bookmarkView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            ])
+        }
+        
         NSLayoutConstraint.activate([
             icon.widthAnchor.constraint(equalTo: icon.widthAnchor),
             
