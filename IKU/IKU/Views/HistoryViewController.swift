@@ -105,7 +105,7 @@ final class HistoryViewController: UIViewController {
         }
         
         resultViewController.prepareData(data: data)
-        resultViewController.root = .history
+        resultViewController.root = .history_calendar
         navigationController?.pushViewController(resultViewController, animated: true)
     }
     
