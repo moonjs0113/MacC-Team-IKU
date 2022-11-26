@@ -18,13 +18,7 @@ class ResultViewController: UIViewController {
     }
     
     var resultAngle: Double {
-        var result = 0.0
-        if angle.0 > angle.1 {
-            result = (angle.0 - angle.1)
-        } else {
-            result = (angle.1 - angle.0)
-        }
-        return (result * 180 / .pi).roundSecondPoint
+        return (abs(angle.0 - angle.1) * 180 / .pi).roundSecondPoint
     }
     
     var angle: (Double, Double) = (0.0, 0.0)
@@ -41,8 +35,10 @@ class ResultViewController: UIViewController {
     var dbData: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] = []
     
     // MARK: - Methods
-    func prepareData(data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)]) {
+    func prepareData(data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)], showedEye: Eye
+                      = .left) {
         self.dbData = data
+        self.numberEye = showedEye
     }
     
     func setupNavigationBar() {
@@ -130,14 +126,18 @@ class ResultViewController: UIViewController {
         uncoveredEye.image = eyeImages.leftImage
         coveredeye.image = eyeImages.rightImage
         
-        segmentedControl.selectedSegmentIndex = (numberEye == .left ? 0 : 1)
+        if root == .history {
+            segmentedControl.selectedSegmentIndex = (numberEye == .left ? 0 : 1)
+        } else {
+            segmentedControl.removeFromSuperview()
+        }
+        
         
         legalLabel.numberOfLines = 10
         legalLabel.text = " 간단한 셀프 테스트입니다. 정학한 진단은 병원을 방문하여 의사와 상담바랍니다. 영상 퐐영 기기 혹은 주변 환경에 따라 검사 결과가 달라질 수 있습니다. 훈련된 전문가로부터 진단을 받기를 권고합니다. 이 앱에서 나온 결과를 진단 혹은 치료 계획의 일환으로 사용하지 마십시오."
     }
     
     func fetchDBData(dbData: (videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)) {
-        segmentedControl.isHidden = false
         var time = CMTimeMake(value: Int64(dbData.measurementResult.timeOne * 10), timescale: 10)
         let asset = AVURLAsset(url: dbData.videoURL)
         let generator = AVAssetImageGenerator(asset: asset)
@@ -162,7 +162,7 @@ class ResultViewController: UIViewController {
         angle = (dbData.angles[dbData.measurementResult.timeOne] ?? 0.0,
                  dbData.angles[dbData.measurementResult.timeTwo] ?? 0.0)
         
-        numberEye = dbData.measurementResult.isLeftEye ? .left : .right
+//        numberEye = dbData.measurementResult.isLeftEye ? .left : .right
         
         saveButton.isHidden = true
         testAgainButton.isHidden = true
@@ -232,6 +232,7 @@ class ResultViewController: UIViewController {
     }
     
     @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        numberEye = (sender.selectedSegmentIndex == 0 ? .left : .right)
         fetchDBData(dbData: dbData[sender.selectedSegmentIndex])
         fetchUI()
     }
@@ -245,7 +246,7 @@ class ResultViewController: UIViewController {
         setupNavigationBar()
         setupUI()
         if root == .history {
-            if let dbData = dbData.first {
+            if let dbData = (numberEye == .left ? dbData.first : dbData.last) {
                 fetchDBData(dbData: dbData)
             }
         }

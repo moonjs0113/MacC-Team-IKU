@@ -59,7 +59,7 @@
                                     <constraint firstAttribute="height" constant="208" id="WTw-xN-VKx"/>
                                 </constraints>
                             </stackView>
-                            <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BzU-m7-UZV">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BzU-m7-UZV">
                                 <rect key="frame" x="200" y="317" width="177" height="32"/>
                                 <segments>
                                     <segment title="Left eye"/>
@@ -563,6 +563,7 @@
                         <viewLayoutGuide key="safeArea" id="RAq-8v-Onh"/>
                         <color key="backgroundColor" name="ikuBackground"/>
                         <constraints>
+                            <constraint firstItem="j0d-Vr-1gK" firstAttribute="top" secondItem="BzU-m7-UZV" secondAttribute="bottom" constant="10" id="0a6-H6-42E"/>
                             <constraint firstItem="4rB-5b-7jr" firstAttribute="leading" secondItem="ufU-LY-zGT" secondAttribute="leadingMargin" id="1X7-Li-GK8"/>
                             <constraint firstItem="BzU-m7-UZV" firstAttribute="width" secondItem="ufU-LY-zGT" secondAttribute="width" multiplier="0.45" id="5dJ-AK-Zdc"/>
                             <constraint firstItem="BzU-m7-UZV" firstAttribute="top" secondItem="RVS-mf-ASy" secondAttribute="bottom" constant="10" id="DFl-jt-7KD"/>
@@ -578,7 +579,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="4rB-5b-7jr" secondAttribute="trailing" id="u6a-f6-GbA"/>
                             <constraint firstItem="RVS-mf-ASy" firstAttribute="top" secondItem="4rB-5b-7jr" secondAttribute="bottom" constant="5" id="vQw-qr-r4z"/>
                             <constraint firstAttribute="trailingMargin" secondItem="j0d-Vr-1gK" secondAttribute="trailing" id="wiE-tO-T7C"/>
-                            <constraint firstItem="j0d-Vr-1gK" firstAttribute="top" secondItem="BzU-m7-UZV" secondAttribute="bottom" constant="10" id="z8d-Nr-98B"/>
+                            <constraint firstItem="j0d-Vr-1gK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="RVS-mf-ASy" secondAttribute="bottom" constant="10" id="z8d-Nr-98B"/>
                         </constraints>
                     </view>
                     <connections>
