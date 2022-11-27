@@ -20,10 +20,10 @@ struct StoryView: View {
     @State private var showCoverTestView: Bool = false
     
     init() {
-        let appearence = UINavigationBarAppearance()
-        appearence.shadowColor = .black
-        UINavigationBar.appearance().standardAppearance = appearence
-        UINavigationBar.appearance().scrollEdgeAppearance = appearence
+//        let appearence = UINavigationBarAppearance()
+//        appearence.shadowColor = .black
+//        UINavigationBar.appearance().standardAppearance = appearence
+//        UINavigationBar.appearance().scrollEdgeAppearance = appearence
     }
     
     var body: some View {
