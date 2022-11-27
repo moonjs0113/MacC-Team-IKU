@@ -18,17 +18,19 @@ struct ScrubberView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                LazyHStack(spacing: 0) {
-                    ForEach(self.viewModel.images, id: \.self) { image in
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFit()
+                GeometryReader { innerGeomerty in
+                    LazyHStack(spacing: 0) {
+                        ForEach(self.viewModel.images, id: \.self) { image in
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFit()
+                        }
                     }
+                    .offset(
+                        x: innerGeomerty.frame(in: .local).midX - viewModel.currentTime.seconds * viewModel.photoRatio * geometry.frame(in: .local).height,
+                        y: geometry.frame(in: .local).minY
+                    )
                 }
-                .offset(
-                    x: geometry.frame(in: .local).midX - viewModel.currentTime.seconds * viewModel.photoRatio * geometry.frame(in: .local).height,
-                    y: geometry.frame(in: .local).minY
-                )
                 
                 RoundedRectangle(cornerRadius: 2)
                     .stroke(lineWidth: 1.5)
@@ -125,9 +127,26 @@ final class ScrubberViewModel: ObservableObject {
                 ) else {
                     return
                 }
-                self?.photoRatio = Double(image.width) / Double(image.height)
+                if self?.photoRatio == .zero {
+                    self?.photoRatio = Double(image.width) / Double(image.height)
+                }
                 self?.images.append(UIImage(cgImage: image))
             }
+            let lastPhotoTime = Double(Int(duration))
+            guard let image = try? generator.copyCGImage(
+                at: CMTime(seconds: lastPhotoTime, preferredTimescale: Self.timeScale),
+                actualTime: nil
+            ) else {
+                return
+            }
+            let cropRect = CGRect(
+                x: 0,
+                y: 0,
+                width: Int(Double(image.width) * (duration - lastPhotoTime)),
+                height: image.height
+            )
+            guard let croppedImage = image.cropping(to: cropRect) else { return }
+            self?.images.append(UIImage(cgImage: croppedImage))
         }
     }
 }
