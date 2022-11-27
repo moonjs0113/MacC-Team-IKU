@@ -808,7 +808,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSCameraUsageDescription = "사시각 측정을 위해 카메라 권한이 필요합니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions are required\nfor strabismus test";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "동영상 저장 좀 할께";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "ㅎㅎ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -842,7 +842,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSCameraUsageDescription = "사시각 측정을 위해 카메라 권한이 필요합니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions are required\nfor strabismus test";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "동영상 저장 좀 할께";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "ㅎㅎ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

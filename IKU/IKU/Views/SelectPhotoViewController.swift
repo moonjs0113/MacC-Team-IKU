@@ -16,7 +16,7 @@ final class SelectPhotoViewController: UIViewController {
         uiLabel.font = .systemFont(ofSize: 13)
         uiLabel.textColor = .white
         uiLabel.text = capturedImage == nil ?
-            "양쪽 눈이 보이는 상태의 화면을 선택해주세요" : "한쪽 눈을 가린 상태의 화면을 선택해주세요"
+            "Uncovered Frame" : "Covered Frame"
         return uiLabel
     }()
     private let playerView: PlayerView = PlayerView()
@@ -38,7 +38,7 @@ final class SelectPhotoViewController: UIViewController {
 
     // MARK: - Methods
     private func configureNavigationBar() {
-        let barButtonTitle = self.capturedImage == nil ? "선택하기" : "완료"
+        let barButtonTitle = self.capturedImage == nil ? "Next" : "Confirm"
         let selectButton = UIBarButtonItem(title: barButtonTitle, style: .plain, target: self, action: #selector(selectButtonTouched(_:)))
         selectButton.tintColor = .white
         navigationItem.rightBarButtonItem = selectButton

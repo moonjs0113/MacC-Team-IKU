@@ -70,25 +70,39 @@
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j0d-Vr-1gK">
-                                <rect key="frame" x="16" y="358" width="361" height="312"/>
+                                <rect key="frame" x="16" y="358" width="361" height="322"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="예상 사시각" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fap-NG-EAr">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Expected cross-eyed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fap-NG-EAr">
                                         <rect key="frame" x="12" y="16" width="337" height="19.666666666666671"/>
                                         <fontDescription key="fontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="17"/>
                                         <color key="textColor" name="ikuBlue 2"/>
                                         <color key="highlightedColor" systemColor="linkColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjp-pf-IUD">
-                                        <rect key="frame" x="12" y="45.666666666666686" width="36.666666666666664" height="32.333333333333343"/>
-                                        <fontDescription key="fontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="28"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text1" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXZ-ly-CQV">
-                                        <rect key="frame" x="16" y="157.33333333333337" width="329" height="40"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="J7S-Fg-QI2">
+                                        <rect key="frame" x="16" y="45.666666666666686" width="78.666666666666671" height="25"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjp-pf-IUD">
+                                                <rect key="frame" x="0.0" y="0.0" width="36.666666666666664" height="25"/>
+                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="28"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Angle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eor-fK-vSj">
+                                                <rect key="frame" x="41.666666666666671" y="10" width="37" height="15"/>
+                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="emD-sG-2fY"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text1" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dXZ-ly-CQV">
+                                        <rect key="frame" x="16" y="156" width="329" height="50"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="wmY-d8-vnL"/>
+                                            <constraint firstAttribute="height" constant="50" id="wmY-d8-vnL"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
                                         <userDefinedRuntimeAttributes>
@@ -99,32 +113,32 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="pZX-lz-YDn">
-                                        <rect key="frame" x="16" y="125.33333333333331" width="329" height="17"/>
+                                        <rect key="frame" x="16" y="124" width="329" height="17"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안전" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oi-YR-cpQ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Safe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oi-YR-cpQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="108.33333333333333" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="RSj-FC-VmM"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주의" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krZ-XJ-xVh">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caution" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krZ-XJ-xVh">
                                                 <rect key="frame" x="110.33333333333334" y="0.0" width="108.33333333333334" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="oFB-Yj-beL"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="검사요망" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAp-hN-rN5">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="seek consultant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAp-hN-rN5">
                                                 <rect key="frame" x="220.66666666666666" y="0.0" width="108.33333333333334" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="jfU-6k-i0o"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -133,18 +147,18 @@
                                             <constraint firstAttribute="height" constant="17" id="nbO-1k-Rph"/>
                                         </constraints>
                                     </stackView>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szg-Fr-Jst">
-                                        <rect key="frame" x="16" y="217.33333333333337" width="329" height="68"/>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="szg-Fr-Jst">
+                                        <rect key="frame" x="16" y="226" width="329" height="80"/>
                                         <color key="tintColor" systemColor="opaqueSeparatorColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="68" id="eNE-dO-oDL"/>
+                                            <constraint firstAttribute="height" constant="80" id="eNE-dO-oDL"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="11"/>
                                         <color key="textColor" name="ikuDarkGray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hLJ-JJ-nIe">
-                                        <rect key="frame" x="15" y="83" width="331" height="20.333333333333329"/>
+                                        <rect key="frame" x="15" y="81.666666666666686" width="331" height="20.333333333333329"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qg4-rp-3E5">
                                                 <rect key="frame" x="0.0" y="3.9999999999999991" width="20.333333333333332" height="12.666666666666664"/>
@@ -270,7 +284,7 @@
                                         <color key="tintColor" systemColor="systemGray4Color"/>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="rcX-AO-rGL">
-                                        <rect key="frame" x="15" y="100.33333333333331" width="331" height="10"/>
+                                        <rect key="frame" x="15" y="99" width="331" height="10"/>
                                         <subviews>
                                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRI-6s-mwG">
                                                 <rect key="frame" x="0.0" y="0.0" width="20.333333333333332" height="10"/>
@@ -475,15 +489,10 @@
                                         </subviews>
                                         <color key="tintColor" systemColor="systemGray4Color"/>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eor-fK-vSj">
-                                        <rect key="frame" x="53.666666666666671" y="59" width="12.333333333333329" height="15"/>
-                                        <fontDescription key="fontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="hLJ-JJ-nIe" firstAttribute="top" secondItem="J7S-Fg-QI2" secondAttribute="bottom" constant="11" id="09p-R1-VjR"/>
                                     <constraint firstAttribute="trailing" secondItem="rcX-AO-rGL" secondAttribute="trailing" constant="15" id="0vs-Vc-J7I"/>
                                     <constraint firstItem="rcX-AO-rGL" firstAttribute="leading" secondItem="j0d-Vr-1gK" secondAttribute="leading" constant="15" id="4Dy-P6-2Ko"/>
                                     <constraint firstItem="pZX-lz-YDn" firstAttribute="leading" secondItem="j0d-Vr-1gK" secondAttribute="leading" constant="16" id="55s-oq-miM"/>
@@ -493,14 +502,11 @@
                                     <constraint firstItem="hLJ-JJ-nIe" firstAttribute="leading" secondItem="j0d-Vr-1gK" secondAttribute="leading" constant="15" id="OFF-Lh-glo"/>
                                     <constraint firstItem="Fap-NG-EAr" firstAttribute="top" secondItem="j0d-Vr-1gK" secondAttribute="top" constant="16" id="PpT-Lq-YGC"/>
                                     <constraint firstAttribute="trailing" secondItem="szg-Fr-Jst" secondAttribute="trailing" constant="16" id="RGl-mb-pfN"/>
-                                    <constraint firstItem="hLJ-JJ-nIe" firstAttribute="top" secondItem="Kjp-pf-IUD" secondAttribute="bottom" constant="5" id="Xk2-O6-8mR"/>
-                                    <constraint firstAttribute="height" constant="312" id="dXR-id-AwY"/>
-                                    <constraint firstItem="Kjp-pf-IUD" firstAttribute="top" secondItem="Fap-NG-EAr" secondAttribute="bottom" constant="10" id="eiU-Aw-6mZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="szg-Fr-Jst" secondAttribute="bottom" constant="16" id="ZAg-Bo-7gC"/>
                                     <constraint firstItem="szg-Fr-Jst" firstAttribute="leading" secondItem="j0d-Vr-1gK" secondAttribute="leading" constant="16" id="fxt-cL-Mnr"/>
-                                    <constraint firstItem="Kjp-pf-IUD" firstAttribute="leading" secondItem="j0d-Vr-1gK" secondAttribute="leading" constant="12" id="gVf-Uf-XaV"/>
-                                    <constraint firstItem="Eor-fK-vSj" firstAttribute="leading" secondItem="Kjp-pf-IUD" secondAttribute="trailing" constant="5" id="kam-7e-gav"/>
+                                    <constraint firstItem="J7S-Fg-QI2" firstAttribute="top" secondItem="Fap-NG-EAr" secondAttribute="bottom" constant="10" id="ifB-nj-u10"/>
                                     <constraint firstAttribute="trailing" secondItem="pZX-lz-YDn" secondAttribute="trailing" constant="16" id="m4j-2e-Nk0"/>
-                                    <constraint firstItem="hLJ-JJ-nIe" firstAttribute="top" secondItem="Eor-fK-vSj" secondAttribute="bottom" constant="9" id="n6t-4c-Ax0"/>
+                                    <constraint firstItem="J7S-Fg-QI2" firstAttribute="leading" secondItem="j0d-Vr-1gK" secondAttribute="leading" constant="16" id="mF3-xe-GGd"/>
                                     <constraint firstItem="Fap-NG-EAr" firstAttribute="leading" secondItem="j0d-Vr-1gK" secondAttribute="leading" constant="12" id="s6Q-Jf-b6W"/>
                                     <constraint firstItem="szg-Fr-Jst" firstAttribute="top" secondItem="dXZ-ly-CQV" secondAttribute="bottom" constant="20" id="sa3-bK-ikb"/>
                                     <constraint firstAttribute="trailing" secondItem="hLJ-JJ-nIe" secondAttribute="trailing" constant="15" id="vFc-dw-l6x"/>
@@ -516,14 +522,14 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="aOc-0i-RuQ">
-                                <rect key="frame" x="16" y="682" width="361" height="52"/>
+                                <rect key="frame" x="16" y="709" width="361" height="52"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Bo-Sv-tvU">
                                         <rect key="frame" x="0.0" y="0.0" width="174.66666666666666" height="52"/>
                                         <color key="backgroundColor" systemColor="systemGray4Color"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="다시 검사하기">
+                                        <buttonConfiguration key="configuration" style="plain" title="Restart">
                                             <fontDescription key="titleFontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="17"/>
                                         </buttonConfiguration>
                                         <userDefinedRuntimeAttributes>
@@ -541,7 +547,7 @@
                                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="저장하기">
+                                        <buttonConfiguration key="configuration" style="plain" title="Save">
                                             <fontDescription key="titleFontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="17"/>
                                         </buttonConfiguration>
                                         <userDefinedRuntimeAttributes>
@@ -575,7 +581,7 @@
                             <constraint firstItem="BzU-m7-UZV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RAq-8v-Onh" secondAttribute="leading" symbolic="YES" id="g6O-Tb-Otg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BzU-m7-UZV" secondAttribute="trailing" id="gwC-E8-jdR"/>
                             <constraint firstItem="4rB-5b-7jr" firstAttribute="top" secondItem="RAq-8v-Onh" secondAttribute="top" constant="20" id="mlI-TI-9lS"/>
-                            <constraint firstItem="aOc-0i-RuQ" firstAttribute="top" secondItem="j0d-Vr-1gK" secondAttribute="bottom" constant="12" id="ppy-cP-5Ob"/>
+                            <constraint firstItem="aOc-0i-RuQ" firstAttribute="top" secondItem="j0d-Vr-1gK" secondAttribute="bottom" constant="29" id="ppy-cP-5Ob"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4rB-5b-7jr" secondAttribute="trailing" id="u6a-f6-GbA"/>
                             <constraint firstItem="RVS-mf-ASy" firstAttribute="top" secondItem="4rB-5b-7jr" secondAttribute="bottom" constant="5" id="vQw-qr-r4z"/>
                             <constraint firstAttribute="trailingMargin" secondItem="j0d-Vr-1gK" secondAttribute="trailing" id="wiE-tO-T7C"/>
