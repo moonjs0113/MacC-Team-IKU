@@ -25,15 +25,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let testVC = UINavigationController(rootViewController: UIHostingController<StoryView>(rootView: StoryView()))
         let historyVC = UINavigationController(rootViewController: HistoryViewController())
         historyVC.navigationBar.tintColor = .black
-        let dictionaryVC = DictionaryViewController()
         
         //탭바 이름들 설정
-        testVC.title = "사시검사"
-        historyVC.title = "히스토리"
-        dictionaryVC.title = "백과사전"
+        testVC.title = "Strabismus Test"
+        historyVC.title = "Test Record"
         
         //탭바로 사용하기 위한 뷰 컨트롤러들 설정
-        tabBarVC.setViewControllers([testVC,historyVC,dictionaryVC], animated: false)
+        tabBarVC.setViewControllers([testVC,historyVC], animated: false)
         tabBarVC.modalPresentationStyle = .fullScreen
         tabBarVC.tabBar.backgroundColor = .ikuBackground
         
@@ -41,7 +39,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let items = tabBarVC.tabBar.items else { return }
         items[0].image = UIImage(systemName: "magnifyingglass")
         items[1].image = UIImage(systemName: "calendar")
-        items[2].image = UIImage(systemName: "book")
 
         window?.rootViewController = tabBarVC
         window?.makeKeyAndVisible()

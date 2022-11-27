@@ -11,7 +11,7 @@ import AVFoundation
 final class HistoryViewController: UIViewController {
     // MARK: - Properties
     private var eyeSegmentedControl: UISegmentedControl = {
-        let view = UISegmentedControl(items: ["왼쪽 눈", "오른쪽 눈"])
+        let view = UISegmentedControl(items: ["Left Eye", "Right Eye"])
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setTitleTextAttributes([.font: UIFont.nexonGothicFont(ofSize: 13)], for: .normal)
         view.setTitleTextAttributes([.font: UIFont.nexonGothicFont(ofSize: 13, weight: .bold)], for: .selected)
@@ -94,7 +94,7 @@ final class HistoryViewController: UIViewController {
             todayStatusLabel.text = todayData.isEmpty ? "Please start today’s starabismus test!" : "Lisa’s strabismus test completed!"
         } catch {
             // TODO: Merge 후 수정
-            self.showAlertController(title: "데이터 불러오기 실패", message: "검사 결과를 불러오는데 실패하였습니다.", completeHandler: {})
+            self.showAlertController(title: "Data get failed", message: "Failed to get test results", completeHandler: {})
         }
     }
     
@@ -133,7 +133,7 @@ final class HistoryViewController: UIViewController {
                     self.goToCoverTestView()
                 } else {
                     self.showAlertPermissionSetting(title: "Require Camera Permission",
-                                                    message: "사시각 측정을 위해 카메라 권한이 필요합니다.\n설정으로 이동하시겠습니까?")
+                                                    message: "Camera permissions are required \nfor strabismus test. \n Do you want to go Setting??")
                 }
             }
         }

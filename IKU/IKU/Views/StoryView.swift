@@ -43,16 +43,16 @@ struct StoryView: View {
                         
                         // TODO: 앱 로고로 대체
                         Image(systemName: "hare")
-                        Text("아이쿠")
+                        Text("Strabismus Test")
                             .bold()
-                            .foregroundColor(customBlue)
+//                            .foregroundColor(customBlue)
                             .font(Font(UIFont.nexonGothicFont(ofSize: 22, weight: .bold)))
                         Spacer()
                         NavigationLink(destination: ProfileView(),
                                        label: {
                             HStack{
-                                Text("응애1")
-                                    .foregroundColor(customBlue)
+                                Text("Lisa")
+//                                    .foregroundColor(customBlue)
                                     .font(Font(UIFont.nexonGothicFont(ofSize: 13, weight: .bold)))
                                 Image(systemName: "person.circle")
                             }
@@ -110,7 +110,7 @@ struct StoryView: View {
                                 .shadow(radius: 4, x: 0, y: 4)
                                 .padding()
                             
-                            Text("검사하기")
+                            Text("Test Start!")
                                 .bold()
                                 .font(Font(UIFont.nexonGothicFont(ofSize: 20, weight: .bold)))
                                 .foregroundColor(.white)
@@ -128,7 +128,7 @@ struct StoryView: View {
                 }
                 Button("취소", role: .cancel) { }
             } message: {
-                Text("사시각 측정을 위해 카메라 권한이 필요합니다.\n설정으로 이동하시겠습니까?")
+                Text("Camera permissions are required/nfor strabismus test")
             }
         }
     }
