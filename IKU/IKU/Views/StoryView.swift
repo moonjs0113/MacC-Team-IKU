@@ -15,12 +15,100 @@ extension Color {
 }
 
 struct StoryView: View {
-    
-    // MARK: - Properties
-    @State private var selectedEye: Eye = .left
-    let customBlue = Color.ikuBlue
+    @State private var selectedEye: Eye = .right
     @State private var showAlert: Bool = false
     @State private var showCoverTestView: Bool = false
+    
+    init() {
+        let appearence = UINavigationBarAppearance()
+        appearence.shadowColor = .black
+        UINavigationBar.appearance().standardAppearance = appearence
+        UINavigationBar.appearance().scrollEdgeAppearance = appearence
+    }
+    
+    var body: some View {
+        ZStack {
+            Color.ikuBackground
+                .ignoresSafeArea()
+            
+            VStack(spacing: 0) {
+                Text("Select eye to test")
+                    .bold()
+                    .font(Font(UIFont.nexonGothicFont(ofSize: 20, weight: .bold)))
+                    .foregroundColor(.black)
+                    .padding(32)
+                
+                EyeSelectingView($selectedEye)
+                    .padding()
+                
+                VStack {
+                    Text("Click What is “Cover Test?” before starting test. If you understand “Cover Test”, push the “Test Start!” button")
+                        .multilineTextAlignment(.leading)
+                        .padding()
+                    Button {
+                        Void()
+                    } label: {
+                        Text(#"What is "Cover Test"?"#)
+                            .underline()
+                            .foregroundColor(.ikuBlue)
+                    }
+                    .padding(.bottom, 32)
+                }
+                .background {
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(.white)
+                }
+                .padding()
+                
+                
+                Spacer()
+                
+                Button {
+                    scanButtonTouched()
+                } label: {
+                    HStack {
+                        Spacer()
+                        Text("Test Start!")
+                            .foregroundColor(.white)
+                            .font(Font(UIFont.nexonGothicFont(ofSize: 20, weight: .bold)))
+                        Spacer()
+                    }
+                    .padding()
+                }
+                .background {
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(.ikuBlue)
+                }
+                .padding()
+            }
+        }
+        .fullScreenCover(isPresented: $showCoverTestView) {
+            CoverTestView(selectedEye: selectedEye)
+                .ignoresSafeArea()
+        }
+        .alert("Require Camera Permission", isPresented: $showAlert) {
+            Button("확인") {
+                goToAppSetting()
+            }
+            Button("취소", role: .cancel) { }
+        } message: {
+            Text("사시각 측정을 위해 카메라 권한이 필요합니다.\n설정으로 이동하시겠습니까?")
+        }
+        .navigationTitle("Strabismus Test")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Text("Lisa")
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink {
+                    ProfileView()
+                } label: {
+                    Circle()
+                        .foregroundColor(.cyan)
+                }
+            }
+        }
+    }
     
     private func goToAppSetting() {
         if let url = URL(string: UIApplication.openSettingsURLString) {
@@ -28,111 +116,89 @@ struct StoryView: View {
         }
     }
     
-    var body: some View {
-        NavigationView {
-            ZStack {
-                Color.ikuBackground
-                    .ignoresSafeArea()
-                
-                VStack(spacing: 0) {
-                    HStack {
-                        Image(systemName: "questionmark.circle")
-                            .foregroundColor(customBlue)
-                        
-                        Spacer()
-                        
-                        // TODO: 앱 로고로 대체
-                        Image(systemName: "hare")
-                        Text("Strabismus Test")
-                            .bold()
-//                            .foregroundColor(customBlue)
-                            .font(Font(UIFont.nexonGothicFont(ofSize: 22, weight: .bold)))
-                        Spacer()
-                        NavigationLink(destination: ProfileView(),
-                                       label: {
-                            HStack{
-                                Text("Lisa")
-//                                    .foregroundColor(customBlue)
-                                    .font(Font(UIFont.nexonGothicFont(ofSize: 13, weight: .bold)))
-                                Image(systemName: "person.circle")
-                            }
-    
-                        })
-                    }
-                    .padding()
-                    
-                    Spacer()
-                    
-                    Text("검사할 눈을 선택해주세요")
-                        .bold()
-                        .font(Font(UIFont.nexonGothicFont(ofSize: 20, weight: .bold)))
-                        .foregroundColor(customBlue)
-                        .padding(.bottom, 29)
-                    
-                    SelectWhichEyeView(selectedEye: $selectedEye)
-                    
-                    // 눈이 제대로 선택되었는지 확인하는 디버깅 용도의 코드입니다. 임의로 삭제 가능합니다.
-                    Text("선택된 눈 : \(selectedEye.rawValue)")
-                        .padding()
-                    
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text("가림막 검사는? 오른쪽 눈 검사할 때는")
-                            .bold()
-                            .font(Font(UIFont.nexonGothicFont(ofSize: 17, weight: .bold)))
-                            .foregroundColor(customBlue)
-                            .padding(.bottom, 6)
-                        Text("왼쪽 눈을 가려주세요")
-                            .font(Font(UIFont.nexonGothicFont(ofSize: 15, weight: .regular)))
-                    }
-                    
-                    Spacer()
-                    
-                    Button {
-                        // TODO: 검사하기 버튼을 누르면 검사하는 화면으로 이동
-                        AVCaptureDevice.requestAccess(for: .video) { permission in
-                            
-                            
-                            if permission {
-                                showCoverTestView = true //self.goToCoverTestView()
-                            } else {
-                                showAlert = true
-                                //                                self.showAlertPermissionSetting(title: "Require Camera Permission",
-                                //                                                                message: "사시각 측정을 위해 카메라 권한이 필요합니다.\n설정으로 이동하시겠습니까?")
-                            }
-                            
-                        }
-                    } label: {
-                        ZStack {
-                            Rectangle()
-                                .cornerRadius(10)
-                                .foregroundColor(customBlue)
-                                .frame(height:52, alignment: .center)
-                                .shadow(radius: 4, x: 0, y: 4)
-                                .padding()
-                            
-                            Text("Test Start!")
-                                .bold()
-                                .font(Font(UIFont.nexonGothicFont(ofSize: 20, weight: .bold)))
-                                .foregroundColor(.white)
-                        }
-                    }
-                }
-            }
-            .fullScreenCover(isPresented: $showCoverTestView) {
-                CoverTestView(selectedEye: selectedEye)
-                    .ignoresSafeArea()
-            }
-            .alert("Require Camera Permission", isPresented: $showAlert) {
-                Button("확인") {
-                    goToAppSetting()
-                }
-                Button("취소", role: .cancel) { }
-            } message: {
-                Text("Camera permissions are required/nfor strabismus test")
-            }
+    private func scanButtonTouched() {
+        AVCaptureDevice.requestAccess(for: .video) { permission in
+            if permission { showCoverTestView = true }
+            else { showAlert = true }
         }
     }
 }
 
-
-
+fileprivate struct EyeSelectingView: View {
+    @Binding private var selectedEye: Eye
+    
+    init(_ selectedEye: Binding<Eye>) {
+        self._selectedEye = selectedEye
+    }
+    
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack {
+                switch selectedEye {
+                case .left:
+                    Image("LeftEyeSelectedImage")
+                        .resizable()
+                        .scaledToFit()
+                case .right:
+                    Image("RightEyeSelectedImage")
+                        .resizable()
+                        .scaledToFit()
+                }
+            }
+            .position(
+                x: geometry.frame(in: .local).midX,
+                y: geometry.frame(in: .local).midY
+            )
+            .overlay{
+                ZStack {
+                    Rectangle()
+                        .opacity(0.47)
+                        .foregroundColor(.ikuEyeSelectBackground)
+                        .mask {
+                            Mask(direction: selectedEye, in: CGRect(
+                                origin: .zero,
+                                size: CGSize(
+                                    width: geometry.size.width,
+                                    height: geometry.size.height))
+                            )
+                        }
+                        .onTapGesture {
+                            switch selectedEye {
+                            case .left: selectedEye = .right
+                            case .right: selectedEye = .left
+                            }
+                        }
+                        
+                    VStack {
+                        Spacer()
+                        HStack{
+                            Spacer()
+                            Text("Left Eye")
+                            Spacer()
+                            Spacer()
+                            Text("Right Eye")
+                            Spacer()
+                        }
+                        .font(Font(UIFont.nexonGothicFont(ofSize: 17, weight: .bold)))
+                        .padding(.bottom, 30)
+                    }
+                }
+            }
+            .clipShape(
+                RoundedRectangle(cornerRadius: 10)
+            )
+        }
+    }
+    
+    private func Mask(direction eye: Eye, in rect: CGRect) -> some View {
+        var shape = Rectangle().path(in: rect)
+        shape.addPath(RoundedRectangle(cornerRadius: 10)
+            .path(in:CGRect(
+                origin: CGPoint(x: eye == .left ? 4 : rect.midX + 4, y: 4),
+                size: CGSize(width: rect.width/2 - 8, height: rect.height - 8))
+            )
+        )
+        
+        return shape.fill(style: FillStyle(eoFill: true))
+    }
+}

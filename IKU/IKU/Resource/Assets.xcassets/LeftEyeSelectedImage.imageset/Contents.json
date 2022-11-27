@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "lefteye.png",
+      "filename" : "LeftEyeSelectedImage@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "LeftEyeSelectedImage@2x.png.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "LeftEyeSelectedImage@3x.png.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
