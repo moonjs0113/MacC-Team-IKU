@@ -8,7 +8,7 @@
 import Foundation
 
 final class JSONService {
-    static let path: String = "strabismusAngles"
+    static let path: String = "StrabismusAngles"
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
     private let url: URL

@@ -18,24 +18,34 @@ extension UIViewController {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
-        let ok = UIAlertAction(title: "예", style: .default) { [weak self] _ in
+        let ok = UIAlertAction(title: "Yes", style: .default) { [weak self] _ in
             self?.openSystemSetting()
         }
-        let cancel = UIAlertAction(title: "아니오", style: .cancel)
+        let cancel = UIAlertAction(title: "No", style: .cancel)
         alert.addAction(ok)
         alert.addAction(cancel)
         present(alert, animated: true)
     }
     
-    func showAlertController(title: String, message: String, style: UIAlertController.Style = .alert, completeHandler: @escaping () -> Void) {
+    func showAlertController(
+        title: String,
+        message: String,
+        style: UIAlertController.Style = .alert,
+        isAddCancelAction: Bool = true,
+        completeHandler: @escaping () -> Void
+    ) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
-        let ok = UIAlertAction(title: "예", style: .default) { _ in
+        let ok = UIAlertAction(title: isAddCancelAction ? "Yes" : "Confirm" , style: .default) { _ in
             completeHandler()
             return
         }
-        let cancel = UIAlertAction(title: "아니오", style: .cancel)
         alert.addAction(ok)
-        alert.addAction(cancel)
+        
+        if isAddCancelAction {
+            let cancel = UIAlertAction(title: "No", style: .cancel)
+            alert.addAction(cancel)
+        }
+        
         present(alert, animated: true)
     }
     

@@ -12,7 +12,7 @@ final class VideoURLService {
         case noFile
     }
     
-    static let path: String = "videos"
+    static let path: String = "Videos"
     private let url: URL
     private let pathExtension: String = ".mp4"
     
@@ -38,5 +38,9 @@ final class VideoURLService {
         } else {
             throw URLError.noFile
         }
+    }
+    
+    func deleteVideoURL(named name: String) throws {
+        try FileManager.default.removeItem(at: url.appendingPathComponent(name + pathExtension))
     }
 }

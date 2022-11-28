@@ -11,7 +11,7 @@ import AVFoundation
 final class HistoryViewController: UIViewController {
     // MARK: - Properties
     private var eyeSegmentedControl: UISegmentedControl = {
-        let view = UISegmentedControl(items: ["왼쪽 눈", "오른쪽 눈"])
+        let view = UISegmentedControl(items: ["Left Eye", "Right Eye"])
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setTitleTextAttributes([.font: UIFont.nexonGothicFont(ofSize: 13)], for: .normal)
         view.setTitleTextAttributes([.font: UIFont.nexonGothicFont(ofSize: 13, weight: .bold)], for: .selected)
@@ -49,8 +49,15 @@ final class HistoryViewController: UIViewController {
     }()
     
     // MARK: - Methods
-    private func configureNavigationBar() {
-        
+    private func setupNavigationController() {
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
+    }
+    
+    private func setupCalendarView() {
+        ikuCalendarView.didSelectDayView = goToResultView
+        ikuCalendarView.goToHistoryListView = goToHistoryListView
     }
     
     private func setupLayoutConstraint() {
@@ -79,6 +86,29 @@ final class HistoryViewController: UIViewController {
         ])
     }
     
+    private func fetchData() {
+        do {
+            let persistenceManager = try PersistenceManager()
+            ikuCalendarView.calendarView.data = try persistenceManager.fetchVideo(.all)
+            let todayData = try persistenceManager.fetchVideo(.at(day: Date.now))
+            todayStatusLabel.text = todayData.isEmpty ? "Please start today’s starabismus test!" : "Lisa’s strabismus test completed!"
+        } catch {
+            // TODO: Merge 후 수정
+            self.showAlertController(title: "Data get failed", message: "Failed to get test results", completeHandler: {})
+        }
+    }
+    
+    private func goToResultView(data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)]) {
+        // TODO: - 결과뷰 Present
+        guard let resultViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultViewController") as? ResultViewController else {
+            return
+        }
+        
+        resultViewController.prepareData(data: data)
+        resultViewController.root = .history_calendar
+        navigationController?.pushViewController(resultViewController, animated: true)
+    }
+    
     private func goToCoverTestView() {
         let navigationController = UINavigationController()
         let coverTestViewController = CoverTestViewController()
@@ -87,6 +117,11 @@ final class HistoryViewController: UIViewController {
         navigationController.modalPresentationStyle = .fullScreen
         navigationController.pushViewController(coverTestViewController, animated: true)
         self.present(navigationController, animated: true)
+    }
+    
+    private func goToHistoryListView() {
+        let historyListViewController = HistoryListViewController()
+        navigationController?.pushViewController(historyListViewController, animated: true)
     }
     
     // MARK: - Objc-C Methods
@@ -98,7 +133,7 @@ final class HistoryViewController: UIViewController {
                     self.goToCoverTestView()
                 } else {
                     self.showAlertPermissionSetting(title: "Require Camera Permission",
-                                                    message: "사시각 측정을 위해 카메라 권한이 필요합니다.\n설정으로 이동하시겠습니까?")
+                                                    message: "Camera permissions are required \nfor strabismus test. \n Do you want to go Setting??")
                 }
             }
         }
@@ -108,12 +143,23 @@ final class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ikuBackgroundBlue
-        configureNavigationBar()
+        setupNavigationController()
+        setupCalendarView()
         setupLayoutConstraint()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchData()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        ikuCalendarView.commitCalendarViewUpdate()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         ikuCalendarView.commitCalendarViewUpdate()
     }
 }

@@ -18,66 +18,91 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Result View Controller-->
+        <!--Test Result-->
         <scene sceneID="kpv-DC-fu1">
             <objects>
-                <viewController storyboardIdentifier="ResultViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7Fj-xB-xcS" customClass="ResultViewController" customModule="IKU" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResultViewController" title="Test Result" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7Fj-xB-xcS" customClass="ResultViewController" customModule="IKU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ufU-LY-zGT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="우리 아이의 왼쪽 눈 검사의 결과입니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doM-WC-XGK">
-                                <rect key="frame" x="16" y="99" width="361" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="iMD-qM-1xj"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RVS-mf-ASy">
-                                <rect key="frame" x="16" y="150" width="361" height="208"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="4rB-5b-7jr" userLabel="Image Title Stack View">
+                                <rect key="frame" x="16" y="79" width="361" height="15"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="uncovered" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzR-ns-v44">
+                                        <rect key="frame" x="0.0" y="0.0" width="180.66666666666666" height="15"/>
+                                        <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Covered" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQP-tK-vOq">
+                                        <rect key="frame" x="180.66666666666663" y="0.0" width="180.33333333333337" height="15"/>
+                                        <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RVS-mf-ASy" userLabel="Image Stack View">
+                                <rect key="frame" x="16" y="99" width="361" height="208"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uncoverEye" translatesAutoresizingMaskIntoConstraints="NO" id="sAl-v5-gYu">
                                         <rect key="frame" x="0.0" y="0.0" width="180.66666666666666" height="208"/>
-                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <color key="backgroundColor" name="ikuBackground"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coverEye" translatesAutoresizingMaskIntoConstraints="NO" id="nQv-It-vyZ">
                                         <rect key="frame" x="180.66666666666663" y="0.0" width="180.33333333333337" height="208"/>
-                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <color key="backgroundColor" name="ikuBackground"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="208" id="WTw-xN-VKx"/>
                                 </constraints>
                             </stackView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BzU-m7-UZV">
+                                <rect key="frame" x="200" y="317" width="177" height="32"/>
+                                <segments>
+                                    <segment title="Left eye"/>
+                                    <segment title="Right eye"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlValueChanged:" destination="7Fj-xB-xcS" eventType="valueChanged" id="Kge-AB-dhf"/>
+                                </connections>
+                            </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j0d-Vr-1gK">
-                                <rect key="frame" x="16" y="369" width="361" height="312"/>
+                                <rect key="frame" x="16" y="358" width="361" height="322"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="예상 사시각" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fap-NG-EAr">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Expected cross-eyed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fap-NG-EAr">
                                         <rect key="frame" x="12" y="16" width="337" height="19.666666666666671"/>
                                         <fontDescription key="fontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="17"/>
                                         <color key="textColor" name="ikuBlue 2"/>
                                         <color key="highlightedColor" systemColor="linkColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 도" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjp-pf-IUD">
-                                        <rect key="frame" x="12" y="45.666666666666686" width="337" height="19.666666666666671"/>
-                                        <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text1" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXZ-ly-CQV">
-                                        <rect key="frame" x="16" y="154.66666666666663" width="329" height="40"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="J7S-Fg-QI2">
+                                        <rect key="frame" x="16" y="45.666666666666686" width="78.666666666666671" height="25"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjp-pf-IUD">
+                                                <rect key="frame" x="0.0" y="0.0" width="36.666666666666664" height="25"/>
+                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="28"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Angle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eor-fK-vSj">
+                                                <rect key="frame" x="41.666666666666671" y="10" width="37" height="15"/>
+                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="emD-sG-2fY"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text1" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dXZ-ly-CQV">
+                                        <rect key="frame" x="16" y="156" width="329" height="50"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="wmY-d8-vnL"/>
+                                            <constraint firstAttribute="height" constant="50" id="wmY-d8-vnL"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
                                         <userDefinedRuntimeAttributes>
@@ -88,32 +113,32 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="pZX-lz-YDn">
-                                        <rect key="frame" x="16" y="122.66666666666669" width="329" height="17"/>
+                                        <rect key="frame" x="16" y="124" width="329" height="17"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안전" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oi-YR-cpQ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Safe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oi-YR-cpQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="108.33333333333333" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="RSj-FC-VmM"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주의" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krZ-XJ-xVh">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caution" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krZ-XJ-xVh">
                                                 <rect key="frame" x="110.33333333333334" y="0.0" width="108.33333333333334" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="oFB-Yj-beL"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="검사요망" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAp-hN-rN5">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="seek consultant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAp-hN-rN5">
                                                 <rect key="frame" x="220.66666666666666" y="0.0" width="108.33333333333334" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="jfU-6k-i0o"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -122,22 +147,22 @@
                                             <constraint firstAttribute="height" constant="17" id="nbO-1k-Rph"/>
                                         </constraints>
                                     </stackView>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szg-Fr-Jst">
-                                        <rect key="frame" x="16" y="214.66666666666663" width="329" height="68"/>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="szg-Fr-Jst">
+                                        <rect key="frame" x="16" y="226" width="329" height="80"/>
                                         <color key="tintColor" systemColor="opaqueSeparatorColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="68" id="eNE-dO-oDL"/>
+                                            <constraint firstAttribute="height" constant="80" id="eNE-dO-oDL"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="11"/>
                                         <color key="textColor" name="ikuDarkGray"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hLJ-JJ-nIe">
-                                        <rect key="frame" x="15" y="70.333333333333314" width="331" height="20.333333333333329"/>
+                                        <rect key="frame" x="15" y="81.666666666666686" width="331" height="20.333333333333329"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qg4-rp-3E5">
                                                 <rect key="frame" x="0.0" y="3.9999999999999991" width="20.333333333333332" height="12.666666666666664"/>
-                                                <color key="tintColor" name="ikuBlue 2"/>
+                                                <color key="tintColor" name="ikuSafeColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Qg4-rp-3E5" secondAttribute="height" multiplier="1:1" id="B9X-6b-7Ic"/>
                                                 </constraints>
@@ -145,7 +170,7 @@
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WoA-ek-ptP">
                                                 <rect key="frame" x="22.333333333333336" y="3.9999999999999991" width="20" height="12.666666666666664"/>
-                                                <color key="tintColor" name="ikuBlue 2"/>
+                                                <color key="tintColor" name="ikuSafeColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="WoA-ek-ptP" secondAttribute="height" multiplier="1:1" id="qku-LC-MLW"/>
                                                 </constraints>
@@ -153,7 +178,7 @@
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0SY-WE-gp8">
                                                 <rect key="frame" x="44.333333333333329" y="3.9999999999999991" width="20.333333333333329" height="12.666666666666664"/>
-                                                <color key="tintColor" name="ikuBlue 2"/>
+                                                <color key="tintColor" name="ikuSafeColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="0SY-WE-gp8" secondAttribute="height" multiplier="1:1" id="RiE-e4-VXw"/>
                                                 </constraints>
@@ -161,7 +186,7 @@
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YjA-W5-uud">
                                                 <rect key="frame" x="66.666666666666671" y="3.9999999999999991" width="20" height="12.666666666666664"/>
-                                                <color key="tintColor" name="ikuBlue 2"/>
+                                                <color key="tintColor" name="ikuSafeColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="YjA-W5-uud" secondAttribute="height" multiplier="1:1" id="Q0I-Xv-4Ze"/>
                                                 </constraints>
@@ -169,7 +194,7 @@
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KYO-MP-klh">
                                                 <rect key="frame" x="88.666666666666671" y="3.9999999999999991" width="20.333333333333329" height="12.666666666666664"/>
-                                                <color key="tintColor" name="ikuBlue 2"/>
+                                                <color key="tintColor" name="ikuSafeColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="KYO-MP-klh" secondAttribute="height" multiplier="1:1" id="2Gs-cZ-z4M"/>
                                                 </constraints>
@@ -177,7 +202,7 @@
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ta-7z-60N">
                                                 <rect key="frame" x="111" y="3.9999999999999991" width="20.333333333333343" height="12.666666666666664"/>
-                                                <color key="tintColor" name="ikuResultGray"/>
+                                                <color key="tintColor" name="ikuCautionColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="1ta-7z-60N" secondAttribute="height" multiplier="1:1" id="2Qx-5N-Qy0"/>
                                                 </constraints>
@@ -185,7 +210,7 @@
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="anA-na-Ggv">
                                                 <rect key="frame" x="133.33333333333334" y="3.9999999999999991" width="20" height="12.666666666666664"/>
-                                                <color key="tintColor" name="ikuResultGray"/>
+                                                <color key="tintColor" name="ikuCautionColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="anA-na-Ggv" secondAttribute="height" multiplier="1:1" id="jEj-wi-ro3"/>
                                                 </constraints>
@@ -193,7 +218,7 @@
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aDy-ir-k7q">
                                                 <rect key="frame" x="155.33333333333334" y="3.9999999999999991" width="20.333333333333343" height="12.666666666666664"/>
-                                                <color key="tintColor" name="ikuResultGray"/>
+                                                <color key="tintColor" name="ikuCautionColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="aDy-ir-k7q" secondAttribute="height" multiplier="1:1" id="4pX-cN-Aew"/>
                                                 </constraints>
@@ -201,7 +226,7 @@
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pwI-jQ-bC4">
                                                 <rect key="frame" x="177.66666666666666" y="3.9999999999999991" width="20" height="12.666666666666664"/>
-                                                <color key="tintColor" name="ikuResultGray"/>
+                                                <color key="tintColor" name="ikuCautionColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="pwI-jQ-bC4" secondAttribute="height" multiplier="1:1" id="JvY-Zg-wc4"/>
                                                 </constraints>
@@ -209,7 +234,7 @@
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fke-nC-Tsb">
                                                 <rect key="frame" x="199.66666666666666" y="3.9999999999999991" width="20.333333333333343" height="12.666666666666664"/>
-                                                <color key="tintColor" name="ikuResultGray"/>
+                                                <color key="tintColor" name="ikuCautionColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="fke-nC-Tsb" secondAttribute="height" multiplier="1:1" id="pk2-F1-pUp"/>
                                                 </constraints>
@@ -259,194 +284,215 @@
                                         <color key="tintColor" systemColor="systemGray4Color"/>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="rcX-AO-rGL">
-                                        <rect key="frame" x="15" y="87.666666666666686" width="331" height="20"/>
+                                        <rect key="frame" x="15" y="99" width="331" height="10"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRI-6s-mwG">
-                                                <rect key="frame" x="0.0" y="0.0" width="20.333333333333332" height="20"/>
-                                                <color key="backgroundColor" name="ikuBlue 2"/>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRI-6s-mwG">
+                                                <rect key="frame" x="0.0" y="0.0" width="20.333333333333332" height="10"/>
+                                                <color key="backgroundColor" name="ikuSafeColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="LRI-6s-mwG" secondAttribute="height" multiplier="1:1" id="g7q-DM-e61"/>
+                                                    <constraint firstAttribute="width" secondItem="LRI-6s-mwG" secondAttribute="height" multiplier="2:1" id="RMP-14-k1i"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
+                                                        <integer key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Sh-iY-7ws">
-                                                <rect key="frame" x="22.333333333333336" y="0.0" width="20" height="20"/>
-                                                <color key="backgroundColor" name="ikuBlue 2"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pEg-7Y-a57">
-                                                <rect key="frame" x="44.333333333333329" y="0.0" width="20.333333333333329" height="20"/>
-                                                <color key="backgroundColor" name="ikuBlue 2"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOv-zb-5Dr">
-                                                <rect key="frame" x="66.666666666666671" y="0.0" width="20" height="20"/>
-                                                <color key="backgroundColor" name="ikuBlue 2"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CF1-er-0WA">
-                                                <rect key="frame" x="88.666666666666671" y="0.0" width="20.333333333333329" height="20"/>
-                                                <color key="backgroundColor" name="ikuBlue 2"/>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Sh-iY-7ws">
+                                                <rect key="frame" x="22.333333333333336" y="0.0" width="20" height="10"/>
+                                                <color key="backgroundColor" name="ikuSafeColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="CF1-er-0WA" secondAttribute="height" multiplier="1:1" id="NEY-ef-RfO"/>
+                                                    <constraint firstAttribute="width" secondItem="3Sh-iY-7ws" secondAttribute="height" multiplier="2:1" id="i1w-z2-8bI"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
+                                                        <integer key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tiz-Jt-Kfb">
-                                                <rect key="frame" x="111" y="0.0" width="20.333333333333343" height="20"/>
-                                                <color key="backgroundColor" name="ikuResultGray"/>
-                                                <color key="tintColor" systemColor="systemGray4Color"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Phu-RH-cPt">
-                                                <rect key="frame" x="133.33333333333334" y="0.0" width="20" height="20"/>
-                                                <color key="backgroundColor" name="ikuResultGray"/>
-                                                <color key="tintColor" systemColor="systemGray4Color"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="obA-4w-mhq">
-                                                <rect key="frame" x="155.33333333333334" y="0.0" width="20.333333333333343" height="20"/>
-                                                <color key="backgroundColor" name="ikuResultGray"/>
-                                                <color key="tintColor" systemColor="systemGray4Color"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zwW-nT-Myi">
-                                                <rect key="frame" x="177.66666666666666" y="0.0" width="20" height="20"/>
-                                                <color key="backgroundColor" name="ikuResultGray"/>
-                                                <color key="tintColor" systemColor="systemGray4Color"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFT-1A-1wc">
-                                                <rect key="frame" x="199.66666666666666" y="0.0" width="20.333333333333343" height="20"/>
-                                                <color key="backgroundColor" name="ikuResultGray"/>
-                                                <color key="tintColor" systemColor="systemGray4Color"/>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pEg-7Y-a57">
+                                                <rect key="frame" x="44.333333333333329" y="0.0" width="20.333333333333329" height="10"/>
+                                                <color key="backgroundColor" name="ikuSafeColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="hFT-1A-1wc" secondAttribute="height" multiplier="1:1" id="lbT-Xv-a7P"/>
+                                                    <constraint firstAttribute="width" secondItem="pEg-7Y-a57" secondAttribute="height" multiplier="2:1" id="eED-PF-Vmr"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
+                                                        <integer key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgw-PN-d4I">
-                                                <rect key="frame" x="222" y="0.0" width="20.333333333333343" height="20"/>
-                                                <color key="backgroundColor" name="ikuOrange"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwO-Bt-dgc">
-                                                <rect key="frame" x="244.33333333333331" y="0.0" width="20" height="20"/>
-                                                <color key="backgroundColor" name="ikuOrange"/>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOv-zb-5Dr">
+                                                <rect key="frame" x="66.666666666666671" y="0.0" width="20" height="10"/>
+                                                <color key="backgroundColor" name="ikuSafeColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="pwO-Bt-dgc" secondAttribute="height" multiplier="1:1" id="yA6-wn-s3S"/>
+                                                    <constraint firstAttribute="width" secondItem="bOv-zb-5Dr" secondAttribute="height" multiplier="2:1" id="vIO-t4-t3E"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
+                                                        <integer key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPY-C1-mav">
-                                                <rect key="frame" x="266.33333333333331" y="0.0" width="20.333333333333314" height="20"/>
-                                                <color key="backgroundColor" name="ikuOrange"/>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CF1-er-0WA">
+                                                <rect key="frame" x="88.666666666666671" y="0.0" width="20.333333333333329" height="10"/>
+                                                <color key="backgroundColor" name="ikuSafeColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="CF1-er-0WA" secondAttribute="height" multiplier="2:1" id="TaX-Pw-J6m"/>
+                                                </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
+                                                        <integer key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e5y-83-5fv">
-                                                <rect key="frame" x="288.66666666666669" y="0.0" width="20" height="20"/>
-                                                <color key="backgroundColor" name="ikuOrange"/>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tiz-Jt-Kfb">
+                                                <rect key="frame" x="111" y="0.0" width="20.333333333333343" height="10"/>
+                                                <color key="backgroundColor" name="ikuCautionColor"/>
+                                                <color key="tintColor" systemColor="systemGray4Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Tiz-Jt-Kfb" secondAttribute="height" multiplier="2:1" id="Ebn-rS-VKz"/>
+                                                </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
+                                                        <integer key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FCO-SX-6Mb">
-                                                <rect key="frame" x="310.66666666666669" y="0.0" width="20.333333333333314" height="20"/>
-                                                <color key="backgroundColor" name="ikuOrange"/>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Phu-RH-cPt">
+                                                <rect key="frame" x="133.33333333333334" y="0.0" width="20" height="10"/>
+                                                <color key="backgroundColor" name="ikuCautionColor"/>
+                                                <color key="tintColor" systemColor="systemGray4Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Phu-RH-cPt" secondAttribute="height" multiplier="2:1" id="La3-gM-xNh"/>
+                                                </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="5"/>
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="obA-4w-mhq">
+                                                <rect key="frame" x="155.33333333333334" y="0.0" width="20.333333333333343" height="10"/>
+                                                <color key="backgroundColor" name="ikuCautionColor"/>
+                                                <color key="tintColor" systemColor="systemGray4Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="obA-4w-mhq" secondAttribute="height" multiplier="2:1" id="Otu-hC-57B"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zwW-nT-Myi">
+                                                <rect key="frame" x="177.66666666666666" y="0.0" width="20" height="10"/>
+                                                <color key="backgroundColor" name="ikuCautionColor"/>
+                                                <color key="tintColor" systemColor="systemGray4Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="zwW-nT-Myi" secondAttribute="height" multiplier="2:1" id="hmS-2a-979"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFT-1A-1wc">
+                                                <rect key="frame" x="199.66666666666666" y="0.0" width="20.333333333333343" height="10"/>
+                                                <color key="backgroundColor" name="ikuCautionColor"/>
+                                                <color key="tintColor" systemColor="systemGray4Color"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="hFT-1A-1wc" secondAttribute="height" multiplier="2:1" id="1Ob-bp-KoZ"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgw-PN-d4I">
+                                                <rect key="frame" x="222" y="0.0" width="20.333333333333343" height="10"/>
+                                                <color key="backgroundColor" name="ikuOrange"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Qgw-PN-d4I" secondAttribute="height" multiplier="2:1" id="8JN-IW-tPu"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwO-Bt-dgc">
+                                                <rect key="frame" x="244.33333333333331" y="0.0" width="20" height="10"/>
+                                                <color key="backgroundColor" name="ikuOrange"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="pwO-Bt-dgc" secondAttribute="height" multiplier="2:1" id="AxB-TJ-VgR"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPY-C1-mav">
+                                                <rect key="frame" x="266.33333333333331" y="0.0" width="20.333333333333314" height="10"/>
+                                                <color key="backgroundColor" name="ikuOrange"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="hPY-C1-mav" secondAttribute="height" multiplier="2:1" id="n9q-ka-5nY"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e5y-83-5fv">
+                                                <rect key="frame" x="288.66666666666669" y="0.0" width="20" height="10"/>
+                                                <color key="backgroundColor" name="ikuOrange"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="e5y-83-5fv" secondAttribute="height" multiplier="2:1" id="gvW-bF-Xn7"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FCO-SX-6Mb">
+                                                <rect key="frame" x="310.66666666666669" y="0.0" width="20.333333333333314" height="10"/>
+                                                <color key="backgroundColor" name="ikuOrange"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="FCO-SX-6Mb" secondAttribute="height" multiplier="2:1" id="jKV-bc-RP4"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                         <color key="tintColor" systemColor="systemGray4Color"/>
-                                        <constraints>
-                                            <constraint firstItem="3Sh-iY-7ws" firstAttribute="width" secondItem="3Sh-iY-7ws" secondAttribute="height" multiplier="1:1" id="BEn-Sz-7Lz"/>
-                                            <constraint firstItem="bOv-zb-5Dr" firstAttribute="width" secondItem="bOv-zb-5Dr" secondAttribute="height" multiplier="1:1" id="Cuy-gN-FBc"/>
-                                            <constraint firstItem="obA-4w-mhq" firstAttribute="width" secondItem="obA-4w-mhq" secondAttribute="height" multiplier="1:1" id="RWa-nX-OHV"/>
-                                            <constraint firstItem="Tiz-Jt-Kfb" firstAttribute="width" secondItem="Tiz-Jt-Kfb" secondAttribute="height" multiplier="1:1" id="ahw-oF-F4T"/>
-                                            <constraint firstItem="pEg-7Y-a57" firstAttribute="width" secondItem="pEg-7Y-a57" secondAttribute="height" multiplier="1:1" id="fZ3-5c-D7A"/>
-                                            <constraint firstItem="zwW-nT-Myi" firstAttribute="width" secondItem="zwW-nT-Myi" secondAttribute="height" multiplier="1:1" id="hw1-0Z-XVD"/>
-                                            <constraint firstItem="FCO-SX-6Mb" firstAttribute="width" secondItem="FCO-SX-6Mb" secondAttribute="height" multiplier="1:1" id="nUt-Dn-dx3"/>
-                                            <constraint firstItem="Qgw-PN-d4I" firstAttribute="width" secondItem="Qgw-PN-d4I" secondAttribute="height" multiplier="1:1" id="pC0-eP-Kke"/>
-                                            <constraint firstItem="e5y-83-5fv" firstAttribute="width" secondItem="e5y-83-5fv" secondAttribute="height" multiplier="1:1" id="uxG-Ue-Fti"/>
-                                            <constraint firstItem="Phu-RH-cPt" firstAttribute="width" secondItem="Phu-RH-cPt" secondAttribute="height" multiplier="1:1" id="vKq-qh-JFG"/>
-                                            <constraint firstItem="hPY-C1-mav" firstAttribute="width" secondItem="hPY-C1-mav" secondAttribute="height" multiplier="1:1" id="yIY-nm-ben"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="hLJ-JJ-nIe" firstAttribute="top" secondItem="J7S-Fg-QI2" secondAttribute="bottom" constant="11" id="09p-R1-VjR"/>
                                     <constraint firstAttribute="trailing" secondItem="rcX-AO-rGL" secondAttribute="trailing" constant="15" id="0vs-Vc-J7I"/>
                                     <constraint firstItem="rcX-AO-rGL" firstAttribute="leading" secondItem="j0d-Vr-1gK" secondAttribute="leading" constant="15" id="4Dy-P6-2Ko"/>
                                     <constraint firstItem="pZX-lz-YDn" firstAttribute="leading" secondItem="j0d-Vr-1gK" secondAttribute="leading" constant="16" id="55s-oq-miM"/>
@@ -456,13 +502,11 @@
                                     <constraint firstItem="hLJ-JJ-nIe" firstAttribute="leading" secondItem="j0d-Vr-1gK" secondAttribute="leading" constant="15" id="OFF-Lh-glo"/>
                                     <constraint firstItem="Fap-NG-EAr" firstAttribute="top" secondItem="j0d-Vr-1gK" secondAttribute="top" constant="16" id="PpT-Lq-YGC"/>
                                     <constraint firstAttribute="trailing" secondItem="szg-Fr-Jst" secondAttribute="trailing" constant="16" id="RGl-mb-pfN"/>
-                                    <constraint firstItem="hLJ-JJ-nIe" firstAttribute="top" secondItem="Kjp-pf-IUD" secondAttribute="bottom" constant="5" id="Xk2-O6-8mR"/>
-                                    <constraint firstAttribute="trailing" secondItem="Kjp-pf-IUD" secondAttribute="trailing" constant="12" id="YYj-1z-lcp"/>
-                                    <constraint firstAttribute="height" constant="312" id="dXR-id-AwY"/>
-                                    <constraint firstItem="Kjp-pf-IUD" firstAttribute="top" secondItem="Fap-NG-EAr" secondAttribute="bottom" constant="10" id="eiU-Aw-6mZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="szg-Fr-Jst" secondAttribute="bottom" constant="16" id="ZAg-Bo-7gC"/>
                                     <constraint firstItem="szg-Fr-Jst" firstAttribute="leading" secondItem="j0d-Vr-1gK" secondAttribute="leading" constant="16" id="fxt-cL-Mnr"/>
-                                    <constraint firstItem="Kjp-pf-IUD" firstAttribute="leading" secondItem="j0d-Vr-1gK" secondAttribute="leading" constant="12" id="gVf-Uf-XaV"/>
+                                    <constraint firstItem="J7S-Fg-QI2" firstAttribute="top" secondItem="Fap-NG-EAr" secondAttribute="bottom" constant="10" id="ifB-nj-u10"/>
                                     <constraint firstAttribute="trailing" secondItem="pZX-lz-YDn" secondAttribute="trailing" constant="16" id="m4j-2e-Nk0"/>
+                                    <constraint firstItem="J7S-Fg-QI2" firstAttribute="leading" secondItem="j0d-Vr-1gK" secondAttribute="leading" constant="16" id="mF3-xe-GGd"/>
                                     <constraint firstItem="Fap-NG-EAr" firstAttribute="leading" secondItem="j0d-Vr-1gK" secondAttribute="leading" constant="12" id="s6Q-Jf-b6W"/>
                                     <constraint firstItem="szg-Fr-Jst" firstAttribute="top" secondItem="dXZ-ly-CQV" secondAttribute="bottom" constant="20" id="sa3-bK-ikb"/>
                                     <constraint firstAttribute="trailing" secondItem="hLJ-JJ-nIe" secondAttribute="trailing" constant="15" id="vFc-dw-l6x"/>
@@ -478,14 +522,14 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="aOc-0i-RuQ">
-                                <rect key="frame" x="16" y="693" width="361" height="52"/>
+                                <rect key="frame" x="16" y="709" width="361" height="52"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Bo-Sv-tvU">
                                         <rect key="frame" x="0.0" y="0.0" width="174.66666666666666" height="52"/>
                                         <color key="backgroundColor" systemColor="systemGray4Color"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="다시 검사하기">
+                                        <buttonConfiguration key="configuration" style="plain" title="Restart">
                                             <fontDescription key="titleFontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="17"/>
                                         </buttonConfiguration>
                                         <userDefinedRuntimeAttributes>
@@ -503,7 +547,7 @@
                                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="저장하기">
+                                        <buttonConfiguration key="configuration" style="plain" title="Save">
                                             <fontDescription key="titleFontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="17"/>
                                         </buttonConfiguration>
                                         <userDefinedRuntimeAttributes>
@@ -525,18 +569,23 @@
                         <viewLayoutGuide key="safeArea" id="RAq-8v-Onh"/>
                         <color key="backgroundColor" name="ikuBackground"/>
                         <constraints>
+                            <constraint firstItem="j0d-Vr-1gK" firstAttribute="top" secondItem="BzU-m7-UZV" secondAttribute="bottom" constant="10" id="0a6-H6-42E"/>
+                            <constraint firstItem="4rB-5b-7jr" firstAttribute="leading" secondItem="ufU-LY-zGT" secondAttribute="leadingMargin" id="1X7-Li-GK8"/>
+                            <constraint firstItem="BzU-m7-UZV" firstAttribute="width" secondItem="ufU-LY-zGT" secondAttribute="width" multiplier="0.45" id="5dJ-AK-Zdc"/>
+                            <constraint firstItem="BzU-m7-UZV" firstAttribute="top" secondItem="RVS-mf-ASy" secondAttribute="bottom" constant="10" id="DFl-jt-7KD"/>
                             <constraint firstItem="aOc-0i-RuQ" firstAttribute="leading" secondItem="ufU-LY-zGT" secondAttribute="leadingMargin" id="Lzv-m5-8Mw"/>
-                            <constraint firstItem="RVS-mf-ASy" firstAttribute="top" secondItem="doM-WC-XGK" secondAttribute="bottom" constant="11" id="MQL-vk-Tfg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="doM-WC-XGK" secondAttribute="trailing" id="UaP-sm-Va5"/>
-                            <constraint firstItem="doM-WC-XGK" firstAttribute="leading" secondItem="ufU-LY-zGT" secondAttribute="leadingMargin" id="VG2-x2-kRT"/>
                             <constraint firstItem="j0d-Vr-1gK" firstAttribute="leading" secondItem="ufU-LY-zGT" secondAttribute="leadingMargin" id="bLf-3x-yBL"/>
-                            <constraint firstItem="doM-WC-XGK" firstAttribute="top" secondItem="RAq-8v-Onh" secondAttribute="top" constant="40" id="bVi-9l-wT5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aOc-0i-RuQ" secondAttribute="trailing" id="e6z-nH-hil"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RVS-mf-ASy" secondAttribute="trailing" id="fmO-DO-UUe"/>
                             <constraint firstItem="RVS-mf-ASy" firstAttribute="leading" secondItem="ufU-LY-zGT" secondAttribute="leadingMargin" id="fyn-yD-r7b"/>
-                            <constraint firstItem="aOc-0i-RuQ" firstAttribute="top" secondItem="j0d-Vr-1gK" secondAttribute="bottom" constant="12" id="ppy-cP-5Ob"/>
+                            <constraint firstItem="BzU-m7-UZV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RAq-8v-Onh" secondAttribute="leading" symbolic="YES" id="g6O-Tb-Otg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BzU-m7-UZV" secondAttribute="trailing" id="gwC-E8-jdR"/>
+                            <constraint firstItem="4rB-5b-7jr" firstAttribute="top" secondItem="RAq-8v-Onh" secondAttribute="top" constant="20" id="mlI-TI-9lS"/>
+                            <constraint firstItem="aOc-0i-RuQ" firstAttribute="top" secondItem="j0d-Vr-1gK" secondAttribute="bottom" constant="29" id="ppy-cP-5Ob"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4rB-5b-7jr" secondAttribute="trailing" id="u6a-f6-GbA"/>
+                            <constraint firstItem="RVS-mf-ASy" firstAttribute="top" secondItem="4rB-5b-7jr" secondAttribute="bottom" constant="5" id="vQw-qr-r4z"/>
                             <constraint firstAttribute="trailingMargin" secondItem="j0d-Vr-1gK" secondAttribute="trailing" id="wiE-tO-T7C"/>
-                            <constraint firstItem="j0d-Vr-1gK" firstAttribute="top" secondItem="RVS-mf-ASy" secondAttribute="bottom" constant="11" id="z8d-Nr-98B"/>
+                            <constraint firstItem="j0d-Vr-1gK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="RVS-mf-ASy" secondAttribute="bottom" constant="10" id="z8d-Nr-98B"/>
                         </constraints>
                     </view>
                     <connections>
@@ -550,7 +599,9 @@
                         <outlet property="resultPicker" destination="hLJ-JJ-nIe" id="ipZ-6y-ltx"/>
                         <outlet property="resultmemoLabel" destination="dXZ-ly-CQV" id="MSe-pc-DQd"/>
                         <outlet property="safeLabel" destination="2Oi-YR-cpQ" id="dbI-Zz-cuL"/>
-                        <outlet property="titleLabel" destination="doM-WC-XGK" id="o93-as-T2l"/>
+                        <outlet property="saveButton" destination="Oja-fZ-ZmQ" id="AAN-pt-6Hr"/>
+                        <outlet property="segmentedControl" destination="BzU-m7-UZV" id="hqk-fd-JW8"/>
+                        <outlet property="testAgainButton" destination="3Bo-Sv-tvU" id="y4g-s7-NVy"/>
                         <outlet property="uncoveredEye" destination="sAl-v5-gYu" id="I5u-Og-Bpf"/>
                     </connections>
                 </viewController>
@@ -569,14 +620,17 @@
         <namedColor name="ikuBlue 2">
             <color red="0.15686274509803921" green="0.38039215686274508" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
+        <namedColor name="ikuCautionColor">
+            <color red="0.9882352941176471" green="0.7686274509803922" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="ikuDarkGray">
             <color red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ikuOrange">
             <color red="0.92941176470588238" green="0.41568627450980394" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="ikuResultGray">
-            <color red="0.43529411764705883" green="0.43529411764705883" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        <namedColor name="ikuSafeColor">
+            <color red="0.1803921568627451" green="0.69803921568627447" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -48,7 +48,7 @@ struct IKUChart: View {
             VStack {
                 HStack(spacing: 2) {
 //                    Image(systemName: "eye")
-                    Text("그래프추이")
+                    Text("Graph Chart")
                         .font(Font(UIFont.nexonGothicFont(ofSize: 17, weight: .bold)))
                     Spacer()
                 }
@@ -60,14 +60,14 @@ struct IKUChart: View {
                         ForEach(StrabismusLog.previews, id: \.self) {
                             LineMark  (
                                 x: .value("", $0.date),
-                                y: .value("Strabismus Degree", $0.degree)
+                                y: .value("Strabismus Angle", $0.degree)
                             )
                             .lineStyle(.init(lineWidth: 1))
                             .foregroundStyle(Color(uiColor: .ikuBlue))
                             
                             AreaMark (
                                 x: .value("", $0.date),
-                                y: .value("Strabismus Degree", $0.degree)
+                                y: .value("Strabismus Angle", $0.degree)
                             )
                             .foregroundStyle(
                                 Gradient(colors: [
@@ -81,7 +81,7 @@ struct IKUChart: View {
                     .chartXAxis(.hidden)
                     .chartYAxis(.hidden)
                     
-                    Text("사시각의 변화를 그래프로 확인해보세요.")
+                    Text("Please check cross-eyed record")
                         .font(Font(UIFont.nexonGothicFont(ofSize: 17, weight: .light)))
                         .foregroundColor(Color(uiColor: .ikuCalendarWeeklyTitle))
                 }

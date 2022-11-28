@@ -16,6 +16,7 @@
 		9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */; };
 		A804661A291FF9890079CEDC /* ScrubberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8046619291FF9890079CEDC /* ScrubberView.swift */; };
 		A804661C292012B10079CEDC /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A804661B292012B10079CEDC /* PlayButton.swift */; };
+		A8096C80292F0C5B00CBBC41 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8096C7F292F0C5B00CBBC41 /* String+Extension.swift */; };
 		A897ED6E29277CC000C93E22 /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A897ED6D29277CC000C93E22 /* MeasurementResult.swift */; };
 		A89F22FA292B7079000B3D63 /* XCTestCase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F22F9292B7079000B3D63 /* XCTestCase+Extension.swift */; };
 		A89F2300292B95C0000B3D63 /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A897ED6D29277CC000C93E22 /* MeasurementResult.swift */; };
@@ -101,6 +102,7 @@
 		C7F1775D2925B1CD0004C5D9 /* ARAssetWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */; };
 		C7F1775E2925B1CD0004C5D9 /* ARFrameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */; };
 		C7FB09EF292B69B900A7671C /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FB09EE292B69B900A7671C /* Double+Extension.swift */; };
+		C7FDCD49292E6F7F00F0E190 /* HistoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDCD48292E6F7F00F0E190 /* HistoryListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,7 @@
 		9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		A8046619291FF9890079CEDC /* ScrubberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubberView.swift; sourceTree = "<group>"; };
 		A804661B292012B10079CEDC /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
+		A8096C7F292F0C5B00CBBC41 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		A897ED6D29277CC000C93E22 /* MeasurementResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResult.swift; sourceTree = "<group>"; };
 		A89F22F9292B7079000B3D63 /* XCTestCase+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extension.swift"; sourceTree = "<group>"; };
 		A89F2306292BB3A6000B3D63 /* VideoURLService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoURLService.swift; sourceTree = "<group>"; };
@@ -206,6 +209,7 @@
 		C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAssetWriter.swift; sourceTree = "<group>"; };
 		C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARFrameGenerator.swift; sourceTree = "<group>"; };
 		C7FB09EE292B69B900A7671C /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		C7FDCD48292E6F7F00F0E190 /* HistoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +294,7 @@
 				0E0419A4292920FE00D710BC /* ProfileViewController.swift */,
 				0E7A2CD629231F060060C024 /* ResultViewController.swift */,
 				C74491EF291D640B00166197 /* HistoryViewController.swift */,
+				C7FDCD48292E6F7F00F0E190 /* HistoryListViewController.swift */,
 				A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */,
 				C70100EF2921D0DE00B58231 /* CoverTestViewController.swift */,
 				C745E9502926175F00AEECA8 /* CoverTestViewModel.swift */,
@@ -298,7 +303,6 @@
 				A804661B292012B10079CEDC /* PlayButton.swift */,
 				A8AA21282922131D00EFBE27 /* GradientView.swift */,
 				9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */,
-				9E3B26092926D424007803CD /* SelectWhichEyeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -371,6 +375,7 @@
 				A8FA007E292B45E00091EDC2 /* JSONServiceTest.swift */,
 				A89F2308292BB3B0000B3D63 /* VideoURLServiceTest.swift */,
 				A89F22F9292B7079000B3D63 /* XCTestCase+Extension.swift */,
+				A8096C7F292F0C5B00CBBC41 /* String+Extension.swift */,
 			);
 			path = PersistenceTest;
 			sourceTree = "<group>";
@@ -569,6 +574,7 @@
 				C74491D4291D54DC00166197 /* CVCalendarMenuViewDelegate.swift in Sources */,
 				C7F1775E2925B1CD0004C5D9 /* ARFrameGenerator.swift in Sources */,
 				C74491DE291D54DC00166197 /* CVCalendarContentPresentationCoordinator.swift in Sources */,
+				C7FDCD49292E6F7F00F0E190 /* HistoryListViewController.swift in Sources */,
 				C74491E1291D54DC00166197 /* CVCalendarMonthContentViewController.swift in Sources */,
 				C74491D1291D54DC00166197 /* CVCalendarViewAppearance.swift in Sources */,
 				C70100F02921D0DE00B58231 /* CoverTestViewController.swift in Sources */,
@@ -587,7 +593,6 @@
 				C74491CF291D54DC00166197 /* CVRange.swift in Sources */,
 				A8B2A2A2291C8D8F000F5624 /* ExtensionPlaceholder.swift in Sources */,
 				C74491E8291D54DC00166197 /* CVCalendarManager.swift in Sources */,
-				9E3B260A2926D424007803CD /* SelectWhichEyeView.swift in Sources */,
 				C7145FC9292B100500F55028 /* PHPhotoManager.swift in Sources */,
 				C74491D7291D54DC00166197 /* CVCalendarView.swift in Sources */,
 				C74491E6291D54DC00166197 /* CVCalendarDayViewControlCoordinator.swift in Sources */,
@@ -641,6 +646,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8FA007F292B45E00091EDC2 /* JSONServiceTest.swift in Sources */,
+				A8096C80292F0C5B00CBBC41 /* String+Extension.swift in Sources */,
 				A89F230F292BB650000B3D63 /* PersistenceManager.swift in Sources */,
 				A89F230E292BB64D000B3D63 /* PersistenceManagerTest.swift in Sources */,
 				A89F2309292BB3B0000B3D63 /* VideoURLServiceTest.swift in Sources */,
@@ -804,13 +810,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z629PZ4XVL;
+				DEVELOPMENT_TEAM = 78F54XW75V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "동영상 촬영을 위해 마이크 좀 쓸게";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions are required\nfor strabismus test";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "동영상 저장 좀 할께";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 좀 쓸게";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "ㅎㅎ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -838,13 +844,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z629PZ4XVL;
+				DEVELOPMENT_TEAM = 78F54XW75V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "동영상 촬영을 위해 마이크 좀 쓸게";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions are required\nfor strabismus test";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "동영상 저장 좀 할께";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범 좀 쓸게";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "ㅎㅎ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -870,7 +876,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 78F54XW75V;
+				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 12.5;
@@ -890,7 +896,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 78F54XW75V;
+				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 12.5;

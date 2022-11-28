@@ -47,18 +47,10 @@ final class PersistenceManager {
         isLeftEye: Bool,
         uncoveredPhotoTime: Double,
         coveredPhotoTime: Double,
-        creationDate: Double = Date.now.timeIntervalSince1970,
+        creationDate: Date = Date.now,
         isBookMarked: Bool = false
     ) throws {
         let newFileName = UUID().uuidString
-        let measurementResult = MeasurementResult(
-            localIdentifier: newFileName,
-            isLeftEye: isLeftEye,
-            timeOne: uncoveredPhotoTime,
-            timeTwo: coveredPhotoTime,
-            creationDate: creationDate,
-            isBookMarked: isBookMarked
-        )
         try jsonService.save(
             toFileName: newFileName,
             with: dictionay
@@ -67,7 +59,16 @@ final class PersistenceManager {
             videoURL,
             withChangingNameTo: newFileName
         )
-        try sqliteService.insert(byQuery: .videoData(measurementResult: measurementResult))
+        try sqliteService.insert(
+            byQuery: .videoData(
+                localIdentifier: newFileName,
+                eye: isLeftEye ? 1 : 0,
+                timeOne: uncoveredPhotoTime,
+                timeTwo: coveredPhotoTime,
+                creationTimeinterval: creationDate.timeIntervalSince1970,
+                bookmark: isBookMarked ? 1 : 0
+            )
+        )
     }
     
     func fetchVideo(_ day: Term) throws -> [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] {
@@ -77,6 +78,35 @@ final class PersistenceManager {
         case .at(let day):
             return try fetchVideo(from: try sqliteService.select(byQuery: .videoForSpecipic(day: day)))
         }
+    }
+    
+    func deleteVideo(withLocalIdentifier localIdentifier: String) throws {
+        try jsonService.delete(ofFileName: localIdentifier)
+        try videoURLService.deleteVideoURL(named: localIdentifier)
+        try sqliteService.delete(byQuery: .videoData(withLocalIdentifier: localIdentifier))
+    }
+    
+    func updateVideo(withLocalIdentifier localIdentifier: String, bookmarked bookmark: Bool) throws {
+        try sqliteService.update(
+            byQuery: .videoBookmarkData(
+                withLocalIdentifier: localIdentifier,
+                setTo: bookmark ? 1 : 0
+            )
+        )
+    }
+    
+    func updateVideo(
+        withLocalIdentifier localIdentifier: String,
+        setUncoveredPhotoTimeTo uncoveredPhotoTime: Double,
+        setCoveredPhotoTimeTo coveredPhotoTime: Double
+    ) throws {
+        try sqliteService.update(
+            byQuery: .videoTimeOneAndTimeTwoData(
+                withLocalIdentifier: localIdentifier,
+                setTimeOneTo: uncoveredPhotoTime,
+                setTimeTwoTo: coveredPhotoTime
+            )
+        )
     }
     
     private func fetchVideo(from measurementResults: [MeasurementResult]) throws -> [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] {

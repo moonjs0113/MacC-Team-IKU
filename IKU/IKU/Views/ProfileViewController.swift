@@ -4,20 +4,25 @@
 //
 //  Created by kwon ji won on 2022/11/19.
 //
-
+import SwiftUI
 import UIKit
-
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController, UITextFieldDelegate {
     
     let mainLabel = UILabel()
     let profileImage = UIImageView()
     let photoSelect = UIButton()
     let nickNameTitle = UILabel()
-    let nickName = UILabel()
+    let nickName = UITextField()
     let ageNameTitle = UILabel()
-    let age = UILabel()
     let hospitalTitle = UILabel()
-    let hospital = UILabel()
+    let hospital = UITextField()
+    private var age: UITextField = {
+        var tf = UITextField()
+        tf.keyboardType = .numberPad
+        return tf
+    }()
+    let limitLength = 10
+
     
     private lazy var nickNameStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [nickNameTitle,nickName])
@@ -31,6 +36,7 @@ class ProfileViewController: UIViewController {
         stackView.axis = .vertical
         stackView.layer.cornerRadius = 10
         return stackView
+
     }()
     
     private lazy var hospitalStackView: UIStackView = {
@@ -45,7 +51,7 @@ class ProfileViewController: UIViewController {
         let button = UIButton()
         button.tintColor = .white
         button.backgroundColor = .ikuBlue
-        button.setTitle("수정하기", for: .normal)
+        button.setTitle("Save", for: .normal)
         button.titleLabel?.font = .nexonGothicFont(ofSize: 20, weight: .bold)
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
@@ -53,17 +59,28 @@ class ProfileViewController: UIViewController {
         return button
     }()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         makeAutoLayout()
+        self.nickName.delegate = self
+    }
+    
+    //화면 터치시 키보드가 내려간다.
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          self.view.endEditing(true)
         
     }
     
+    //글자수 제한 받기
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            guard let text = nickName.text else { return true }
+            let newLength = text.count - range.length 
+            return newLength <= limitLength
+        }
+    
     func setup() {
-        mainLabel.text = "우리아기눈은건강함 어린이의 프로필입니다."
+        mainLabel.text = "Please fill out baby profile"
         mainLabel.font = .nexonGothicFont(ofSize: 17)
         view.addSubview(mainLabel)
         view.backgroundColor = .ikuBackgroundBlue
@@ -79,25 +96,23 @@ class ProfileViewController: UIViewController {
         nickNameStackView.backgroundColor = .white
         //색상 바뀔예정
         nickNameTitle.textColor = .gray
-        nickNameTitle.text = "닉네임"
+        nickNameTitle.text = "Nickname"
         nickNameTitle.font = .nexonGothicFont(ofSize: 13)
-        nickName.text = "우리아기눈은건강함"
+        nickName.text = ""
         nickName.font = .nexonGothicFont(ofSize: 17)
         
         view.addSubview(ageNameStackView)
         ageNameStackView.backgroundColor = .white
-        ageNameTitle.text = "연령"
+        ageNameTitle.text = "Age"
         ageNameTitle.textColor = .gray
         ageNameTitle.font = .nexonGothicFont(ofSize: 13)
-        age.text = "3세"
-        age.font = .nexonGothicFont(ofSize: 17)
         
         view.addSubview(hospitalStackView)
         hospitalStackView.backgroundColor = .white
-        hospitalTitle.text = "병원즐겨찾기"
+        hospitalTitle.text = "Bookmark Hospital"
         hospitalTitle.textColor = .gray
         hospitalTitle.font = .nexonGothicFont(ofSize: 13)
-        hospital.text = "아산병원"
+        hospital.text = ""
         hospital.font = .nexonGothicFont(ofSize: 17)
         
         view.addSubview(button)
@@ -111,15 +126,15 @@ class ProfileViewController: UIViewController {
     
     func makeAutoLayout() {
         mainLabel.translatesAutoresizingMaskIntoConstraints = false
-        mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 118).isActive = true
+        mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 32).isActive = true
         mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         mainLabel.heightAnchor.constraint(equalToConstant: 26).isActive = true
         
         profileImage.translatesAutoresizingMaskIntoConstraints = false
-        profileImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 176).isActive = true
+        profileImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 90).isActive = true
         profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         profileImage.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 135).isActive = true
-        profileImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -548).isActive = true
+        profileImage.bottomAnchor.constraint(equalTo: nickNameStackView.topAnchor, constant: -32).isActive = true
         
         nickNameStackView.translatesAutoresizingMaskIntoConstraints = false
         nickNameStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 328).isActive = true
@@ -152,11 +167,18 @@ class ProfileViewController: UIViewController {
         hospital.bottomAnchor.constraint(equalTo: hospitalStackView.bottomAnchor,constant: -10).isActive = true
         
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.topAnchor.constraint(equalTo: view.topAnchor,constant: 677).isActive = true
+        button.topAnchor.constraint(equalTo: view.bottomAnchor,constant: -81).isActive = true
         button.heightAnchor.constraint(equalToConstant: 52).isActive = true
         button.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16).isActive = true
         button.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16).isActive = true
     }
-    
-    
+}
+
+
+struct ProfileView: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> ProfileViewController {
+        ProfileViewController()
+    }
+
+    func updateUIViewController(_ uiViewController: ProfileViewController, context: Context) {}
 }

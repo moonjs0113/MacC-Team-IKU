@@ -30,23 +30,23 @@ class ARAssetCreator: NSObject, AVCaptureAudioDataOutputSampleBufferDelegate {
     init(outputURL: URL, size: CGSize, captureType: ARFrameGenerator.CaptureType, optimizeForNetworkUs: Bool, audioEnabled: Bool, queue: DispatchQueue, mixWithOthers: Bool) throws {
         super.init()
         assetWriter = try AVAssetWriter(outputURL: outputURL, fileType: AVFileType.mp4)
-        if audioEnabled {
-            if mixWithOthers {
-                let audioOptions: AVAudioSession.CategoryOptions = [.mixWithOthers , .allowBluetooth, .defaultToSpeaker, .interruptSpokenAudioAndMixWithOthers]
-                try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, mode: AVAudioSession.Mode.spokenAudio, options: audioOptions)
-                try? AVAudioSession.sharedInstance().setActive(true)
-            }
+//        if audioEnabled {
+//            if mixWithOthers {
+//                let audioOptions: AVAudioSession.CategoryOptions = [.mixWithOthers , .allowBluetooth, .defaultToSpeaker, .interruptSpokenAudioAndMixWithOthers]
+//                try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, mode: AVAudioSession.Mode.spokenAudio, options: audioOptions)
+//                try? AVAudioSession.sharedInstance().setActive(true)
+//            }
             //            let audioSession = AVAudioSession.sharedInstance()
             //            try audioSession.setCategory(
             //                AVAudioSession.Category.playAndRecord,
             //                mode: AVAudioSession.Mode.spokenAudio,
             //                options: mixWithOthers ? [.allowBluetooth, .defaultToSpeaker] : [.mixWithOthers, .allowBluetooth, .defaultToSpeaker])
             //            try audioSession.setActive(true)
-            AVAudioSession.sharedInstance().requestRecordPermission({ [weak self] status in
-                guard status else { return }
-                self?.tryAddAudioInput(with: queue)
-            })
-        }
+//            AVAudioSession.sharedInstance().requestRecordPermission({ [weak self] status in
+//                guard status else { return }
+//                self?.tryAddAudioInput(with: queue)
+//            })
+//        }
         var effectiveSize = size
         if size.height < size.width && captureType == .renderWithDeviceRotation {
             effectiveSize = CGSize(width: size.height, height: size.width)
