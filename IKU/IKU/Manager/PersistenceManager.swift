@@ -28,6 +28,7 @@ final class PersistenceManager {
         
         try self.sqliteService = SQLiteService(url: self.url)
         try self.sqliteService.createTableIfNotExist(byQuery: .videoTable)
+        try self.sqliteService.createTableIfNotExist(byQuery: .profileTable)
         try self.jsonService = JSONService(url: self.url)
         try self.videoURLService = VideoURLService(url: self.url)
     }
@@ -71,13 +72,28 @@ final class PersistenceManager {
         )
     }
     
+    func saveWithReturningLocalIdentifier(nickname: String, age: Int, hospital: String) throws -> String {
+        let localIdentifier = UUID().uuidString
+        try sqliteService.insert(byQuery: .profileData(
+            localIdentifier: localIdentifier,
+            nickname: nickname,
+            age: age,
+            hospital: hospital)
+        )
+        return localIdentifier
+    }
+    
     func fetchVideo(_ day: Term) throws -> [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] {
         switch day {
         case .all:
-            return try fetchVideo(from: try sqliteService.select(byQuery: .allVideos))
+            return try fetchVideo(from: try sqliteService.selectVideo(byQuery: .allVideos))
         case .at(let day):
-            return try fetchVideo(from: try sqliteService.select(byQuery: .videoForSpecipic(day: day)))
+            return try fetchVideo(from: try sqliteService.selectVideo(byQuery: .videoForSpecipic(day: day)))
         }
+    }
+    
+    func fetchProfile(withLocalIdentifier localIdentifier: String) throws -> [(localIdentifier: String, nickname: String, age: Int, hospital: String)] {
+        return try sqliteService.selectProfile(byQuery: .profileOf(localIdentifier: localIdentifier))
     }
     
     func deleteVideo(withLocalIdentifier localIdentifier: String) throws {
@@ -105,6 +121,17 @@ final class PersistenceManager {
                 withLocalIdentifier: localIdentifier,
                 setTimeOneTo: uncoveredPhotoTime,
                 setTimeTwoTo: coveredPhotoTime
+            )
+        )
+    }
+    
+    func updateProfile(withLocalIdentifier localIdentifier: String, setNicknameTo nickname: String, setAgeTo age: Int, setHospitalTo hospital: String) throws {
+        try sqliteService.update(
+            byQuery: .profileUpdate(
+                withLocalIdentifier: localIdentifier,
+                nickname: nickname,
+                age: age,
+                hospital: hospital
             )
         )
     }

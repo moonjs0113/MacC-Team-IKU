@@ -46,6 +46,14 @@ final class PersistenceManagerTest: XCTestCase {
         )
     }
     
+    func test_save_profile() throws {
+        _ = try persistenceManager.saveWithReturningLocalIdentifier(
+            nickname: "Eyeku",
+            age: 1,
+            hospital: "Pohang"
+        )
+    }
+    
     func test_fetch_all_video() throws {
         let currentDate = "2022-11-22 00:12:34".toDate()!
         try persistenceManager.save(
@@ -65,6 +73,20 @@ final class PersistenceManagerTest: XCTestCase {
         XCTAssertEqual(result.first?.measurementResult.timeTwo, 1.2)
         XCTAssertEqual(result.first?.measurementResult.creationDate, currentDate)
         XCTAssertEqual(result.first?.measurementResult.isBookMarked, false)
+    }
+    
+    func test_fetch_specific_profile() throws {
+        let localIdentifier = try persistenceManager.saveWithReturningLocalIdentifier(
+            nickname: "Eyeku",
+            age: 1,
+            hospital: "Pohang"
+        )
+        let result = try persistenceManager.fetchProfile(withLocalIdentifier: localIdentifier)
+        XCTAssertEqual(result.count, 1)
+        XCTAssertEqual(result.first?.localIdentifier, localIdentifier)
+        XCTAssertEqual(result.first?.nickname, "Eyeku")
+        XCTAssertEqual(result.first?.age, 1)
+        XCTAssertEqual(result.first?.hospital, "Pohang")
     }
     
     func test_delete_video_throws_error_using_wrong_local_identifier() throws {
@@ -151,6 +173,33 @@ final class PersistenceManagerTest: XCTestCase {
         }
         XCTAssertEqual(resultAfterUpdate.timeOne, 11)
         XCTAssertEqual(resultAfterUpdate.timeTwo, 2.2)
+    }
+    
+    func test_update_profile() throws {
+        let localIdentifier = try persistenceManager.saveWithReturningLocalIdentifier(
+            nickname: "Eyeku",
+            age: 1,
+            hospital: "Pohang"
+        )
+        let resultBeforeUpdate = try persistenceManager.fetchProfile(withLocalIdentifier: localIdentifier)
+        XCTAssertEqual(resultBeforeUpdate.count, 1)
+        XCTAssertEqual(resultBeforeUpdate.first?.localIdentifier, localIdentifier)
+        XCTAssertEqual(resultBeforeUpdate.first?.nickname, "Eyeku")
+        XCTAssertEqual(resultBeforeUpdate.first?.age, 1)
+        XCTAssertEqual(resultBeforeUpdate.first?.hospital, "Pohang")
+        
+        try persistenceManager.updateProfile(
+            withLocalIdentifier: localIdentifier,
+            setNicknameTo: "IKu",
+            setAgeTo: 2,
+            setHospitalTo: "Seoul"
+        )
+        let resultAfterUpdate = try persistenceManager.fetchProfile(withLocalIdentifier: localIdentifier)
+        XCTAssertEqual(resultAfterUpdate.count, 1)
+        XCTAssertEqual(resultAfterUpdate.first?.localIdentifier, localIdentifier)
+        XCTAssertEqual(resultAfterUpdate.first?.nickname, "IKu")
+        XCTAssertEqual(resultAfterUpdate.first?.age, 2)
+        XCTAssertEqual(resultAfterUpdate.first?.hospital, "Seoul")
     }
     
     func test_clear_garbage_files() throws {
