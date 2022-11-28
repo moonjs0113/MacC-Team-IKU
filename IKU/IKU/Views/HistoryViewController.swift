@@ -117,7 +117,7 @@ final class HistoryViewController: UIViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .ikuBackground
+        view.backgroundColor = .ikuBackgroundBlue
         setupNavigationController()
         setupCalendarView()
         setupLayoutConstraint()
