@@ -22,7 +22,7 @@ struct StoryView: View {
     init() {
         let appearence = UINavigationBarAppearance()
         appearence.shadowColor = .black
-        UINavigationBar.appearance().standardAppearance = appearence
+        appearence.backgroundColor = .ikuBackground
         UINavigationBar.appearance().scrollEdgeAppearance = appearence
     }
     

@@ -137,6 +137,7 @@ final class CoverTestViewController: UIViewController {
                                             action: #selector(touchCloseButton(_:)))
         navigationItem.leftBarButtonItem = barButtonItem
         navigationItem.titleView = distanceLabel
+        navigationController?.navigationBar.scrollEdgeAppearance = nil
     }
     
     private func setupARScene() {
