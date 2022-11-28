@@ -7,13 +7,6 @@
 import SwiftUI
 import AVFoundation
 
-// MARK: - Extensions
-extension Color {
-    static let ikuBlue: Color = Color("ikuBlue")
-    static let ikuBackground: Color = Color( "ikuBackground")
-    static let ikuEyeSelectBackground: Color = Color("ikuEyeSelectBackground")
-}
-
 struct StoryView: View {
     @State private var selectedEye: Eye = .right
     @State private var showAlert: Bool = false
@@ -28,7 +21,7 @@ struct StoryView: View {
     
     var body: some View {
         ZStack {
-            Color.ikuBackground
+            Color.ikuBackgroundBlue
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
@@ -153,7 +146,7 @@ fileprivate struct EyeSelectingView: View {
                 ZStack {
                     Rectangle()
                         .opacity(0.47)
-                        .foregroundColor(.ikuEyeSelectBackground)
+                        .foregroundColor(.ikuEyeSelectBackgroundBlue)
                         .mask {
                             Mask(direction: selectedEye, in: CGRect(
                                 origin: .zero,

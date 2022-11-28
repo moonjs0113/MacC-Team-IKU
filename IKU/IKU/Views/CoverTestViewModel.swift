@@ -24,12 +24,12 @@ class CoverTestViewModel: NSObject {
     var distanceText: NSMutableAttributedString {
         let string = "Distance: \(distance)inch"
         let attributedStr = NSMutableAttributedString(string: string)
-        attributedStr.addAttribute(.foregroundColor, value: isRecordingEnabled ? UIColor.ikuYellow : .ikuOrange , range: (string as NSString).range(of: "\(distance)inch"))
+        attributedStr.addAttribute(.foregroundColor, value: isRecordingEnabled ? UIColor.ikuCameraYellow : .ikuActiveRed , range: (string as NSString).range(of: "\(distance)inch"))
         return attributedStr
     }
     
     var guideFrameColor: UIColor {
-        isRecordingEnabled ? .ikuYellow : .ikuOrange
+        isRecordingEnabled ? .ikuCameraYellow : .ikuResultRed
     }
     
     // Recording

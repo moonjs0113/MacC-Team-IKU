@@ -48,7 +48,7 @@ class HistoryListViewController: UIViewController {
     }
     
     private func setupTableView() {
-        tableView.backgroundColor = .ikuBackground
+        tableView.backgroundColor = .ikuBackgroundBlue
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
@@ -90,7 +90,7 @@ class HistoryListViewController: UIViewController {
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .ikuBackground
+        view.backgroundColor = .ikuBackgroundBlue
         setupNavigationController()
         setupTableView()
     }
@@ -171,13 +171,13 @@ class TestLogContentTabelViewCell: UITableViewCell {
     
     // MARK: - Methods
     private func setAttributeOfCell() {
-        backgroundColor = .ikuBackground
+        backgroundColor = .ikuBackgroundBlue
     }
     
     private func setAttributeOfView() {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .ikuBackground
+        view.backgroundColor = .ikuBackgroundBlue
         contentView.addSubview(view)
         NSLayoutConstraint.activate([
             view.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
