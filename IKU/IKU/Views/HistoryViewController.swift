@@ -116,40 +116,15 @@ final class HistoryViewController: UIViewController {
         navigationController?.pushViewController(resultViewController, animated: true)
     }
     
-    private func goToCoverTestView() {
-        let navigationController = UINavigationController()
-        let coverTestViewController = CoverTestViewController()
-        navigationController.navigationBar.tintColor = .white
-        navigationController.view.backgroundColor = .white
-        navigationController.modalPresentationStyle = .fullScreen
-        navigationController.pushViewController(coverTestViewController, animated: true)
-        self.present(navigationController, animated: true)
-    }
-    
     private func goToHistoryListView() {
         let historyListViewController = HistoryListViewController()
         navigationController?.pushViewController(historyListViewController, animated: true)
     }
     
-    // MARK: - Objc-C Methods
-    @objc private func touchTestButton(_ sender: UIButton) {
-        AVCaptureDevice.requestAccess(for: .video) { [weak self] permission in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                if permission {
-                    self.goToCoverTestView()
-                } else {
-                    self.showAlertPermissionSetting(title: "Require Camera Permission",
-                                                    message: "Camera permissions are required \nfor strabismus test. \n Do you want to go Setting??")
-                }
-            }
-        }
-    }
-    
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .ikuBackground
+        view.backgroundColor = .ikuBackgroundBlue
         setupNavigationController()
         setupCalendarView()
         setupLayoutConstraint()

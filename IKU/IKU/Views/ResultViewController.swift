@@ -32,8 +32,18 @@ class ResultViewController: UIViewController {
     var url: URL?
     var degrees: [Double: Double] = [:]
     var eyeImages: (leftImage: UIImage, rightImage: UIImage) = (UIImage(), UIImage())
+    var isBookMarked = false {
+        didSet {
+            let barButtonItemImage = UIImage(systemName: isBookMarked ? "bookmark.fill" : "bookmark",
+                                             withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium))
+            barButtonItem.image = barButtonItemImage
+        }
+    }
     var root: Root = .test
+    
     var dbData: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)] = []
+    
+    var barButtonItem: UIBarButtonItem = UIBarButtonItem()
     
     // MARK: - Methods
     func prepareData(data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)], showedEye: Eye
@@ -68,7 +78,7 @@ class ResultViewController: UIViewController {
         case .test:
             let barButtonItemImage = UIImage(systemName: "xmark",
                                              withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium))
-            let barButtonItem = UIBarButtonItem(image: barButtonItemImage,
+            barButtonItem = UIBarButtonItem(image: barButtonItemImage,
                                                 style: .plain,
                                                 target: self,
                                                 action: #selector(dismiss(_:)))
@@ -77,7 +87,7 @@ class ResultViewController: UIViewController {
         case .history_list, .history_calendar:
             let barButtonItemImage = UIImage(systemName: "bookmark",
                                              withConfiguration: UIImage.SymbolConfiguration(pointSize: 17, weight: .medium, scale: .medium))
-            let barButtonItem = UIBarButtonItem(image: barButtonItemImage,
+            barButtonItem = UIBarButtonItem(image: barButtonItemImage,
                                                 style: .plain,
                                                 target: self,
                                                 action: #selector(bookmarkResult(_:)))
@@ -107,9 +117,6 @@ class ResultViewController: UIViewController {
         
         angleResult.text = "\(resultAngle)"
 
-//        resultmemoLabel.numberOfLines = 4
-//        resultmemoLabel.textColor = UIColor.black
-//        resultmemoLabel.font = .nexonGothicFont(ofSize: 13)
         
         //멘트 수정해 주세요!
         switch angleNum {
@@ -164,7 +171,29 @@ class ResultViewController: UIViewController {
                  dbData.angles[dbData.measurementResult.timeTwo] ?? 0.0)
         
         saveButton.isHidden = true
-        testAgainButton.isHidden = true
+        testAgainButton.isHidden = !(Calendar.current.compare(Date.now, to: dbData.measurementResult.creationDate, toGranularity: .day) == .orderedSame)
+    }
+    
+    private func saveData() {
+        guard let url else { return }
+        do {
+            let persistenceManager = try PersistenceManager()
+            try persistenceManager.save(videoURL: url,
+                                         withARKitResult: degrees,
+                                         isLeftEye: (numberEye == .left),
+                                         uncoveredPhotoTime: selectedTime.uncover,
+                                         coveredPhotoTime: selectedTime.cover)
+            dismiss(animated: true)
+            (presentingViewController as? UITabBarController)?.selectedIndex = 1
+        } catch {
+            showAlertController(title: "Save failed", message: "Failed to save test result", isAddCancelAction: false) { }
+        }
+    }
+    
+    private func checkPreviousData(data: (videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)) -> Bool {
+        let isSameDate = Calendar.current.compare(.now, to: data.measurementResult.creationDate, toGranularity: .day) == .orderedSame
+        let isSameEye = (data.measurementResult.isLeftEye ? .left : .right) == numberEye
+        return isSameDate && isSameEye
     }
     
     @objc func dismiss(_ sender: UIBarButtonItem) {
@@ -174,7 +203,13 @@ class ResultViewController: UIViewController {
     }
     
     @objc func bookmarkResult(_ sender: UIBarButtonItem) {
-        print(#function)
+        do {
+            let persistenceManager = try PersistenceManager()
+            try persistenceManager.updateVideo(withLocalIdentifier: dbData[segmentedControl.selectedSegmentIndex].measurementResult.localIdentifier, bookmarked: !isBookMarked)
+            isBookMarked = !isBookMarked
+        } catch {
+            self.showAlertController(title: "북마크 저장 실패", message: "북마크 저장에 실패했습니다.", isAddCancelAction: false) { }
+        }
     }
     
     @objc func deleteResult(_ sender: UIBarButtonItem) {
@@ -221,21 +256,44 @@ class ResultViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func restartTest(_ sender: Any) {
         showAlertController(title: "Cancel input action", message: "The information disappears.\nAre you sure you want to cancel?") {
-            self.navigationController?.popToRootViewController(animated: true)
+            switch self.root {
+            case .test:
+                self.navigationController?.popToRootViewController(animated: true)
+            default:
+                let root = self.navigationController?.viewControllers.first
+                let navigationController = UINavigationController()
+                let coverTestViewController = CoverTestViewController()
+                coverTestViewController.selectedEye = self.numberEye
+                navigationController.navigationBar.tintColor = .white
+                navigationController.view.backgroundColor = .white
+                navigationController.modalPresentationStyle = .fullScreen
+                navigationController.pushViewController(coverTestViewController, animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
+                root?.present(navigationController, animated: true)
+            }
         }
     }
     
     @IBAction func storageResult(_ sender: Any) {
-        guard let url else { return }
         do {
             let persistenceManager = try PersistenceManager()
-            try persistenceManager.save(videoURL: url,
-                                         withARKitResult: degrees,
-                                         isLeftEye: (numberEye == .left),
-                                         uncoveredPhotoTime: selectedTime.uncover,
-                                         coveredPhotoTime: selectedTime.cover)
-            dismiss(animated: true)
-            (presentingViewController as? UITabBarController)?.selectedIndex = 1
+            let todayData = try persistenceManager.fetchVideo(.at(day: .now))
+            if todayData.filter({ checkPreviousData(data: $0) }).isEmpty {
+                saveData()
+            } else {
+                showAlertController(title: "Result Already exists.", message: "The \(numberEye == .left ? "left" : "right") eye test result already exists. Delete existing test results and save new test results?") { [weak self] in
+                    guard let self = self else { return }
+                    guard let previousData =  todayData.filter({ self.checkPreviousData(data: $0) }).first else {
+                        return
+                    }
+                    do {
+                        try persistenceManager.deleteVideo(withLocalIdentifier: previousData.measurementResult.localIdentifier)
+                        self.saveData()
+                    } catch {
+                        self.showAlertController(title: "Delete failed", message: "Failed to delete test result", isAddCancelAction: false) { }
+                    }
+                }
+            }
         } catch {
             showAlertController(title: "Save failed", message: "Failed to save test result", isAddCancelAction: false) { }
         }
@@ -254,7 +312,6 @@ class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
-        setupUI()
         if root != .test {
             if let dbData = (numberEye == .left ? dbData.first : dbData.last) {
                 fetchDBData(dbData: dbData)

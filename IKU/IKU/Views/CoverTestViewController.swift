@@ -55,6 +55,7 @@ final class CoverTestViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Distance: 0inch"
         label.textColor = .white
+        label.backgroundColor = .clear
         label.font = .nexonGothicFont(ofSize: 13, weight: .bold)
         label.numberOfLines = 2
         let attrString = NSMutableAttributedString(string: label.text ?? "")
@@ -135,6 +136,7 @@ final class CoverTestViewController: UIViewController {
                                             style: .done,
                                             target: self,
                                             action: #selector(touchCloseButton(_:)))
+        barButtonItem.tintColor = .white
         navigationItem.leftBarButtonItem = barButtonItem
         navigationItem.titleView = distanceLabel
         navigationController?.navigationBar.scrollEdgeAppearance = nil
@@ -271,8 +273,9 @@ struct CoverTestView: UIViewControllerRepresentable {
         let navigationController = UINavigationController()
         let coverTestViewController = CoverTestViewController()
         coverTestViewController.selectedEye = selectedEye
-        navigationController.navigationBar.tintColor = .white
-        navigationController.view.backgroundColor = .white
+        navigationController.navigationBar.tintColor = .clear
+        navigationController.navigationBar.backgroundColor = .clear
+        navigationController.view.backgroundColor = .clear
         navigationController.modalPresentationStyle = .fullScreen
         navigationController.pushViewController(coverTestViewController, animated: true)
         return navigationController

@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         
         view.addSubview(mainLabel)
         
-        view.backgroundColor = .ikuBackground
+        view.backgroundColor = .ikuBackgroundBlue
         
     }
     

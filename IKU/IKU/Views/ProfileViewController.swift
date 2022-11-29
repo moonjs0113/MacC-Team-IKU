@@ -83,7 +83,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         mainLabel.text = "Please fill out baby profile"
         mainLabel.font = .nexonGothicFont(ofSize: 17)
         view.addSubview(mainLabel)
-        view.backgroundColor = .ikuBackground
+        view.backgroundColor = .ikuBackgroundBlue
         let image = UIImage(named: "coverEye")
         self.profileImage.image = image
         self.profileImage.contentMode = .scaleAspectFill
