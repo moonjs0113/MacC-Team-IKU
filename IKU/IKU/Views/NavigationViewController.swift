@@ -32,7 +32,9 @@ class NavigationViewController: UIViewController {
     }
     
     @objc private func buttonTouched(_ sender: UIButton?) {
-        navigationController?.pushViewController(SelectPhotoViewController(), animated: true)
+        guard let url = Bundle.main.url(forResource: "Example", withExtension: "mp4") else { return }
+        let selectPhotoViewController = SelectPhotoViewController(urlPath: url, degrees: [:], selectedEye: .left, recommandedUncoverFrameTime: 2.5, recommandedCoverFrameTime: 5.5)
+        navigationController?.pushViewController(selectPhotoViewController, animated: true)
         let backItem = UIBarButtonItem()
         backItem.title = ""
         backItem.tintColor = .white

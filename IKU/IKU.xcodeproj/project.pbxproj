@@ -25,6 +25,7 @@
 		A89F230C292BB648000B3D63 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F230B292BB648000B3D63 /* PersistenceManager.swift */; };
 		A89F230E292BB64D000B3D63 /* PersistenceManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F230D292BB64D000B3D63 /* PersistenceManagerTest.swift */; };
 		A89F230F292BB650000B3D63 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F230B292BB648000B3D63 /* PersistenceManager.swift */; };
+		A8A9C0A92935E7B400E020DA /* SpeechBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A9C0A82935E7B400E020DA /* SpeechBubbleView.swift */; };
 		A8AA21292922131D00EFBE27 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA21282922131D00EFBE27 /* GradientView.swift */; };
 		A8B2A287291C8B2F000F5624 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A286291C8B2F000F5624 /* AppDelegate.swift */; };
 		A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A288291C8B2F000F5624 /* SceneDelegate.swift */; };
@@ -130,6 +131,7 @@
 		A89F2308292BB3B0000B3D63 /* VideoURLServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoURLServiceTest.swift; sourceTree = "<group>"; };
 		A89F230B292BB648000B3D63 /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		A89F230D292BB64D000B3D63 /* PersistenceManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManagerTest.swift; sourceTree = "<group>"; };
+		A8A9C0A82935E7B400E020DA /* SpeechBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechBubbleView.swift; sourceTree = "<group>"; };
 		A8AA21282922131D00EFBE27 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A8B2A283291C8B2F000F5624 /* IKU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IKU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B2A286291C8B2F000F5624 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				A804661B292012B10079CEDC /* PlayButton.swift */,
 				A8AA21282922131D00EFBE27 /* GradientView.swift */,
 				9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */,
+				A8A9C0A82935E7B400E020DA /* SpeechBubbleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				C74491D2291D54DC00166197 /* CVStatus.swift in Sources */,
 				C745E9512926175F00AEECA8 /* CoverTestViewModel.swift in Sources */,
 				9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */,
+				A8A9C0A92935E7B400E020DA /* SpeechBubbleView.swift in Sources */,
 				C7F1775C2925B1CD0004C5D9 /* ARCapture.swift in Sources */,
 				A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */,
 				A8FACE3029271C2900BF2CD0 /* Eye.swift in Sources */,
