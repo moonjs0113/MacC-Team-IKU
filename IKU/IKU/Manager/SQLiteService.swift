@@ -18,6 +18,7 @@ final class SQLiteService {
     }
     enum CreationQuery {
         case videoTable
+        case profileTable
         
         var statement: String {
             switch self {
@@ -31,15 +32,28 @@ final class SQLiteService {
                 BOOKMARK INTEGER
                 );
                 """
+            case .profileTable: return """
+                CREATE TABLE IF NOT EXISTS PROFILE(
+                LOCALIDENTIFIER TEXT PRIMARY KEY NOT NULL,
+                NICKNAME TEXT,
+                AGE INTEGER,
+                HOSPITAL TEXT
+                );
+                """
             }
         }
     }
     enum InsertionQuery {
         case videoData(localIdentifier: String, eye: Int, timeOne: Double, timeTwo: Double, creationTimeinterval: Double, bookmark: Int)
+        case profileData(localIdentifier: String, nickname: String, age: Int, hospital: String)
+        
         var statement: String {
             switch self {
             case .videoData: return """
                 INSERT INTO VIDEO (LOCALIDENTIFIER, EYE, TIME_ONE, TIME_TWO, CREATIONTIMEINTERVAL, BOOKMARK) VALUES (?, ?, ?, ?, ?, ?);
+                """
+            case .profileData: return """
+                INSERT INTO PROFILE (LOCALIDENTIFIER, NICKNAME, AGE, HOSPITAL) VALUES (?, ?, ?, ?);
                 """
             }
         }
@@ -47,6 +61,8 @@ final class SQLiteService {
     enum SelectionQuery {
         case allVideos
         case videoForSpecipic(day: Date)
+        case allProfile
+        case profileOf(localIdentifier: String)
         
         var statement: String {
             switch self {
@@ -59,6 +75,12 @@ final class SQLiteService {
                 let less = day.startTimeIntervalOfNextDay
                 return """
                 SELECT * FROM VIDEO WHERE CREATIONTIMEINTERVAL >= \(greatOrEqual) AND CREATIONTIMEINTERVAL < \(less)
+                """
+            case .allProfile: return """
+                SELECT * FROM PROFILE
+                """
+            case .profileOf(let localIdentifier): return """
+                SELECT * FROM PROFILE WHERE LOCALIDENTIFIER = '\(localIdentifier)';
                 """
             }
         }
@@ -77,6 +99,7 @@ final class SQLiteService {
     enum UpdateQuery {
         case videoBookmarkData(withLocalIdentifier: String, setTo: Int)
         case videoTimeOneAndTimeTwoData(withLocalIdentifier: String, setTimeOneTo: Double, setTimeTwoTo: Double)
+        case profileUpdate(withLocalIdentifier: String, nickname: String, age: Int, hospital: String)
         
         var statement: String {
             switch self {
@@ -85,6 +108,9 @@ final class SQLiteService {
             """
             case .videoTimeOneAndTimeTwoData(let localIdentifier, let timeOne, let timeTwo): return """
             UPDATE VIDEO SET TIME_ONE = \(timeOne), TIME_TWO = \(timeTwo) WHERE LOCALIDENTIFIER = '\(localIdentifier)'
+            """
+            case .profileUpdate(let localIdentifier, let nickname, let age, let hospital): return """
+            UPDATE PROFILE SET NICKNAME = '\(nickname)', AGE = \(age), HOSPITAL = '\(hospital)' WHERE LOCALIDENTIFIER = '\(localIdentifier)'
             """
             }
         }
@@ -139,12 +165,25 @@ final class SQLiteService {
                 creationTimeinterval: creationTimeinterval,
                 bookmark: bookmark
             )
+        case .profileData(let localIdentifier, let nickname, let age, let hospital):
+            try insertProfileData(
+                insertStatement: insertStatement,
+                localIdentifier: localIdentifier,
+                nickname: nickname,
+                age: age,
+                hospital: hospital
+            )
         }
     }
-    func select(byQuery query: SelectionQuery) throws -> [MeasurementResult] {
+    func selectVideo(byQuery query: SelectionQuery) throws -> [MeasurementResult] {
         let selectStatement = try prepare(forQuery: query.statement)
         defer { sqlite3_finalize(selectStatement) }
         return try selectVideoData(selectStatement: selectStatement)
+    }
+    func selectProfile(byQuery query: SelectionQuery) throws -> [(localIdentifier: String, nickname: String, age: Int, hospital: String)] {
+        let selectStatement = try prepare(forQuery: query.statement)
+        defer { sqlite3_finalize(selectStatement) }
+        return try selectProfileData(selectStatement: selectStatement)
     }
     func delete(byQuery query: DeletionQuery) throws {
         let deleteStatement = try prepare(forQuery: query.statement)
@@ -154,7 +193,7 @@ final class SQLiteService {
     func update(byQuery query: UpdateQuery) throws {
         let updateStatement = try prepare(forQuery: query.statement)
         defer { sqlite3_finalize(updateStatement) }
-        return try updateVideoData(updateStatement: updateStatement)
+        return try updateData(updateStatement: updateStatement)
     }
     
     private func insertVideoData(insertStatement: OpaquePointer?, localIdentifier: String, eye: Int, timeOne: Double, timeTwo: Double, creationTimeinterval: Double, bookmark: Int) throws {
@@ -169,6 +208,18 @@ final class SQLiteService {
             throw SQLiteError.step(message: "Could not insert row")
         }
     }
+    
+    private func insertProfileData(insertStatement: OpaquePointer?, localIdentifier: String, nickname: String, age: Int, hospital: String) throws {
+        sqlite3_bind_text(insertStatement, 1, NSString(string: localIdentifier).utf8String, -1, nil)
+        sqlite3_bind_text(insertStatement, 2, NSString(string: nickname).utf8String, -1, nil)
+        sqlite3_bind_int(insertStatement, 3, Int32(age))
+        sqlite3_bind_text(insertStatement, 4, NSString(string: hospital).utf8String, -1, nil)
+        
+        if sqlite3_step(insertStatement) != SQLITE_DONE {
+            throw SQLiteError.step(message: "Could not insert row")
+        }
+    }
+    
     private func selectVideoData(selectStatement: OpaquePointer?) throws -> [MeasurementResult] {
         var result: [MeasurementResult] = []
         while sqlite3_step(selectStatement) == SQLITE_ROW {
@@ -193,13 +244,31 @@ final class SQLiteService {
         return result
     }
     
+    private func selectProfileData(selectStatement: OpaquePointer?) throws -> [(localIdentifier: String, nickname: String, age: Int, hospital: String)] {
+        var result: [(localIdentifier: String, nickname: String, age: Int, hospital: String)] = []
+        while sqlite3_step(selectStatement) == SQLITE_ROW {
+            guard let localIdentifier = sqlite3_column_text(selectStatement, 0) else {
+                throw SQLiteError.step(message: "First element is not a text")
+            }
+            guard let nickname = sqlite3_column_text(selectStatement, 1) else {
+                throw SQLiteError.step(message: "First element is not a text")
+            }
+            let age = sqlite3_column_int(selectStatement, 2)
+            guard let hospital = sqlite3_column_text(selectStatement, 3) else {
+                throw SQLiteError.step(message: "First element is not a text")
+            }
+            result.append((String(cString: localIdentifier), String(cString: nickname), Int(age), String(cString: hospital)))
+        }
+        return result
+    }
+    
     private func deleteVideoData(deleteStatement: OpaquePointer?) throws {
         if sqlite3_step(deleteStatement) != SQLITE_DONE {
             throw SQLiteError.step(message: "Could not delete row")
         }
     }
     
-    private func updateVideoData(updateStatement: OpaquePointer?) throws {
+    private func updateData(updateStatement: OpaquePointer?) throws {
         if sqlite3_step(updateStatement) != SQLITE_DONE {
             throw SQLiteError.step(message: "Could not update row")
         }
