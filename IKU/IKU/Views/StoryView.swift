@@ -7,10 +7,14 @@
 import SwiftUI
 import AVFoundation
 
-struct StoryView: View {
+struct StoryView: View, StoryViewDelegate {
     @State private var selectedEye: Eye = .right
     @State private var showAlert: Bool = false
     @State private var showCoverTestView: Bool = false
+    
+    @State private var nickName: String = "EyeKu"
+    @State private var showFailAlert: Bool = false
+    @State private var imageURL: URL?
     
     init() {
         let appearence = UINavigationBarAppearance()
@@ -87,19 +91,45 @@ struct StoryView: View {
         } message: {
             Text("사시각 측정을 위해 카메라 권한이 필요합니다.\n설정으로 이동하시겠습니까?")
         }
-        .navigationTitle("Strabismus Test")
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Text("Lisa")
+            ToolbarItem(placement: .principal) {
+                Text("Strabismus Test")
+                    .font(Font(UIFont.nexonGothicFont(ofSize: 17, weight: .bold)))
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink {
-                    ProfileView()
+                    ProfileView(storyViewDelegate: self)
                 } label: {
-                    Circle()
-                        .foregroundColor(.cyan)
+                    HStack {
+                        Text(nickName)
+                            .font(Font(UIFont.nexonGothicFont(ofSize: 13, weight: .bold)))
+                            .foregroundColor(.black)
+                        Group {
+                            if let imageURL = self.imageURL,
+                               let imageData = try? Data(contentsOf: imageURL),
+                               let uiImage = UIImage(data: imageData) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .scaledToFill()
+                            } else {
+                                Image("DefaultProfileImage")
+                                    .resizable()
+                                    .scaledToFill()
+                            }
+                        }
+                        .frame(width: 25, height: 25)
+                        .clipShape(Circle())
+                    }
                 }
             }
+        }
+        .onAppear {
+            fetchUI()
+        }
+        .alert("Save failed", isPresented: $showFailAlert) {
+            Button("확인") { }
+        } message: {
+            Text("Failed to save profile information.")
         }
     }
     
@@ -115,6 +145,31 @@ struct StoryView: View {
             else { showAlert = true }
         }
     }
+    
+    func fetchUI() {
+        do {
+            guard let localIdentifier = UserDefaults.standard.string(forKey: UserDefaultsKey.PROFILE_LOCALIDENTIFIER.rawValue) else {
+                return
+            }
+            let persistenceManager = try PersistenceManager()
+            let profileData = try persistenceManager.fetchProfile(withLocalIdentifier: localIdentifier)
+            guard let data = profileData.first else { return }
+            let savePath = try FileManager.default.url(
+                for: .documentDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            )
+            self.imageURL = savePath.appendingPathComponent("\(localIdentifier).png")
+            self.nickName = data.nickname
+        } catch {
+            showFailAlert.toggle()
+        }
+    }
+}
+
+protocol StoryViewDelegate {
+    func fetchUI()
 }
 
 fileprivate struct EyeSelectingView: View {

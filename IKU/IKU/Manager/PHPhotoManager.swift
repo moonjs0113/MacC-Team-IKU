@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 import PhotosUI
 
 class PHPhotoManager: NSObject {
@@ -43,5 +44,55 @@ class PHPhotoManager: NSObject {
     
     override private init() {
         super.init()
+    }
+}
+
+struct PHPickerView: UIViewControllerRepresentable {
+    func makeCoordinator() -> Coordinator {
+        return PHPickerView.Coordinator(parent: self)
+    }
+    
+    @Binding var images : UIImage?
+    @Binding var picker : Bool
+    
+    func makeUIViewController(context: Context) -> PHPickerViewController {
+        var config = PHPickerConfiguration()
+        config.filter = .images
+        config.selectionLimit = 1
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = context.coordinator
+        return picker
+    }
+    
+    func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {
+        
+    }
+    
+    class Coordinator: NSObject, PHPickerViewControllerDelegate {
+        var parent: PHPickerView
+        
+        init(parent: PHPickerView) {
+            self.parent = parent
+        }
+        
+        func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+            parent.picker.toggle()
+            
+            for img in results {
+                if img.itemProvider.canLoadObject(ofClass: UIImage.self){
+                    img.itemProvider.loadObject(ofClass: UIImage.self) { (image, err) in
+                        guard let selectedImage = image else {
+                            print("err ")
+                            return
+                        }
+                        if let uiImage = selectedImage as? UIImage {
+                            self.parent.images = uiImage
+                        }
+                    }
+                } else {
+                    print("cannot be loaded ")
+                }
+            }
+        }
     }
 }
