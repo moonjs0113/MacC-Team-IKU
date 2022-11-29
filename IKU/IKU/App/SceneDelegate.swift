@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //탭바로 사용하기 위한 뷰 컨트롤러들 설정
         tabBarController.setViewControllers([storyViewController,historyViewController], animated: false)
         tabBarController.modalPresentationStyle = .fullScreen
-        tabBarController.tabBar.backgroundColor = .ikuBackground
+        tabBarController.tabBar.backgroundColor = .ikuBackgroundBlue
         
         //탭바 이미지 설정
         guard let items = tabBarController.tabBar.items else { return }

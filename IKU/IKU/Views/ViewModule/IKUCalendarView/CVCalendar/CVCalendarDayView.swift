@@ -17,6 +17,7 @@ public final class CVCalendarDayView: UIView {
     public var date: CVDate!
     public var dayLabel: UILabel!
     public var dayIcon: UIImageView = UIImageView()
+    public var dayBookmark: UIView = UIView()
     public var toDayCircleView: UIView!
     
     public var selectionView: CVAuxiliaryView?
@@ -88,9 +89,8 @@ public final class CVCalendarDayView: UIView {
         if !isOut {
             labelSetup()
             iconSetup()
-//            if isTested {
-//
-//            }
+            bookmarkSetup()
+            bindCalendarData()
         }
         setupDotMarker()
         topMarkerSetup()
@@ -117,7 +117,22 @@ public final class CVCalendarDayView: UIView {
             .eraseToAnyPublisher()
             .assign(to: \.isHidden, on: dayIcon)
             .store(in: &anyCancellable)
+        
+        calendarView.$data
+            .receive(on: DispatchQueue.main)
+            .map {
+                return !($0.map { result in
+                    let dataDate = result.measurementResult.creationDate
+                    if (Calendar.current.compare(dataDate, to: self.date.getDate(), toGranularity: .day) == .orderedSame) {
+                        return result.measurementResult.isBookMarked
+                    } else { return false }
+                }.contains(true))
+            }
+            .eraseToAnyPublisher()
+            .assign(to: \.isHidden, on: dayBookmark)
+            .store(in: &anyCancellable)
     }
+    
     
     public func dateWithWeekView(_ weekView: CVCalendarWeekView, andWeekIndex index: Int) -> CVDate {
         func hasDayAtWeekdayIndex(_ weekdayIndex: Int, weekdaysDictionary: [Int : [Int]]) -> Bool {
@@ -280,7 +295,36 @@ extension CVCalendarDayView {
             dayIcon.heightAnchor.constraint(equalTo: dayIcon.widthAnchor),
             dayIcon.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 13/49),
         ])
-        bindCalendarData()
+    }
+    
+    public func bookmarkSetup() {
+        dayBookmark = UIView()
+        dayBookmark.publisher(for: \.bounds, options: [.new, .initial, .old, .prior])
+            .receive(on: DispatchQueue.main)
+            .filter { trunc($0.width) == trunc($0.height) }
+            .sink {
+                let path = UIBezierPath()
+                path.move(to: .init(x: 0, y: $0.width))
+                path.addLine(to: .init(x: $0.width, y: $0.width))
+                path.addLine(to: .init(x: $0.width, y: 0))
+                path.close()
+                
+                let shapeLayer = CAShapeLayer()
+                shapeLayer.path = path.cgPath
+                shapeLayer.fillColor = UIColor.ikuBlue.cgColor
+                self.dayBookmark.layer.sublayers?.removeAll()
+                self.dayBookmark.layer.addSublayer(shapeLayer)
+            }
+            .store(in: &anyCancellable)
+        
+        addSubview(dayBookmark)
+        dayBookmark.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dayBookmark.bottomAnchor.constraint(equalTo: bottomAnchor),
+            dayBookmark.trailingAnchor.constraint(equalTo: trailingAnchor),
+            dayBookmark.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 14/49),
+            dayBookmark.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 14/49),
+        ])
     }
     
     public func interactionSetup() {

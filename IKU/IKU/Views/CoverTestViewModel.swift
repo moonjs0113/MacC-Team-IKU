@@ -24,12 +24,12 @@ class CoverTestViewModel: NSObject {
     var distanceText: NSMutableAttributedString {
         let string = "Distance: \(distance)inch"
         let attributedStr = NSMutableAttributedString(string: string)
-        attributedStr.addAttribute(.foregroundColor, value: isRecordingEnabled ? UIColor.ikuYellow : .ikuOrange , range: (string as NSString).range(of: "\(distance)inch"))
+        attributedStr.addAttribute(.foregroundColor, value: isRecordingEnabled ? UIColor.ikuCameraYellow : .ikuActiveRed , range: (string as NSString).range(of: "\(distance)inch"))
         return attributedStr
     }
     
     var guideFrameColor: UIColor {
-        isRecordingEnabled ? .ikuYellow : .ikuOrange
+        isRecordingEnabled ? .ikuCameraYellow : .ikuResultRed
     }
     
     // Recording
@@ -110,7 +110,7 @@ class CoverTestViewModel: NSObject {
         avSpeechSynthesizer?.stopSpeaking(at: .immediate)
         let avSpeechUtterance = AVSpeechUtterance(string: text)
         // TODO: - lang enum 만들기
-        avSpeechUtterance.voice = .init(language: "ko-KR")
+        avSpeechUtterance.voice = .init(language: "en-US")
         avSpeechUtterance.rate = 0.5
         avSpeechSynthesizer?.speak(avSpeechUtterance)
     }
