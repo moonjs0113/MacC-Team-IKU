@@ -144,6 +144,7 @@ final class CoverTestViewController: UIViewController {
     private func setupNavigationController() {
         let backItem = UIBarButtonItem()
         backItem.title = ""
+        backItem.tintColor = .white
         navigationItem.backBarButtonItem = backItem
         
         let barButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark",
