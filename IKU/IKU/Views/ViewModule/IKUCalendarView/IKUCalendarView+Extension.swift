@@ -19,10 +19,12 @@ extension IKUCalendarView: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     func shouldAnimateResizing() -> Bool { return true }
     
     func didShowNextMonthView(_ date: Date) {
+        print(#function, date)
         scrollCalendar(date)
     }
     
     func didShowPreviousMonthView(_ date: Date) {
+        print(#function, date)
         scrollCalendar(date)
     }
     

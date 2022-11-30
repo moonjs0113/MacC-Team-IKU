@@ -21,38 +21,34 @@ class CoverTestViewModel: NSObject {
         transformVisualization.horizontalDegrees
     }
     
-    var distanceText: NSMutableAttributedString {
-        let string = "Distance: \(distance)inch"
-        let attributedStr = NSMutableAttributedString(string: string)
-        attributedStr.addAttribute(.foregroundColor, value: isRecordingEnabled ? UIColor.ikuCameraYellow : .ikuActiveRed , range: (string as NSString).range(of: "\(distance)inch"))
-        return attributedStr
-    }
-    
     var guideFrameColor: UIColor {
-        isRecordingEnabled ? .ikuCameraYellow : .ikuResultRed
+        isRecordingEnabled ? .ikuCameraYellow : .white
     }
     
     // Recording
     var isRecordingEnabled: Bool {
-        (12 <= self.distance && 14 >= self.distance)
+        (12...14).contains(distance)
     }
     
     var recordButtonLayoutConstraint: NSLayoutConstraint = .init()
     var recordStatus: ARCapture.Status = .ready
     private var distance: Int = 0 {
         didSet {
-            guard let updateUI else { return }
-            DispatchQueue.main.async { updateUI(self.recordStatus) }
+            guard let updateDistanceUI else { return }
+            DispatchQueue.main.async { updateDistanceUI(self.recordStatus, self.distance) }
         }
     }
     
     private var avSpeechSynthesizer: AVSpeechSynthesizer? = AVSpeechSynthesizer()
-    var timerCount = 0
+    var selectedEye: Eye = .left
+    var testGuide: TestGuide = .isReady
+    var timerCount: Double = 0
     var captureTime: Double = 0.0
     private var recordTimer: Timer?
     private var degreeTimer: Timer?
     
-    var updateUI: ((ARCapture.Status) -> Void)?
+    var updateDistanceUI: ((ARCapture.Status, Int) -> Void)?
+    var updateGuideTextUI: ((String) -> Void)?
     var anyCancellable = Set<AnyCancellable>()
     
     // MARK: - Methods
@@ -86,7 +82,12 @@ class CoverTestViewModel: NSObject {
                 return
             }
             self.recordStatus = recordStatus
-            self.toggleTimer(session: session)
+            if recordStatus == .recording {
+                self.toggleTimer(session: session)
+                self.playVoiceGuide(text: TestGuide.uncover.voiceText)
+                guard let updateGuideTextUI = self.updateGuideTextUI else { return }
+                DispatchQueue.main.async { updateGuideTextUI(TestGuide.uncover.voiceText) }
+            }
             UIView.animate(withDuration: 0.3) {
                 self.recordButtonLayoutConstraint.constant = (recordStatus == .recording) ? -45 : -10
                 if recordStatus == .recording {
@@ -109,10 +110,41 @@ class CoverTestViewModel: NSObject {
     func playVoiceGuide(text: String) {
         avSpeechSynthesizer?.stopSpeaking(at: .immediate)
         let avSpeechUtterance = AVSpeechUtterance(string: text)
-        // TODO: - lang enum 만들기
         avSpeechUtterance.voice = .init(language: "en-US")
         avSpeechUtterance.rate = 0.5
         avSpeechSynthesizer?.speak(avSpeechUtterance)
+    }
+    
+    func startVoiceGuide() {
+        timerCount += 1
+        timerCount = timerCount.roundSecondPoint
+        var testGuide: TestGuide = .isReady
+        var text = ""
+        switch self.timerCount {
+        case 2...4:
+            testGuide = .countTime
+            text = "\(5 - Int(timerCount))"
+        case 5, 12:
+            testGuide = .countTime
+            text = "done"
+        case 6:
+            testGuide = .coverTo(selectedEye)
+            text = testGuide.voiceText
+        case 9...11:
+            testGuide = .countTime
+            text = "\(12 - Int(timerCount))"
+        case 13:
+            testGuide = .testComplete
+            text = testGuide.voiceText
+        default:
+            text = ""
+        }
+        if !text.isEmpty {
+            self.testGuide = testGuide
+            playVoiceGuide(text: text)
+            guard let updateGuideTextUI else { return }
+            DispatchQueue.main.async { updateGuideTextUI(testGuide.voiceText) }
+        }
     }
     
     func stopVoiceGuide() {
@@ -132,8 +164,8 @@ class CoverTestViewModel: NSObject {
     }
     
     private func startTimer() {
-        recordTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
-            self?.timerCount += 1
+        recordTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+            self?.startVoiceGuide()
         }
         
         degreeTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in
@@ -142,7 +174,7 @@ class CoverTestViewModel: NSObject {
         }
     }
     
-    private func stopTimer() {
+    func stopTimer() {
         recordTimer?.invalidate()
         recordTimer = nil
         degreeTimer?.invalidate()
