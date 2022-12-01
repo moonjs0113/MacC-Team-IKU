@@ -7,12 +7,14 @@
 
 import SwiftUI
 import AVFoundation
+import Combine
 
 struct ScrubberView: View {
     @StateObject private var viewModel: ScrubberViewModel
+    let scrollDidTouched = PassthroughSubject<Void, Never>()
     
-    init(player: AVPlayer, degrees: [Double: Double]) {
-        self._viewModel = StateObject(wrappedValue: ScrubberViewModel(player: player, degrees: degrees))
+    init(player: AVPlayer, highlightTime: Double) {
+        self._viewModel = StateObject(wrappedValue: ScrubberViewModel(player: player, highlightTime: highlightTime))
     }
     
     var body: some View {
@@ -32,6 +34,29 @@ struct ScrubberView: View {
                     )
                 }
                 
+                Rectangle()
+                    .stroke(lineWidth: 2)
+                    .contentShape(Rectangle())
+                    .foregroundColor(.yellow)
+                    .frame(
+                        width: viewModel.photoRatio * geometry.frame(in: .local).height + 4,
+                        height: geometry.frame(in: .local).height
+                    )
+                    .position(
+                        x: geometry.frame(in: .local).midX + (viewModel.highlightTime - viewModel.currentTime.seconds) * viewModel.photoRatio * geometry.frame(in: .local).height,
+                        y: geometry.frame(in: .local).midY
+                    )
+                    .onTapGesture {
+                        viewModel.highlightTouched()
+                    }
+                
+                SpeechBubbleView(text: "Recommended Frame", color: .ikuBackgroundBlue)
+                    .font(Font(UIFont.nexonGothicFont(ofSize: 13)))
+                    .position(
+                        x: geometry.frame(in: .local).midX + (viewModel.highlightTime - viewModel.currentTime.seconds) * viewModel.photoRatio * geometry.frame(in: .local).height,
+                        y: -44 * 1/2 + -44 * 1/3
+                    )
+                
                 RoundedRectangle(cornerRadius: 2)
                     .stroke(lineWidth: 1.5)
                     .frame(width:4)
@@ -42,6 +67,7 @@ struct ScrubberView: View {
                 DragGesture(minimumDistance: 0, coordinateSpace: .local)
                     .onChanged { value in
                         viewModel.dragged(toX: value.translation.width, viewHeight: geometry.frame(in: .local).maxY)
+                        scrollDidTouched.send()
                     }
                     .onEnded { _ in
                         viewModel.dragEnd()
@@ -57,17 +83,19 @@ struct ScrubberView: View {
 
 final class ScrubberViewModel: ObservableObject {
     static let timeScale: CMTimeScale = CMTimeScale(NSEC_PER_SEC)
+    let highlightTime: Double
     let player: AVPlayer
     var timeObserverToken: Any?
     var photoRatio: Double = .zero
     var onTouchedTime: CMTime?
-    var degrees: [Double: Double]
-    @Published var currentTime: CMTime = .zero
+    @Published var currentTime: CMTime
     @Published var images: [UIImage] = []
     
-    init(player: AVPlayer, degrees: [Double: Double]) {
+    init(player: AVPlayer, highlightTime: Double) {
         self.player = player
-        self.degrees = degrees
+        self.highlightTime = highlightTime
+        self.currentTime = CMTime(seconds: highlightTime, preferredTimescale: Self.timeScale)
+        self.player.seek(to: self.currentTime)
         addPeriodicTimeObserver()
     }
     
@@ -96,6 +124,13 @@ final class ScrubberViewModel: ObservableObject {
         }
     }
     
+    func highlightTouched() {
+        withAnimation {
+            currentTime = CMTime(seconds: highlightTime, preferredTimescale: Self.timeScale)
+            player.seek(to: currentTime, toleranceBefore: .zero, toleranceAfter: .zero)
+        }
+    }
+    
     func dragEnd() {
         self.onTouchedTime = nil
     }
@@ -105,10 +140,6 @@ final class ScrubberViewModel: ObservableObject {
         timeObserverToken = player.addPeriodicTimeObserver(forInterval: time, queue: .main) { [weak self] time in
             guard let self = self else { return }
             self.currentTime = self.player.currentTime()
-            var time = Int(floor(self.currentTime.seconds * 10))
-            if time >= self.degrees.count {
-                time = self.degrees.count - 1
-            }
         }
     }
     
