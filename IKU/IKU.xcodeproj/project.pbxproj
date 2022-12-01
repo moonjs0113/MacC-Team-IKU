@@ -99,6 +99,7 @@
 		C75B19FA291E2C1C005B1A22 /* IKUChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */; };
 		C75B19FC291E30D6005B1A22 /* StrabismusLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */; };
 		C7DFD2842934A36E0090600D /* UserdefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DFD2832934A36E0090600D /* UserdefaultKey.swift */; };
+		C7E2ECE82938D3CD00B5B7EB /* CareGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E2ECE72938D3CD00B5B7EB /* CareGuideView.swift */; };
 		C7F1775C2925B1CD0004C5D9 /* ARCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F177592925B1CD0004C5D9 /* ARCapture.swift */; };
 		C7F1775D2925B1CD0004C5D9 /* ARAssetWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */; };
 		C7F1775E2925B1CD0004C5D9 /* ARFrameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */; };
@@ -207,6 +208,7 @@
 		C75B19F9291E2C1C005B1A22 /* IKUChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKUChartView.swift; sourceTree = "<group>"; };
 		C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrabismusLog.swift; sourceTree = "<group>"; };
 		C7DFD2832934A36E0090600D /* UserdefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserdefaultKey.swift; sourceTree = "<group>"; };
+		C7E2ECE72938D3CD00B5B7EB /* CareGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareGuideView.swift; sourceTree = "<group>"; };
 		C7F177592925B1CD0004C5D9 /* ARCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARCapture.swift; sourceTree = "<group>"; };
 		C7F1775A2925B1CD0004C5D9 /* ARAssetWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAssetWriter.swift; sourceTree = "<group>"; };
 		C7F1775B2925B1CD0004C5D9 /* ARFrameGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARFrameGenerator.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */,
 				0E0419A4292920FE00D710BC /* ProfileViewController.swift */,
 				0E7A2CD629231F060060C024 /* ResultViewController.swift */,
+				C7E2ECE72938D3CD00B5B7EB /* CareGuideView.swift */,
 				C74491EF291D640B00166197 /* HistoryViewController.swift */,
 				C7FDCD48292E6F7F00F0E190 /* HistoryListViewController.swift */,
 				A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */,
@@ -607,6 +610,7 @@
 				C74491D2291D54DC00166197 /* CVStatus.swift in Sources */,
 				C745E9512926175F00AEECA8 /* CoverTestViewModel.swift in Sources */,
 				9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */,
+				C7E2ECE82938D3CD00B5B7EB /* CareGuideView.swift in Sources */,
 				A8A9C0A92935E7B400E020DA /* SpeechBubbleView.swift in Sources */,
 				C7F1775C2925B1CD0004C5D9 /* ARCapture.swift in Sources */,
 				A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */,
