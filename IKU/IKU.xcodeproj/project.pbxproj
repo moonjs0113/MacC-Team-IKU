@@ -16,6 +16,11 @@
 		A804661A291FF9890079CEDC /* ScrubberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8046619291FF9890079CEDC /* ScrubberView.swift */; };
 		A804661C292012B10079CEDC /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A804661B292012B10079CEDC /* PlayButton.swift */; };
 		A8096C80292F0C5B00CBBC41 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8096C7F292F0C5B00CBBC41 /* String+Extension.swift */; };
+		A82903E529383AB80079BF79 /* WhatIsCoverTest3.gif in Resources */ = {isa = PBXBuildFile; fileRef = A82903E329383AB80079BF79 /* WhatIsCoverTest3.gif */; };
+		A82903E629383AB80079BF79 /* WhatIsCoverTest1.gif in Resources */ = {isa = PBXBuildFile; fileRef = A82903E429383AB80079BF79 /* WhatIsCoverTest1.gif */; };
+		A82903E829389EA20079BF79 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82903E729389EA20079BF79 /* UIImage+Extension.swift */; };
+		A879E47E2936FD4800A17CC4 /* GIFImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A879E47D2936FD4800A17CC4 /* GIFImageView.swift */; };
+		A879E4842936FF6A00A17CC4 /* WhatIsCoverTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A879E4832936FF6A00A17CC4 /* WhatIsCoverTestView.swift */; };
 		A897ED6E29277CC000C93E22 /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A897ED6D29277CC000C93E22 /* MeasurementResult.swift */; };
 		A89F22FA292B7079000B3D63 /* XCTestCase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89F22F9292B7079000B3D63 /* XCTestCase+Extension.swift */; };
 		A89F2300292B95C0000B3D63 /* MeasurementResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A897ED6D29277CC000C93E22 /* MeasurementResult.swift */; };
@@ -125,6 +130,11 @@
 		A8046619291FF9890079CEDC /* ScrubberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubberView.swift; sourceTree = "<group>"; };
 		A804661B292012B10079CEDC /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		A8096C7F292F0C5B00CBBC41 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		A82903E329383AB80079BF79 /* WhatIsCoverTest3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = WhatIsCoverTest3.gif; sourceTree = "<group>"; };
+		A82903E429383AB80079BF79 /* WhatIsCoverTest1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = WhatIsCoverTest1.gif; sourceTree = "<group>"; };
+		A82903E729389EA20079BF79 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		A879E47D2936FD4800A17CC4 /* GIFImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFImageView.swift; sourceTree = "<group>"; };
+		A879E4832936FF6A00A17CC4 /* WhatIsCoverTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsCoverTestView.swift; sourceTree = "<group>"; };
 		A897ED6D29277CC000C93E22 /* MeasurementResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementResult.swift; sourceTree = "<group>"; };
 		A89F22F9292B7079000B3D63 /* XCTestCase+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extension.swift"; sourceTree = "<group>"; };
 		A89F2306292BB3A6000B3D63 /* VideoURLService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoURLService.swift; sourceTree = "<group>"; };
@@ -303,6 +313,8 @@
 				A804661B292012B10079CEDC /* PlayButton.swift */,
 				A8AA21282922131D00EFBE27 /* GradientView.swift */,
 				9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */,
+				A879E47D2936FD4800A17CC4 /* GIFImageView.swift */,
+				A879E4832936FF6A00A17CC4 /* WhatIsCoverTestView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -330,6 +342,7 @@
 				9E16B582292F17C800AFA97D /* Color+Extension.swift */,
 				C72601E429278642009AB7D1 /* UIView+Extension.swift */,
 				C70100F32921DF7A00B58231 /* UIViewController+Extension.swift */,
+				A82903E729389EA20079BF79 /* UIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -337,6 +350,8 @@
 		A8B2A2A3291C8DDB000F5624 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A82903E429383AB80079BF79 /* WhatIsCoverTest1.gif */,
+				A82903E329383AB80079BF79 /* WhatIsCoverTest3.gif */,
 				C7537CFD2923B1E5001E8BF6 /* Models.scnassets */,
 				A8B2A28F291C8B30000F5624 /* Assets.xcassets */,
 				C74491A4291D4FD100166197 /* Color.xcassets */,
@@ -538,12 +553,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A82903E629383AB80079BF79 /* WhatIsCoverTest1.gif in Resources */,
 				A8B2A293291C8B30000F5624 /* LaunchScreen.storyboard in Resources */,
 				A8B2A290291C8B30000F5624 /* Assets.xcassets in Resources */,
 				C744915B291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf in Resources */,
 				C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */,
 				C74491A5291D4FD100166197 /* Color.xcassets in Resources */,
 				C7537CFE2923B1E5001E8BF6 /* Models.scnassets in Resources */,
+				A82903E529383AB80079BF79 /* WhatIsCoverTest3.gif in Resources */,
 				0E04199A29232E9200D710BC /* resultVideo.MOV in Resources */,
 				A8B2A28E291C8B2F000F5624 /* Main.storyboard in Resources */,
 				C744915C291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf in Resources */,
@@ -572,6 +589,7 @@
 				A8AA21292922131D00EFBE27 /* GradientView.swift in Sources */,
 				A8B2A2B3291CCDAD000F5624 /* PlayerView.swift in Sources */,
 				A804661C292012B10079CEDC /* PlayButton.swift in Sources */,
+				A879E4842936FF6A00A17CC4 /* WhatIsCoverTestView.swift in Sources */,
 				C74491D4291D54DC00166197 /* CVCalendarMenuViewDelegate.swift in Sources */,
 				C7F1775E2925B1CD0004C5D9 /* ARFrameGenerator.swift in Sources */,
 				C74491DE291D54DC00166197 /* CVCalendarContentPresentationCoordinator.swift in Sources */,
@@ -613,11 +631,13 @@
 				C74491E5291D54DC00166197 /* CVCalendarViewAnimator.swift in Sources */,
 				C74491E7291D54DC00166197 /* CVCalendarWeekday.swift in Sources */,
 				C74491E9291D54DC00166197 /* CVShape.swift in Sources */,
+				A82903E829389EA20079BF79 /* UIImage+Extension.swift in Sources */,
 				A8B5349D2926752200237C30 /* SQLiteService.swift in Sources */,
 				C7422514291F304E00DB6D80 /* CVMonth.swift in Sources */,
 				C74491D9291D54DC00166197 /* CVCalendarWeekContentViewController.swift in Sources */,
 				C74491DC291D54DC00166197 /* CVAuxiliaryView.swift in Sources */,
 				A89F230C292BB648000B3D63 /* PersistenceManager.swift in Sources */,
+				A879E47E2936FD4800A17CC4 /* GIFImageView.swift in Sources */,
 				C72601E529278642009AB7D1 /* UIView+Extension.swift in Sources */,
 				A8B2A2A8291C8E3B000F5624 /* ManagerPlaceholder.swift in Sources */,
 				C7DFD2842934A36E0090600D /* UserdefaultKey.swift in Sources */,
@@ -812,7 +832,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z629PZ4XVL;
+				DEVELOPMENT_TEAM = 78F54XW75V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
@@ -845,7 +865,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z629PZ4XVL;
+				DEVELOPMENT_TEAM = 78F54XW75V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
