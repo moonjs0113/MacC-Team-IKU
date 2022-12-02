@@ -252,8 +252,8 @@ final class CoverTestViewController: UIViewController {
         let selectPhotoViewController = SelectPhotoViewController(urlPath: url,
                                                                   degrees: viewModel.degrees,
                                                                   selectedEye: selectedEye,
-                                                                  recommandedUncoverFrameTime: 0,
-                                                                  recommandedCoverFrameTime: 0
+                                                                  recommandedUncoverFrameTime: 4.5,
+                                                                  recommandedCoverFrameTime: 11.5
         )
         navigationController?.pushViewController(selectPhotoViewController, animated: true)
     }

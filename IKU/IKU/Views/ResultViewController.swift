@@ -18,6 +18,11 @@ class ResultViewController: UIViewController {
         case history_list
     }
     
+    enum ResultGuideText: String {
+        case strabismus = "수평 사시각이 5도(10PD)가 넘으면\n사시 스팩트럼 안에 들어갈 가능성이 있습니다."
+        case normal = "수평 사시각이 5도(10PD) 이하이면\n사시 스팩트럼 안에 들어가지 않을 가능성이 있습니다."
+    }
+    
     var resultAngle: Double {
         return (abs(angle.0 - angle.1) * 180 / .pi).roundSecondPoint
     }
@@ -25,9 +30,8 @@ class ResultViewController: UIViewController {
     var angle: (Double, Double) = (0.0, 0.0)
     var selectedTime: (uncover: Double, cover: Double) = (0.0, 0.0)
     var numberEye: Eye = .left
-    var angleNum: Int {
-        //TODO: - 계산된 resultAngle로 위험도를 어떻게 결정할 것인지 논의 필요
-        return Int(resultAngle) > 14 ? 14 : Int(resultAngle)
+    var isStrabismus: Bool {
+        Int(resultAngle) > 5
     }
     var url: URL?
     var degrees: [Double: Double] = [:]
@@ -65,6 +69,25 @@ class ResultViewController: UIViewController {
     }
     
     func setupUI() {
+        let buttonText = guideButton.titleLabel?.text ?? ""
+        let attributedText = NSMutableAttributedString(string: buttonText)
+        attributedText.addAttributes([.underlineStyle: NSUnderlineStyle.thick.rawValue,
+                                      .underlineColor: UIColor.ikuBlue,
+                                      .font: UIFont.nexonGothicFont(ofSize: 17, weight: .bold),
+                                      .foregroundColor: UIColor.ikuBlue,
+                                     ],
+                                     range: NSRange(location: 0, length: buttonText.count))
+        guideButton.setAttributedTitle(attributedText, for: .normal)
+        
+        let attributedHighlightedText = NSMutableAttributedString(string: buttonText)
+        attributedHighlightedText.addAttributes([.underlineStyle: NSUnderlineStyle.thick.rawValue,
+                                      .underlineColor: UIColor.ikuBlue.withAlphaComponent(0.5),
+                                      .font: UIFont.nexonGothicFont(ofSize: 17, weight: .bold),
+                                      .foregroundColor: UIColor.ikuBlue.withAlphaComponent(0.5),
+                                     ],
+                                     range: NSRange(location: 0, length: buttonText.count))
+        guideButton.setAttributedTitle(attributedHighlightedText, for: .highlighted)
+        
         segmentedControl.isEnabled = (dbData.count == 2)
         dbData.sort {
             let prev = $0.measurementResult.isLeftEye ? 0 : 1
@@ -105,30 +128,13 @@ class ResultViewController: UIViewController {
     }
     
     func fetchUI() {
-        for k in 0...14 {
-            resultPicker.arrangedSubviews[k].alpha = 0
-        }
+        let attributedStr = NSMutableAttributedString(string: "\(resultAngle)º")
+        attributedStr.addAttribute(.font, value: UIFont.systemFont(ofSize: 28, weight: .bold), range: ("\(resultAngle)º" as NSString).range(of: "º"))
+        degreeLabel.attributedText = attributedStr
         
-        resultPicker.arrangedSubviews[angleNum].alpha = 1
-
-        for i in 0...angleNum {
-            result.arrangedSubviews[i].alpha = 1
-        }
+        prizmLabel.text = "(\(resultAngle*2)PD)"
         
-        angleResult.text = "\(resultAngle)"
-
-        
-        //멘트 수정해 주세요!
-        switch angleNum {
-        case 0...4:
-            resultmemoLabel.text = "child's eyes are healthy. \nIf child feels great inconvenience in daily life,please visit a specialist and have a professional test."
-        case 5...9:
-            resultmemoLabel.text = "Please check your child's strabismus carefully.\nIf child feels great inconvenience in daily life,please visit a specialist and have a professional test."
-        case 10...14:
-            resultmemoLabel.text = "There is something wrong with eyes. \nPlease visit an hospital as soon as possible for accurate test"
-        default:
-            print("Error")
-        }
+        resultGuideLabel.text = (isStrabismus ? ResultGuideText.strabismus : ResultGuideText.normal).rawValue
         
         uncoveredEye.image = eyeImages.leftImage
         coveredeye.image = eyeImages.rightImage
@@ -138,11 +144,6 @@ class ResultViewController: UIViewController {
         } else {
             segmentedControl.selectedSegmentIndex = (numberEye == .left ? 0 : 1)
         }
-        
-        legalLabel.numberOfLines = 10
-        legalLabel.text = "This service is a simple self-test. Not diagnosis App.\nFor accurate test, please visit the hospital.\nThe test results may depending on the imaging device or the surrounding environment.\nDo not write results from this app as part of a diagnosis or treatment plan."
-        legalLabel.font = .nexonGothicFont(ofSize: 11)
-        
     }
     
     func fetchDBData(dbData: (videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)) {
@@ -197,7 +198,7 @@ class ResultViewController: UIViewController {
     }
     
     @objc func dismiss(_ sender: UIBarButtonItem) {
-        showAlertController(title: "Restart", message: "Save") {
+        showAlertController(title: "Cancel input action", message: "The information disappears.\nAre you sure you want to cancel?") {
             self.dismiss(animated: true)
         }
     }
@@ -228,34 +229,22 @@ class ResultViewController: UIViewController {
     // 왼쪽, 오른쪽 사진
     @IBOutlet weak var uncoveredEye: UIImageView!
     @IBOutlet weak var coveredeye: UIImageView!
-    // 왼쪽 오른쪽
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    //예상 사시각
-    @IBOutlet weak var memoTitle: UILabel!
-    //몇도인지 나타내는 라벨
-    @IBOutlet weak var angleResult: UILabel!
-    //단계 피커 스택
-    @IBOutlet weak var resultPicker: UIStackView!
-    //단계 15칸 스택
-    @IBOutlet weak var result: UIStackView!
-    //안전
-    @IBOutlet weak var safeLabel: UILabel!
-    //주의
-    @IBOutlet weak var carefulLabel: UILabel!
-    //검사요망
-    @IBOutlet weak var worriedLabel: UILabel!
-    @IBOutlet weak var resultmemoLabel: UILabel!
-    //검사결과 요약 글
-    @IBOutlet weak var legalLabel: UILabel!
-    //법 조항?
-    @IBOutlet weak var dangerLabel: UILabel!
+    
+    @IBOutlet weak var degreeLabel: UILabel!
+    @IBOutlet weak var prizmLabel: UILabel!
+    
+    @IBOutlet weak var resultGuideLabel: UILabel!
+    
+    @IBOutlet weak var guideButton: UIButton!
     
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var testAgainButton: UIButton!
     
     // MARK: - IBActions
     @IBAction func restartTest(_ sender: Any) {
-        showAlertController(title: "Cancel input action", message: "The information disappears.\nAre you sure you want to cancel?") {
+        showAlertController(title: "Restart Test", message: "The information disappears.\nAre you sure you want to cancel?") {
             switch self.root {
             case .test:
                 self.navigationController?.popToRootViewController(animated: true)
@@ -305,6 +294,9 @@ class ResultViewController: UIViewController {
         fetchUI()
     }
     
+    @IBAction func goToGuideView(_ sender: UIButton) {
+        //TODO: - Connect GuideView
+    }
     
     // MARK: - Delegates And DataSources
     
@@ -312,6 +304,7 @@ class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        setupUI()
         if root != .test {
             if let dbData = (numberEye == .left ? dbData.first : dbData.last) {
                 fetchDBData(dbData: dbData)

@@ -296,19 +296,8 @@ class TestLogContentTabelViewCell: UITableViewCell {
         let coverAngle = data.angles[data.measurementResult.timeTwo] ?? 0.0
         var resultAngle = abs(uncoverAngle - coverAngle)
         resultAngle = (resultAngle * 180 / .pi).roundSecondPoint
-        text += ", Angle : \(resultAngle)º "
-        
-        let angleNum = Int(resultAngle) > 14 ? 14 : Int(resultAngle)
-        switch angleNum {
-        case 0...4:
-            text += "(Safe)"
-        case 5...9:
-            text += "(Caution)"
-        case 10...14:
-            text += "(Visit Hospital)"
-        default:
-            print("Error")
-        }
+        text += ", Degree : \(resultAngle)º(\(resultAngle * 2)PD) - "
+        text += Int(resultAngle) <= 5 ? "in Normal" : "in Strabismus Spectrum"
         
         attributedStr = NSMutableAttributedString(string: text)
         attributedStr.addAttribute(.font, value: UIFont.systemFont(ofSize: 13, weight: .regular), range: (text as NSString).range(of: "º"))
