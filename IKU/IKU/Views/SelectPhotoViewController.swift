@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AVFoundation
+import Combine
 
 final class SelectPhotoViewController: UIViewController {
     // MARK: - Properties
@@ -35,6 +36,9 @@ final class SelectPhotoViewController: UIViewController {
     private var angle: (Double?, Double?) = (nil, nil)
     private var selectedTime: (Double?, Double?) = (nil, nil)
     private var selectedEye: Eye = .left
+    private var recommandedUncoverFrameTime: Double = 0
+    private var recommandedCoverFrameTime: Double = 0
+    private var observers: [AnyCancellable] = []
 
     // MARK: - Methods
     private func configureNavigationBar() {
@@ -46,7 +50,22 @@ final class SelectPhotoViewController: UIViewController {
     }
     
     private func configureHostingViewController(){
-        let hostingController = UIHostingController(rootView: ScrubberView(player: player, degrees: degrees))
+        let scrubberView = ScrubberView(
+            player: player,
+            highlightTime: capturedImage == nil ? recommandedUncoverFrameTime : recommandedCoverFrameTime
+        )
+        scrubberView.scrollDidTouched
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                guard let view = self?.playPauseButtonHostingController.view else { return }
+                UIView.transition(with: view, duration: 1) {
+                    view.alpha = 0
+                }
+            }
+            .store(in: &observers)
+        let hostingController = UIHostingController(
+            rootView: scrubberView
+        )
         scrubberHostingController = hostingController
         hostingController.view.backgroundColor = .clear
         
@@ -186,7 +205,13 @@ final class SelectPhotoViewController: UIViewController {
                 } else if let cgImage = image {
                     self.player.pause()
                     
-                    let nextViewController = SelectPhotoViewController(urlPath: self.urlPath, degrees: self.degrees, selectedEye: self.selectedEye)
+                    let nextViewController = SelectPhotoViewController(
+                        urlPath: self.urlPath,
+                        degrees: self.degrees,
+                        selectedEye: self.selectedEye,
+                        recommandedUncoverFrameTime: self.recommandedUncoverFrameTime,
+                        recommandedCoverFrameTime: self.recommandedCoverFrameTime
+                    )
                     nextViewController.capturedImage = UIImage(cgImage: cgImage)
                     self.selectedTime.0 = time.seconds.roundSecondPoint
                     self.angle.0 = self.degrees[time.seconds.roundSecondPoint]
@@ -201,11 +226,13 @@ final class SelectPhotoViewController: UIViewController {
     }
     
     // MARK: - Life Cycles
-    convenience init(urlPath: URL?, degrees: [Double: Double], selectedEye: Eye) {
+    convenience init(urlPath: URL?, degrees: [Double: Double], selectedEye: Eye, recommandedUncoverFrameTime: Double, recommandedCoverFrameTime: Double) {
         self.init()
         self.urlPath = urlPath
         self.degrees = degrees
         self.selectedEye = selectedEye
+        self.recommandedUncoverFrameTime = recommandedUncoverFrameTime
+        self.recommandedCoverFrameTime = recommandedCoverFrameTime
     }
     
     override func viewDidLoad() {

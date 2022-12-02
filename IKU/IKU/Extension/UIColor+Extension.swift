@@ -30,6 +30,7 @@ extension UIColor {
     static let ikuActiveRed: UIColor = UIColor(named: "ikuActiveRed") ?? .white
     static let ikuEyeSelectBackgroundBlue: UIColor = UIColor(named: "ikuEyeSelectBackgroundBlue") ?? .white
     static let ikuDeactiveRed: UIColor = UIColor(named: "ikuDeactiveRed") ?? .white
+    static let ikuWhatBlue: UIColor = UIColor(named: "ikuWhatBlue") ?? .white
     
     // Calendar Color
     static let ikuCalendarWeekend: UIColor = UIColor(named: "ikuCalendarWeekend") ?? .white
