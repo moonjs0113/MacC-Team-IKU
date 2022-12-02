@@ -11,10 +11,10 @@ struct StoryView: View, StoryViewDelegate {
     @State private var selectedEye: Eye = .right
     @State private var showAlert: Bool = false
     @State private var showCoverTestView: Bool = false
-    
     @State private var nickName: String = "EyeKu"
     @State private var showFailAlert: Bool = false
     @State private var imageURL: URL?
+    @State private var isShowingPopover = false
     
     init() {
         let appearence = UINavigationBarAppearance()
@@ -43,13 +43,17 @@ struct StoryView: View, StoryViewDelegate {
                         .multilineTextAlignment(.leading)
                         .padding()
                     Button {
-                        Void()
+                        isShowingPopover = true
                     } label: {
                         Text(#"What is "Cover Test"?"#)
                             .underline()
                             .foregroundColor(.ikuBlue)
                     }
                     .padding(.bottom, 32)
+                    .fullScreenCover(isPresented: $isShowingPopover, content: {
+                        WhatIsCoverTestView()
+                            .modalColor(.init(white: 0, alpha: 0.2))
+                    })
                 }
                 .background {
                     RoundedRectangle(cornerRadius: 5)
@@ -248,5 +252,36 @@ fileprivate struct EyeSelectingView: View {
         )
         
         return shape.fill(style: FillStyle(eoFill: true))
+    }
+}
+
+fileprivate struct ModalColorView: UIViewRepresentable {
+    
+    let color: UIColor
+    
+    func makeUIView(context: Context) -> some UIView {
+        let view = UIView()
+        DispatchQueue.main.async {
+            view.superview?.superview?.backgroundColor = color
+        }
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIViewType, context: Context) {}
+}
+
+fileprivate struct ModalColorViewModifier: ViewModifier {
+    
+    let color: UIColor
+    
+    func body(content: Content) -> some View {
+        content
+            .background(ModalColorView(color: color))
+    }
+}
+
+extension View {
+    func modalColor(_ color: UIColor = .clear) -> some View {
+        self.modifier(ModalColorViewModifier(color: color))
     }
 }

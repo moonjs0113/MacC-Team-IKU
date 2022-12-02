@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Right_Test_HandGuide.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

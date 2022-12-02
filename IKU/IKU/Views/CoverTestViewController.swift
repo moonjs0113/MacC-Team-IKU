@@ -29,6 +29,21 @@ final class CoverTestViewController: UIViewController {
         return imageView
     }()
     
+    private var handGuideFrameImageStackView: UIStackView = {
+        let left = UIImageView(image: UIImage(named: "Right_Test_HandGuide"))
+        left.contentMode = .scaleAspectFit
+        left.layer.opacity = 0
+        
+        let right = UIImageView(image: UIImage(named: "Left_Test_HandGuide"))
+        right.contentMode = .scaleAspectFit
+        right.layer.opacity = 0
+        
+        let stackView = UIStackView(arrangedSubviews: [left, right])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
     private var cameraFrameView: UIStackView = {
         let backgroundAlpha: CGFloat = 0.8
         let topView = UIView()
@@ -53,10 +68,10 @@ final class CoverTestViewController: UIViewController {
     private var distanceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Distance: 0inch"
+        label.text = "please keep this distance"
         label.textColor = .white
         label.backgroundColor = .clear
-        label.font = .nexonGothicFont(ofSize: 13, weight: .bold)
+        label.font = .nexonGothicFont(ofSize: 17, weight: .bold)
         label.numberOfLines = 2
         let attrString = NSMutableAttributedString(string: label.text ?? "")
         let paragraphStyle = NSMutableParagraphStyle()
@@ -129,6 +144,7 @@ final class CoverTestViewController: UIViewController {
     private func setupNavigationController() {
         let backItem = UIBarButtonItem()
         backItem.title = ""
+        backItem.tintColor = .white
         navigationItem.backBarButtonItem = backItem
         
         let barButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark",
@@ -162,6 +178,8 @@ final class CoverTestViewController: UIViewController {
         view.addSubview(guideLabel)
         view.addSubview(recordButton)
         cameraFrameView.subviews[1].addSubview(guideFrameImageView)
+        cameraFrameView.subviews[1].addSubview(handGuideFrameImageStackView)
+        
         
         NSLayoutConstraint.activate([
             cameraFrameView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -174,8 +192,14 @@ final class CoverTestViewController: UIViewController {
             guideFrameImageView.centerYAnchor.constraint(equalTo: cameraFrameView.subviews[1].centerYAnchor),
             guideFrameImageView.widthAnchor.constraint(equalTo: cameraFrameView.subviews[1].widthAnchor),
             
+            handGuideFrameImageStackView.centerXAnchor.constraint(equalTo: guideFrameImageView.centerXAnchor),
+            handGuideFrameImageStackView.centerYAnchor.constraint(equalTo: guideFrameImageView.centerYAnchor),
+            handGuideFrameImageStackView.heightAnchor.constraint(equalTo: guideFrameImageView.heightAnchor),
+            handGuideFrameImageStackView.widthAnchor.constraint(equalTo: guideFrameImageView.widthAnchor),
+            
             guideLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             guideLabel.topAnchor.constraint(equalTo: cameraFrameView.subviews[2].topAnchor, constant: 15),
+            guideLabel.heightAnchor.constraint(equalTo: recordButton.heightAnchor),
             guideLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95),
             
             recordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -187,33 +211,36 @@ final class CoverTestViewController: UIViewController {
     
     private func configureBinding() {
         viewModel.arCapture?.didFinishRecordingTo = goToSelectPhotoViewController
-        viewModel.updateUI = updateUI
+        viewModel.updateDistanceUI = updateDistanceUI
+        viewModel.updateGuideTextUI = updateGuideTextUI
     }
     
-    private func updateUI(arCaputreStatus: ARCapture.Status) {
-        distanceLabel.attributedText = viewModel.distanceText
-        guideFrameImageView.tintColor = viewModel.guideFrameColor
-        let isCompleteRecording = viewModel.timerCount >= 12
+    private func updateGuideTextUI(text: String) {
+        recordButtonIsEnabled(inEnabled: viewModel.testGuide == .testComplete)
+        let opacity: Float = (viewModel.timerCount > 5 && viewModel.timerCount < 13) ? 1 : 0
+        handGuideFrameImageStackView.subviews[selectedEye == .left ? 1 : 0].layer.opacity = opacity
+        guideLabel.text = text
+    }
+    
+    private func updateDistanceUI(arCaputreStatus: ARCapture.Status, distance: Int) {
         var viewStatus: TestGuide = .incorrectDistance
-        if arCaputreStatus == .ready {
-            viewStatus = viewModel.isRecordingEnabled
-            ? TestGuide.isReady
-            : TestGuide.incorrectDistance
+        if distance < 12 {
+            distanceLabel.text = TestGuide.getAway.labelText
+        } else if distance > 14 {
+            distanceLabel.text = TestGuide.getCloser.labelText
         } else {
-            if isCompleteRecording {
-                viewStatus = TestGuide.testComplete
-            } else {
-                viewStatus = (viewModel.timerCount / 3) % 2 == 0
-                ? TestGuide.coverTo(selectedEye)
-                : TestGuide.uncover
+            viewStatus = .isReady
+            distanceLabel.text = TestGuide.keepDistance.labelText
+        }
+        guideFrameImageView.tintColor = viewModel.guideFrameColor
+        if arCaputreStatus == .ready {
+            if self.viewStatus != viewStatus {
+                self.viewStatus = viewStatus
+                viewModel.playVoiceGuide(text: viewStatus.voiceText)
+                guideLabel.text = viewStatus.labelText
             }
+            recordButtonIsEnabled(inEnabled: viewModel.isRecordingEnabled)
         }
-        if self.viewStatus != viewStatus {
-            self.viewStatus = viewStatus
-            viewModel.playVoiceGuide(text: viewStatus.voiceText)
-            guideLabel.text = viewStatus.labelText
-        }
-        recordButtonIsEnabled(inEnabled: arCaputreStatus == .ready ? viewModel.isRecordingEnabled : isCompleteRecording)
     }
     
     private func recordButtonIsEnabled(inEnabled: Bool) {
@@ -225,8 +252,8 @@ final class CoverTestViewController: UIViewController {
         let selectPhotoViewController = SelectPhotoViewController(urlPath: url,
                                                                   degrees: viewModel.degrees,
                                                                   selectedEye: selectedEye,
-                                                                  recommandedUncoverFrameTime: 0,
-                                                                  recommandedCoverFrameTime: 0
+                                                                  recommandedUncoverFrameTime: 4.5,
+                                                                  recommandedCoverFrameTime: 11.5
         )
         navigationController?.pushViewController(selectPhotoViewController, animated: true)
     }
@@ -259,11 +286,18 @@ final class CoverTestViewController: UIViewController {
         setupARScene()
         setupLayoutConstraint()
         configureBinding()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         viewModel.resetTracking(sceneView: sceneView)
         viewModel.initAVSpeechsynthesizer()
+        viewModel.selectedEye = selectedEye
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        viewModel.stopVoiceGuide()
+        viewModel.stopTimer()
     }
 }
 
