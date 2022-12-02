@@ -296,6 +296,10 @@ class ResultViewController: UIViewController {
     
     @IBAction func goToGuideView(_ sender: UIButton) {
         //TODO: - Connect GuideView
+        let careGuideViewController = CareGuideView.controller
+        careGuideViewController.modalPresentationStyle = .overFullScreen
+        careGuideViewController.view.backgroundColor = .black.withAlphaComponent(0.5)
+        present(careGuideViewController, animated: true)
     }
     
     // MARK: - Delegates And DataSources
