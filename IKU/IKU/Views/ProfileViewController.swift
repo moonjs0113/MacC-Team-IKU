@@ -326,6 +326,12 @@ struct ProfileView: View {
         }
         .padding()
         .background(Color.init(uiColor: .ikuBackgroundBlue))
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Profile")
+                    .font(Font(UIFont.nexonGothicFont(ofSize: 17, weight: .bold)))
+            }
+        }
         .onTapGesture {
             endEditing()
         }
