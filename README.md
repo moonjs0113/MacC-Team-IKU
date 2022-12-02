@@ -7,7 +7,7 @@
 📆 2022. 09. 05. ~ 2022. 12. 02.
 
 
-[<img src="https://img.shields.io/badge/Swift-5.6-orange?">](https://developer.apple.com/kr/swift/) [<img src="https://img.shields.io/badge/Xcode-14.1.0-blue?">](https://developer.apple.com/kr/xcode/)
+[<img src="https://img.shields.io/badge/Swift-5.7.1-orange?">](https://developer.apple.com/kr/swift/) [<img src="https://img.shields.io/badge/Xcode-14.1.0-blue?">](https://developer.apple.com/kr/xcode/)
 
 </div>
 
@@ -24,16 +24,27 @@
 |Developer|Developer|Designer|Developer|Developer, PM|
 |:-:|:-:|:-:|:-:|:-:|
 |<img src="https://github.com/GroundDev.png">|<img src="https://github.com/moonjs0113.png">|<img src="https://github.com/sunchoi22.png">|<img src="https://github.com/sustainable-git.png">|<img src="https://github.com/wonny1012.png">|
-|[Ground](https://github.com/GroundDev)|[Rey](https://github.com/moonjs0113)|[Livvy](https://github.com/sunchoi22)|[Smile](https://github.com/sustainable-git)|[Wonny](https://github.com/wonny1012)|
+|[Ground(김재성)](https://github.com/GroundDev)|[Rey(문종식)](https://github.com/moonjs0113)|[Livvy(최성희)](https://github.com/sunchoi22)|[Smile(신재웅)](https://github.com/sustainable-git)|[Wonny(권지원)](https://github.com/wonny1012)|
 
 <br>
 
-## 🎯 Project Goal
+## Description
 
-- Eyeku (Crossed-Eyes Test) is a service that measures the angle of strabismus to check the risk of occurrence at an early stage of child, and continuously records the angle of strabismus to prevent recurrence and record progress after surgery.
-  - Strabismus have to be diagnosed in early age.
-  - But there are some parents who are unable to easily meet medical specialist to ask whether his or her child has a strabismus or not.
-  - We are struggling to make this world a better place where all children are able to be diagnosed and being tracked with a little effort.
+Hi there👋! We are team iKu. Let us introduce you our app, Eyeku!
+
+👁Eyeku (Crossed-Eyes Test) is a service that measures the angle of strabismus to check the risk of occurrence at an early stage of child, and continuously records the angle of strabismus to prevent recurrence and record progress after surgery.
+
+🙋Why? Why you dived into this project? Strabismus have to be diagnosed in early age. But there are some parents who are unable to easily meet medical specialist to ask whether his or her child has a strabismus or not. We are struggling to make this world a better place where all children are able to be diagnosed and being tracked with a little effort.
+
+Thank you for concern!😉
+
+<br>
+
+## Expectations
+
+- Strabismus is diagnosed in early age.
+- Provides an easy tool who cares and worries whether his or her child has a strabismus or not.
+- Records and tracks recovery process after surgery.
 
 <br>
 
@@ -41,7 +52,7 @@
 
 |Environment|Version|
 |:-:|:-:|
-|Swift|5.6.1|
+|Swift|5.7.1|
 |Xcode|14.1.0|
 |iOS Deployment Target|16.0|
 
