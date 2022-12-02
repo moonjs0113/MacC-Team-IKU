@@ -171,6 +171,7 @@ class ResultViewController: UIViewController {
         angle = (dbData.angles[dbData.measurementResult.timeOne] ?? 0.0,
                  dbData.angles[dbData.measurementResult.timeTwo] ?? 0.0)
         
+        numberEye = (dbData.measurementResult.isLeftEye ? .left : .right)
         saveButton.isHidden = true
         testAgainButton.isHidden = !(Calendar.current.compare(Date.now, to: dbData.measurementResult.creationDate, toGranularity: .day) == .orderedSame)
     }

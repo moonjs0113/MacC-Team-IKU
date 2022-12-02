@@ -328,7 +328,6 @@
 		A8B2A29D291C8D01000F5624 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				C7449156291D474400166197 /* Font */,
 				C75B19FB291E30D6005B1A22 /* StrabismusLog.swift */,
 				C7DFD2832934A36E0090600D /* UserdefaultKey.swift */,
 				A8FACE2F29271C2900BF2CD0 /* Eye.swift */,
@@ -361,6 +360,7 @@
 				C7537CFD2923B1E5001E8BF6 /* Models.scnassets */,
 				A8B2A28F291C8B30000F5624 /* Assets.xcassets */,
 				C74491A4291D4FD100166197 /* Color.xcassets */,
+				C7449156291D474400166197 /* Font */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -840,7 +840,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 78F54XW75V;
+				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
@@ -873,7 +873,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 78F54XW75V;
+				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";

@@ -219,6 +219,10 @@ class TestLogContentTabelViewCell: UITableViewCell {
         label.textAlignment = .center
         label.font = .nexonGothicFont(ofSize: 13)
         label.numberOfLines = 2
+        label.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            label.widthAnchor.constraint(equalToConstant: 50)
+        ])
         return label
     }
     
@@ -230,13 +234,19 @@ class TestLogContentTabelViewCell: UITableViewCell {
         
         let icon = UIImageView(image: UIImage(systemName: "magnifyingglass.circle"))
         icon.tintColor = .ikuBlue
-        icon.contentMode = .scaleAspectFill
+        icon.contentMode = .scaleAspectFit
         
         let label = UILabel()
         label.font = .nexonGothicFont(ofSize: 13)
         label.attributedText = createText()
         label.textColor = .ikuCalendarWeeklyTitle
+        label.numberOfLines = 2
         label.textAlignment = .left
+        label.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+//            label.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 2/3)
+            label.heightAnchor.constraint(equalToConstant: 55)
+        ])
         
         let stackView = UIStackView(arrangedSubviews: [icon, label])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -276,7 +286,7 @@ class TestLogContentTabelViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             icon.widthAnchor.constraint(equalTo: icon.widthAnchor),
             
-            stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier:  1/3),
+            stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier:  0.9),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
@@ -296,7 +306,7 @@ class TestLogContentTabelViewCell: UITableViewCell {
         let coverAngle = data.angles[data.measurementResult.timeTwo] ?? 0.0
         var resultAngle = abs(uncoverAngle - coverAngle)
         resultAngle = (resultAngle * 180 / .pi).roundSecondPoint
-        text += ", Degree : \(resultAngle)º(\(resultAngle * 2)PD) - "
+        text += ", Degree : \(resultAngle)º(\(resultAngle * 2)PD)\n"
         text += Int(resultAngle) <= 5 ? "in Normal" : "in Strabismus Spectrum"
         
         attributedStr = NSMutableAttributedString(string: text)
