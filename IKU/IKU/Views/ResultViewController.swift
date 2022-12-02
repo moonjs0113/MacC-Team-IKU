@@ -69,25 +69,6 @@ class ResultViewController: UIViewController {
     }
     
     func setupUI() {
-        let buttonText = guideButton.titleLabel?.text ?? ""
-        let attributedText = NSMutableAttributedString(string: buttonText)
-        attributedText.addAttributes([.underlineStyle: NSUnderlineStyle.thick.rawValue,
-                                      .underlineColor: UIColor.ikuBlue,
-                                      .font: UIFont.nexonGothicFont(ofSize: 17, weight: .bold),
-                                      .foregroundColor: UIColor.ikuBlue,
-                                     ],
-                                     range: NSRange(location: 0, length: buttonText.count))
-        guideButton.setAttributedTitle(attributedText, for: .normal)
-        
-        let attributedHighlightedText = NSMutableAttributedString(string: buttonText)
-        attributedHighlightedText.addAttributes([.underlineStyle: NSUnderlineStyle.thick.rawValue,
-                                      .underlineColor: UIColor.ikuBlue.withAlphaComponent(0.5),
-                                      .font: UIFont.nexonGothicFont(ofSize: 17, weight: .bold),
-                                      .foregroundColor: UIColor.ikuBlue.withAlphaComponent(0.5),
-                                     ],
-                                     range: NSRange(location: 0, length: buttonText.count))
-        guideButton.setAttributedTitle(attributedHighlightedText, for: .highlighted)
-        
         segmentedControl.isEnabled = (dbData.count == 2)
         dbData.sort {
             let prev = $0.measurementResult.isLeftEye ? 0 : 1
@@ -127,6 +108,26 @@ class ResultViewController: UIViewController {
         }
     }
     
+    private func setButtonAttributedString(buttonText: String) {
+        let attributedText = NSMutableAttributedString(string: buttonText)
+        attributedText.addAttributes([.underlineStyle: NSUnderlineStyle.thick.rawValue,
+                                      .underlineColor: UIColor.ikuBlue,
+                                      .font: UIFont.nexonGothicFont(ofSize: 17, weight: .bold),
+                                      .foregroundColor: UIColor.ikuBlue,
+                                     ],
+                                     range: NSRange(location: 0, length: buttonText.count))
+        guideButton.setAttributedTitle(attributedText, for: .normal)
+        
+        let attributedHighlightedText = NSMutableAttributedString(string: buttonText)
+        attributedHighlightedText.addAttributes([.underlineStyle: NSUnderlineStyle.thick.rawValue,
+                                      .underlineColor: UIColor.ikuBlue.withAlphaComponent(0.5),
+                                      .font: UIFont.nexonGothicFont(ofSize: 17, weight: .bold),
+                                      .foregroundColor: UIColor.ikuBlue.withAlphaComponent(0.5),
+                                     ],
+                                     range: NSRange(location: 0, length: buttonText.count))
+        guideButton.setAttributedTitle(attributedHighlightedText, for: .highlighted)
+    }
+    
     func fetchUI() {
         let attributedStr = NSMutableAttributedString(string: "\(resultAngle)º")
         attributedStr.addAttribute(.font, value: UIFont.systemFont(ofSize: 28, weight: .bold), range: ("\(resultAngle)º" as NSString).range(of: "º"))
@@ -135,6 +136,8 @@ class ResultViewController: UIViewController {
         prizmLabel.text = "(\(resultAngle*2)PD)"
         
         resultGuideLabel.text = (isStrabismus ? ResultGuideText.strabismus : ResultGuideText.normal).rawValue
+        
+        setButtonAttributedString(buttonText: isStrabismus ? "What should I do?" : "If you worried about Strabismus")
         
         uncoveredEye.image = eyeImages.leftImage
         coveredeye.image = eyeImages.rightImage
