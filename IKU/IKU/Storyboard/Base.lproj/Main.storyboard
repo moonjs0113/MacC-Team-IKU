@@ -30,24 +30,24 @@
                                 <rect key="frame" x="16" y="59" width="361" height="759"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="4rB-5b-7jr" userLabel="Image Title Stack View">
-                                        <rect key="frame" x="0.0" y="20" width="361" height="15"/>
+                                        <rect key="frame" x="0.0" y="35" width="361" height="19.666666666666671"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="uncovered" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzR-ns-v44">
-                                                <rect key="frame" x="0.0" y="0.0" width="180.66666666666666" height="15"/>
-                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="180.66666666666666" height="19.666666666666668"/>
+                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="17"/>
+                                                <color key="textColor" name="ikuBlue"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Covered" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQP-tK-vOq">
-                                                <rect key="frame" x="180.66666666666663" y="0.0" width="180.33333333333337" height="15"/>
-                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="180.66666666666663" y="0.0" width="180.33333333333337" height="19.666666666666668"/>
+                                                <fontDescription key="fontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="17"/>
+                                                <color key="textColor" name="ikuBlue"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RVS-mf-ASy" userLabel="Image Stack View">
-                                        <rect key="frame" x="0.0" y="40" width="361" height="208"/>
+                                        <rect key="frame" x="0.0" y="74.666666666666657" width="361" height="207.99999999999997"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uncoverEye" translatesAutoresizingMaskIntoConstraints="NO" id="sAl-v5-gYu">
                                                 <rect key="frame" x="0.0" y="0.0" width="180.66666666666666" height="208"/>
@@ -63,7 +63,7 @@
                                         </constraints>
                                     </stackView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BzU-m7-UZV">
-                                        <rect key="frame" x="198.66666666666663" y="258" width="162.33333333333337" height="32"/>
+                                        <rect key="frame" x="198.66666666666663" y="292.66666666666669" width="162.33333333333337" height="32"/>
                                         <segments>
                                             <segment title="Left eye"/>
                                             <segment title="Right eye"/>
@@ -73,7 +73,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j0d-Vr-1gK">
-                                        <rect key="frame" x="0.0" y="299" width="361" height="322"/>
+                                        <rect key="frame" x="0.0" y="333.66666666666669" width="361" height="335.00000000000006"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Expected cross-eyed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fap-NG-EAr">
                                                 <rect key="frame" x="12" y="16" width="337" height="19.666666666666671"/>
@@ -82,7 +82,7 @@
                                                 <color key="highlightedColor" systemColor="linkColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="J7S-Fg-QI2">
-                                                <rect key="frame" x="16" y="45.666666666666686" width="78.666666666666671" height="25"/>
+                                                <rect key="frame" x="16" y="45.666666666666629" width="78.666666666666671" height="25"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjp-pf-IUD">
                                                         <rect key="frame" x="0.0" y="0.0" width="36.666666666666664" height="25"/>
@@ -102,7 +102,7 @@
                                                 </constraints>
                                             </stackView>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text1" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dXZ-ly-CQV">
-                                                <rect key="frame" x="16" y="156" width="329" height="50"/>
+                                                <rect key="frame" x="16" y="168.99999999999994" width="329" height="50"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="wmY-d8-vnL"/>
@@ -117,42 +117,32 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="pZX-lz-YDn">
-                                                <rect key="frame" x="16" y="124" width="329" height="17"/>
+                                                <rect key="frame" x="16" y="123.99999999999994" width="329" height="30"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Safe" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oi-YR-cpQ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="108.33333333333333" height="17"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="17" id="RSj-FC-VmM"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Safe" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oi-YR-cpQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="108.33333333333333" height="30"/>
+                                                        <fontDescription key="fontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caution" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krZ-XJ-xVh">
-                                                        <rect key="frame" x="110.33333333333334" y="0.0" width="108.33333333333334" height="17"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="17" id="oFB-Yj-beL"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caution" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krZ-XJ-xVh">
+                                                        <rect key="frame" x="110.33333333333334" y="0.0" width="108.33333333333334" height="30"/>
+                                                        <fontDescription key="fontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="seek consultant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAp-hN-rN5">
-                                                        <rect key="frame" x="220.66666666666666" y="0.0" width="108.33333333333334" height="17"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="17" id="jfU-6k-i0o"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="NEXONLv1GothicOTFRegular" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAp-hN-rN5">
+                                                        <rect key="frame" x="220.66666666666666" y="0.0" width="108.33333333333334" height="30"/>
+                                                        <string key="text">Seek
+consultant</string>
+                                                        <fontDescription key="fontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="13"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="17" id="nbO-1k-Rph"/>
-                                                </constraints>
                                             </stackView>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="szg-Fr-Jst">
-                                                <rect key="frame" x="16" y="226" width="329" height="80"/>
+                                                <rect key="frame" x="16" y="238.99999999999994" width="329" height="80"/>
                                                 <color key="tintColor" systemColor="opaqueSeparatorColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="eNE-dO-oDL"/>
@@ -162,7 +152,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hLJ-JJ-nIe">
-                                                <rect key="frame" x="15" y="81.666666666666686" width="331" height="20.333333333333329"/>
+                                                <rect key="frame" x="15" y="81.666666666666629" width="331" height="20.333333333333329"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qg4-rp-3E5">
                                                         <rect key="frame" x="0.0" y="3.9999999999999991" width="20.333333333333332" height="12.666666666666664"/>
@@ -526,7 +516,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="aOc-0i-RuQ" userLabel="하지만">
-                                        <rect key="frame" x="0.0" y="636" width="361" height="50"/>
+                                        <rect key="frame" x="0.0" y="683.66666666666663" width="361" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Bo-Sv-tvU">
                                                 <rect key="frame" x="0.0" y="0.0" width="174.66666666666666" height="50"/>
@@ -573,7 +563,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="RVS-mf-ASy" secondAttribute="trailing" id="2VB-TA-gsc"/>
                                     <constraint firstItem="aOc-0i-RuQ" firstAttribute="top" secondItem="j0d-Vr-1gK" secondAttribute="bottom" constant="15" id="2kY-Qk-v4T"/>
-                                    <constraint firstItem="4rB-5b-7jr" firstAttribute="top" secondItem="d8F-4E-y1j" secondAttribute="top" constant="20" id="3im-Dd-V3k"/>
+                                    <constraint firstItem="4rB-5b-7jr" firstAttribute="top" secondItem="d8F-4E-y1j" secondAttribute="top" constant="35" id="3im-Dd-V3k"/>
                                     <constraint firstItem="BzU-m7-UZV" firstAttribute="width" secondItem="d8F-4E-y1j" secondAttribute="width" multiplier="0.45" id="6Sn-ga-iDZ"/>
                                     <constraint firstItem="RVS-mf-ASy" firstAttribute="width" secondItem="d8F-4E-y1j" secondAttribute="width" id="7bu-Um-hJ0"/>
                                     <constraint firstItem="RVS-mf-ASy" firstAttribute="leading" secondItem="d8F-4E-y1j" secondAttribute="leading" id="C24-2M-Y5Q"/>
@@ -583,7 +573,7 @@
                                     <constraint firstItem="aOc-0i-RuQ" firstAttribute="leading" secondItem="d8F-4E-y1j" secondAttribute="leading" id="VNu-9F-adY"/>
                                     <constraint firstItem="4rB-5b-7jr" firstAttribute="leading" secondItem="d8F-4E-y1j" secondAttribute="leading" id="VS5-lH-Zv9"/>
                                     <constraint firstItem="4rB-5b-7jr" firstAttribute="width" secondItem="d8F-4E-y1j" secondAttribute="width" id="XlK-Uk-WVr"/>
-                                    <constraint firstItem="RVS-mf-ASy" firstAttribute="top" secondItem="4rB-5b-7jr" secondAttribute="bottom" constant="5" id="b94-1u-exp"/>
+                                    <constraint firstItem="RVS-mf-ASy" firstAttribute="top" secondItem="4rB-5b-7jr" secondAttribute="bottom" constant="20" id="b94-1u-exp"/>
                                     <constraint firstItem="j0d-Vr-1gK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="RVS-mf-ASy" secondAttribute="bottom" constant="10" id="fue-Vv-M8n"/>
                                     <constraint firstAttribute="trailing" secondItem="BzU-m7-UZV" secondAttribute="trailing" id="iDn-t5-Vz5"/>
                                     <constraint firstAttribute="trailing" secondItem="4rB-5b-7jr" secondAttribute="trailing" id="nwf-me-gRe"/>
@@ -630,6 +620,9 @@
         <image name="uncoverEye" width="190" height="417"/>
         <namedColor name="ikuBackground">
             <color red="0.96470588235294119" green="0.97647058823529409" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ikuBlue">
+            <color red="0.0" green="0.38823529411764707" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ikuBlue 2">
             <color red="0.15686274509803921" green="0.38039215686274508" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
