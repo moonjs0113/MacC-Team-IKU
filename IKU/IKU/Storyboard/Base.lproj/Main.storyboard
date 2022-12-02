@@ -222,7 +222,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="RVS-mf-ASy" secondAttribute="trailing" id="2VB-TA-gsc"/>
                                     <constraint firstItem="aOc-0i-RuQ" firstAttribute="top" secondItem="j0d-Vr-1gK" secondAttribute="bottom" constant="15" id="2kY-Qk-v4T"/>
-                                    <constraint firstItem="4rB-5b-7jr" firstAttribute="top" secondItem="d8F-4E-y1j" secondAttribute="top" constant="20" id="3im-Dd-V3k"/>
+                                    <constraint firstItem="4rB-5b-7jr" firstAttribute="top" secondItem="d8F-4E-y1j" secondAttribute="top" constant="35" id="3im-Dd-V3k"/>
                                     <constraint firstItem="BzU-m7-UZV" firstAttribute="width" secondItem="d8F-4E-y1j" secondAttribute="width" multiplier="0.45" id="6Sn-ga-iDZ"/>
                                     <constraint firstItem="RVS-mf-ASy" firstAttribute="width" secondItem="d8F-4E-y1j" secondAttribute="width" id="7bu-Um-hJ0"/>
                                     <constraint firstItem="RVS-mf-ASy" firstAttribute="leading" secondItem="d8F-4E-y1j" secondAttribute="leading" id="C24-2M-Y5Q"/>
@@ -233,7 +233,7 @@
                                     <constraint firstItem="aOc-0i-RuQ" firstAttribute="leading" secondItem="d8F-4E-y1j" secondAttribute="leading" id="VNu-9F-adY"/>
                                     <constraint firstItem="4rB-5b-7jr" firstAttribute="leading" secondItem="d8F-4E-y1j" secondAttribute="leading" id="VS5-lH-Zv9"/>
                                     <constraint firstItem="4rB-5b-7jr" firstAttribute="width" secondItem="d8F-4E-y1j" secondAttribute="width" id="XlK-Uk-WVr"/>
-                                    <constraint firstItem="RVS-mf-ASy" firstAttribute="top" secondItem="4rB-5b-7jr" secondAttribute="bottom" constant="5" id="b94-1u-exp"/>
+                                    <constraint firstItem="RVS-mf-ASy" firstAttribute="top" secondItem="4rB-5b-7jr" secondAttribute="bottom" constant="20" id="b94-1u-exp"/>
                                     <constraint firstItem="j0d-Vr-1gK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="RVS-mf-ASy" secondAttribute="bottom" constant="10" id="fue-Vv-M8n"/>
                                     <constraint firstAttribute="trailing" secondItem="BzU-m7-UZV" secondAttribute="trailing" id="iDn-t5-Vz5"/>
                                     <constraint firstAttribute="trailing" secondItem="4rB-5b-7jr" secondAttribute="trailing" id="nwf-me-gRe"/>

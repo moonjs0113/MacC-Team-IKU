@@ -98,6 +98,8 @@ final class IKUCalendarView: UIView {
     lazy private var todayLabel: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(goToCurrentMonth(_:)))
+        view.addGestureRecognizer(tapGestureRecognizer)
         
         let todayCircle = UIView()
         todayCircle.translatesAutoresizingMaskIntoConstraints = false
@@ -213,7 +215,7 @@ final class IKUCalendarView: UIView {
     
     private func fetchCVCalendar() {
         let dateComponents = DateComponents(calendar: Calendar(identifier: .gregorian),
-                                            year: selectedDate.year, month: selectedDate.month)
+                                            year: selectedDate.year, month: selectedDate.month, day: 26)
         guard let date = dateComponents.date else {
             return
         }
@@ -254,6 +256,16 @@ final class IKUCalendarView: UIView {
     
     @objc func goToTestLogListView(_ sender: UIButton) {
         goToHistoryListView()
+    }
+    
+    @objc func goToCurrentMonth(_ sender: UITapGestureRecognizer) {
+        let calendar = Calendar.current.dateComponents([.day,.month,.year], from: .now)
+        selectedDate.year = calendar.year ?? 0
+        selectedDate.month = calendar.month ?? 0
+        calendarView.toggleCurrentDayView()
+        fetchCVCalendar()
+        calendarView.toggleCurrentDayView()
+        fetchCVCalendar()
     }
     
     // MARK: - IBOutlets
