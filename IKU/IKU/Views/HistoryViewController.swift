@@ -112,6 +112,7 @@ final class HistoryViewController: UIViewController {
         }
         
         resultViewController.prepareData(data: data)
+        resultViewController.numberEye = (data.first?.measurementResult.isLeftEye ?? true) ? .left : .right
         resultViewController.root = .history_calendar
         navigationController?.pushViewController(resultViewController, animated: true)
     }
