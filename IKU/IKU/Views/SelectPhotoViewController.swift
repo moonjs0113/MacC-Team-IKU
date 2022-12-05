@@ -39,6 +39,7 @@ final class SelectPhotoViewController: UIViewController {
     private var recommandedUncoverFrameTime: Double = 0
     private var recommandedCoverFrameTime: Double = 0
     private var observers: [AnyCancellable] = []
+    private var scrubberView: ScrubberView?
 
     // MARK: - Methods
     private func configureNavigationBar() {
@@ -50,10 +51,7 @@ final class SelectPhotoViewController: UIViewController {
     }
     
     private func configureHostingViewController(){
-        let scrubberView = ScrubberView(
-            player: player,
-            highlightTime: capturedImage == nil ? recommandedUncoverFrameTime : recommandedCoverFrameTime
-        )
+        guard let scrubberView else { return }
         scrubberView.scrollDidTouched
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
@@ -209,10 +207,10 @@ final class SelectPhotoViewController: UIViewController {
                         urlPath: self.urlPath,
                         degrees: self.degrees,
                         selectedEye: self.selectedEye,
+                        capturedImage: UIImage(cgImage: cgImage),
                         recommandedUncoverFrameTime: self.recommandedUncoverFrameTime,
                         recommandedCoverFrameTime: self.recommandedCoverFrameTime
                     )
-                    nextViewController.capturedImage = UIImage(cgImage: cgImage)
                     self.selectedTime.0 = time.seconds.roundSecondPoint
                     self.angle.0 = self.degrees[time.seconds.roundSecondPoint]
                     nextViewController.angle = self.angle
@@ -226,13 +224,29 @@ final class SelectPhotoViewController: UIViewController {
     }
     
     // MARK: - Life Cycles
-    convenience init(urlPath: URL?, degrees: [Double: Double], selectedEye: Eye, recommandedUncoverFrameTime: Double, recommandedCoverFrameTime: Double) {
+    convenience init(urlPath: URL?, degrees: [Double: Double], selectedEye: Eye, capturedImage: UIImage? = nil, recommandedUncoverFrameTime: Double, recommandedCoverFrameTime: Double) {
         self.init()
         self.urlPath = urlPath
         self.degrees = degrees
         self.selectedEye = selectedEye
         self.recommandedUncoverFrameTime = recommandedUncoverFrameTime
         self.recommandedCoverFrameTime = recommandedCoverFrameTime
+        self.scrubberView = ScrubberView(
+            player: player,
+            highlightTime: capturedImage == nil ? recommandedUncoverFrameTime : recommandedCoverFrameTime
+        )
+    }
+    
+    convenience init(urlPath: URL?, degrees: [Double: Double]) {
+        self.init()
+        self.urlPath = urlPath
+        self.degrees = degrees
+        self.scrubberView = ScrubberView(
+            player: player,
+            highlightTime: 0,
+            isShowRecommend: false
+        )
+        self.announcementLabel.isHidden = true
     }
     
     override func viewDidLoad() {
