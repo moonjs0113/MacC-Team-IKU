@@ -126,7 +126,7 @@ class CoverTestViewModel: NSObject {
             text = "\(5 - Int(timerCount))"
         case 5, 12: // 4.5, 11.5
             testGuide = .countTime
-            text = "done"
+            text = "Complete"
         case 6:
             testGuide = .coverTo(selectedEye)
             text = testGuide.voiceText

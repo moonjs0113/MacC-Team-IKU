@@ -93,7 +93,7 @@ struct StoryView: View, StoryViewDelegate {
             }
             Button("취소", role: .cancel) { }
         } message: {
-            Text("사시각 측정을 위해 카메라 권한이 필요합니다.\n설정으로 이동하시겠습니까?")
+            Text("Camera permission is required for the strabismus test.\nDo you want to go to Settings?")
         }
         .toolbar {
             ToolbarItem(placement: .principal) {

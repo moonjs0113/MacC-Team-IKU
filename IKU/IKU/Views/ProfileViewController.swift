@@ -197,7 +197,7 @@ struct ProfileView: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            Text("Please fill out baby profile")
+            Text("Please fill out child's information ")
                 .foregroundColor(.black)
                 .font(Font(UIFont.nexonGothicFont(ofSize: 17)))
                 .padding(.vertical, 32)
@@ -285,7 +285,7 @@ struct ProfileView: View {
             
             VStack {
                 HStack {
-                    Text("Hospital you go to")
+                    Text("Bookmark Hospital")
                         .foregroundColor(.ikuDarkGray)
                         .font(Font(UIFont.nexonGothicFont(ofSize: 13)))
                     Spacer()
@@ -319,7 +319,7 @@ struct ProfileView: View {
             }
             .disabled(nickName.isEmpty || age == nil)
             .alert("Save failed", isPresented: $showFailAlert) {
-                Button("확인") { }
+                Button("Confirm") { }
             } message: {
                 Text("Failed to save profile information.")
             }

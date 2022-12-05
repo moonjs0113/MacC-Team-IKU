@@ -21,17 +21,17 @@ enum TestGuide: Equatable {
     
     var voiceText: String {
         switch self {
-        case .getCloser: return "get closer"
-        case .getAway: return "get away"
-        case .keepDistance: return "please keep this distance"
+        case .getCloser: return "Move further closer"
+        case .getAway: return "Move further away"
+        case .keepDistance: return "Maintain this distance"
             
-        case .countTime: return "3s...2s...1s...Done!"
+        case .countTime: return "3s...2s...1s...Complete!"
             
         case .isReady: return "Please press the record button"
         case .incorrectDistance: return "Fit the child's face to the border."
         case .testComplete: return "The test is complete.\nPlease push record button."
-        case .uncover: return "Recording uncovering your eye."
-        case .coverTo(let eye): return "Recording covering your eyes.\nCover your \(eye == .left ? "Right" : "Left")Eye"
+        case .uncover: return "Record without covering your eyes."
+        case .coverTo(let eye): return "Recording while covering your eyes.\nCover your \"\(eye == .left ? "Right" : "Left") Eye\""
         }
     }
     

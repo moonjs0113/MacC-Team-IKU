@@ -844,7 +844,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions are required\nfor strabismus test";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permission is required for the strabismus test";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo Library permissions are required";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -877,7 +877,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions are required\nfor strabismus test";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permission is required for the strabismus test";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo Library permissions are required";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

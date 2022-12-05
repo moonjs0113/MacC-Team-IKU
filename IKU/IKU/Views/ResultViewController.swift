@@ -19,8 +19,10 @@ class ResultViewController: UIViewController {
     }
     
     enum ResultGuideText: String {
-        case strabismus = "수평 사시각이 5도(10PD)가 넘으면\n사시 스팩트럼 안에 들어갈 가능성이 있습니다."
-        case normal = "수평 사시각이 5도(10PD) 이하이면\n사시 스팩트럼 안에 들어가지 않을 가능성이 있습니다."
+        case strabismus = "If the angle is more than 5 degrees (10PD),/nThere is a possibility that is a strabismus"
+        //"수평 사시각이 5도(10PD)가 넘으면\n사시 스팩트럼 안에 들어갈 가능성이 있습니다."
+        case normal = "If the angle is less than 5 degrees (10PD),/nThere is a possibility that isn't a strabismus"
+        // "수평 사시각이 5도(10PD) 이하이면\n사시 스팩트럼 안에 들어가지 않을 가능성이 있습니다."
     }
     
     var resultAngle: Double {
@@ -137,7 +139,7 @@ class ResultViewController: UIViewController {
         
         resultGuideLabel.text = (isStrabismus ? ResultGuideText.strabismus : ResultGuideText.normal).rawValue
         
-        setButtonAttributedString(buttonText: isStrabismus ? "What should I do?" : "If you worried about Strabismus")
+        setButtonAttributedString(buttonText: isStrabismus ? "What should I do?" : "If you worried about Strabismus.")
         
         uncoveredEye.image = eyeImages.leftImage
         coveredeye.image = eyeImages.rightImage
@@ -202,7 +204,7 @@ class ResultViewController: UIViewController {
     }
     
     @objc func dismiss(_ sender: UIBarButtonItem) {
-        showAlertController(title: "Cancel input action", message: "The information disappears.\nAre you sure you want to cancel?") {
+        showAlertController(title: "Cancel input action", message: "The information disappears.\nDo you want to cancel?") {
             self.dismiss(animated: true)
         }
     }
@@ -210,10 +212,16 @@ class ResultViewController: UIViewController {
     @objc func bookmarkResult(_ sender: UIBarButtonItem) {
         do {
             let persistenceManager = try PersistenceManager()
-            try persistenceManager.updateVideo(withLocalIdentifier: dbData[segmentedControl.selectedSegmentIndex].measurementResult.localIdentifier, bookmarked: !isBookMarked)
+            var localIdentifier = ""
+            if dbData.count > 1 {
+                localIdentifier = dbData[segmentedControl.selectedSegmentIndex].measurementResult.localIdentifier
+            } else {
+                localIdentifier = dbData.first?.measurementResult.localIdentifier ?? ""
+            }
+            try persistenceManager.updateVideo(withLocalIdentifier: localIdentifier, bookmarked: !isBookMarked)
             isBookMarked = !isBookMarked
         } catch {
-            self.showAlertController(title: "북마크 저장 실패", message: "북마크 저장에 실패했습니다.", isAddCancelAction: false) { }
+            self.showAlertController(title: "Bookmark Save failed", message: "Failed to save bookmark.", isAddCancelAction: false) { }
         }
     }
     
@@ -221,7 +229,13 @@ class ResultViewController: UIViewController {
         showAlertController(title: "Test Result Delete", message: "Recovery after deletion is not possible. \nAre you sure you want to delete?") {
             do {
                 let persistenceManager = try PersistenceManager()
-                try persistenceManager.deleteVideo(withLocalIdentifier: self.dbData[self.segmentedControl.selectedSegmentIndex].measurementResult.localIdentifier)
+                var localIdentifier = ""
+                if self.dbData.count > 1 {
+                    localIdentifier = self.dbData[self.segmentedControl.selectedSegmentIndex].measurementResult.localIdentifier
+                } else {
+                    localIdentifier = self.dbData.first?.measurementResult.localIdentifier ?? ""
+                }
+                try persistenceManager.deleteVideo(withLocalIdentifier: localIdentifier)
                 self.navigationController?.popViewController(animated: true)
             } catch {
                 self.showAlertController(title: "Delete failed", message: "Failed to delete test result", isAddCancelAction: false) { }
@@ -248,7 +262,7 @@ class ResultViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func restartTest(_ sender: Any) {
-        showAlertController(title: "Restart Test", message: "The information disappears.\nAre you sure you want to cancel?") {
+        showAlertController(title: "Test Again", message: "The information disappears.\nAre you sure you want to cancel?") {
             switch self.root {
             case .test:
                 self.navigationController?.popToRootViewController(animated: true)
