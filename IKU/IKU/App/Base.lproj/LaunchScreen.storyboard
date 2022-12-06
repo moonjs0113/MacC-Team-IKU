@@ -22,13 +22,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="KPO-No-62n">
-                                <rect key="frame" x="100.66666666666667" y="324.33333333333331" width="191.66666666666663" height="228.33333333333331"/>
+                                <rect key="frame" x="100.66666666666667" y="346" width="191.66666666666663" height="185.33333333333337"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen_Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Bjl-zf-sfG">
-                                        <rect key="frame" x="0.0" y="0.0" width="191.66666666666666" height="180"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GuideImage_1" translatesAutoresizingMaskIntoConstraints="NO" id="Bjl-zf-sfG">
+                                        <rect key="frame" x="0.0" y="0.0" width="191.66666666666666" height="137"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EyeKu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjp-83-jSh">
-                                        <rect key="frame" x="0.0" y="196.00000000000006" width="191.66666666666666" height="32.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="153" width="191.66666666666666" height="32.333333333333343"/>
                                         <fontDescription key="fontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="28"/>
                                         <color key="textColor" name="ikuBlue"/>
                                         <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreen_Icon" width="186" height="180"/>
+        <image name="GuideImage_1" width="137" height="137"/>
         <namedColor name="ikuBackgroundBlue">
             <color red="0.96470588235294119" green="0.97647058823529409" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
