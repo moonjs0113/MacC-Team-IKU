@@ -49,7 +49,7 @@ struct IKUChart: View {
         Group {
             VStack {
                 HStack(spacing: 2) {
-                    Text("Graph chart patterns")
+                    Text("Chart")
                         .font(Font(UIFont.nexonGothicFont(ofSize: 17, weight: .bold)))
                     Spacer()
                 }
