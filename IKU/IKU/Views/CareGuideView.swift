@@ -70,7 +70,7 @@ struct CareGuideView: View {
     
     enum GuideText: String, CaseIterable {
         case step1 = "The Strabismus test is a treatable disease. We will let you know what treatment you can get. Please do your child’s eyes healthy."
-        case step2 = "Early treatment is very important. If treatment for strabismus is dalayed, complications may result. So, if you suspect your child has strabismus, Meet an expert and consult quickly."
+        case step2 = "Early treatment is very important. If treatment for strabismus is dalayed, complications may result. So, if you suspect your child has strabismus, Meet an expert and consult quickly. "
         case step3 = "Strabismums can be treated with a doctor, eye exercuses, and glasses. We hope that you will be treated according to your preferences."
         case step4 = "Bookmark the video and keep an eye on the angle of strabismus while treating strabismus."
         case step5 = "This service is a simple self-test. For accurate diagnosis, please visit the hospital and consult a doctor. The test results may depend on the imaging device or the surrounding environment. It is recommended that you be diagnosed by a trained professional. Do not use results from this app as part of a diagnosis or treatment plan."

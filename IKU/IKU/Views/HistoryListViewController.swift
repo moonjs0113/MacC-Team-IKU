@@ -300,14 +300,14 @@ class TestLogContentTabelViewCell: UITableViewCell {
         var attributedStr = NSMutableAttributedString(string: "")
         
         guard let data else { return attributedStr }
-        text += data.measurementResult.isLeftEye ? "LeftEye" : "RightEye"
+        text += data.measurementResult.isLeftEye ? "Left Eye" : "Right Eye"
         
         let uncoverAngle = data.angles[data.measurementResult.timeOne] ?? 0.0
         let coverAngle = data.angles[data.measurementResult.timeTwo] ?? 0.0
         var resultAngle = abs(uncoverAngle - coverAngle)
         resultAngle = (resultAngle * 180 / .pi).roundSecondPoint
-        text += ", Degree : \(resultAngle)º(\(resultAngle * 2)PD)\n"
-        text += Int(resultAngle) <= 5 ? "in Normal" : "in Strabismus Spectrum"
+        text += ", Angle : \(resultAngle)º(\(resultAngle * 2)PD) "
+        text += Int(resultAngle) <= 5 ? "" : "(Caution))"
         
         attributedStr = NSMutableAttributedString(string: text)
         attributedStr.addAttribute(.font, value: UIFont.systemFont(ofSize: 13, weight: .regular), range: (text as NSString).range(of: "º"))

@@ -14,8 +14,9 @@ final class SelectPhotoViewController: UIViewController {
     private let player = AVPlayer()
     private lazy var announcementLabel: UILabel = {
         let uiLabel = UILabel()
-        uiLabel.font = .systemFont(ofSize: 13)
+        uiLabel.font = .nexonGothicFont(ofSize: 17)
         uiLabel.textColor = .white
+        uiLabel.textAlignment = .center
         uiLabel.text = capturedImage == nil ?
             "Uncovered Frame" : "Covered Frame"
         return uiLabel
@@ -83,12 +84,13 @@ final class SelectPhotoViewController: UIViewController {
     private func configureViews() {
         view.backgroundColor = #colorLiteral(red: 0.1688045561, green: 0.1888649762, blue: 0.1928240955, alpha: 1)
         
-        view.addSubview(announcementLabel)
-        announcementLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            announcementLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            announcementLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
+//        view.addSubview(announcementLabel)
+//        announcementLabel.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            announcementLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+//            announcementLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+//        ])
+        navigationItem.titleView = announcementLabel
         
         playerView.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(playPauseButtonTouched))
@@ -96,7 +98,8 @@ final class SelectPhotoViewController: UIViewController {
         view.addSubview(playerView)
         playerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            playerView.topAnchor.constraint(equalTo: announcementLabel.bottomAnchor, constant: 16),
+            playerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+//            playerView.topAnchor.constraint(equalTo: announcementLabel.bottomAnchor, constant: 16),
             playerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             playerView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])

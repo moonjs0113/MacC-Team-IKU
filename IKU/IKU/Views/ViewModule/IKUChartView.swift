@@ -43,12 +43,13 @@ class IKUChartView: UIView {
 }
 
 struct IKUChart: View {
+    let maxValue: Double = 7.0
+    
     var body: some View {
         Group {
             VStack {
                 HStack(spacing: 2) {
-//                    Image(systemName: "eye")
-                    Text("Graph Chart")
+                    Text("Graph chart patterns")
                         .font(Font(UIFont.nexonGothicFont(ofSize: 17, weight: .bold)))
                     Spacer()
                 }
@@ -60,14 +61,14 @@ struct IKUChart: View {
                         ForEach(StrabismusLog.previews, id: \.self) {
                             LineMark  (
                                 x: .value("", $0.date),
-                                y: .value("Strabismus Angle", $0.degree)
+                                y: .value("Strabismus Angle", $0.degree > maxValue ? maxValue : $0.degree)
                             )
                             .lineStyle(.init(lineWidth: 1))
                             .foregroundStyle(Color(uiColor: .ikuBlue))
                             
                             AreaMark (
                                 x: .value("", $0.date),
-                                y: .value("Strabismus Angle", $0.degree)
+                                y: .value("Strabismus Angle", $0.degree > maxValue ? maxValue : $0.degree)
                             )
                             .foregroundStyle(
                                 Gradient(colors: [
@@ -76,12 +77,29 @@ struct IKUChart: View {
                                 ]).opacity(0.3)
                             )
                             .interpolationMethod(.linear)
+                            
+                            RuleMark(
+                                y: .value("Strabismus Angle", 5)
+                            )
+                            .lineStyle(StrokeStyle(lineWidth: 1))
+                            .annotation(position: .top, alignment: .trailing){
+                                Text("Angle 5.0\(Text("º").font(.system(size: 13)))")
+                                    .font(Font(UIFont.nexonGothicFont(ofSize: 13)))
+                                    .foregroundColor(Color.ikuCalendarWeeklyTitle)
+                            }
+                            .foregroundStyle(Color.ikuLightGray)
+                            
+                            RuleMark(
+                                y: .value("Strabismus Angle", 7)
+                            )
+                            .lineStyle(StrokeStyle(lineWidth: 0))
+                            .foregroundStyle(Color.clear)
                         }
                     }
                     .chartXAxis(.hidden)
                     .chartYAxis(.hidden)
                     
-                    Text("Please check cross-eyed record")
+                    Text("Please check cross-eyed history.")
                         .font(Font(UIFont.nexonGothicFont(ofSize: 17, weight: .light)))
                         .foregroundColor(Color(uiColor: .ikuCalendarWeeklyTitle))
                 }

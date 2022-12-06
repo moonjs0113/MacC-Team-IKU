@@ -843,8 +843,9 @@
 				DEVELOPMENT_TEAM = 78F54XW75V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = EyeKu;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions are required\nfor strabismus test";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permission is required for the strabismus test";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo Library permissions are required";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -876,8 +877,9 @@
 				DEVELOPMENT_TEAM = 78F54XW75V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IKU/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = EyeKu;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions are required\nfor strabismus test";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permission is required for the strabismus test";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Photo Library permissions are required";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -906,7 +908,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MACOSX_DEPLOYMENT_TARGET = 12.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shin.PersistenceTest;
@@ -926,7 +928,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z629PZ4XVL;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MACOSX_DEPLOYMENT_TARGET = 12.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Shin.PersistenceTest;

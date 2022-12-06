@@ -18,10 +18,10 @@ extension UIViewController {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
-        let ok = UIAlertAction(title: "Yes", style: .default) { [weak self] _ in
+        let ok = UIAlertAction(title: "Confirm", style: .default) { [weak self] _ in
             self?.openSystemSetting()
         }
-        let cancel = UIAlertAction(title: "No", style: .cancel)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         alert.addAction(ok)
         alert.addAction(cancel)
         present(alert, animated: true)
@@ -42,7 +42,7 @@ extension UIViewController {
         alert.addAction(ok)
         
         if isAddCancelAction {
-            let cancel = UIAlertAction(title: "No", style: .cancel)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel)
             alert.addAction(cancel)
         }
         
