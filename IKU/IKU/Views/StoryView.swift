@@ -184,24 +184,20 @@ fileprivate struct EyeSelectingView: View {
     }
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                switch selectedEye {
-                case .left:
-                    Image("LeftEyeSelectedImage")
-                        .resizable()
-                        .scaledToFit()
-                case .right:
-                    Image("RightEyeSelectedImage")
-                        .resizable()
-                        .scaledToFit()
-                }
+        Group {
+            switch selectedEye {
+            case .left:
+                Image("LeftEyeSelectedImage")
+                    .resizable()
+                    .scaledToFit()
+            case .right:
+                Image("RightEyeSelectedImage")
+                    .resizable()
+                    .scaledToFit()
             }
-            .position(
-                x: geometry.frame(in: .local).midX,
-                y: geometry.frame(in: .local).midY
-            )
-            .overlay{
+        }
+        .overlay{
+            GeometryReader { geometry in
                 ZStack {
                     Rectangle()
                         .opacity(0.47)
@@ -220,7 +216,6 @@ fileprivate struct EyeSelectingView: View {
                             case .right: selectedEye = .left
                             }
                         }
-                        
                     VStack {
                         Spacer()
                         HStack{
@@ -236,10 +231,10 @@ fileprivate struct EyeSelectingView: View {
                     }
                 }
             }
-            .clipShape(
-                RoundedRectangle(cornerRadius: 10)
-            )
         }
+        .clipShape(
+            RoundedRectangle(cornerRadius: 10)
+        )
     }
     
     private func Mask(direction eye: Eye, in rect: CGRect) -> some View {
@@ -250,7 +245,6 @@ fileprivate struct EyeSelectingView: View {
                 size: CGSize(width: rect.width/2 - 8, height: rect.height - 8))
             )
         )
-        
         return shape.fill(style: FillStyle(eoFill: true))
     }
 }
