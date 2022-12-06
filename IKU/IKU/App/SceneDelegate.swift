@@ -41,6 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         items[1].image = UIImage(systemName: "list.dash.header.rectangle")
         items[1].title =  "Test Record"
 
+        window?.overrideUserInterfaceStyle = .light
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
         
