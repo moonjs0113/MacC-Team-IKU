@@ -75,7 +75,7 @@
                                         <rect key="frame" x="0.0" y="299" width="343" height="277.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Expected cross-eyed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fap-NG-EAr">
-                                                <rect key="frame" x="16" y="16" width="311" height="20"/>
+                                                <rect key="frame" x="16" y="16" width="176" height="20"/>
                                                 <fontDescription key="fontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="17"/>
                                                 <color key="textColor" name="ikuBlue 2"/>
                                                 <color key="highlightedColor" systemColor="linkColor"/>
@@ -143,14 +143,28 @@
                                                 <color key="textColor" name="ikuCalendarWeeklyTitle"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wc8-yT-daI">
+                                                <rect key="frame" x="265.5" y="9" width="61.5" height="27"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Replay">
+                                                    <fontDescription key="titleFontDescription" name="NEXONLv1GothicOTFBold" family="NEXON Lv1 Gothic OTF" pointSize="11"/>
+                                                    <color key="baseForegroundColor" name="ikuBlue 2"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="replayButtonTouched:" destination="7Fj-xB-xcS" eventType="touchUpInside" id="qNv-pT-HRI"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="xUr-6Y-3SX" firstAttribute="top" secondItem="dXZ-ly-CQV" secondAttribute="bottom" constant="10" id="1gO-Or-c1u"/>
+                                            <constraint firstAttribute="trailing" secondItem="wc8-yT-daI" secondAttribute="trailing" constant="16" id="628-2f-sPE"/>
+                                            <constraint firstItem="wc8-yT-daI" firstAttribute="bottom" secondItem="Fap-NG-EAr" secondAttribute="bottom" id="AMN-Y0-m0a"/>
                                             <constraint firstItem="dXZ-ly-CQV" firstAttribute="leading" secondItem="j0d-Vr-1gK" secondAttribute="leading" constant="16" id="BvE-k7-Hu6"/>
                                             <constraint firstAttribute="trailing" secondItem="dXZ-ly-CQV" secondAttribute="trailing" constant="16" id="CzX-dm-TRm"/>
                                             <constraint firstItem="Fap-NG-EAr" firstAttribute="top" secondItem="j0d-Vr-1gK" secondAttribute="top" constant="16" id="PpT-Lq-YGC"/>
                                             <constraint firstItem="3wE-Cb-vOd" firstAttribute="width" secondItem="szg-Fr-Jst" secondAttribute="width" id="QJs-88-Tan"/>
+                                            <constraint firstItem="wc8-yT-daI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Fap-NG-EAr" secondAttribute="trailing" constant="16" id="QhP-m7-tvD"/>
                                             <constraint firstAttribute="trailing" secondItem="szg-Fr-Jst" secondAttribute="trailing" constant="16" id="RGl-mb-pfN"/>
                                             <constraint firstItem="3wE-Cb-vOd" firstAttribute="top" secondItem="xUr-6Y-3SX" secondAttribute="bottom" constant="10" id="Xfa-Zo-1xZ"/>
                                             <constraint firstItem="3wE-Cb-vOd" firstAttribute="centerX" secondItem="j0d-Vr-1gK" secondAttribute="centerX" id="Z1i-RF-3QP"/>
@@ -162,7 +176,6 @@
                                             <constraint firstItem="szg-Fr-Jst" firstAttribute="top" secondItem="3wE-Cb-vOd" secondAttribute="bottom" constant="16" id="sa3-bK-ikb"/>
                                             <constraint firstItem="xUr-6Y-3SX" firstAttribute="centerX" secondItem="j0d-Vr-1gK" secondAttribute="centerX" id="vpQ-wN-96l"/>
                                             <constraint firstItem="J7S-Fg-QI2" firstAttribute="centerX" secondItem="j0d-Vr-1gK" secondAttribute="centerX" id="wGH-p8-99I"/>
-                                            <constraint firstAttribute="trailing" secondItem="Fap-NG-EAr" secondAttribute="trailing" constant="16" id="zSo-6L-fTb"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -254,6 +267,7 @@
                         <outlet property="degreeLabel" destination="Kjp-pf-IUD" id="x9R-90-iiT"/>
                         <outlet property="guideButton" destination="xUr-6Y-3SX" id="9pH-KY-Fnq"/>
                         <outlet property="prizmLabel" destination="Eor-fK-vSj" id="OoL-4f-FCJ"/>
+                        <outlet property="replayButton" destination="wc8-yT-daI" id="CLO-9G-aAG"/>
                         <outlet property="resultGuideLabel" destination="dXZ-ly-CQV" id="phd-sr-YVD"/>
                         <outlet property="saveButton" destination="Oja-fZ-ZmQ" id="AAN-pt-6Hr"/>
                         <outlet property="segmentedControl" destination="BzU-m7-UZV" id="hqk-fd-JW8"/>

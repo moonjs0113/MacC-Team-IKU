@@ -12,9 +12,11 @@ import Combine
 struct ScrubberView: View {
     @StateObject private var viewModel: ScrubberViewModel
     let scrollDidTouched = PassthroughSubject<Void, Never>()
+    private let isShowRecommend: Bool
     
-    init(player: AVPlayer, highlightTime: Double) {
+    init(player: AVPlayer, highlightTime: Double, isShowRecommend: Bool = true) {
         self._viewModel = StateObject(wrappedValue: ScrubberViewModel(player: player, highlightTime: highlightTime))
+        self.isShowRecommend = isShowRecommend
     }
     
     var body: some View {
@@ -34,28 +36,30 @@ struct ScrubberView: View {
                     )
                 }
                 
-                Rectangle()
-                    .stroke(lineWidth: 2)
-                    .contentShape(Rectangle())
-                    .foregroundColor(.yellow)
-                    .frame(
-                        width: viewModel.photoRatio * geometry.frame(in: .local).height + 4,
-                        height: geometry.frame(in: .local).height
-                    )
-                    .position(
-                        x: geometry.frame(in: .local).midX + (viewModel.highlightTime - viewModel.currentTime.seconds) * viewModel.photoRatio * geometry.frame(in: .local).height,
-                        y: geometry.frame(in: .local).midY
-                    )
-                    .onTapGesture {
-                        viewModel.highlightTouched()
-                    }
-                
-                SpeechBubbleView(text: "Recommended Frame", color: .ikuBackgroundBlue)
-                    .font(Font(UIFont.nexonGothicFont(ofSize: 13)))
-                    .position(
-                        x: geometry.frame(in: .local).midX + (viewModel.highlightTime - viewModel.currentTime.seconds) * viewModel.photoRatio * geometry.frame(in: .local).height,
-                        y: -44 * 1/2 + -44 * 1/3
-                    )
+                if isShowRecommend {
+                    Rectangle()
+                        .stroke(lineWidth: 2)
+                        .contentShape(Rectangle())
+                        .foregroundColor(.yellow)
+                        .frame(
+                            width: viewModel.photoRatio * geometry.frame(in: .local).height + 4,
+                            height: geometry.frame(in: .local).height
+                        )
+                        .position(
+                            x: geometry.frame(in: .local).midX + (viewModel.highlightTime - viewModel.currentTime.seconds) * viewModel.photoRatio * geometry.frame(in: .local).height,
+                            y: geometry.frame(in: .local).midY
+                        )
+                        .onTapGesture {
+                            viewModel.highlightTouched()
+                        }
+                    
+                    SpeechBubbleView(text: "Recommended Frame", color: .ikuBackgroundBlue)
+                        .font(Font(UIFont.nexonGothicFont(ofSize: 13)))
+                        .position(
+                            x: geometry.frame(in: .local).midX + (viewModel.highlightTime - viewModel.currentTime.seconds) * viewModel.photoRatio * geometry.frame(in: .local).height,
+                            y: -44 * 1/2 + -44 * 1/3
+                        )
+                }
                 
                 RoundedRectangle(cornerRadius: 2)
                     .stroke(lineWidth: 1.5)

@@ -49,6 +49,8 @@ class ResultViewController: UIViewController {
     
     var barButtonItem: UIBarButtonItem = UIBarButtonItem()
     
+    var isReplayButtonHidden: Bool = true
+    
     // MARK: - Methods
     func prepareData(data: [(videoURL: URL, angles: [Double: Double], measurementResult: MeasurementResult)], showedEye: Eye
                       = .left) {
@@ -245,6 +247,11 @@ class ResultViewController: UIViewController {
     
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var testAgainButton: UIButton!
+    @IBOutlet weak var replayButton: UIButton! {
+        didSet {
+            replayButton.isHidden = isReplayButtonHidden
+        }
+    }
     
     // MARK: - IBActions
     @IBAction func restartTest(_ sender: Any) {
@@ -306,6 +313,11 @@ class ResultViewController: UIViewController {
         present(careGuideViewController, animated: true)
     }
     
+    @IBAction func replayButtonTouched(_ sender: UIButton) {
+        guard let url = dbData.first?.videoURL else { return }
+        let selectPhotoViewController = SelectPhotoViewController(urlPath: url, degrees: degrees)
+        navigationController?.pushViewController(selectPhotoViewController, animated: true)
+    }
     // MARK: - Delegates And DataSources
     
     // MARK: - Life Cycles
