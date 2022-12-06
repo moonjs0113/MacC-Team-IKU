@@ -46,20 +46,18 @@ struct WhatIsCoverTestView: View {
         
         let imageName: String
         var body: some View {
-            ZStack {
-                Color.clear.ignoresSafeArea(.all)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        dismiss()
-                    }
-                
-                Image(imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .overlay(
-                        GIFImageView(name: imageName)
-                            .padding(30)
-                    )
+            GeometryReader { geometry in
+                ZStack {
+                    Color.clear.ignoresSafeArea(.all)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            dismiss()
+                        }
+                    
+                    GIFImageView(name: imageName)
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .scaledToFit()
+                }
             }
             .padding(30)
         }
