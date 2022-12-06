@@ -27,9 +27,9 @@ struct WhatIsCoverTestView: View {
                     ImageView(imageName: "WhatIsCoverTest5")
                 }
                 Group {
-                    GifView(imageName: "WhatIsCoverTest6")
+                    ImageView(imageName: "WhatIsCoverTest6")
                     ImageView(imageName: "WhatIsCoverTest7")
-                    GifView(imageName: "WhatIsCoverTest8")
+                    ImageView(imageName: "WhatIsCoverTest8")
                     ImageView(imageName: "WhatIsCoverTest9")
                     ImageView(imageName: "WhatIsCoverTest10")
                     ImageView(imageName: "WhatIsCoverTest11")
