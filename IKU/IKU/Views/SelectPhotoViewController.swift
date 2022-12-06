@@ -229,6 +229,7 @@ final class SelectPhotoViewController: UIViewController {
         self.urlPath = urlPath
         self.degrees = degrees
         self.selectedEye = selectedEye
+        self.capturedImage = capturedImage
         self.recommandedUncoverFrameTime = recommandedUncoverFrameTime
         self.recommandedCoverFrameTime = recommandedCoverFrameTime
         self.scrubberView = ScrubberView(
