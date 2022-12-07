@@ -19,9 +19,9 @@ class ResultViewController: UIViewController {
     }
     
     enum ResultGuideText: String {
-        case strabismus = "If the angle is more than 5 degrees (10PD),/nThere is a possibility that is a strabismus"
+        case strabismus = "If the angle is more than 5 degrees (10PD),\nThere is a possibility that is a strabismus"
         //"수평 사시각이 5도(10PD)가 넘으면\n사시 스팩트럼 안에 들어갈 가능성이 있습니다."
-        case normal = "If the angle is less than 5 degrees (10PD),/nThere is a possibility that isn't a strabismus"
+        case normal = "If the angle is less than 5 degrees (10PD),\nThere is a possibility that isn't a strabismus"
         // "수평 사시각이 5도(10PD) 이하이면\n사시 스팩트럼 안에 들어가지 않을 가능성이 있습니다."
     }
     
@@ -33,7 +33,7 @@ class ResultViewController: UIViewController {
     var selectedTime: (uncover: Double, cover: Double) = (0.0, 0.0)
     var numberEye: Eye = .left
     var isStrabismus: Bool {
-        Int(resultAngle) > 5
+        resultAngle >= 5.0
     }
     var url: URL?
     var degrees: [Double: Double] = [:]
@@ -228,7 +228,7 @@ class ResultViewController: UIViewController {
     }
     
     @objc func deleteResult(_ sender: UIBarButtonItem) {
-        showAlertController(title: "Test Result Delete", message: "Recovery after deletion is not possible. \nAre you sure you want to delete?") {
+        showAlertController(title: "Test Result Delete", message: "Recovery after deletion is not possible.\nAre you sure you want to delete?") {
             do {
                 let persistenceManager = try PersistenceManager()
                 var localIdentifier = ""
