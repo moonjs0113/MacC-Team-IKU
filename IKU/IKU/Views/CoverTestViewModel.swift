@@ -118,32 +118,32 @@ class CoverTestViewModel: NSObject {
     func startVoiceGuide() {
         timerCount += 1
         timerCount = timerCount.roundSecondPoint
-        var testGuide: TestGuide = .isReady
-        var text = ""
+        var guideText: TestGuide = .isReady
+        var voiceText = ""
         switch self.timerCount {
         case 2...4:
-            testGuide = .countTime
-            text = "\(5 - Int(timerCount))"
+            guideText = .countTime(5 - Int(timerCount))
+            voiceText = "\(5 - Int(timerCount))"
         case 5, 12: // 4.5, 11.5
-            testGuide = .countTime
-            text = "Complete"
+            guideText = .countTime(5)
+            voiceText = "Complete"
         case 6:
-            testGuide = .coverTo(selectedEye)
-            text = testGuide.voiceText
+            guideText = .coverTo(selectedEye)
+            voiceText = guideText.voiceText
         case 9...11:
-            testGuide = .countTime
-            text = "\(12 - Int(timerCount))"
-        case 13:
-            testGuide = .testComplete
-            text = testGuide.voiceText
+            guideText = .countTime(12 - Int(timerCount))
+            voiceText = "\(12 - Int(timerCount))"
+        case 13...:
+            guideText = .testComplete
+            voiceText = guideText.voiceText
         default:
-            text = ""
+            voiceText = ""
         }
-        if !text.isEmpty {
-            self.testGuide = testGuide
-            playVoiceGuide(text: text)
+        if !voiceText.isEmpty {
+            self.testGuide = guideText
+            playVoiceGuide(text: voiceText)
             guard let updateGuideTextUI else { return }
-            DispatchQueue.main.async { updateGuideTextUI(testGuide.voiceText) }
+            DispatchQueue.main.async { updateGuideTextUI(guideText.voiceText) }
         }
     }
     
