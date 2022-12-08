@@ -156,6 +156,7 @@ extension HistoryListViewController: UITableViewDelegate, UITableViewDataSource 
                 let cellDate = cellData.measurementResult.creationDate
                 return Calendar.current.compare(date, to: cellDate, toGranularity: .day) == .orderedSame
             }
+            resultViewController.isReplayButtonHidden = false
             resultViewController.prepareData(data: datas, showedEye: cellData.measurementResult.isLeftEye ? .left : .right)
             resultViewController.root = .history_list
             navigationController?.pushViewController(resultViewController, animated: true)
