@@ -17,7 +17,7 @@ enum TestGuide: Equatable {
     case testComplete
     case uncover
     case coverTo(Eye)
-    case countTime
+    case countTime(Int)
     
     var voiceText: String {
         switch self {
@@ -25,7 +25,8 @@ enum TestGuide: Equatable {
         case .getAway: return "Move further away"
         case .keepDistance: return "Maintain this distance"
             
-        case .countTime: return "3s...2s...1s...Complete!"
+        case .countTime(let count):
+            return count < 4 ? "\(count)s" : "Complete!"
             
         case .isReady: return "Please press the record button"
         case .incorrectDistance: return "Fit the child's face to the border."
