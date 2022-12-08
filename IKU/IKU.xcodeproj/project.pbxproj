@@ -15,8 +15,8 @@
 		9E8BEE4E29234CDD00AB2E44 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */; };
 		A804661A291FF9890079CEDC /* ScrubberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8046619291FF9890079CEDC /* ScrubberView.swift */; };
 		A804661C292012B10079CEDC /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A804661B292012B10079CEDC /* PlayButton.swift */; };
-		A808910D293E166F0045DE24 /* WhatIsCoverTest3.gif in Resources */ = {isa = PBXBuildFile; fileRef = A808910B293E166E0045DE24 /* WhatIsCoverTest3.gif */; };
-		A808910E293E166F0045DE24 /* WhatIsCoverTest1.gif in Resources */ = {isa = PBXBuildFile; fileRef = A808910C293E166F0045DE24 /* WhatIsCoverTest1.gif */; };
+		A80891152942225C0045DE24 /* WhatIsCoverTest1.gif in Resources */ = {isa = PBXBuildFile; fileRef = A80891132942225C0045DE24 /* WhatIsCoverTest1.gif */; };
+		A80891162942225C0045DE24 /* WhatIsCoverTest3.gif in Resources */ = {isa = PBXBuildFile; fileRef = A80891142942225C0045DE24 /* WhatIsCoverTest3.gif */; };
 		A8096C80292F0C5B00CBBC41 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8096C7F292F0C5B00CBBC41 /* String+Extension.swift */; };
 		A82903E829389EA20079BF79 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82903E729389EA20079BF79 /* UIImage+Extension.swift */; };
 		A879E47E2936FD4800A17CC4 /* GIFImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A879E47D2936FD4800A17CC4 /* GIFImageView.swift */; };
@@ -131,8 +131,8 @@
 		9E8BEE4D29234CDD00AB2E44 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		A8046619291FF9890079CEDC /* ScrubberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrubberView.swift; sourceTree = "<group>"; };
 		A804661B292012B10079CEDC /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
-		A808910B293E166E0045DE24 /* WhatIsCoverTest3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = WhatIsCoverTest3.gif; sourceTree = "<group>"; };
-		A808910C293E166F0045DE24 /* WhatIsCoverTest1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = WhatIsCoverTest1.gif; sourceTree = "<group>"; };
+		A80891132942225C0045DE24 /* WhatIsCoverTest1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = WhatIsCoverTest1.gif; sourceTree = "<group>"; };
+		A80891142942225C0045DE24 /* WhatIsCoverTest3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = WhatIsCoverTest3.gif; sourceTree = "<group>"; };
 		A8096C7F292F0C5B00CBBC41 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		A82903E729389EA20079BF79 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		A879E47D2936FD4800A17CC4 /* GIFImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFImageView.swift; sourceTree = "<group>"; };
@@ -355,8 +355,8 @@
 		A8B2A2A3291C8DDB000F5624 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				A808910C293E166F0045DE24 /* WhatIsCoverTest1.gif */,
-				A808910B293E166E0045DE24 /* WhatIsCoverTest3.gif */,
+				A80891132942225C0045DE24 /* WhatIsCoverTest1.gif */,
+				A80891142942225C0045DE24 /* WhatIsCoverTest3.gif */,
 				C7537CFD2923B1E5001E8BF6 /* Models.scnassets */,
 				A8B2A28F291C8B30000F5624 /* Assets.xcassets */,
 				C74491A4291D4FD100166197 /* Color.xcassets */,
@@ -559,14 +559,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A80891152942225C0045DE24 /* WhatIsCoverTest1.gif in Resources */,
 				A8B2A293291C8B30000F5624 /* LaunchScreen.storyboard in Resources */,
 				A8B2A290291C8B30000F5624 /* Assets.xcassets in Resources */,
 				C744915B291D475600166197 /* NEXON_Lv1_Gothic_OTF_Light.otf in Resources */,
-				A808910E293E166F0045DE24 /* WhatIsCoverTest1.gif in Resources */,
 				C744915A291D475600166197 /* NEXON_Lv1_Gothic_OTF.otf in Resources */,
 				C74491A5291D4FD100166197 /* Color.xcassets in Resources */,
+				A80891162942225C0045DE24 /* WhatIsCoverTest3.gif in Resources */,
 				C7537CFE2923B1E5001E8BF6 /* Models.scnassets in Resources */,
-				A808910D293E166F0045DE24 /* WhatIsCoverTest3.gif in Resources */,
 				0E04199A29232E9200D710BC /* resultVideo.MOV in Resources */,
 				A8B2A28E291C8B2F000F5624 /* Main.storyboard in Resources */,
 				C744915C291D475600166197 /* NEXON_Lv1_Gothic_OTF_Bold.otf in Resources */,
