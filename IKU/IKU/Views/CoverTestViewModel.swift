@@ -133,7 +133,7 @@ class CoverTestViewModel: NSObject {
         case 9...11:
             guideText = .countTime(12 - Int(timerCount))
             voiceText = "\(12 - Int(timerCount))"
-        case 13...:
+        case 13:
             guideText = .testComplete
             voiceText = guideText.voiceText
         default:
