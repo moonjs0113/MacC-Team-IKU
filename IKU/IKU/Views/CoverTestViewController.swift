@@ -29,6 +29,13 @@ final class CoverTestViewController: UIViewController {
         return imageView
     }()
     
+    private var focusImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "FocusIcon"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     private var handGuideFrameImageStackView: UIStackView = {
         let left = UIImageView(image: UIImage(named: "Right_Test_HandGuide"))
         left.contentMode = .scaleAspectFit
@@ -179,7 +186,7 @@ final class CoverTestViewController: UIViewController {
         view.addSubview(recordButton)
         cameraFrameView.subviews[1].addSubview(guideFrameImageView)
         cameraFrameView.subviews[1].addSubview(handGuideFrameImageStackView)
-        
+        cameraFrameView.subviews[1].addSubview(focusImageView)
         
         NSLayoutConstraint.activate([
             cameraFrameView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -196,6 +203,11 @@ final class CoverTestViewController: UIViewController {
             handGuideFrameImageStackView.centerYAnchor.constraint(equalTo: guideFrameImageView.centerYAnchor),
             handGuideFrameImageStackView.heightAnchor.constraint(equalTo: guideFrameImageView.heightAnchor),
             handGuideFrameImageStackView.widthAnchor.constraint(equalTo: guideFrameImageView.widthAnchor),
+            
+            focusImageView.centerXAnchor.constraint(equalTo: guideFrameImageView.centerXAnchor),
+            focusImageView.centerYAnchor.constraint(equalTo: guideFrameImageView.centerYAnchor, constant: -25), // 음수 위로, 양수 아래로
+            focusImageView.widthAnchor.constraint(equalTo: guideFrameImageView.widthAnchor, multiplier: 0.1),
+            focusImageView.heightAnchor.constraint(equalTo: focusImageView.widthAnchor),
             
             guideLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             guideLabel.topAnchor.constraint(equalTo: cameraFrameView.subviews[2].topAnchor, constant: 15),

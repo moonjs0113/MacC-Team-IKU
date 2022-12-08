@@ -26,7 +26,8 @@ class ResultViewController: UIViewController {
     }
     
     var resultAngle: Double {
-        return (abs(angle.0 - angle.1) * 180 / .pi).roundSecondPoint
+//        return (abs(angle.0 - angle.1) * 180 / .pi).roundSecondPoint
+        return ((abs(angle.0 - angle.1) * 180 ) / 2).roundSecondPoint
     }
     
     var angle: (Double, Double) = (0.0, 0.0)
