@@ -34,17 +34,12 @@
 		A8AA21292922131D00EFBE27 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA21282922131D00EFBE27 /* GradientView.swift */; };
 		A8B2A287291C8B2F000F5624 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A286291C8B2F000F5624 /* AppDelegate.swift */; };
 		A8B2A289291C8B2F000F5624 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A288291C8B2F000F5624 /* SceneDelegate.swift */; };
-		A8B2A28B291C8B2F000F5624 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A28A291C8B2F000F5624 /* ViewController.swift */; };
 		A8B2A28E291C8B2F000F5624 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8B2A28C291C8B2F000F5624 /* Main.storyboard */; };
 		A8B2A290291C8B30000F5624 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8B2A28F291C8B30000F5624 /* Assets.xcassets */; };
 		A8B2A293291C8B30000F5624 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8B2A291291C8B30000F5624 /* LaunchScreen.storyboard */; };
 		A8B2A2A2291C8D8F000F5624 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2A1291C8D8F000F5624 /* UINavigationController+Extension.swift */; };
-		A8B2A2A8291C8E3B000F5624 /* ManagerPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */; };
-		A8B2A2AB291C8E6A000F5624 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2AA291C8E6A000F5624 /* Placeholder.swift */; };
-		A8B2A2AD291C8FC8000F5624 /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */; };
 		A8B2A2B1291CCD8F000F5624 /* SelectPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */; };
 		A8B2A2B3291CCDAD000F5624 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */; };
-		A8B2A2D7291DE0D6000F5624 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */; };
 		A8B5349D2926752200237C30 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5349C2926752200237C30 /* SQLiteService.swift */; };
 		A8B534A52926755900237C30 /* SQLiteServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B534A42926755900237C30 /* SQLiteServiceTest.swift */; };
 		A8B534AB2926756600237C30 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5349C2926752200237C30 /* SQLiteService.swift */; };
@@ -148,18 +143,13 @@
 		A8B2A283291C8B2F000F5624 /* IKU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IKU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B2A286291C8B2F000F5624 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8B2A288291C8B2F000F5624 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A8B2A28A291C8B2F000F5624 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A8B2A28D291C8B2F000F5624 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A8B2A28F291C8B30000F5624 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8B2A292291C8B30000F5624 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8B2A294291C8B30000F5624 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8B2A2A1291C8D8F000F5624 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
-		A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerPlaceholder.swift; sourceTree = "<group>"; };
-		A8B2A2AA291C8E6A000F5624 /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
-		A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
 		A8B2A2B0291CCD8F000F5624 /* SelectPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoViewController.swift; sourceTree = "<group>"; };
 		A8B2A2B2291CCDAD000F5624 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
-		A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		A8B5349C2926752200237C30 /* SQLiteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteService.swift; sourceTree = "<group>"; };
 		A8B534A22926755900237C30 /* PersistenceTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersistenceTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B534A42926755900237C30 /* SQLiteServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteServiceTest.swift; sourceTree = "<group>"; };
@@ -268,7 +258,6 @@
 				A8B2A29A291C8BC7000F5624 /* App */,
 				A8B2A2A3291C8DDB000F5624 /* Resource */,
 				A8B2A29D291C8D01000F5624 /* Data */,
-				A8B2A2A9291C8E58000F5624 /* Delegate(Protocol) */,
 				A8B2A2A0291C8D7E000F5624 /* Extension */,
 				A8B2A2A4291C8DFD000F5624 /* Manager */,
 				A8B2A29C291C8CD9000F5624 /* Views */,
@@ -300,11 +289,8 @@
 		A8B2A29C291C8CD9000F5624 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A8B2A2D6291DE0D6000F5624 /* NavigationViewController.swift */,
 				C74491A9291D54A100166197 /* ViewModule */,
-				A8B2A28A291C8B2F000F5624 /* ViewController.swift */,
 				0E04199E2926314900D710BC /* DictionaryViewController.swift */,
-				A8B2A2AC291C8FC8000F5624 /* StoryViewController.swift */,
 				0E0419A4292920FE00D710BC /* ProfileViewController.swift */,
 				0E7A2CD629231F060060C024 /* ResultViewController.swift */,
 				C7E2ECE72938D3CD00B5B7EB /* CareGuideView.swift */,
@@ -372,21 +358,12 @@
 				A8FA007C292B45D00091EDC2 /* JSONService.swift */,
 				A8B5349C2926752200237C30 /* SQLiteService.swift */,
 				A89F2306292BB3A6000B3D63 /* VideoURLService.swift */,
-				A8B2A2A7291C8E3B000F5624 /* ManagerPlaceholder.swift */,
 				C7537CF9292320B5001E8BF6 /* VideoManager.swift */,
 				C7145FC8292B100500F55028 /* PHPhotoManager.swift */,
 				C7537CFB2923B0E2001E8BF6 /* ARSceneManager.swift */,
 				C7F1775F2925BC2C0004C5D9 /* ARCapture */,
 			);
 			path = Manager;
-			sourceTree = "<group>";
-		};
-		A8B2A2A9291C8E58000F5624 /* Delegate(Protocol) */ = {
-			isa = PBXGroup;
-			children = (
-				A8B2A2AA291C8E6A000F5624 /* Placeholder.swift */,
-			);
-			path = "Delegate(Protocol)";
 			sourceTree = "<group>";
 		};
 		A8B534A32926755900237C30 /* PersistenceTest */ = {
@@ -589,8 +566,6 @@
 			files = (
 				A804661A291FF9890079CEDC /* ScrubberView.swift in Sources */,
 				C74491CD291D54DC00166197 /* CVCalendarDayView.swift in Sources */,
-				A8B2A28B291C8B2F000F5624 /* ViewController.swift in Sources */,
-				A8B2A2D7291DE0D6000F5624 /* NavigationViewController.swift in Sources */,
 				A8B2A2B1291CCD8F000F5624 /* SelectPhotoViewController.swift in Sources */,
 				A8AA21292922131D00EFBE27 /* GradientView.swift in Sources */,
 				A8B2A2B3291CCDAD000F5624 /* PlayerView.swift in Sources */,
@@ -609,7 +584,6 @@
 				A8B2A287291C8B2F000F5624 /* AppDelegate.swift in Sources */,
 				A89F2307292BB3A6000B3D63 /* VideoURLService.swift in Sources */,
 				C75B19FA291E2C1C005B1A22 /* IKUChartView.swift in Sources */,
-				A8B2A2AD291C8FC8000F5624 /* StoryViewController.swift in Sources */,
 				C7537CFC2923B0E2001E8BF6 /* ARSceneManager.swift in Sources */,
 				C74491EB291D54DC00166197 /* CVPresent.swift in Sources */,
 				C74491DF291D54DC00166197 /* CVScrollDirection.swift in Sources */,
@@ -647,7 +621,6 @@
 				A89F230C292BB648000B3D63 /* PersistenceManager.swift in Sources */,
 				A879E47E2936FD4800A17CC4 /* GIFImageView.swift in Sources */,
 				C72601E529278642009AB7D1 /* UIView+Extension.swift in Sources */,
-				A8B2A2A8291C8E3B000F5624 /* ManagerPlaceholder.swift in Sources */,
 				C7DFD2842934A36E0090600D /* UserdefaultKey.swift in Sources */,
 				C7FB09EF292B69B900A7671C /* Double+Extension.swift in Sources */,
 				C74491E2291D54DC00166197 /* CVCalendarViewPresentationMode.swift in Sources */,
@@ -661,7 +634,6 @@
 				C74491D6291D54DC00166197 /* CVDate.swift in Sources */,
 				C74491A3291D4F3000166197 /* UIColor+Extension.swift in Sources */,
 				C74491DD291D54DC00166197 /* CVCalendarMenuView.swift in Sources */,
-				A8B2A2AB291C8E6A000F5624 /* Placeholder.swift in Sources */,
 				0E04199F2926314900D710BC /* DictionaryViewController.swift in Sources */,
 				0E7A2CD729231F060060C024 /* ResultViewController.swift in Sources */,
 				A897ED6E29277CC000C93E22 /* MeasurementResult.swift in Sources */,
